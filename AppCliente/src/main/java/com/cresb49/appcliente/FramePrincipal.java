@@ -5,6 +5,7 @@
  */
 package com.cresb49.appcliente;
 
+import com.cresb49.appcliente.analizadores.json.AnalizarJson;
 import com.cresb49.appcliente.cliente.Cliente;
 import java.util.Scanner;
 
@@ -79,6 +80,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextPane1);
 
         jButton3.setText("jButton3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -133,6 +139,15 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+        AnalizarJson analizarJson = new AnalizarJson();
+        String texto = jTextPane1.getText();
+        analizarJson.ejecutar(texto);
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

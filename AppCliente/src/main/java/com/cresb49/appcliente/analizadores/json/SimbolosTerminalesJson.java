@@ -13,39 +13,18 @@ import java.util.List;
  * @author Benjamin
  */
 public class SimbolosTerminalesJson {
-     public static final String[] terminalNames = new String[] {
-            "",
-            "",
-            "def",
-            "Barras",
-            "Pie",
-            "titulo",
-            "ejex",
-            "ejey",
-            "etiquetas",
-            "valores",
-            "unir",
-            "tipo",
-            "Porcentaje/Cantidad",
-            "total",
-            "extra",
-            "Ejecutar",
-            "+",
-            "-",
-            "*",
-            "/",
-            "(",
-            ")",
-            "[",
-            "]",
-            "{",
-            "}",
-            ",",
-            ":",
-            ";",
-            "cadena",
-            "entero",
-            "decimal"
+
+    public static final String[] terminalNames = new String[]{
+        "",
+        "",
+        "[",
+        "]",
+        "{",
+        "}",
+        ",",
+        ":",
+        "cadena",
+        "entero"
     };
 
     public SimbolosTerminalesJson() {
