@@ -109,13 +109,10 @@ terminal            CO_A,CO_C,LLA_A,LLA_C,COMA,DOSPUNTOS,STRING,ENTERO;
 
 
 /* Non terminals */
-non terminal                    s,ej;
-non terminal                    EjeGraf;
+non terminal                    ini;
 
 
 /* The grammar rules */
 
-ej  ::= ej EjeGraf
-    |   s 
-    |   ej error
+ini ::= LLA_A cont LLA_C
     ;

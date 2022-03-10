@@ -11,13 +11,13 @@ import java.util.Objects;
  *
  * @author Benjamin
  */
-public class Comentarios {
+public class Comentario {
     private String texto;
 
-    public Comentarios() {
+    public Comentario() {
     }
 
-    public Comentarios(String texto) {
+    public Comentario(String texto) {
         this.texto = texto;
     }
 
@@ -52,7 +52,7 @@ public class Comentarios {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Comentarios other = (Comentarios) obj;
+        final Comentario other = (Comentario) obj;
         if (!Objects.equals(this.texto, other.texto)) {
             return false;
         }
