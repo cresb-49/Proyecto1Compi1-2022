@@ -111,8 +111,14 @@ terminal    CO_A,CO_C,LLA_A,LLA_C,COMA,DOSPUNTOS,STRING,ENTERO,
 
 
 /* Non terminals */
-non terminal                    ini;
-non terminal ReporteJson        reporte,reportep;
+non terminal                        ini;
+non terminal ReporteJson            reporte,reportep;
+non terminal ArrayList<Clase>       contClass,contClassp;
+non terminal ArrayList<Variable>    contVar,contVarp;
+non terminal ArrayList<Metodo>      contMet,contMetp;
+non terminal ArrayList<Comentario>  contCom,contComp;
+non terminal Variable               expVar,expVarp;
+non terminal Metodo                 expMet,expMetp;
 
 
 /* The grammar rules */
@@ -120,38 +126,111 @@ non terminal ReporteJson        reporte,reportep;
 ini ::= LLA_A reportep LLA_C
     ;
 
-reportep    ::= reporte SCORE DOSPUNTOS STRING:str      {:
-                                                            System.out.println("Score: "+str.toString());
+reportep    ::= reporte:r SCORE DOSPUNTOS STRING:str    {:
+                                                            RESULT=r;
+                                                            Token tokenTmp;
+                                                            tokenTmp = (Token)str;
+                                                            System.out.println("Score: "+tokenTmp.getLexema());
                                                         :}
-            |   reporte CLASS DOSPUNTOS CO_A CO_C       {:
-                                                            System.out.println("Clases: ");
-                                                        :}
-            |   reporte VAR DOSPUNTOS CO_A CO_C         {:
-                                                            System.out.println("Variables: ");
-                                                        :}
-            |   reporte METD DOSPUNTOS CO_A CO_C        {:
-                                                            System.out.println("Metodos: ");
-                                                        :}
-            |   reporte COMENT DOSPUNTOS CO_A CO_C      {:
-                                                            System.out.println("Comentarios: ");
-                                                        :}
+            |   reporte:r CLASS DOSPUNTOS CO_A contClass:cc CO_C    {:
+                                                                        RESULT=r;
+                                                                        System.out.println("Clases: ");
+                                                                    :}
+            |   reporte:r VAR DOSPUNTOS CO_A contVar:cv CO_C {:
+                                                                    RESULT=r;
+                                                                    System.out.println("Variables: ");
+                                                                :}
+            |   reporte:r METD DOSPUNTOS CO_A contMet:cm CO_C   {:
+                                                                    RESULT=r;
+                                                                    System.out.println("Metodos: ");
+                                                                :}
+            |   reporte:r COMENT DOSPUNTOS CO_A contCom:cme CO_C    {:
+                                                                        RESULT=r;
+                                                                        System.out.println("Comentarios: ");
+                                                                    :}
             ;
 
-reporte ::= reporte SCORE DOSPUNTOS STRING:str COMA     {:
-                                                            System.out.println("Score: "+str.toString());
+reporte ::= reporte:r SCORE DOSPUNTOS STRING:str COMA   {:
+                                                            RESULT=r;
+                                                            Token tokenTmp;
+                                                            tokenTmp = (Token)str;
+                                                            System.out.println("Score: "+tokenTmp.getLexema());
                                                         :}
-        |   reporte CLASS DOSPUNTOS CO_A CO_C COMA      {:
-                                                            System.out.println("Clases: ");
+        |   reporte:r CLASS DOSPUNTOS CO_A contClass:cc CO_C COMA   {:
+                                                                        RESULT=r;
+                                                                        System.out.println("Clases: ");
+                                                                    :}
+        |   reporte:r VAR DOSPUNTOS CO_A contVar:cv CO_C COMA   {:
+                                                                    RESULT=r;
+                                                                    System.out.println("Variables: ");
+                                                                :}
+        |   reporte:r METD DOSPUNTOS CO_A contMet:cm CO_C COMA  {:
+                                                                    RESULT=r;
+                                                                    System.out.println("Metodos: ");
+                                                                :}
+        |   reporte:r COMENT DOSPUNTOS CO_A contCom:cme CO_C COMA   {:
+                                                                        RESULT = r;
+                                                                        System.out.println("Comentarios: ");
+                                                                        if(RESULT!=null){
+
+                                                                        }    
+                                                                        
+                                                                    :}
+        |                                               {:
+                                                            RESULT = new ReporteJson();
                                                         :}
-        |   reporte VAR DOSPUNTOS CO_A CO_C COMA        {:
-                                                            System.out.println("Variables: ");
-                                                        :}
-        |   reporte METD DOSPUNTOS CO_A CO_C COMA       {:
-                                                            System.out.println("Metodos: ");
-                                                        :}
-        |   reporte COMENT DOSPUNTOS CO_A CO_C COMA     {:
-                                                            System.out.println("Comentarios: ");
-                                                        :}
-        |
         ;
 
+contClass   ::= contClassp:cc LLA_A NAME DOSPUNTOS STRING:str LLA_C
+            ;
+
+contClassp  ::= contClassp:cc LLA_A NAME DOSPUNTOS STRING:str LLA_C COMA
+            |
+            ;
+
+contVar ::= contVarp:cv LLA_A expVar:expv LLA_C
+            ;
+
+contVarp    ::=     contVarp:cv LLA_A expVar:expv LLA_C COMA
+            |
+            ;
+
+contMet ::= contMetp:cm LLA_A contCom:contc LLA_C
+        ;
+
+contMetp    ::= contMetp:cm LLA_A LLA_C COMA
+            |
+            ;
+
+expVar  ::= expVarp:expv NAME DOSPUNTOS STRING:str
+        |   expVarp:expv FUN DOSPUNTOS STRING:str
+        |   expVarp:expv TYPE DOSPUNTOS STRING:str
+        ;
+
+expVarp ::= expVarp:expv NAME DOSPUNTOS STRING:str COMA
+        |   expVarp:expv FUN DOSPUNTOS STRING:str COMA
+        |   expVarp:expv TYPE DOSPUNTOS STRING:str COMA
+        |   {:
+                RESULT = new Variable();
+            :}
+        ;
+
+expMet  ::= expMetp:expm NAME DOSPUNTOS STRING:str
+        |   expMetp:expm TYPE DOSPUNTOS STRING:str
+        |   expMetp:expm PARA DOSPUNTOS STRING:str
+        ;
+
+expMetp ::= expMetp:expm NAME DOSPUNTOS STRING:str
+        |   expMetp:expm TYPE DOSPUNTOS STRING:str
+        |   expMetp:expm PARA DOSPUNTOS STRING:str
+        |   {:
+                RESULT = new Metodo();
+            :}
+        ;
+
+contCom ::= contComp:cme LLA_A TEXT DOSPUNTOS STRING:str LLA_C
+        ;
+    
+contComp    ::= contComp:cme LLA_A TEXT DOSPUNTOS STRING:str LLA_C COMA
+            |
+            ;
