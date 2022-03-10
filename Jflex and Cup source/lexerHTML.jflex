@@ -8,6 +8,9 @@ import java.util.ArrayList;
 %public
 %line
 %column
+%caseless
+%ignorecase
+
 //%cup
 
 %{
@@ -47,17 +50,14 @@ Comment = {TraditionalComment}
 TraditionalComment   = "</" [^/] ~"/>" | "</" "/"+ "/>"
 Number = [0-9]
 Entero = {Number}+
-Decimal = {Entero}[.]{Entero}
 
 Identifier = [:jletter:] [:jletterdigit:]*
-
-html = [hH][tT][mM][lL]
-h1 = [hH][1]
-h1 = [hH][1]
+text = [\w]+([ ]+[/w]+)*
 
 
 
 %state STRING
+%state INERTEXT
 
 %%
 
@@ -68,6 +68,42 @@ h1 = [hH][1]
                     }
     "String"        {
                         System.out.println("String: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "html"          {
+                        System.out.println("html: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "h1"            {
+                        System.out.println("h1: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "h2"            {
+                        System.out.println("h2: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "table"         {
+                        System.out.println("table: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "for"           {
+                        System.out.println("for: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "tr"            {
+                        System.out.println("tr: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "td"            {
+                        System.out.println("td: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "br"            {
+                        System.out.println("br: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "iterator"      {
+                        System.out.println("iterator: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "hasta"         {
+                        System.out.println("hasta: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "$$("           {
+                        System.out.println("$$(: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    ")$$"           {
+                        System.out.println(")$$: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     {Identifier}    {
                         System.out.println("Identificador: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
@@ -113,8 +149,9 @@ h1 = [hH][1]
                     }
     ">"             {
                         System.out.println(">: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                        yybegin(INERTEXT);
                     }
-    "</"             {
+    "</"            {
                         System.out.println("</: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     [(]             {
@@ -188,6 +225,25 @@ h1 = [hH][1]
       \\r                            { string.append('\r'); }
       \\\"                           { string.append('\"'); }
       \\                             { string.append('\\'); }
+}
+
+<INERTEXT>{
+    {WhiteSpace}                   { /* ignore */ }
+    "</"            {
+                        yybegin(YYINITIAL);
+                        System.out.println("</: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "<"             {
+                        yybegin(YYINITIAL);
+                        System.out.println("<: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "$$("           {
+                        yybegin(YYINITIAL);
+                        System.out.println("$$(: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    {text}          { 
+                        System.out.println("text: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
 }
 
 /*
