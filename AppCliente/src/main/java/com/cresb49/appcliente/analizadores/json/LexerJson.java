@@ -993,7 +993,7 @@ public class LexerJson implements java_cup.runtime.Scanner {
           case 1:
             { String des ="El simbolo/cadena no existe en el lenguaje";
                         //this.addError(new ErrorAnalisis(this.ERROR_TYPE,yytext(),(yyline+1),(yycolumn+1),des));
-                        System.out.println("Simbolo Ilegal: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                        //System.out.println("Simbolo Ilegal: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
           case 29: break;
@@ -1010,65 +1010,65 @@ public class LexerJson implements java_cup.runtime.Scanner {
             // fall through
           case 31: break;
           case 4:
-            { //this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,//this.anterior);
-                        //this.anterior = //this.actual;
-                        //return new Symbol(ParserGraphicsSym.COMA,yyline+1,yycolumn+1,//this.actual);
-                        System.out.println(",: "+yytext()+" , Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            { this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJsonSym.COMA,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println(",: "+yytext()+" , Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
           case 32: break;
           case 5:
-            { //this.actual = new Token(yytext(),new Double(yytext()),yyline+1,yycolumn+1,null,//this.anterior);
-                        ////this.anterior = //this.actual;
-                        //return new Symbol(ParserGraphicsSym.NUMBERS,yyline+1,yycolumn+1,//this.actual);
-                        System.out.println("Entero: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            { this.actual = new Token(yytext(),new Double(yytext()),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJsonSym.ENTERO,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("Entero: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
           case 33: break;
           case 6:
-            { //this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,//this.anterior);
-                        //this.anterior = //this.actual;
-                        //return new Symbol(ParserGraphicsSym.DOSPUNTOS,yyline+1,yycolumn+1,//this.actual);
-                        System.out.println(":-> "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            { this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJsonSym.DOSPUNTOS,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println(":-> "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
           case 34: break;
           case 7:
             { String des = "La cadena no existe en el lenguaje";
                         //this.addError(new ErrorAnalisis(this.ERROR_TYPE,yytext(),(yyline+1),(yycolumn+1),des));
-                        System.out.println("Cadena Ilegal: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                        //System.out.println("Cadena Ilegal: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
           case 35: break;
           case 8:
-            { //this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,//this.anterior);
-                        //this.anterior = //this.actual;
-                        //return new Symbol(ParserGraphicsSym.CO_A,yyline+1,yycolumn+1,//this.actual);
-                        System.out.println("[: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            { this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJsonSym.CO_A,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("[: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
           case 36: break;
           case 9:
-            { //this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,//this.anterior);
-                        //this.anterior = //this.actual;
-                        //return new Symbol(ParserGraphicsSym.CO_C,yyline+1,yycolumn+1,//this.actual);
-                        System.out.println("]: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            { this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJsonSym.CO_C,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("]: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
           case 37: break;
           case 10:
-            { //this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,//this.anterior);
-                        //this.anterior = //this.actual;
-                        //return new Symbol(ParserGraphicsSym.LLA_A,yyline+1,yycolumn+1,//this.actual);
-                        System.out.println("{: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            { this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJsonSym.LLA_A,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("{: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
           case 38: break;
           case 11:
-            { //this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,//this.anterior);
-                        //this.anterior = //this.actual;
-                        //return new Symbol(ParserGraphicsSym.LLA_C,yyline+1,yycolumn+1,//this.actual);
-                        System.out.println("}: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            { this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJsonSym.LLA_C,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("}: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
           case 39: break;
@@ -1079,8 +1079,9 @@ public class LexerJson implements java_cup.runtime.Scanner {
           case 40: break;
           case 13:
             { yybegin(YYINITIAL);
-                                        System.out.println("String: "+string.toString()+", Linea: "+(yyline+1)+", Columna: "+stringColumnInit);
-                                        //return symbol(sym.STRING_LITERAL,string.toString());
+                                        this.actual = new Token(string.toString(),string.toString(),yyline+1,yycolumn+1,null,this.anterior);
+                                        this.anterior = this.actual;
+                                        return new Symbol(ParserJsonSym.STRING,yyline+1,yycolumn+1,this.actual);
             }
             // fall through
           case 41: break;
@@ -1110,52 +1111,82 @@ public class LexerJson implements java_cup.runtime.Scanner {
             // fall through
           case 46: break;
           case 19:
-            { System.out.println("Tipo: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJsonSym.TYPE,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("Tipo: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
           case 47: break;
           case 20:
-            { System.out.println("Score: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJsonSym.SCORE,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("Score: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
           case 48: break;
           case 21:
-            { System.out.println("Texto: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJsonSym.TEXT,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("Texto: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
           case 49: break;
           case 22:
-            { System.out.println("Clases: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJsonSym.CLASS,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("Clases: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
           case 50: break;
           case 23:
-            { System.out.println("Nombre: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJsonSym.NAME,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("Nombre: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
           case 51: break;
           case 24:
-            { System.out.println("Funcion: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJsonSym.FUN,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("Funcion: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
           case 52: break;
           case 25:
-            { System.out.println("Metodos: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJsonSym.METD,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("Metodos: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
           case 53: break;
           case 26:
-            { System.out.println("Variables: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJsonSym.VAR,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("Variables: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
           case 54: break;
           case 27:
-            { System.out.println("Paremetros: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJsonSym.PARA,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("Paremetros: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
           case 55: break;
           case 28:
-            { System.out.println("Comentarios: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJsonSym.COMENT,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("Comentarios: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
           case 56: break;

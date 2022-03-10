@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.cresb49.appcliente.analizadores.ErrorAnalisis;
 import com.cresb49.appcliente.analizadores.Token;
 import com.cresb49.appcliente.ED.Pila;
+import com.cresb49.appcliente.analizadores.json.obj.*;
 
 
 import java_cup.runtime.*;
@@ -105,14 +106,52 @@ parser code {:
 scan with {: return this.lexerJson.next_token(); :};
 
 /* Terminals (tokens returned by the scanner). */
-terminal            CO_A,CO_C,LLA_A,LLA_C,COMA,DOSPUNTOS,STRING,ENTERO;
+terminal    CO_A,CO_C,LLA_A,LLA_C,COMA,DOSPUNTOS,STRING,ENTERO,
+            SCORE,CLASS,VAR,NAME,TYPE,FUN,METD,COMENT,PARA,TEXT;
 
 
 /* Non terminals */
 non terminal                    ini;
+non terminal ReporteJson        reporte,reportep;
 
 
 /* The grammar rules */
 
-ini ::= LLA_A cont LLA_C
+ini ::= LLA_A reportep LLA_C
     ;
+
+reportep    ::= reporte SCORE DOSPUNTOS STRING:str      {:
+                                                            System.out.println("Score: "+str.toString());
+                                                        :}
+            |   reporte CLASS DOSPUNTOS CO_A CO_C       {:
+                                                            System.out.println("Clases: ");
+                                                        :}
+            |   reporte VAR DOSPUNTOS CO_A CO_C         {:
+                                                            System.out.println("Variables: ");
+                                                        :}
+            |   reporte METD DOSPUNTOS CO_A CO_C        {:
+                                                            System.out.println("Metodos: ");
+                                                        :}
+            |   reporte COMENT DOSPUNTOS CO_A CO_C      {:
+                                                            System.out.println("Comentarios: ");
+                                                        :}
+            ;
+
+reporte ::= reporte SCORE DOSPUNTOS STRING:str COMA     {:
+                                                            System.out.println("Score: "+str.toString());
+                                                        :}
+        |   reporte CLASS DOSPUNTOS CO_A CO_C COMA      {:
+                                                            System.out.println("Clases: ");
+                                                        :}
+        |   reporte VAR DOSPUNTOS CO_A CO_C COMA        {:
+                                                            System.out.println("Variables: ");
+                                                        :}
+        |   reporte METD DOSPUNTOS CO_A CO_C COMA       {:
+                                                            System.out.println("Metodos: ");
+                                                        :}
+        |   reporte COMENT DOSPUNTOS CO_A CO_C COMA     {:
+                                                            System.out.println("Comentarios: ");
+                                                        :}
+        |
+        ;
+

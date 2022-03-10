@@ -33,7 +33,7 @@ public class AnalizarJson {
             e.printStackTrace();
         }
         if (!this.errores.isEmpty()) {
-            this.ajusteDeErrores();
+            //this.ajusteDeErrores();
         } else {
             this.reporteFinalErrores = new ArrayList<>();
         }

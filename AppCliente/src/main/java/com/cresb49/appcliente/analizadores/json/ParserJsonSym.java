@@ -8,16 +8,26 @@ package com.cresb49.appcliente.analizadores.json;
 /** CUP generated class containing symbol constants. */
 public class ParserJsonSym {
   /* terminals */
-  public static final int COMA = 6;
-  public static final int DOSPUNTOS = 7;
-  public static final int ENTERO = 9;
-  public static final int STRING = 8;
-  public static final int EOF = 0;
-  public static final int error = 1;
   public static final int LLA_C = 5;
-  public static final int CO_C = 3;
+  public static final int CLASS = 11;
   public static final int LLA_A = 4;
+  public static final int DOSPUNTOS = 7;
+  public static final int NAME = 13;
+  public static final int SCORE = 10;
+  public static final int PARA = 18;
+  public static final int TYPE = 14;
+  public static final int STRING = 8;
+  public static final int COMA = 6;
+  public static final int EOF = 0;
+  public static final int CO_C = 3;
   public static final int CO_A = 2;
+  public static final int COMENT = 17;
+  public static final int error = 1;
+  public static final int METD = 16;
+  public static final int TEXT = 19;
+  public static final int ENTERO = 9;
+  public static final int VAR = 12;
+  public static final int FUN = 15;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -28,7 +38,17 @@ public class ParserJsonSym {
   "COMA",
   "DOSPUNTOS",
   "STRING",
-  "ENTERO"
+  "ENTERO",
+  "SCORE",
+  "CLASS",
+  "VAR",
+  "NAME",
+  "TYPE",
+  "FUN",
+  "METD",
+  "COMENT",
+  "PARA",
+  "TEXT"
   };
 }
 

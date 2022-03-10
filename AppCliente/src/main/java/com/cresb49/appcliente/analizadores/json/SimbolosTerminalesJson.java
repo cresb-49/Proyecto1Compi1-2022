@@ -24,7 +24,17 @@ public class SimbolosTerminalesJson {
         ",",
         ":",
         "cadena",
-        "entero"
+        "entero",
+        "Score",
+        "Clases",
+        "Variables",
+        "Nombre",
+        "Tipo",
+        "Funcion",
+        "Metodos",
+        "Comentarios",
+        "Parametros",
+        "Texto"
     };
 
     public SimbolosTerminalesJson() {
