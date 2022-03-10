@@ -10,10 +10,11 @@ public class ejemplo_final {
     public boolean parse() {
         Objeto nuevo_objeto = new Object();
         Saludar("hola " + " numero: " + (55 + 55));
+        double var = 12.3;
     }
 
     public String Saludar(String val) {
-        if (val != "") {
+        If (val != "") {
             return val; // "Hola aqui retorno"}
         }
     }
