@@ -2,15 +2,12 @@ import java.util.ArrayList;
 //import java_cup.runtime.*;
 
 %%
-%class LexerHTML
+%class LexerJava
 %standalone
 %unicode
 %public
 %line
 %column
-%caseless
-%ignorecase
-
 //%cup
 
 %{
@@ -46,64 +43,90 @@ InputCharacter = [^\r\n]
 WhiteSpace     = {LineTerminator} | [ \t\f]
 
 /* comments */
-Comment = {TraditionalComment}
-TraditionalComment   = "</" [^/] ~"/>" | "</" "/"+ "/>"
-Number = [0-9]
-Entero = {Number}+
+Comment = {TraditionalComment} | {EndOfLineComment} | {DocumentationComment}
+
+TraditionalComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
+// Comment can be the last line of the file, without line terminator.
+//EndOfLineComment     = "//" {InputCharacter}* {LineTerminator}?
+EndOfLineComment     = "//" [^\n]*
+DocumentationComment = "/**" {CommentContent} "*"+ "/"
+CommentContent       = ( [^*] | \*+ [^/*] )*
 
 Identifier = [:jletter:] [:jletterdigit:]*
-text = [\w]+([ ]+[/w]+)*
 
+Number = [0-9]
+Entero = {Number}+
+Decimal = {Entero}[.]{Entero}
 
 
 %state STRING
-%state INERTEXT
 
 %%
 
 
 <YYINITIAL> {
-    "Integer"        {
-                        System.out.println("Integer: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+    "import"        {
+                        System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "public"        {
+                        System.out.println("public: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "private"        {
+                        System.out.println("private: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "protected"        {
+                        System.out.println("protected: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "final"        {
+                        System.out.println("final: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "break"        {
+                        System.out.println("break: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "return"        {
+                        System.out.println("return: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "int"        {
+                        System.out.println("int: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "boolean"        {
+                        System.out.println("boolean: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     "String"        {
                         System.out.println("String: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
-    "html"          {
-                        System.out.println("html: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+    "char"        {
+                        System.out.println("char: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
-    "h1"            {
-                        System.out.println("h1: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+    "double"        {
+                        System.out.println("double: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
-    "h2"            {
-                        System.out.println("h2: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+    "Object"        {
+                        System.out.println("Object: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
-    "table"         {
-                        System.out.println("table: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+    "If"        {
+                        System.out.println("If: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
-    "for"           {
+    "if"        {
+                        System.out.println("if: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "else"        {
+                        System.out.println("else: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "for"        {
                         System.out.println("for: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
-    "tr"            {
-                        System.out.println("tr: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+    "do"        {
+                        System.out.println("do: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
-    "td"            {
-                        System.out.println("td: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+    "while"        {
+                        System.out.println("while: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
-    "br"            {
-                        System.out.println("br: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+    "switch"        {
+                        System.out.println("switch: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
-    "iterador"      {
-                        System.out.println("iterador: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
-                    }
-    "hasta"         {
-                        System.out.println("hasta: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
-                    }
-    "$$("           {
-                        System.out.println("$$(: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
-                    }
-    ")$$"           {
-                        System.out.println(")$$: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+    "case"        {
+                        System.out.println("case: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     {Identifier}    {
                         System.out.println("Identificador: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
@@ -111,11 +134,50 @@ text = [\w]+([ ]+[/w]+)*
     {Comment}       {
                         System.out.println(yytext());   
                     }
-    {Entero}        {
+    {Decimal}       {
+                        //this.actual = new Token(yytext(),new Double(yytext()),yyline+1,yycolumn+1,null,//this.anterior);
+                        ////this.anterior = //this.actual;
+                        //return new Symbol(ParserGraphicsSym.DECIMAL,yyline+1,yycolumn+1,//this.actual);
+                        System.out.println("Decimal: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    {Entero}       {
                         //this.actual = new Token(yytext(),new Double(yytext()),yyline+1,yycolumn+1,null,//this.anterior);
                         ////this.anterior = //this.actual;
                         //return new Symbol(ParserGraphicsSym.NUMBERS,yyline+1,yycolumn+1,//this.actual);
-                        System.out.println("Entero: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                        System.out.println("Numero: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "!="            {
+                        System.out.println("!= : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "=="            {
+                        System.out.println("== : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "<="            {
+                        System.out.println("<= : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    ">="            {
+                        System.out.println(">= : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "<"             {
+                        System.out.println("< : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    ">"             {
+                        System.out.println("> : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "&&"            {
+                        System.out.println("&& : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "||"            {
+                        System.out.println("|| : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "!"             {
+                        System.out.println("! : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "++"             {
+                        System.out.println("++ : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "--"             {
+                        System.out.println("-- : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     [*]             {
                         //this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,//this.anterior);
@@ -141,19 +203,6 @@ text = [\w]+([ ]+[/w]+)*
                         //return new Symbol(ParserGraphicsSym.MENOS,yyline+1,yycolumn+1,//this.actual);
                         System.out.println("-: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
-    "="             {
-                        System.out.println("= : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
-                    }
-    "<"             {
-                        System.out.println("<: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
-                    }
-    ">"             {
-                        System.out.println(">: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
-                        yybegin(INERTEXT);
-                    }
-    "</"            {
-                        System.out.println("</: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
-                    }
     [(]             {
                         //this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,//this.anterior);
                         //this.anterior = //this.actual;
@@ -177,6 +226,18 @@ text = [\w]+([ ]+[/w]+)*
                         //this.anterior = //this.actual;
                         //return new Symbol(ParserGraphicsSym.CO_C,yyline+1,yycolumn+1,//this.actual);
                         System.out.println("]: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    [{]             {
+                        //this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,//this.anterior);
+                        //this.anterior = //this.actual;
+                        //return new Symbol(ParserGraphicsSym.LLA_A,yyline+1,yycolumn+1,//this.actual);
+                        System.out.println("{: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    [}]             {
+                        //this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,//this.anterior);
+                        //this.anterior = //this.actual;
+                        //return new Symbol(ParserGraphicsSym.LLA_C,yyline+1,yycolumn+1,//this.actual);
+                        System.out.println("}: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     [.]             {
                         //this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,//this.anterior);
@@ -225,25 +286,6 @@ text = [\w]+([ ]+[/w]+)*
       \\r                            { string.append('\r'); }
       \\\"                           { string.append('\"'); }
       \\                             { string.append('\\'); }
-}
-
-<INERTEXT>{
-    {WhiteSpace}                   { /* ignore */ }
-    "</"            {
-                        yybegin(YYINITIAL);
-                        System.out.println("</: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
-                    }
-    "<"             {
-                        yybegin(YYINITIAL);
-                        System.out.println("<: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
-                    }
-    "$$("           {
-                        yybegin(YYINITIAL);
-                        System.out.println("$$(: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
-                    }
-    {text}          { 
-                        System.out.println("text: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
-                    }
 }
 
 /*
