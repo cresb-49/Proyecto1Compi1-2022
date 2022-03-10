@@ -1,11 +1,11 @@
 #! /bin/bash
 
 echo "Compilado Jflex"
-jflex lexerJava.jflex
+jflex JAVA/lexerJava.jflex
 
-javac LexerJava.java
+javac JAVA/LexerJava.java
 
 #rm lexerJava.java~
-rm lexerJava.java
+rm JAVA/lexerJava.java
 
-java LexerJava ejemploJava.java
+java JAVA/LexerJava JAVA/ejemploJava.java

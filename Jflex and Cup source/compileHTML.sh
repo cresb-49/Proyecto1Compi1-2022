@@ -1,11 +1,11 @@
 #! /bin/bash
 
 echo "Compilado Jflex"
-jflex lexerHTML.jflex
+jflex HTML/lexerHTML.jflex
 
-javac LexerHTML.java
+javac HTML/LexerHTML.java
 
 #rm lexerJava.java~
-rm LexerHTML.java
+rm HTML/LexerHTML.java
 
-java LexerHTML ejemploHTML.html
+java HTML/LexerHTML HTML/ejemploHTML.html

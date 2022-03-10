@@ -1,14 +1,15 @@
+package com.cresb49.appcliente.analizadores.json;
+
 import java.util.ArrayList;
-//import java_cup.runtime.*;
+import java_cup.runtime.*;
 
 %%
 %class LexerJson
-%standalone
 %unicode
 %public
 %line
 %column
-//%cup
+%cup
 
 %{
     private static final String ERROR_TYPE = "Léxico";
