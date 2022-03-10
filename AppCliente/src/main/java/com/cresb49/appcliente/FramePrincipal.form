@@ -165,6 +165,9 @@
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
                 <Component class="javax.swing.JTextPane" name="jTextPane1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="{&#xa;    Score: &quot;0.75&quot;,&#xa;    Clases: [&#xa;        { Nombre: &quot;clase1&quot;&#xa;        },&#xa;        {Nombre: &quot;clase2&quot;&#xa;        }&#xa;    ],&#xa;    Variables: [&#xa;        {Nombre: &quot;var1&quot;, Tipo: &quot;int&quot;, Funcion: &quot;funcion1, funcion2&quot;&#xa;        },&#xa;        {Nombre: &quot;var2&quot;, Tipo: &quot;int&quot;, Funcion: &quot;funcion2, Clase hola&quot;&#xa;        }&#xa;    ],&#xa;    Metodos: [&#xa;        {Nombre: &quot;metodo1&quot;,Tipo: &quot;void&quot;, Paremetros: 2&#xa;        },&#xa;        {Nombre: &quot;metodo2&quot;,Tipo: &quot;String&quot;, Parametros: 0&#xa;        }&#xa;    ],&#xa;    Comentarios: [&#xa;        { Texto: &quot;hola es un comentario&quot;&#xa;        },&#xa;        { Texto: &quot;otro coment&quot;&#xa;        }&#xa;    ]&#xa;}"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>

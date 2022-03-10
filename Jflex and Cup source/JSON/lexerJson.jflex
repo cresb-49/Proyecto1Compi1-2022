@@ -1,5 +1,9 @@
 package com.cresb49.appcliente.analizadores.json;
 
+import com.cresb49.appcliente.analizadores.ErrorAnalisis;
+import com.cresb49.appcliente.analizadores.Token;
+import com.cresb49.appcliente.ED.Pila;
+
 import java.util.ArrayList;
 import java_cup.runtime.*;
 
@@ -13,31 +17,25 @@ import java_cup.runtime.*;
 
 %{
     private static final String ERROR_TYPE = "Léxico";
-    //private Token anterior;
-    //private Token actual; 
+    private Token anterior;
+    private Token actual; 
 
     private int stringColumnInit = 0; 
     private StringBuffer string = new StringBuffer();
-    //private Pila<ErrorAnalisis> errors;
+    private Pila<ErrorAnalisis> errors;
 
-    /*
     public Pila<ErrorAnalisis> getErrors() {
-        //return errors;
+        return errors;
     }
-
     private void addError(ErrorAnalisis error){
         this.errors.push(error);
-    }*/
-
+    }
 %}
-
-/*
 %eofval{
-    //this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,//this.anterior);
-    //this.anterior = //this.actual;
-    //return new java_cup.runtime.Symbol(ParserGraphicsSym.EOF,yyline+1,yycolumn+1,//this.actual);
+    this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,this.anterior);
+    this.anterior = this.actual;
+    return new java_cup.runtime.Symbol(ParserJsonSym.EOF,yyline+1,yycolumn+1,this.actual);
 %eofval}
-*/
 
 LineTerminator = \r|\n|\r\n
 WhiteSpace     = {LineTerminator} | [ \t\f]

@@ -75,6 +75,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("tab1", jPanel1);
 
+        jTextPane1.setText("{\n    Score: \"0.75\",\n    Clases: [\n        { Nombre: \"clase1\"\n        },\n        {Nombre: \"clase2\"\n        }\n    ],\n    Variables: [\n        {Nombre: \"var1\", Tipo: \"int\", Funcion: \"funcion1, funcion2\"\n        },\n        {Nombre: \"var2\", Tipo: \"int\", Funcion: \"funcion2, Clase hola\"\n        }\n    ],\n    Metodos: [\n        {Nombre: \"metodo1\",Tipo: \"void\", Paremetros: 2\n        },\n        {Nombre: \"metodo2\",Tipo: \"String\", Parametros: 0\n        }\n    ],\n    Comentarios: [\n        { Texto: \"hola es un comentario\"\n        },\n        { Texto: \"otro coment\"\n        }\n    ]\n}");
         jScrollPane1.setViewportView(jTextPane1);
 
         jButton3.setText("jButton3");

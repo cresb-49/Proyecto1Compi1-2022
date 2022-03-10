@@ -1,0 +1,121 @@
+package com.cresb49.appcliente.analizadores.json;
+
+import java.util.ArrayList;
+
+import com.cresb49.appcliente.analizadores.ErrorAnalisis;
+import com.cresb49.appcliente.analizadores.Token;
+import com.cresb49.appcliente.ED.Pila;
+
+
+import java_cup.runtime.*;
+
+class ParserJson;
+
+parser code {:
+    // Connect this parser to a scanner!
+
+    private static final String ERROR_TYPE_SIN = "Sintactico";
+    private static final String ERROR_TYPE_SEM = "Semantico";
+
+    private LexerJson lexerJson;
+    private ArrayList<ErrorAnalisis> errorAnalisisesTmp;
+    private SimbolosTerminalesJson simbolosTerminalesJson;
+
+    
+    public ParserJson (LexerJson lexerJson){ 
+        super(lexerJson);
+        this.lexerJson=lexerJson;
+        this.simbolosTerminalesJson = new SimbolosTerminalesJson();
+    }
+
+    public void report_error(String message, Object info) {
+        System.out.println("public void report_error");
+    }
+    
+    public void report_fatal_error(String message, Object info) {
+        System.out.println("public void report_fatal_error");
+    }
+
+    public void syntax_error(Symbol cur_token) {
+        Token tok = (Token) cur_token.value;
+        if(tok!=null){
+            if (cur_token.sym == ParserJsonSym.EOF) {
+                String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesJson.obtenerSimbolos(expected_token_ids()).toString();
+                this.lexerJson.getErrors().push(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er));
+                System.out.println(er);
+            } else {
+                String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesJson.obtenerSimbolos(expected_token_ids()).toString();
+                this.lexerJson.getErrors().push(new ErrorAnalisis(ERROR_TYPE_SIN,tok.getLexema(), tok.getLinea(), tok.getColumna(), er));
+                System.out.println(er);
+            }
+        }else{
+            String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesJson.obtenerSimbolos(expected_token_ids()).toString();
+            this.lexerJson.getErrors().push(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er));
+            System.out.println(er);
+        }
+    }
+
+    public void unrecovered_syntax_error(Symbol cur_token) {
+        if (cur_token.sym == ParserJsonSym.EOF) {
+            String er = "Error irrecuperable se llego al final del archivo";
+            this.lexerJson.getErrors().push(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er));
+            System.out.println(er);
+        } else {
+            Token tok = (Token) cur_token.value;
+            //String er = "Error irrecuperable, un posible simbolo esperado: "+ simbolosTerminalesJson.obtenerSimbolos(expected_token_ids()).toString();
+            String er = "Error irrecuperable resuelva el error anterior";
+            this.lexerJson.getErrors().push(new ErrorAnalisis(ERROR_TYPE_SIN, tok.getLexema(), tok.getLinea(), tok.getColumna(), er));
+            System.out.println(er);
+        }
+    }
+
+    private void semantic_error(Token token,String contexto) {
+        this.lexerJson.getErrors().push(new ErrorAnalisis(ERROR_TYPE_SEM,token.getLexema(), token.getLinea(), token.getColumna(), contexto));
+    }
+
+    private boolean definition_error(Token ini,Token fin,ArrayList<String> errores){
+        boolean status = false;
+        for (String errore : errores) {
+            status = true;
+            String error = "Error en definicion, "+errore+" Ubicacion general --> Linea: "+ini.getLinea()+" a Linea: "+fin.getLinea();
+            this.lexerJson.getErrors().push(new ErrorAnalisis(ERROR_TYPE_SEM, ini.getLexema(), ini.getLinea(), ini.getColumna(), error));
+            System.out.println(error);
+        }
+        return status;
+    }
+
+    private void referencia_numerica_incorrecta(Token token,Double valor){
+        this.lexerJson.getErrors().push(new ErrorAnalisis(ERROR_TYPE_SIN,valor.toString(), token.getLinea(),(token.getColumna()+1), ", Se espera un valor entero o una operacion con resultado entero"));
+    }
+
+    private void referencia_numero_negativo(Token token,Double valor){
+        this.lexerJson.getErrors().push(new ErrorAnalisis(ERROR_TYPE_SEM,String.valueOf(valor.intValue()), token.getLinea(),(token.getColumna()+1), ", Se esperaba un valor positivo"));
+    }
+
+    private void referencia_numero_negativo_values(Token token,Double valor){
+        this.lexerJson.getErrors().push(new ErrorAnalisis(ERROR_TYPE_SEM,valor.toString(), token.getLinea(),(token.getColumna()+1), ",Se espera un valor positivo o una operacion con resultado positivo"));
+    }
+
+    protected int error_sync_size() {
+		return 1;
+	}
+:}
+
+/* define how to connect to the scanner! */
+scan with {: return this.lexerJson.next_token(); :};
+
+/* Terminals (tokens returned by the scanner). */
+terminal            CO_A,CO_C,LLA_A,LLA_C,COMA,DOSPUNTOS,STRING,ENTERO;
+
+
+/* Non terminals */
+non terminal                    s,ej;
+non terminal                    EjeGraf;
+
+
+/* The grammar rules */
+
+ej  ::= ej EjeGraf
+    |   s 
+    |   ej error
+    ;
