@@ -107,11 +107,12 @@ scan with {: return this.lexerJson.next_token(); :};
 
 /* Terminals (tokens returned by the scanner). */
 terminal    CO_A,CO_C,LLA_A,LLA_C,COMA,DOSPUNTOS,STRING,ENTERO,
-            SCORE,CLASS,VAR,NAME,TYPE,FUN,METD,COMENT,PARA,TEXT;
+            SCORE,CLASS,VAR,NAME,TYPE,FUN,METD,COMENT,PARA,TEXT,
+            PROYECT1,PROYECT2,FILEDEF,REPORTJSON;
 
 
 /* Non terminals */
-non terminal                        ini;
+non terminal                        inix;
 non terminal ReporteJson            reporte,reportep;
 non terminal ArrayList<Clase>       contClass,contClassp;
 non terminal ArrayList<Variable>    contVar,contVarp;
@@ -119,13 +120,17 @@ non terminal ArrayList<Metodo>      contMet,contMetp;
 non terminal ArrayList<Comentario>  contCom,contComp;
 non terminal Variable               expVar,expVarp;
 non terminal Metodo                 expMet,expMetp;
+non terminal FileCopy               copy,copyp;
 
 
 /* The grammar rules */
 
 ini ::= LLA_A reportep LLA_C
+    |   LLA_A copy LLA_C
     ;
 
+
+/*Gramatica para reporte Json*/
 reportep    ::= reporte:r SCORE DOSPUNTOS STRING:str    {:
                                                             RESULT=r;
                                                             Token tokenTmp;
@@ -198,7 +203,7 @@ contVarp    ::=     contVarp:cv LLA_A expVar:expv LLA_C COMA
 contMet ::= contMetp:cm LLA_A contCom:contc LLA_C
         ;
 
-contMetp    ::= contMetp:cm LLA_A LLA_C COMA
+contMetp    ::= contMetp:cm LLA_A LLA_C expMet:expm COMA
             |
             ;
 
@@ -217,12 +222,12 @@ expVarp ::= expVarp:expv NAME DOSPUNTOS STRING:str COMA
 
 expMet  ::= expMetp:expm NAME DOSPUNTOS STRING:str
         |   expMetp:expm TYPE DOSPUNTOS STRING:str
-        |   expMetp:expm PARA DOSPUNTOS STRING:str
+        |   expMetp:expm PARA DOSPUNTOS ENTERO:ent
         ;
 
 expMetp ::= expMetp:expm NAME DOSPUNTOS STRING:str
         |   expMetp:expm TYPE DOSPUNTOS STRING:str
-        |   expMetp:expm PARA DOSPUNTOS STRING:str
+        |   expMetp:expm PARA DOSPUNTOS ENTERO:ent
         |   {:
                 RESULT = new Metodo();
             :}
@@ -234,3 +239,18 @@ contCom ::= contComp:cme LLA_A TEXT DOSPUNTOS STRING:str LLA_C
 contComp    ::= contComp:cme LLA_A TEXT DOSPUNTOS STRING:str LLA_C COMA
             |
             ;
+
+/*Gramatica para archivo .copy*/
+
+copy    ::= copyp:copp PROYECT1 DOSPUNTOS STRING:str
+        |   copy:copp PROYECT2 DOSPUNTOS STRING:str
+        |   copy:copp FILEDEF DOSPUNTOS STRING:str
+        |   copy:copp REPORTJSON DOSPUNTOS STRING:str
+        ;
+
+copy    ::= copyp:copp PROYECT1 DOSPUNTOS STRING:str COMA
+        |   copy:copp PROYECT2 DOSPUNTOS STRING:str COMA
+        |   copy:copp FILEDEF DOSPUNTOS STRING:str COMA
+        |   copy:copp REPORTJSON DOSPUNTOS STRING:str COMA
+        |      
+        ;

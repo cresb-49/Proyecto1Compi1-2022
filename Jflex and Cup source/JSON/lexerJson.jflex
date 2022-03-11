@@ -55,6 +55,30 @@ Entero = {Number}+
 
 
 <YYINITIAL> {
+    "Proyecto1"         {
+                        this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJsonSym.PROYECT1,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("Score: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "Proyecto2"         {
+                        this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJsonSym.PROYECT2,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("Score: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "FileDef"         {
+                        this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJsonSym.FILEDEF,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("Score: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "ReporteJson"         {
+                        this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJsonSym.REPORTJSON,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("Score: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
     "Score"         {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
