@@ -567,18 +567,18 @@ public class LexerJson implements java_cup.runtime.Scanner {
 
     private int stringColumnInit = 0; 
     private StringBuffer string = new StringBuffer();
-    private Pila<ErrorAnalisis> errors;
+    private ArrayList<ErrorAnalisis> errors;
 
-    public void setErrors(Pila<ErrorAnalisis> errors) {
+    public void setErrors(ArrayList<ErrorAnalisis> errors) {
         this.errors = errors;
     }
 
-    public Pila<ErrorAnalisis> getErrors() {
+    public ArrayList<ErrorAnalisis> getErrors() {
         return errors;
     }
 
     private void addError(ErrorAnalisis error){
-        this.errors.push(error);
+        this.errors.add(error);
     }
 
 
