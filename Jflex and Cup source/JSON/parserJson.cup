@@ -42,15 +42,18 @@ parser code {:
         if(tok!=null){
             if (cur_token.sym == ParserJsonSym.EOF) {
                 String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesJson.obtenerSimbolos(expected_token_ids()).toString();
+                System.out.println("FIN ARCHIVO"+" "+er);
                 this.lexerJson.getErrors().push(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er));
                 System.out.println(er);
             } else {
                 String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesJson.obtenerSimbolos(expected_token_ids()).toString();
+                System.out.println(tok.getLexema()+" "+er);
                 this.lexerJson.getErrors().push(new ErrorAnalisis(ERROR_TYPE_SIN,tok.getLexema(), tok.getLinea(), tok.getColumna(), er));
                 System.out.println(er);
             }
         }else{
             String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesJson.obtenerSimbolos(expected_token_ids()).toString();
+            System.out.println("FIN ARCHIVO"+" "+er);
             this.lexerJson.getErrors().push(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er));
             System.out.println(er);
         }
@@ -59,12 +62,14 @@ parser code {:
     public void unrecovered_syntax_error(Symbol cur_token) {
         if (cur_token.sym == ParserJsonSym.EOF) {
             String er = "Error irrecuperable se llego al final del archivo";
+            System.out.println("FIN ARCHIVO"+" "+er);
             this.lexerJson.getErrors().push(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er));
             System.out.println(er);
         } else {
             Token tok = (Token) cur_token.value;
             //String er = "Error irrecuperable, un posible simbolo esperado: "+ simbolosTerminalesJson.obtenerSimbolos(expected_token_ids()).toString();
             String er = "Error irrecuperable resuelva el error anterior";
+            System.out.println(tok.getLexema()+" "+er);
             this.lexerJson.getErrors().push(new ErrorAnalisis(ERROR_TYPE_SIN, tok.getLexema(), tok.getLinea(), tok.getColumna(), er));
             System.out.println(er);
         }
@@ -107,12 +112,11 @@ scan with {: return this.lexerJson.next_token(); :};
 
 /* Terminals (tokens returned by the scanner). */
 terminal    CO_A,CO_C,LLA_A,LLA_C,COMA,DOSPUNTOS,STRING,ENTERO,
-            SCORE,CLASS,VAR,NAME,TYPE,FUN,METD,COMENT,PARA,TEXT,
-            PROYECT1,PROYECT2,FILEDEF,REPORTJSON;
+            SCORE,CLASS,VAR,NAME,TYPE,FUN,METD,COMENT,PARA,TEXT;
 
 
 /* Non terminals */
-non terminal                        inix;
+non terminal                        ini;
 non terminal ReporteJson            reporte,reportep;
 non terminal ArrayList<Clase>       contClass,contClassp;
 non terminal ArrayList<Variable>    contVar,contVarp;
@@ -126,10 +130,7 @@ non terminal FileCopy               copy,copyp;
 /* The grammar rules */
 
 ini ::= LLA_A reportep LLA_C
-    |   LLA_A copy LLA_C
     ;
-
-
 /*Gramatica para reporte Json*/
 reportep    ::= reporte:r SCORE DOSPUNTOS STRING:str    {:
                                                             RESULT=r;
@@ -240,17 +241,3 @@ contComp    ::= contComp:cme LLA_A TEXT DOSPUNTOS STRING:str LLA_C COMA
             |
             ;
 
-/*Gramatica para archivo .copy*/
-
-copy    ::= copyp:copp PROYECT1 DOSPUNTOS STRING:str
-        |   copy:copp PROYECT2 DOSPUNTOS STRING:str
-        |   copy:copp FILEDEF DOSPUNTOS STRING:str
-        |   copy:copp REPORTJSON DOSPUNTOS STRING:str
-        ;
-
-copy    ::= copyp:copp PROYECT1 DOSPUNTOS STRING:str COMA
-        |   copy:copp PROYECT2 DOSPUNTOS STRING:str COMA
-        |   copy:copp FILEDEF DOSPUNTOS STRING:str COMA
-        |   copy:copp REPORTJSON DOSPUNTOS STRING:str COMA
-        |      
-        ;

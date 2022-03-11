@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.cresb49.appcliente.analizadores.json;
+package com.cresb49.appcliente.analizadores.filecopy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,36 +12,23 @@ import java.util.List;
  *
  * @author Benjamin
  */
-public class SimbolosTerminalesJson {
+public class SimbolosTerminalesFileCopy {
 
     public static final String[] terminalNames = new String[]{
         "",
         "",
-        "[",
-        "]",
         "{",
         "}",
         ",",
         ":",
         "cadena",
-        "entero",
-        "Score",
-        "Clases",
-        "Variables",
-        "Nombre",
-        "Tipo",
-        "Funcion",
-        "Metodos",
-        "Comentarios",
-        "Parametros",
-        "Texto",
         "Proyecto1",
         "Proyecto2",
         "FileDef",
         "ReporteJson"
     };
-
-    public SimbolosTerminalesJson() {
+    
+    public SimbolosTerminalesFileCopy() {
 
     }
 

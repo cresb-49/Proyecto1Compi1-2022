@@ -1,4 +1,4 @@
-package com.cresb49.appcliente.analizadores.json.obj;
+package com.cresb49.appcliente.analizadores.filecopy.obj;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -10,17 +10,17 @@ public class FileCopy implements Serializable{
     
     private String pathProyecto1;
     private String pathProyecto2;
-    private String pathFileDer;
+    private String pathFileDef;
     private String pathFileReporteJson;
     
     public FileCopy(){
 
     }
 
-    public FileCopy(String pathProyecto1, String pathProyecto2, String pathFileDer, String pathFileReporteJson) {
+    public FileCopy(String pathProyecto1, String pathProyecto2, String pathFileDef, String pathFileReporteJson) {
         this.pathProyecto1 = pathProyecto1;
         this.pathProyecto2 = pathProyecto2;
-        this.pathFileDer = pathFileDer;
+        this.pathFileDef = pathFileDef;
         this.pathFileReporteJson = pathFileReporteJson;
     }
 
@@ -40,12 +40,12 @@ public class FileCopy implements Serializable{
         this.pathProyecto2 = pathProyecto2;
     }
 
-    public String getPathFileDer() {
-        return pathFileDer;
+    public String getPathFileDef() {
+        return pathFileDef;
     }
 
-    public void setPathFileDer(String pathFileDer) {
-        this.pathFileDer = pathFileDer;
+    public void setPathFileDef(String pathFileDer) {
+        this.pathFileDef = pathFileDer;
     }
 
     public String getPathFileReporteJson() {
@@ -58,7 +58,7 @@ public class FileCopy implements Serializable{
 
     @Override
     public String toString() {
-        return "FileCopy{" + "pathProyecto1=" + pathProyecto1 + ", pathProyecto2=" + pathProyecto2 + ", pathFileDer=" + pathFileDer + ", pathFileReporteJson=" + pathFileReporteJson + '}';
+        return "FileCopy{" + "pathProyecto1=" + pathProyecto1 + ", pathProyecto2=" + pathProyecto2 + ", pathFileDef=" + pathFileDef + ", pathFileReporteJson=" + pathFileReporteJson + '}';
     }
 
     @Override
@@ -66,7 +66,7 @@ public class FileCopy implements Serializable{
         int hash = 5;
         hash = 71 * hash + Objects.hashCode(this.pathProyecto1);
         hash = 71 * hash + Objects.hashCode(this.pathProyecto2);
-        hash = 71 * hash + Objects.hashCode(this.pathFileDer);
+        hash = 71 * hash + Objects.hashCode(this.pathFileDef);
         hash = 71 * hash + Objects.hashCode(this.pathFileReporteJson);
         return hash;
     }
@@ -89,7 +89,7 @@ public class FileCopy implements Serializable{
         if (!Objects.equals(this.pathProyecto2, other.pathProyecto2)) {
             return false;
         }
-        if (!Objects.equals(this.pathFileDer, other.pathFileDer)) {
+        if (!Objects.equals(this.pathFileDef, other.pathFileDef)) {
             return false;
         }
         if (!Objects.equals(this.pathFileReporteJson, other.pathFileReporteJson)) {

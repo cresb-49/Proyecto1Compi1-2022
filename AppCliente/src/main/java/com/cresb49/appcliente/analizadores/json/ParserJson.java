@@ -36,21 +36,19 @@ public class ParserJson extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\057\000\002\004\006\000\002\002\004\000\002\004" +
-    "\010\000\002\004\010\000\002\004\010\000\002\004\010" +
-    "\000\002\003\007\000\002\003\011\000\002\003\011\000" +
-    "\002\003\011\000\002\003\011\000\002\003\002\000\002" +
-    "\005\010\000\002\006\011\000\002\006\002\000\002\007" +
-    "\006\000\002\010\007\000\002\010\002\000\002\011\006" +
-    "\000\002\012\007\000\002\012\002\000\002\015\006\000" +
-    "\002\015\006\000\002\015\006\000\002\016\007\000\002" +
-    "\016\007\000\002\016\007\000\002\016\002\000\002\017" +
-    "\006\000\002\017\006\000\002\017\006\000\002\020\006" +
-    "\000\002\020\006\000\002\020\006\000\002\020\002\000" +
-    "\002\013\010\000\002\014\011\000\002\014\002\000\002" +
-    "\021\006\000\002\021\006\000\002\021\006\000\002\021" +
-    "\006\000\002\021\007\000\002\021\007\000\002\021\007" +
-    "\000\002\021\007\000\002\021\002" });
+    "\000\047\000\002\002\005\000\002\002\004\000\002\004" +
+    "\006\000\002\004\010\000\002\004\010\000\002\004\010" +
+    "\000\002\004\010\000\002\003\007\000\002\003\011\000" +
+    "\002\003\011\000\002\003\011\000\002\003\011\000\002" +
+    "\003\002\000\002\005\010\000\002\006\011\000\002\006" +
+    "\002\000\002\007\006\000\002\010\007\000\002\010\002" +
+    "\000\002\011\006\000\002\012\007\000\002\012\002\000" +
+    "\002\015\006\000\002\015\006\000\002\015\006\000\002" +
+    "\016\007\000\002\016\007\000\002\016\007\000\002\016" +
+    "\002\000\002\017\006\000\002\017\006\000\002\017\006" +
+    "\000\002\020\006\000\002\020\006\000\002\020\006\000" +
+    "\002\020\002\000\002\013\010\000\002\014\011\000\002" +
+    "\014\002" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -58,54 +56,55 @@ public class ParserJson extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\121\000\014\014\ufff6\015\ufff6\016\ufff6\022\ufff6\023" +
-    "\ufff6\001\002\000\004\002\123\001\002\000\014\014\011" +
-    "\015\010\016\006\022\012\023\007\001\002\000\004\011" +
-    "\074\001\002\000\004\011\067\001\002\000\004\011\053" +
-    "\001\002\000\004\011\050\001\002\000\004\011\013\001" +
-    "\002\000\004\004\014\001\002\000\004\006\uffed\001\002" +
-    "\000\004\005\046\001\002\000\004\006\017\001\002\000" +
-    "\006\006\uffdc\007\020\001\002\000\010\017\uffdf\020\uffdf" +
-    "\024\uffdf\001\002\000\004\006\024\001\002\000\004\007" +
-    "\023\001\002\000\004\005\uffef\001\002\000\004\025\025" +
-    "\001\002\000\004\011\026\001\002\000\004\012\027\001" +
-    "\002\000\004\007\030\001\002\000\010\005\uffde\007\uffde" +
-    "\010\031\001\002\000\004\006\uffdd\001\002\000\010\017" +
-    "\036\020\037\024\035\001\002\000\004\010\034\001\002" +
-    "\000\004\006\uffee\001\002\000\004\011\044\001\002\000" +
-    "\004\011\042\001\002\000\004\011\040\001\002\000\004" +
-    "\012\041\001\002\000\012\010\uffe4\017\uffe1\020\uffe1\024" +
-    "\uffe1\001\002\000\004\012\043\001\002\000\012\010\uffe5" +
-    "\017\uffe2\020\uffe2\024\uffe2\001\002\000\004\013\045\001" +
-    "\002\000\012\010\uffe3\017\uffe0\020\uffe0\024\uffe0\001\002" +
-    "\000\006\002\ufffd\010\047\001\002\000\014\014\ufff8\015" +
-    "\ufff8\016\ufff8\022\ufff8\023\ufff8\001\002\000\004\012\051" +
-    "\001\002\000\006\002\001\010\052\001\002\000\014\014" +
-    "\ufffb\015\ufffb\016\ufffb\022\ufffb\023\ufffb\001\002\000\004" +
-    "\004\054\001\002\000\004\006\ufff3\001\002\000\004\005" +
-    "\065\001\002\000\004\006\057\001\002\000\004\017\060" +
-    "\001\002\000\004\011\061\001\002\000\004\012\062\001" +
-    "\002\000\004\007\063\001\002\000\006\005\ufff5\010\064" +
-    "\001\002\000\004\006\ufff4\001\002\000\006\002\uffff\010" +
-    "\066\001\002\000\014\014\ufffa\015\ufffa\016\ufffa\022\ufffa" +
-    "\023\ufffa\001\002\000\004\004\070\001\002\000\004\006" +
-    "\uffdc\001\002\000\004\005\072\001\002\000\006\002\ufffc" +
-    "\010\073\001\002\000\014\014\ufff7\015\ufff7\016\ufff7\022" +
-    "\ufff7\023\ufff7\001\002\000\004\004\075\001\002\000\004" +
-    "\006\ufff0\001\002\000\004\006\102\001\002\000\004\005" +
-    "\100\001\002\000\006\002\ufffe\010\101\001\002\000\014" +
-    "\014\ufff9\015\ufff9\016\ufff9\022\ufff9\023\ufff9\001\002\000" +
-    "\010\017\uffe6\020\uffe6\021\uffe6\001\002\000\010\017\107" +
-    "\020\111\021\110\001\002\000\004\007\105\001\002\000" +
-    "\006\005\ufff2\010\106\001\002\000\004\006\ufff1\001\002" +
-    "\000\004\011\120\001\002\000\004\011\115\001\002\000" +
-    "\004\011\112\001\002\000\004\012\113\001\002\000\006" +
-    "\007\uffea\010\114\001\002\000\010\017\uffe7\020\uffe7\021" +
-    "\uffe7\001\002\000\004\012\116\001\002\000\006\007\uffeb" +
-    "\010\117\001\002\000\010\017\uffe8\020\uffe8\021\uffe8\001" +
-    "\002\000\004\012\121\001\002\000\006\007\uffec\010\122" +
-    "\001\002\000\010\017\uffe9\020\uffe9\021\uffe9\001\002\000" +
-    "\004\002\000\001\002" });
+    "\000\124\000\004\006\005\001\002\000\004\002\126\001" +
+    "\002\000\014\014\ufff5\015\ufff5\016\ufff5\022\ufff5\023\ufff5" +
+    "\001\002\000\004\007\125\001\002\000\014\014\013\015" +
+    "\012\016\010\022\014\023\011\001\002\000\004\011\076" +
+    "\001\002\000\004\011\071\001\002\000\004\011\055\001" +
+    "\002\000\004\011\052\001\002\000\004\011\015\001\002" +
+    "\000\004\004\016\001\002\000\004\006\uffec\001\002\000" +
+    "\004\005\050\001\002\000\004\006\021\001\002\000\006" +
+    "\006\uffdb\007\022\001\002\000\010\017\uffde\020\uffde\024" +
+    "\uffde\001\002\000\004\006\026\001\002\000\004\007\025" +
+    "\001\002\000\004\005\uffee\001\002\000\004\025\027\001" +
+    "\002\000\004\011\030\001\002\000\004\012\031\001\002" +
+    "\000\004\007\032\001\002\000\010\005\uffdd\007\uffdd\010" +
+    "\033\001\002\000\004\006\uffdc\001\002\000\010\017\040" +
+    "\020\041\024\037\001\002\000\004\010\036\001\002\000" +
+    "\004\006\uffed\001\002\000\004\011\046\001\002\000\004" +
+    "\011\044\001\002\000\004\011\042\001\002\000\004\012" +
+    "\043\001\002\000\012\010\uffe3\017\uffe0\020\uffe0\024\uffe0" +
+    "\001\002\000\004\012\045\001\002\000\012\010\uffe4\017" +
+    "\uffe1\020\uffe1\024\uffe1\001\002\000\004\013\047\001\002" +
+    "\000\012\010\uffe2\017\uffdf\020\uffdf\024\uffdf\001\002\000" +
+    "\006\007\ufffc\010\051\001\002\000\014\014\ufff7\015\ufff7" +
+    "\016\ufff7\022\ufff7\023\ufff7\001\002\000\004\012\053\001" +
+    "\002\000\006\007\uffff\010\054\001\002\000\014\014\ufffa" +
+    "\015\ufffa\016\ufffa\022\ufffa\023\ufffa\001\002\000\004\004" +
+    "\056\001\002\000\004\006\ufff2\001\002\000\004\005\067" +
+    "\001\002\000\004\006\061\001\002\000\004\017\062\001" +
+    "\002\000\004\011\063\001\002\000\004\012\064\001\002" +
+    "\000\004\007\065\001\002\000\006\005\ufff4\010\066\001" +
+    "\002\000\004\006\ufff3\001\002\000\006\007\ufffe\010\070" +
+    "\001\002\000\014\014\ufff9\015\ufff9\016\ufff9\022\ufff9\023" +
+    "\ufff9\001\002\000\004\004\072\001\002\000\004\006\uffdb" +
+    "\001\002\000\004\005\074\001\002\000\006\007\ufffb\010" +
+    "\075\001\002\000\014\014\ufff6\015\ufff6\016\ufff6\022\ufff6" +
+    "\023\ufff6\001\002\000\004\004\077\001\002\000\004\006" +
+    "\uffef\001\002\000\004\006\104\001\002\000\004\005\102" +
+    "\001\002\000\006\007\ufffd\010\103\001\002\000\014\014" +
+    "\ufff8\015\ufff8\016\ufff8\022\ufff8\023\ufff8\001\002\000\010" +
+    "\017\uffe5\020\uffe5\021\uffe5\001\002\000\010\017\111\020" +
+    "\113\021\112\001\002\000\004\007\107\001\002\000\006" +
+    "\005\ufff1\010\110\001\002\000\004\006\ufff0\001\002\000" +
+    "\004\011\122\001\002\000\004\011\117\001\002\000\004" +
+    "\011\114\001\002\000\004\012\115\001\002\000\006\007" +
+    "\uffe9\010\116\001\002\000\010\017\uffe6\020\uffe6\021\uffe6" +
+    "\001\002\000\004\012\120\001\002\000\006\007\uffea\010" +
+    "\121\001\002\000\010\017\uffe7\020\uffe7\021\uffe7\001\002" +
+    "\000\004\012\123\001\002\000\006\007\uffeb\010\124\001" +
+    "\002\000\010\017\uffe8\020\uffe8\021\uffe8\001\002\000\004" +
+    "\002\001\001\002\000\004\002\000\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -113,34 +112,35 @@ public class ParserJson extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\121\000\006\003\004\004\003\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\006\011\014\012\015\001\001\000\002" +
-    "\001\001\000\002\001\001\000\006\013\021\014\020\001" +
-    "\001\000\006\017\032\020\031\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\000\124\000\004\002\003\001\001\000\002\001\001\000" +
+    "\006\003\006\004\005\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\006\011\016\012\017\001\001\000\002\001\001\000" +
+    "\002\001\001\000\006\013\023\014\022\001\001\000\006" +
+    "\017\034\020\033\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\006\005\054\006\055\001\001\000\002\001\001\000" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\006\013\070\014\020\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\006" +
-    "\007\076\010\075\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\006\015\103" +
-    "\016\102\001\001\000\002\001\001\000\002\001\001\000" +
+    "\001\001\000\002\001\001\000\002\001\001\000\006\005" +
+    "\056\006\057\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\001\000\002\001\001\000\002\001\001\000\006\013" +
+    "\072\014\022\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\006\007\100\010" +
+    "\077\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\006\015\105\016\104\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001" });
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -215,15 +215,18 @@ public class ParserJson extends java_cup.runtime.lr_parser {
         if(tok!=null){
             if (cur_token.sym == ParserJsonSym.EOF) {
                 String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesJson.obtenerSimbolos(expected_token_ids()).toString();
+                System.out.println("FIN ARCHIVO"+" "+er);
                 this.lexerJson.getErrors().push(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er));
                 System.out.println(er);
             } else {
                 String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesJson.obtenerSimbolos(expected_token_ids()).toString();
+                System.out.println(tok.getLexema()+" "+er);
                 this.lexerJson.getErrors().push(new ErrorAnalisis(ERROR_TYPE_SIN,tok.getLexema(), tok.getLinea(), tok.getColumna(), er));
                 System.out.println(er);
             }
         }else{
             String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesJson.obtenerSimbolos(expected_token_ids()).toString();
+            System.out.println("FIN ARCHIVO"+" "+er);
             this.lexerJson.getErrors().push(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er));
             System.out.println(er);
         }
@@ -232,12 +235,14 @@ public class ParserJson extends java_cup.runtime.lr_parser {
     public void unrecovered_syntax_error(Symbol cur_token) {
         if (cur_token.sym == ParserJsonSym.EOF) {
             String er = "Error irrecuperable se llego al final del archivo";
+            System.out.println("FIN ARCHIVO"+" "+er);
             this.lexerJson.getErrors().push(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er));
             System.out.println(er);
         } else {
             Token tok = (Token) cur_token.value;
             //String er = "Error irrecuperable, un posible simbolo esperado: "+ simbolosTerminalesJson.obtenerSimbolos(expected_token_ids()).toString();
             String er = "Error irrecuperable resuelva el error anterior";
+            System.out.println(tok.getLexema()+" "+er);
             this.lexerJson.getErrors().push(new ErrorAnalisis(ERROR_TYPE_SIN, tok.getLexema(), tok.getLinea(), tok.getColumna(), er));
             System.out.println(er);
         }
@@ -300,7 +305,30 @@ class CUP$ParserJson$actions {
       switch (CUP$ParserJson$act_num)
         {
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 0: // reportep ::= reporte SCORE DOSPUNTOS STRING 
+          case 0: // ini ::= LLA_A reportep LLA_C 
+            {
+              Object RESULT =null;
+
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("ini",0, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+            }
+          return CUP$ParserJson$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 1: // $START ::= ini EOF 
+            {
+              Object RESULT =null;
+		int start_valleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
+		int start_valright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
+		Object start_val = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
+		RESULT = start_val;
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("$START",0, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+            }
+          /* ACCEPT */
+          CUP$ParserJson$parser.done_parsing();
+          return CUP$ParserJson$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 2: // reportep ::= reporte SCORE DOSPUNTOS STRING 
             {
               ReporteJson RESULT =null;
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
@@ -320,21 +348,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 1: // $START ::= reportep EOF 
-            {
-              Object RESULT =null;
-		int start_valleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
-		int start_valright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
-		ReporteJson start_val = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
-		RESULT = start_val;
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("$START",0, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
-            }
-          /* ACCEPT */
-          CUP$ParserJson$parser.done_parsing();
-          return CUP$ParserJson$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 2: // reportep ::= reporte CLASS DOSPUNTOS CO_A contClass CO_C 
+          case 3: // reportep ::= reporte CLASS DOSPUNTOS CO_A contClass CO_C 
             {
               ReporteJson RESULT =null;
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
@@ -352,7 +366,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 3: // reportep ::= reporte VAR DOSPUNTOS CO_A contVar CO_C 
+          case 4: // reportep ::= reporte VAR DOSPUNTOS CO_A contVar CO_C 
             {
               ReporteJson RESULT =null;
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
@@ -370,7 +384,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 4: // reportep ::= reporte METD DOSPUNTOS CO_A contMet CO_C 
+          case 5: // reportep ::= reporte METD DOSPUNTOS CO_A contMet CO_C 
             {
               ReporteJson RESULT =null;
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
@@ -388,7 +402,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 5: // reportep ::= reporte COMENT DOSPUNTOS CO_A contCom CO_C 
+          case 6: // reportep ::= reporte COMENT DOSPUNTOS CO_A contCom CO_C 
             {
               ReporteJson RESULT =null;
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
@@ -406,7 +420,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 6: // reporte ::= reporte SCORE DOSPUNTOS STRING COMA 
+          case 7: // reporte ::= reporte SCORE DOSPUNTOS STRING COMA 
             {
               ReporteJson RESULT =null;
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
@@ -426,7 +440,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 7: // reporte ::= reporte CLASS DOSPUNTOS CO_A contClass CO_C COMA 
+          case 8: // reporte ::= reporte CLASS DOSPUNTOS CO_A contClass CO_C COMA 
             {
               ReporteJson RESULT =null;
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).left;
@@ -444,7 +458,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 8: // reporte ::= reporte VAR DOSPUNTOS CO_A contVar CO_C COMA 
+          case 9: // reporte ::= reporte VAR DOSPUNTOS CO_A contVar CO_C COMA 
             {
               ReporteJson RESULT =null;
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).left;
@@ -462,7 +476,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 9: // reporte ::= reporte METD DOSPUNTOS CO_A contMet CO_C COMA 
+          case 10: // reporte ::= reporte METD DOSPUNTOS CO_A contMet CO_C COMA 
             {
               ReporteJson RESULT =null;
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).left;
@@ -480,7 +494,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 10: // reporte ::= reporte COMENT DOSPUNTOS CO_A contCom CO_C COMA 
+          case 11: // reporte ::= reporte COMENT DOSPUNTOS CO_A contCom CO_C COMA 
             {
               ReporteJson RESULT =null;
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).left;
@@ -502,7 +516,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 11: // reporte ::= 
+          case 12: // reporte ::= 
             {
               ReporteJson RESULT =null;
 		
@@ -513,7 +527,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 12: // contClass ::= contClassp LLA_A NAME DOSPUNTOS STRING LLA_C 
+          case 13: // contClass ::= contClassp LLA_A NAME DOSPUNTOS STRING LLA_C 
             {
               ArrayList<Clase> RESULT =null;
 		int ccleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
@@ -528,7 +542,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 13: // contClassp ::= contClassp LLA_A NAME DOSPUNTOS STRING LLA_C COMA 
+          case 14: // contClassp ::= contClassp LLA_A NAME DOSPUNTOS STRING LLA_C COMA 
             {
               ArrayList<Clase> RESULT =null;
 		int ccleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).left;
@@ -543,7 +557,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 14: // contClassp ::= 
+          case 15: // contClassp ::= 
             {
               ArrayList<Clase> RESULT =null;
 
@@ -552,7 +566,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 15: // contVar ::= contVarp LLA_A expVar LLA_C 
+          case 16: // contVar ::= contVarp LLA_A expVar LLA_C 
             {
               ArrayList<Variable> RESULT =null;
 		int cvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
@@ -567,7 +581,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 16: // contVarp ::= contVarp LLA_A expVar LLA_C COMA 
+          case 17: // contVarp ::= contVarp LLA_A expVar LLA_C COMA 
             {
               ArrayList<Variable> RESULT =null;
 		int cvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
@@ -582,7 +596,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 17: // contVarp ::= 
+          case 18: // contVarp ::= 
             {
               ArrayList<Variable> RESULT =null;
 
@@ -591,7 +605,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 18: // contMet ::= contMetp LLA_A contCom LLA_C 
+          case 19: // contMet ::= contMetp LLA_A contCom LLA_C 
             {
               ArrayList<Metodo> RESULT =null;
 		int cmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
@@ -606,7 +620,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 19: // contMetp ::= contMetp LLA_A LLA_C expMet COMA 
+          case 20: // contMetp ::= contMetp LLA_A LLA_C expMet COMA 
             {
               ArrayList<Metodo> RESULT =null;
 		int cmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
@@ -621,7 +635,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 20: // contMetp ::= 
+          case 21: // contMetp ::= 
             {
               ArrayList<Metodo> RESULT =null;
 
@@ -630,7 +644,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 21: // expVar ::= expVarp NAME DOSPUNTOS STRING 
+          case 22: // expVar ::= expVarp NAME DOSPUNTOS STRING 
             {
               Variable RESULT =null;
 		int expvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
@@ -645,7 +659,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 22: // expVar ::= expVarp FUN DOSPUNTOS STRING 
+          case 23: // expVar ::= expVarp FUN DOSPUNTOS STRING 
             {
               Variable RESULT =null;
 		int expvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
@@ -660,7 +674,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 23: // expVar ::= expVarp TYPE DOSPUNTOS STRING 
+          case 24: // expVar ::= expVarp TYPE DOSPUNTOS STRING 
             {
               Variable RESULT =null;
 		int expvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
@@ -675,7 +689,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 24: // expVarp ::= expVarp NAME DOSPUNTOS STRING COMA 
+          case 25: // expVarp ::= expVarp NAME DOSPUNTOS STRING COMA 
             {
               Variable RESULT =null;
 		int expvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
@@ -690,7 +704,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 25: // expVarp ::= expVarp FUN DOSPUNTOS STRING COMA 
+          case 26: // expVarp ::= expVarp FUN DOSPUNTOS STRING COMA 
             {
               Variable RESULT =null;
 		int expvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
@@ -705,7 +719,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 26: // expVarp ::= expVarp TYPE DOSPUNTOS STRING COMA 
+          case 27: // expVarp ::= expVarp TYPE DOSPUNTOS STRING COMA 
             {
               Variable RESULT =null;
 		int expvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
@@ -720,7 +734,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 27: // expVarp ::= 
+          case 28: // expVarp ::= 
             {
               Variable RESULT =null;
 		
@@ -731,7 +745,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 28: // expMet ::= expMetp NAME DOSPUNTOS STRING 
+          case 29: // expMet ::= expMetp NAME DOSPUNTOS STRING 
             {
               Metodo RESULT =null;
 		int expmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
@@ -746,7 +760,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 29: // expMet ::= expMetp TYPE DOSPUNTOS STRING 
+          case 30: // expMet ::= expMetp TYPE DOSPUNTOS STRING 
             {
               Metodo RESULT =null;
 		int expmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
@@ -761,7 +775,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 30: // expMet ::= expMetp PARA DOSPUNTOS ENTERO 
+          case 31: // expMet ::= expMetp PARA DOSPUNTOS ENTERO 
             {
               Metodo RESULT =null;
 		int expmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
@@ -776,7 +790,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 31: // expMetp ::= expMetp NAME DOSPUNTOS STRING 
+          case 32: // expMetp ::= expMetp NAME DOSPUNTOS STRING 
             {
               Metodo RESULT =null;
 		int expmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
@@ -791,7 +805,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 32: // expMetp ::= expMetp TYPE DOSPUNTOS STRING 
+          case 33: // expMetp ::= expMetp TYPE DOSPUNTOS STRING 
             {
               Metodo RESULT =null;
 		int expmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
@@ -806,7 +820,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 33: // expMetp ::= expMetp PARA DOSPUNTOS ENTERO 
+          case 34: // expMetp ::= expMetp PARA DOSPUNTOS ENTERO 
             {
               Metodo RESULT =null;
 		int expmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
@@ -821,7 +835,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 34: // expMetp ::= 
+          case 35: // expMetp ::= 
             {
               Metodo RESULT =null;
 		
@@ -832,7 +846,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 35: // contCom ::= contComp LLA_A TEXT DOSPUNTOS STRING LLA_C 
+          case 36: // contCom ::= contComp LLA_A TEXT DOSPUNTOS STRING LLA_C 
             {
               ArrayList<Comentario> RESULT =null;
 		int cmeleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
@@ -847,7 +861,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 36: // contComp ::= contComp LLA_A TEXT DOSPUNTOS STRING LLA_C COMA 
+          case 37: // contComp ::= contComp LLA_A TEXT DOSPUNTOS STRING LLA_C COMA 
             {
               ArrayList<Comentario> RESULT =null;
 		int cmeleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).left;
@@ -862,140 +876,11 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 37: // contComp ::= 
+          case 38: // contComp ::= 
             {
               ArrayList<Comentario> RESULT =null;
 
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("contComp",10, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
-            }
-          return CUP$ParserJson$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 38: // copy ::= copyp PROYECT1 DOSPUNTOS STRING 
-            {
-              FileCopy RESULT =null;
-		int coppleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
-		int coppright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
-		FileCopy copp = (FileCopy)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
-
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("copy",15, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
-            }
-          return CUP$ParserJson$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 39: // copy ::= copy PROYECT2 DOSPUNTOS STRING 
-            {
-              FileCopy RESULT =null;
-		int coppleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
-		int coppright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
-		FileCopy copp = (FileCopy)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
-
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("copy",15, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
-            }
-          return CUP$ParserJson$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 40: // copy ::= copy FILEDEF DOSPUNTOS STRING 
-            {
-              FileCopy RESULT =null;
-		int coppleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
-		int coppright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
-		FileCopy copp = (FileCopy)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
-
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("copy",15, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
-            }
-          return CUP$ParserJson$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 41: // copy ::= copy REPORTJSON DOSPUNTOS STRING 
-            {
-              FileCopy RESULT =null;
-		int coppleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
-		int coppright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
-		FileCopy copp = (FileCopy)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
-
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("copy",15, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
-            }
-          return CUP$ParserJson$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 42: // copy ::= copyp PROYECT1 DOSPUNTOS STRING COMA 
-            {
-              FileCopy RESULT =null;
-		int coppleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
-		int coppright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
-		FileCopy copp = (FileCopy)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
-
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("copy",15, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
-            }
-          return CUP$ParserJson$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 43: // copy ::= copy PROYECT2 DOSPUNTOS STRING COMA 
-            {
-              FileCopy RESULT =null;
-		int coppleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
-		int coppright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
-		FileCopy copp = (FileCopy)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
-
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("copy",15, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
-            }
-          return CUP$ParserJson$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 44: // copy ::= copy FILEDEF DOSPUNTOS STRING COMA 
-            {
-              FileCopy RESULT =null;
-		int coppleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
-		int coppright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
-		FileCopy copp = (FileCopy)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
-
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("copy",15, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
-            }
-          return CUP$ParserJson$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 45: // copy ::= copy REPORTJSON DOSPUNTOS STRING COMA 
-            {
-              FileCopy RESULT =null;
-		int coppleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
-		int coppright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
-		FileCopy copp = (FileCopy)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
-
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("copy",15, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
-            }
-          return CUP$ParserJson$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 46: // copy ::= 
-            {
-              FileCopy RESULT =null;
-
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("copy",15, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
