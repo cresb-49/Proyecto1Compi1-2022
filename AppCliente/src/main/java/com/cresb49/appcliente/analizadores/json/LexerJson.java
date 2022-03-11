@@ -991,9 +991,9 @@ public class LexerJson implements java_cup.runtime.Scanner {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { String des ="El simbolo/cadena no existe en el lenguaje";
-                        //this.addError(new ErrorAnalisis(this.ERROR_TYPE,yytext(),(yyline+1),(yycolumn+1),des));
-                        //System.out.println("Simbolo Ilegal: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            { String des ="El simbolo no existe en el lenguaje";
+                        this.addError(new ErrorAnalisis(this.ERROR_TYPE,yytext(),(yyline+1),(yycolumn+1),des));
+                        System.out.println("Simbolo Ilegal: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
           case 29: break;
@@ -1035,8 +1035,8 @@ public class LexerJson implements java_cup.runtime.Scanner {
           case 34: break;
           case 7:
             { String des = "La cadena no existe en el lenguaje";
-                        //this.addError(new ErrorAnalisis(this.ERROR_TYPE,yytext(),(yyline+1),(yycolumn+1),des));
-                        //System.out.println("Cadena Ilegal: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                        this.addError(new ErrorAnalisis(this.ERROR_TYPE,yytext(),(yyline+1),(yycolumn+1),des));
+                        System.out.println("Cadena Ilegal: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
           case 35: break;

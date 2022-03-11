@@ -47,7 +47,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" pref="869" max="32767" attributes="0"/>
+              <Component id="jTabbedPane1" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -104,7 +104,7 @@
                           <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="587" max="32767" attributes="0"/>
+                      <EmptySpace pref="590" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -247,7 +247,7 @@
                       <SubComponents>
                         <Component class="javax.swing.JTextPane" name="jTextPane1">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="{&#xa;    Score: &quot;0.75&quot;,&#xa;    Clases: [&#xa;        { Nombre: &quot;clase1&quot;},&#xa;        {Nombre: &quot;clase2&quot;}&#xa;    ],&#xa;    Variables: [&#xa;        {Nombre: &quot;var1&quot;, Tipo: &quot;int&quot;, Funcion: &quot;funcion1, funcion2&quot;},&#xa;        {Nombre: &quot;var2&quot;, Tipo: &quot;int&quot;, Funcion: &quot;funcion2, Clase hola&quot;}&#xa;    ],&#xa;    Metodos: [&#xa;        {Nombre: &quot;metodo1&quot;,Tipo: &quot;void&quot;, Paremetros: 2},&#xa;        {Nombre: &quot;metodo2&quot;,Tipo: &quot;String&quot;, Parametros: 0}&#xa;    ],&#xa;    Comentarios: [&#xa;        { Texto: &quot;hola es un comentario&quot;},&#xa;        { Texto: &quot;otro coment&quot;}&#xa;    ]&#xa;}"/>
+                            <Property name="text" type="java.lang.String" value="{&#xa;    Score: &quot;0.75&quot;,&#xa;    Clases: [&#xa;        { Nombre: &quot;clase1&quot;},&#xa;        {Nombre: &quot;clase2&quot;}&#xa;    ],&#xa;    Variables: [&#xa;        {Nombre: &quot;var1&quot;, Tipo: &quot;int&quot;, Funcion: &quot;funcion1, funcion2&quot;},&#xa;        {Nombre: &quot;var2&quot;, Tipo: &quot;int&quot;, Funcion: &quot;funcion2, Clase hola&quot;}&#xa;    ],&#xa;    Metodos: [&#xa;        {Nombre: &quot;metodo1&quot;,Tipo: &quot;void&quot;, Parametros: 2},&#xa;        {Nombre: &quot;metodo2&quot;,Tipo: &quot;String&quot;, Parametros: 0}&#xa;    ],&#xa;    Comentarios: [&#xa;        { Texto: &quot;hola es un comentario&quot;},&#xa;        { Texto: &quot;otro coment&quot;}&#xa;    ]&#xa;}"/>
                           </Properties>
                         </Component>
                       </SubComponents>

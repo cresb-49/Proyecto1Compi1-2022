@@ -124,7 +124,6 @@ non terminal ArrayList<Metodo>      contMet,contMetp;
 non terminal ArrayList<Comentario>  contCom,contComp;
 non terminal Variable               expVar,expVarp;
 non terminal Metodo                 expMet,expMetp;
-non terminal FileCopy               copy,copyp;
 
 
 /* The grammar rules */

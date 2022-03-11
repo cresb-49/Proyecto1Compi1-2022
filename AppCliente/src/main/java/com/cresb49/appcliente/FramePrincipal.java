@@ -80,7 +80,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(587, Short.MAX_VALUE))
+                .addContainerGap(590, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab1", jPanel1);
@@ -111,7 +111,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("tab3", jPanel5);
 
-        jTextPane1.setText("{\n    Score: \"0.75\",\n    Clases: [\n        { Nombre: \"clase1\"},\n        {Nombre: \"clase2\"}\n    ],\n    Variables: [\n        {Nombre: \"var1\", Tipo: \"int\", Funcion: \"funcion1, funcion2\"},\n        {Nombre: \"var2\", Tipo: \"int\", Funcion: \"funcion2, Clase hola\"}\n    ],\n    Metodos: [\n        {Nombre: \"metodo1\",Tipo: \"void\", Paremetros: 2},\n        {Nombre: \"metodo2\",Tipo: \"String\", Parametros: 0}\n    ],\n    Comentarios: [\n        { Texto: \"hola es un comentario\"},\n        { Texto: \"otro coment\"}\n    ]\n}");
+        jTextPane1.setText("{\n    Score: \"0.75\",\n    Clases: [\n        { Nombre: \"clase1\"},\n        {Nombre: \"clase2\"}\n    ],\n    Variables: [\n        {Nombre: \"var1\", Tipo: \"int\", Funcion: \"funcion1, funcion2\"},\n        {Nombre: \"var2\", Tipo: \"int\", Funcion: \"funcion2, Clase hola\"}\n    ],\n    Metodos: [\n        {Nombre: \"metodo1\",Tipo: \"void\", Parametros: 2},\n        {Nombre: \"metodo2\",Tipo: \"String\", Parametros: 0}\n    ],\n    Comentarios: [\n        { Texto: \"hola es un comentario\"},\n        { Texto: \"otro coment\"}\n    ]\n}");
         jScrollPane1.setViewportView(jTextPane1);
 
         jButton3.setText("jButton3");
@@ -182,7 +182,7 @@ public class FramePrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
