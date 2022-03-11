@@ -430,57 +430,57 @@ expMet  ::= expMetp:expm NAME:p DOSPUNTOS STRING:str    {:
                                                         :}
         ;
 
-expMetp ::= expMetp:expm NAME:p DOSPUNTOS STRING:str    {:
-                                                            RESULT = expm;
-                                                            if(RESULT!=null){
-                                                                Token token = (Token) str;
-                                                                Token parametro = (Token)p;
-                                                                boolean ban = true;
-                                                                if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                    System.out.println("La cadena esta vacia");
-                                                                    ban=false;
+expMetp ::= expMetp:expm NAME:p DOSPUNTOS STRING:str COMA   {:
+                                                                RESULT = expm;
+                                                                if(RESULT!=null){
+                                                                    Token token = (Token) str;
+                                                                    Token parametro = (Token)p;
+                                                                    boolean ban = true;
+                                                                    if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
+                                                                        System.out.println("La cadena esta vacia");
+                                                                        ban=false;
+                                                                    }
+                                                                    if(RESULT.getNombre()!=null){
+                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        ban=false;
+                                                                    }
+                                                                    if(ban){
+                                                                        RESULT.setNombre(token.getLexema());
+                                                                    }
                                                                 }
-                                                                if(RESULT.getNombre()!=null){
-                                                                    System.out.println("La propiedad ya habia sido definida");
-                                                                    ban=false;
+                                                            :}
+        |   expMetp:expm TYPE:p DOSPUNTOS STRING:str COMA   {:
+                                                                RESULT = expm;
+                                                                if(RESULT!=null){
+                                                                    Token token = (Token) str;
+                                                                    Token parametro = (Token)p;
+                                                                    boolean ban = true;
+                                                                    if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
+                                                                        System.out.println("La cadena esta vacia");
+                                                                        ban=false;
+                                                                    }
+                                                                    if(RESULT.getTipo()!=null){
+                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        ban=false;
+                                                                    }
+                                                                    if(ban){
+                                                                        RESULT.setTipo(token.getLexema());
+                                                                    }
                                                                 }
-                                                                if(ban){
-                                                                    RESULT.setNombre(token.getLexema());
-                                                                }
-                                                            }
-                                                        :}
-        |   expMetp:expm TYPE:p DOSPUNTOS STRING:str    {:
-                                                            RESULT = expm;
-                                                            if(RESULT!=null){
-                                                                Token token = (Token) str;
-                                                                Token parametro = (Token)p;
-                                                                boolean ban = true;
-                                                                if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                    System.out.println("La cadena esta vacia");
-                                                                    ban=false;
-                                                                }
-                                                                if(RESULT.getTipo()!=null){
-                                                                    System.out.println("La propiedad ya habia sido definida");
-                                                                    ban=false;
-                                                                }
-                                                                if(ban){
-                                                                    RESULT.setTipo(token.getLexema());
-                                                                }
-                                                            }
-                                                        :}
-        |   expMetp:expm PARA:p DOSPUNTOS ENTERO:ent    {:
-                                                            RESULT = expm;
-                                                            if(RESULT!=null){
-                                                                Token token = (Token) ent;
-                                                                Token parametro = (Token)p;
+                                                            :}
+        |   expMetp:expm PARA:p DOSPUNTOS ENTERO:ent COMA   {:
+                                                                RESULT = expm;
+                                                                if(RESULT!=null){
+                                                                    Token token = (Token) ent;
+                                                                    Token parametro = (Token)p;
 
-                                                                if(RESULT.getParametros()!=null){
-                                                                    System.out.println("La propiedad ya habia sido definida");
-                                                                }else{
-                                                                    RESULT.setParametros(Integer.valueOf(token.getLexema()));
+                                                                    if(RESULT.getParametros()!=null){
+                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                    }else{
+                                                                        RESULT.setParametros(Integer.valueOf(token.getLexema()));
+                                                                    }
                                                                 }
-                                                            }
-                                                        :}
+                                                            :}
         |   {:
                 RESULT = new Metodo();
             :}

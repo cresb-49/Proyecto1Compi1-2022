@@ -32,18 +32,12 @@ public class AnalizarJson {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (!this.errores.isEmpty()) {
-            //this.ajusteDeErrores();
-        } else {
-            this.reporteFinalErrores = new ArrayList<>();
+        
+        System.err.println("----------------IMPRECION DE ERRORES-------------------");
+        for (ErrorAnalisis errore : errores) {
+            System.out.println(errore.toString());
         }
 
-    }
-
-    private void ajusteDeErrores() {
-        for (ErrorAnalisis reporteFinalErrore : reporteFinalErrores) {
-            System.out.println(reporteFinalErrore.toString());
-        }
     }
     
     /**

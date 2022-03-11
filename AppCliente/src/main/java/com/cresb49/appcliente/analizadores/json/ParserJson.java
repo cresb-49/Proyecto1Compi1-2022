@@ -46,7 +46,7 @@ public class ParserJson extends java_cup.runtime.lr_parser {
     "\002\015\006\000\002\015\006\000\002\015\006\000\002" +
     "\016\007\000\002\016\007\000\002\016\007\000\002\016" +
     "\002\000\002\017\006\000\002\017\006\000\002\017\006" +
-    "\000\002\020\006\000\002\020\006\000\002\020\006\000" +
+    "\000\002\020\007\000\002\020\007\000\002\020\007\000" +
     "\002\020\002\000\002\013\010\000\002\014\011\000\002" +
     "\014\002" });
 
@@ -56,54 +56,56 @@ public class ParserJson extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\122\000\004\006\005\001\002\000\004\002\124\001" +
+    "\000\125\000\004\006\005\001\002\000\004\002\127\001" +
     "\002\000\014\014\ufff5\015\ufff5\016\ufff5\022\ufff5\023\ufff5" +
-    "\001\002\000\004\007\123\001\002\000\014\014\013\015" +
-    "\012\016\010\022\014\023\011\001\002\000\004\011\074" +
-    "\001\002\000\004\011\060\001\002\000\004\011\044\001" +
-    "\002\000\004\011\041\001\002\000\004\011\015\001\002" +
+    "\001\002\000\004\007\126\001\002\000\014\014\013\015" +
+    "\012\016\010\022\014\023\011\001\002\000\004\011\077" +
+    "\001\002\000\004\011\063\001\002\000\004\011\047\001" +
+    "\002\000\004\011\044\001\002\000\004\011\015\001\002" +
     "\000\004\004\016\001\002\000\004\006\uffec\001\002\000" +
-    "\004\005\037\001\002\000\004\006\021\001\002\000\010" +
+    "\004\005\042\001\002\000\004\006\021\001\002\000\010" +
     "\017\uffde\020\uffde\024\uffde\001\002\000\010\017\027\020" +
     "\030\024\026\001\002\000\004\007\024\001\002\000\006" +
     "\005\uffee\010\025\001\002\000\004\006\uffed\001\002\000" +
-    "\004\011\035\001\002\000\004\011\033\001\002\000\004" +
-    "\011\031\001\002\000\004\012\032\001\002\000\012\007" +
-    "\uffe3\017\uffe0\020\uffe0\024\uffe0\001\002\000\004\012\034" +
-    "\001\002\000\012\007\uffe4\017\uffe1\020\uffe1\024\uffe1\001" +
-    "\002\000\004\013\036\001\002\000\012\007\uffe2\017\uffdf" +
-    "\020\uffdf\024\uffdf\001\002\000\006\007\ufffc\010\040\001" +
-    "\002\000\014\014\ufff7\015\ufff7\016\ufff7\022\ufff7\023\ufff7" +
-    "\001\002\000\004\012\042\001\002\000\006\007\uffff\010" +
-    "\043\001\002\000\014\014\ufffa\015\ufffa\016\ufffa\022\ufffa" +
-    "\023\ufffa\001\002\000\004\004\045\001\002\000\004\006" +
-    "\ufff2\001\002\000\004\005\056\001\002\000\004\006\050" +
-    "\001\002\000\004\017\051\001\002\000\004\011\052\001" +
-    "\002\000\004\012\053\001\002\000\004\007\054\001\002" +
-    "\000\006\005\ufff4\010\055\001\002\000\004\006\ufff3\001" +
-    "\002\000\006\007\ufffe\010\057\001\002\000\014\014\ufff9" +
-    "\015\ufff9\016\ufff9\022\ufff9\023\ufff9\001\002\000\004\004" +
-    "\061\001\002\000\004\006\uffdb\001\002\000\004\006\066" +
-    "\001\002\000\004\005\064\001\002\000\006\007\ufffb\010" +
-    "\065\001\002\000\014\014\ufff6\015\ufff6\016\ufff6\022\ufff6" +
-    "\023\ufff6\001\002\000\004\025\067\001\002\000\004\011" +
-    "\070\001\002\000\004\012\071\001\002\000\004\007\072" +
-    "\001\002\000\006\005\uffdd\010\073\001\002\000\004\006" +
-    "\uffdc\001\002\000\004\004\075\001\002\000\004\006\uffef" +
-    "\001\002\000\004\006\102\001\002\000\004\005\100\001" +
-    "\002\000\006\007\ufffd\010\101\001\002\000\014\014\ufff8" +
-    "\015\ufff8\016\ufff8\022\ufff8\023\ufff8\001\002\000\010\017" +
-    "\uffe5\020\uffe5\021\uffe5\001\002\000\010\017\107\020\111" +
-    "\021\110\001\002\000\004\007\105\001\002\000\006\005" +
-    "\ufff1\010\106\001\002\000\004\006\ufff0\001\002\000\004" +
-    "\011\120\001\002\000\004\011\115\001\002\000\004\011" +
-    "\112\001\002\000\004\012\113\001\002\000\006\007\uffe9" +
-    "\010\114\001\002\000\010\017\uffe6\020\uffe6\021\uffe6\001" +
-    "\002\000\004\012\116\001\002\000\006\007\uffea\010\117" +
-    "\001\002\000\010\017\uffe7\020\uffe7\021\uffe7\001\002\000" +
-    "\004\012\121\001\002\000\006\007\uffeb\010\122\001\002" +
-    "\000\010\017\uffe8\020\uffe8\021\uffe8\001\002\000\004\002" +
-    "\001\001\002\000\004\002\000\001\002" });
+    "\004\011\037\001\002\000\004\011\034\001\002\000\004" +
+    "\011\031\001\002\000\004\012\032\001\002\000\006\007" +
+    "\uffe3\010\033\001\002\000\010\017\uffe0\020\uffe0\024\uffe0" +
+    "\001\002\000\004\012\035\001\002\000\006\007\uffe4\010" +
+    "\036\001\002\000\010\017\uffe1\020\uffe1\024\uffe1\001\002" +
+    "\000\004\013\040\001\002\000\006\007\uffe2\010\041\001" +
+    "\002\000\010\017\uffdf\020\uffdf\024\uffdf\001\002\000\006" +
+    "\007\ufffc\010\043\001\002\000\014\014\ufff7\015\ufff7\016" +
+    "\ufff7\022\ufff7\023\ufff7\001\002\000\004\012\045\001\002" +
+    "\000\006\007\uffff\010\046\001\002\000\014\014\ufffa\015" +
+    "\ufffa\016\ufffa\022\ufffa\023\ufffa\001\002\000\004\004\050" +
+    "\001\002\000\004\006\ufff2\001\002\000\004\005\061\001" +
+    "\002\000\004\006\053\001\002\000\004\017\054\001\002" +
+    "\000\004\011\055\001\002\000\004\012\056\001\002\000" +
+    "\004\007\057\001\002\000\006\005\ufff4\010\060\001\002" +
+    "\000\004\006\ufff3\001\002\000\006\007\ufffe\010\062\001" +
+    "\002\000\014\014\ufff9\015\ufff9\016\ufff9\022\ufff9\023\ufff9" +
+    "\001\002\000\004\004\064\001\002\000\004\006\uffdb\001" +
+    "\002\000\004\006\071\001\002\000\004\005\067\001\002" +
+    "\000\006\007\ufffb\010\070\001\002\000\014\014\ufff6\015" +
+    "\ufff6\016\ufff6\022\ufff6\023\ufff6\001\002\000\004\025\072" +
+    "\001\002\000\004\011\073\001\002\000\004\012\074\001" +
+    "\002\000\004\007\075\001\002\000\006\005\uffdd\010\076" +
+    "\001\002\000\004\006\uffdc\001\002\000\004\004\100\001" +
+    "\002\000\004\006\uffef\001\002\000\004\006\105\001\002" +
+    "\000\004\005\103\001\002\000\006\007\ufffd\010\104\001" +
+    "\002\000\014\014\ufff8\015\ufff8\016\ufff8\022\ufff8\023\ufff8" +
+    "\001\002\000\010\017\uffe5\020\uffe5\021\uffe5\001\002\000" +
+    "\010\017\112\020\114\021\113\001\002\000\004\007\110" +
+    "\001\002\000\006\005\ufff1\010\111\001\002\000\004\006" +
+    "\ufff0\001\002\000\004\011\123\001\002\000\004\011\120" +
+    "\001\002\000\004\011\115\001\002\000\004\012\116\001" +
+    "\002\000\006\007\uffe9\010\117\001\002\000\010\017\uffe6" +
+    "\020\uffe6\021\uffe6\001\002\000\004\012\121\001\002\000" +
+    "\006\007\uffea\010\122\001\002\000\010\017\uffe7\020\uffe7" +
+    "\021\uffe7\001\002\000\004\012\124\001\002\000\006\007" +
+    "\uffeb\010\125\001\002\000\010\017\uffe8\020\uffe8\021\uffe8" +
+    "\001\002\000\004\002\001\001\002\000\004\002\000\001" +
+    "\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -111,7 +113,7 @@ public class ParserJson extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\122\000\004\002\003\001\001\000\002\001\001\000" +
+    "\000\125\000\004\002\003\001\001\000\002\001\001\000" +
     "\006\003\006\004\005\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
@@ -122,23 +124,24 @@ public class ParserJson extends java_cup.runtime.lr_parser {
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\006\005\045" +
-    "\006\046\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\006\005\050\006" +
+    "\051\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\006\013\062" +
-    "\014\061\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\006\013\065\014" +
+    "\064\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\006\007\076" +
-    "\010\075\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\006\015\103\016\102" +
-    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\006\007\101\010" +
+    "\100\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\006\015\106\016\105\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001" });
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -1019,104 +1022,104 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 32: // expMetp ::= expMetp NAME DOSPUNTOS STRING 
+          case 32: // expMetp ::= expMetp NAME DOSPUNTOS STRING COMA 
             {
               Metodo RESULT =null;
-		int expmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
-		int expmright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
-		Metodo expm = (Metodo)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
-		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
-		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
+		int expmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int expmright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Metodo expm = (Metodo)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
+		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
+		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
+		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
+		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
 		
-                                                            RESULT = expm;
-                                                            if(RESULT!=null){
-                                                                Token token = (Token) str;
-                                                                Token parametro = (Token)p;
-                                                                boolean ban = true;
-                                                                if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                    System.out.println("La cadena esta vacia");
-                                                                    ban=false;
+                                                                RESULT = expm;
+                                                                if(RESULT!=null){
+                                                                    Token token = (Token) str;
+                                                                    Token parametro = (Token)p;
+                                                                    boolean ban = true;
+                                                                    if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
+                                                                        System.out.println("La cadena esta vacia");
+                                                                        ban=false;
+                                                                    }
+                                                                    if(RESULT.getNombre()!=null){
+                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        ban=false;
+                                                                    }
+                                                                    if(ban){
+                                                                        RESULT.setNombre(token.getLexema());
+                                                                    }
                                                                 }
-                                                                if(RESULT.getNombre()!=null){
-                                                                    System.out.println("La propiedad ya habia sido definida");
-                                                                    ban=false;
-                                                                }
-                                                                if(ban){
-                                                                    RESULT.setNombre(token.getLexema());
-                                                                }
-                                                            }
-                                                        
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMetp",14, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+                                                            
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMetp",14, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 33: // expMetp ::= expMetp TYPE DOSPUNTOS STRING 
+          case 33: // expMetp ::= expMetp TYPE DOSPUNTOS STRING COMA 
             {
               Metodo RESULT =null;
-		int expmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
-		int expmright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
-		Metodo expm = (Metodo)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
-		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
-		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
+		int expmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int expmright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Metodo expm = (Metodo)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
+		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
+		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
+		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
+		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
 		
-                                                            RESULT = expm;
-                                                            if(RESULT!=null){
-                                                                Token token = (Token) str;
-                                                                Token parametro = (Token)p;
-                                                                boolean ban = true;
-                                                                if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                    System.out.println("La cadena esta vacia");
-                                                                    ban=false;
+                                                                RESULT = expm;
+                                                                if(RESULT!=null){
+                                                                    Token token = (Token) str;
+                                                                    Token parametro = (Token)p;
+                                                                    boolean ban = true;
+                                                                    if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
+                                                                        System.out.println("La cadena esta vacia");
+                                                                        ban=false;
+                                                                    }
+                                                                    if(RESULT.getTipo()!=null){
+                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        ban=false;
+                                                                    }
+                                                                    if(ban){
+                                                                        RESULT.setTipo(token.getLexema());
+                                                                    }
                                                                 }
-                                                                if(RESULT.getTipo()!=null){
-                                                                    System.out.println("La propiedad ya habia sido definida");
-                                                                    ban=false;
-                                                                }
-                                                                if(ban){
-                                                                    RESULT.setTipo(token.getLexema());
-                                                                }
-                                                            }
-                                                        
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMetp",14, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+                                                            
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMetp",14, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 34: // expMetp ::= expMetp PARA DOSPUNTOS ENTERO 
+          case 34: // expMetp ::= expMetp PARA DOSPUNTOS ENTERO COMA 
             {
               Metodo RESULT =null;
-		int expmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
-		int expmright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
-		Metodo expm = (Metodo)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
-		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
-		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
-		int entleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
-		int entright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
-		Object ent = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
+		int expmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int expmright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Metodo expm = (Metodo)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
+		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
+		int entleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
+		int entright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
+		Object ent = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
 		
-                                                            RESULT = expm;
-                                                            if(RESULT!=null){
-                                                                Token token = (Token) ent;
-                                                                Token parametro = (Token)p;
+                                                                RESULT = expm;
+                                                                if(RESULT!=null){
+                                                                    Token token = (Token) ent;
+                                                                    Token parametro = (Token)p;
 
-                                                                if(RESULT.getParametros()!=null){
-                                                                    System.out.println("La propiedad ya habia sido definida");
-                                                                }else{
-                                                                    RESULT.setParametros(Integer.valueOf(token.getLexema()));
+                                                                    if(RESULT.getParametros()!=null){
+                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                    }else{
+                                                                        RESULT.setParametros(Integer.valueOf(token.getLexema()));
+                                                                    }
                                                                 }
-                                                            }
-                                                        
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMetp",14, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+                                                            
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMetp",14, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 

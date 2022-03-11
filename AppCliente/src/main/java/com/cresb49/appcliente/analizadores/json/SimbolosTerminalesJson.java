@@ -35,10 +35,6 @@ public class SimbolosTerminalesJson {
         "Comentarios",
         "Parametros",
         "Texto",
-        "Proyecto1",
-        "Proyecto2",
-        "FileDef",
-        "ReporteJson"
     };
 
     public SimbolosTerminalesJson() {
