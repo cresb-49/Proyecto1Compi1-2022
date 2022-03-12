@@ -9,19 +9,23 @@ import com.cresb49.appcliente.analizadores.def.AnalizarDef;
 import com.cresb49.appcliente.analizadores.json.AnalizarJson;
 import com.cresb49.appcliente.cliente.Cliente;
 import java.util.Scanner;
+import javax.swing.JEditorPane;
 
 /**
  *
  * @author Benjamin
  */
 public class FramePrincipal extends javax.swing.JFrame {
+
     private static Cliente cliente = new Cliente();
+
     /**
      * Creates new form FramePrincipal
      */
     public FramePrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.renderizarHTML();
     }
 
     /**
@@ -54,6 +58,8 @@ public class FramePrincipal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane2 = new javax.swing.JTextPane();
         jPanel5 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        VentanaHTML = new javax.swing.JEditorPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -87,7 +93,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(583, Short.MAX_VALUE))
+                .addContainerGap(498, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("CARGA DE ARCHIVOS", jPanel1);
@@ -103,7 +109,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         });
 
         ConsolaDef.setEditable(false);
-        ConsolaDef.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONSOLA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18))); // NOI18N
+        ConsolaDef.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "CONSOLA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18))); // NOI18N
         jScrollPane4.setViewportView(ConsolaDef);
 
         jButton4.setText("LIMPIAR CONSOLA");
@@ -117,22 +123,25 @@ public class FramePrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
-                    .addComponent(ButtonEjecutar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(ButtonEjecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(ButtonEjecutar)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonEjecutar)
+                    .addComponent(jButton4))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
-                .addGap(36, 36, 36))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane2.addTab("resportes.def", jPanel4);
@@ -168,22 +177,32 @@ public class FramePrincipal extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("resultado.json", jPanel3);
+
+        VentanaHTML.setEditable(false);
+        VentanaHTML.setContentType("text/html"); // NOI18N
+        jScrollPane5.setViewportView(VentanaHTML);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane2.addTab("Reportes", jPanel5);
@@ -200,7 +219,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addComponent(jTabbedPane2)
                 .addContainerGap())
         );
@@ -228,8 +247,8 @@ public class FramePrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 703, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
 
         pack();
@@ -286,8 +305,8 @@ public class FramePrincipal extends javax.swing.JFrame {
         });
         soket();
     }
-    
-    public static void soket(){
+
+    public static void soket() {
         Scanner escaner = new Scanner(System.in);
         System.out.println("Ingresa la IP: [localhost por defecto]");
         String ip = "localhost";
@@ -295,16 +314,58 @@ public class FramePrincipal extends javax.swing.JFrame {
         String puerto = "5050";
         cliente.ejecutarConexion(ip, Integer.parseInt(puerto));
     }
-    
-    
-    
-    
+
+    public void renderizarHTML() {
+        JEditorPane panelHTML = this.VentanaHTML;
+        panelHTML.setContentType("text/html");
+        panelHTML.setText(
+                "<html>\n"
+                + "<h1>TITULO<h1>\n"
+                + "     <body>\n"
+                + "        <table border=\"1\">\n"
+                + "            <tr>\n"
+                + "                <th>Numero</th>\n"
+                + "                <th>Variable</th>\n"
+                + "                <th>Tipo</th>\n"
+                + "                <th>Función</th>\n"
+                + "            </tr>\n"
+                + "            <tr>\n"
+                + "                <td>1</td>\n"
+                + "                <td>2</td>\n"
+                + "                <td>3</td>\n"
+                + "                <td>4</td>\n"
+                + "            </tr>\n"
+                + "            <tr>\n"
+                + "                <td>1</td>\n"
+                + "                <td>2</td>\n"
+                + "                <td>3</td>\n"
+                + "                <td>4</td>\n"
+                + "            </tr>\n"
+                + "            <tr>\n"
+                + "                <td>1</td>\n"
+                + "                <td>2</td>\n"
+                + "                <td>3</td>\n"
+                + "                <td>4</td>\n"
+                + "            </tr>\n"
+                + "            <tr>\n"
+                + "                <td>1</td>\n"
+                + "                <td>2</td>\n"
+                + "                <td>3</td>\n"
+                + "                <td>4</td>\n"
+                + "            </tr>\n"
+                + "        </table>\n"
+                + "     </body>\n"
+                + "</html>"
+        );
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonEjecutar;
     private javax.swing.JTextPane ConsolaDef;
     private javax.swing.JTextPane TextPaneDef;
     private javax.swing.JTextPane TextPaneJson;
+    private javax.swing.JEditorPane VentanaHTML;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -322,6 +383,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextPane jTextPane2;
