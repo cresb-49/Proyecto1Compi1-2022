@@ -39,7 +39,9 @@ public class AnalizarJson {
         }
         System.err.println("----------------VALORES RECUPERADOS-------------------");
         if(parserJson.getReporteJson()!=null){
-            parserJson.getReporteJson().toString();
+            parserJson.getReporteJson().imprimirReporte();
+        }else{
+            System.out.println("Recuperacion null");
         }
 
     }

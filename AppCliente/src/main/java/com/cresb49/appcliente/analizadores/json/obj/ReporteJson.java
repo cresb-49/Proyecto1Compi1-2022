@@ -66,6 +66,26 @@ public class ReporteJson implements Serializable{
     public void setComentarios(ArrayList<Comentario> comentarios) {
         this.comentarios = comentarios;
     }
+    
+    public void imprimirReporte(){
+        System.out.println("score: "+this.score);
+        System.out.println("------------Clases-----------");
+        clases.forEach(clase -> {
+            System.out.println(clase.toString());
+        });
+        System.out.println("------------Variables-----------");
+        variables.forEach(variable -> {
+            System.out.println(variable.toString());
+        });
+        System.out.println("------------Metodos-----------");
+        metodos.forEach(metodo -> {
+            System.out.println(metodo.toString());
+        });
+        System.out.println("------------Comentarios-----------");
+        comentarios.forEach(comentario -> {
+            System.out.println(comentario.toString());
+        });
+    }
 
     @Override
     public String toString() {

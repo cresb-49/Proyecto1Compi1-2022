@@ -565,6 +565,7 @@ class CUP$ParserJson$actions {
 		
                                                                     RESULT=r;
                                                                     if(RESULT!=null){
+                                                                        System.out.println("Debuj");
                                                                         if(RESULT.getVariables()!=null){
                                                                             semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
                                                                         }else{
