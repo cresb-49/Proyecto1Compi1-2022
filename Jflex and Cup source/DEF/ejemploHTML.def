@@ -1,9 +1,13 @@
+
+
 </ iniciare a definir de alguna manera />
 Integer Max, i;
 Max=4;
 i=0;
 String texto="Su score fue de: "+RESULT.Score
 </ Aqui defino el html />
+
+
 <html>
 <H1>$$( texto )$$<h1>
         <table>
