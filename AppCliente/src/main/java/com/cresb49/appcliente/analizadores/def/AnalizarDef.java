@@ -32,7 +32,7 @@ public class AnalizarDef {
         for (ErrorAnalisis errore : errores) {
             System.out.println(errore.toString());
         }
-        System.err.println("----------------VALORES RECUPERADOS-------------------");
+        //System.err.println("----------------VALORES RECUPERADOS-------------------");
 
     }
     

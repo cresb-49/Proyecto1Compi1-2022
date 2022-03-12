@@ -15,16 +15,14 @@ import java.util.Objects;
 public class FilaTabla {
     private String nombre;
     private String tipo;
-    private ArrayList<String> Funciones;
     private Object valor;
 
     public FilaTabla() {
     }
 
-    public FilaTabla(String nombre, String tipo, ArrayList<String> Funciones, Object valor) {
+    public FilaTabla(String nombre, String tipo,Object valor) {
         this.nombre = nombre;
         this.tipo = tipo;
-        this.Funciones = Funciones;
         this.valor = valor;
     }
 
@@ -44,14 +42,6 @@ public class FilaTabla {
         this.tipo = tipo;
     }
 
-    public ArrayList<String> getFunciones() {
-        return Funciones;
-    }
-
-    public void setFunciones(ArrayList<String> Funciones) {
-        this.Funciones = Funciones;
-    }
-
     public Object getValor() {
         return valor;
     }
@@ -62,7 +52,7 @@ public class FilaTabla {
 
     @Override
     public String toString() {
-        return "FilaTabla{" + "nombre=" + nombre + ", tipo=" + tipo + ", Funciones=" + Funciones + ", valor=" + valor + '}';
+        return "FilaTabla{" + "nombre=" + nombre + ", tipo=" + tipo + ", valor=" + valor + '}';
     }
 
     @Override
@@ -70,7 +60,6 @@ public class FilaTabla {
         int hash = 7;
         hash = 61 * hash + Objects.hashCode(this.nombre);
         hash = 61 * hash + Objects.hashCode(this.tipo);
-        hash = 61 * hash + Objects.hashCode(this.Funciones);
         hash = 61 * hash + Objects.hashCode(this.valor);
         return hash;
     }
@@ -91,9 +80,6 @@ public class FilaTabla {
             return false;
         }
         if (!Objects.equals(this.tipo, other.tipo)) {
-            return false;
-        }
-        if (!Objects.equals(this.Funciones, other.Funciones)) {
             return false;
         }
         if (!Objects.equals(this.valor, other.valor)) {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.cresb49.appcliente.analizadores.ErrorAnalisis;
 import com.cresb49.appcliente.analizadores.Token;
+import com.cresb49.appcliente.ED.Pila;
 import com.cresb49.appcliente.analizadores.def.obj.*;
 
 
@@ -42,36 +43,55 @@ parser code {:
         if(tok!=null){
             if (cur_token.sym == ParserDefSym.EOF) {
                 String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesDef.obtenerSimbolos(expected_token_ids()).toString();
-                System.out.println("FIN ARCHIVO"+" "+er);
+                //System.out.println("FIN ARCHIVO"+" "+er);
                 this.lexerDef.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er));
-                System.out.println(er);
+                //System.out.println(er);
             } else {
                 String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesDef.obtenerSimbolos(expected_token_ids()).toString();
-                System.out.println(tok.getLexema()+" "+er);
+                //System.out.println(tok.getLexema()+" "+er);
                 this.lexerDef.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN,tok.getLexema(), tok.getLinea(), tok.getColumna(), er));
-                System.out.println(er);
+                //System.out.println(er);
             }
         }else{
             String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesDef.obtenerSimbolos(expected_token_ids()).toString();
-            System.out.println("FIN ARCHIVO"+" "+er);
+            //System.out.println("FIN ARCHIVO"+" "+er);
             this.lexerDef.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er));
-            System.out.println(er);
+            //System.out.println(er);
         }
     }
 
     public void unrecovered_syntax_error(Symbol cur_token) {
         if (cur_token.sym == ParserDefSym.EOF) {
             String er = "Error irrecuperable se llego al final del archivo";
-            System.out.println("FIN ARCHIVO"+" "+er);
+            //System.out.println("FIN ARCHIVO"+" "+er);
             this.lexerDef.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er));
-            System.out.println(er);
+            //System.out.println(er);
         } else {
             Token tok = (Token) cur_token.value;
             //String er = "Error irrecuperable, un posible simbolo esperado: "+ simbolosTerminalesDef.obtenerSimbolos(expected_token_ids()).toString();
             String er = "Error irrecuperable resuelva el error anterior";
-            System.out.println(tok.getLexema()+" "+er);
+            //System.out.println(tok.getLexema()+" "+er);
             this.lexerDef.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN, tok.getLexema(), tok.getLinea(), tok.getColumna(), er));
-            System.out.println(er);
+            //System.out.println(er);
+        }
+    }
+
+
+    private void verificar_def_var(Token token,String tipo) {
+       FilaTabla fila = tablaSimbolos.buscar(token.getLexema());
+        if(fila!=null){
+            tablaSimbolos.getFilas().add(new FilaTabla(token.getLexema(),tipo,null));
+        }else{
+            semantic_error(token,"La variable ya a sido definida con anterioridad");
+        }
+    }
+
+    private void asig_val_var(Token token,String tipo,Object value) {
+       FilaTabla fila = tablaSimbolos.buscar(token.getLexema());
+        if(fila!=null){
+            tablaSimbolos.getFilas().add(new FilaTabla(token.getLexema(),tipo,null));
+        }else{
+            semantic_error(token,"El valor que se desea dar a la variable de de tipo \"\" y la variable es de tipo \"\"");
         }
     }
 
@@ -79,15 +99,8 @@ parser code {:
         this.lexerDef.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,token.getLexema(), token.getLinea(), token.getColumna(), contexto));
     }
 
-    private boolean definition_error(Token ini,Token fin,ArrayList<String> errores){
-        boolean status = false;
-        for (String errore : errores) {
-            status = true;
-            String error = "Error en definicion, "+errore+" Ubicacion general --> Linea: "+ini.getLinea()+" a Linea: "+fin.getLinea();
-            this.lexerDef.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM, ini.getLexema(), ini.getLinea(), ini.getColumna(), error));
-            System.out.println(error);
-        }
-        return status;
+    public TablaSimbolos getTablaSimbolos() {
+        return tablaSimbolos;
     }
 
     protected int error_sync_size() {
@@ -105,29 +118,63 @@ terminal    CO_A,CO_C,LLA_A,LLA_C,PA_A,PA_C,COMA,DOSPUNTOS,PUNTOCOMA,STRING,ENTE
 
 
 /* Non terminals */
-non terminal                        ini,asig,dec,dec_asig,decp,decpp,vartype;
+non terminal                        ini,asig,dec,decn;
+non terminal Pila<Token>            decp;
 non terminal Operacion              exp,t,f;
 
 
 
 /* Inicio de las reglas gramticales*/
 
-ini ::= asig
+ini ::= ini asig
+    |   ini dec
+    |   ini decn
+    |   asig
     |   dec
+    |   decn
     ;
 
 /*Gramatica para declaracion de variables*/
 
 
-dec ::= INT decp
-    |   STR decp
-    ;
+decn   ::=  INT ID EQUAL exp PUNTOCOMA
+        |   STR ID EQUAL exp PUNTOCOMA
+        ;
 
-decp    ::= ID EQUAL exp PUNTOCOMA
-        |   decpp ID PUNTOCOMA
+dec    ::=  INT decp:vars   {:
+                                Pila<Token> tmp = vars;
+                                if(tmp!=null){
+                                    ArrayList<Token> array =  tmp.toArrayList();
+                                    if(array!=null){
+                                        for (Token token : array) {
+                                            verificar_def_var(token, TablaSimbolos.INT);
+                                        }
+                                    }
+                                }
+                            :}
+        |   STR decp:vars   {:
+                                Pila<Token> tmp = vars;
+                                if(tmp!=null){
+                                    ArrayList<Token> array =  tmp.toArrayList();
+                                    if(array!=null){
+                                        for (Token token : array) {
+                                            verificar_def_var(token, TablaSimbolos.STRING);
+                                        }
+                                    }
+                                }
+                            :}
         ;
     
-decpp   ::= decpp ID COMA
+decp    ::= ID:id COMA decp:vars {:
+                                    RESULT = vars;
+                                    if(RESULT!=null){
+                                        RESULT.push((Token)id);
+                                    }
+                                :}
+        |   ID:id PUNTOCOMA {:
+                                RESULT = new Pila<>();
+                                RESULT.push((Token)id);
+                            :}
         ;
 
 asig    ::= ID EQUAL exp PUNTOCOMA

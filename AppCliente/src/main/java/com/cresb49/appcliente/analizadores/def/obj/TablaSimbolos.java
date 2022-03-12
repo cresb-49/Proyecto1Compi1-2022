@@ -30,4 +30,11 @@ public class TablaSimbolos {
         return null;
     }
 
+    public ArrayList<FilaTabla> getFilas() {
+        return filas;
+    }
+    
+    public void resetTabla(){
+        filas.clear();
+    }
 }
