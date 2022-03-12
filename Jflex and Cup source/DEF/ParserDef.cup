@@ -137,25 +137,23 @@ ini ::= ini asig
 /*Gramatica para declaracion de variables*/
 
 
-decn   ::=  INT ID EQUAL exp PUNTOCOMA
-        |   STR ID EQUAL exp PUNTOCOMA
+decn   ::=  INT ID:var EQUAL exp:val PUNTOCOMA
+        |   STR ID:var EQUAL exp:val PUNTOCOMA
         ;
 
 dec    ::=  INT decp:vars   {:
-                                Pila<Token> tmp = vars;
-                                if(tmp!=null){
-                                    ArrayList<Token> array =  tmp.toArrayList();
+                                if(vars!=null){
+                                    ArrayList<Token> array =  vars.toArrayList();
                                     if(array!=null){
                                         for (Token token : array) {
-                                            verificar_def_var(token, TablaSimbolos.INT);
+                                            verificar_def_var(token, TablaSimbolos.STRING);
                                         }
                                     }
                                 }
                             :}
         |   STR decp:vars   {:
-                                Pila<Token> tmp = vars;
-                                if(tmp!=null){
-                                    ArrayList<Token> array =  tmp.toArrayList();
+                                if(vars!=null){
+                                    ArrayList<Token> array =  vars.toArrayList();
                                     if(array!=null){
                                         for (Token token : array) {
                                             verificar_def_var(token, TablaSimbolos.STRING);
