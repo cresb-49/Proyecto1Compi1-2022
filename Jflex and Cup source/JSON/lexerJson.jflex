@@ -13,6 +13,8 @@ import java_cup.runtime.*;
 %public
 %line
 %column
+%caseless
+%ignorecase
 %cup
 
 %{
