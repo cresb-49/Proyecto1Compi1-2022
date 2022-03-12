@@ -105,13 +105,105 @@ terminal    CO_A,CO_C,LLA_A,LLA_C,PA_A,PA_C,COMA,DOSPUNTOS,PUNTOCOMA,STRING,ENTE
 
 
 /* Non terminals */
-non terminal                        ini;
+non terminal                        ini,asig,dec,dec_asig,decp,decpp;
+non terminal Operacion              exp,t,f;
 
 
 
 /* Inicio de las reglas gramticales*/
 
-ini ::= ME_Q MA_Q
+ini ::= asig
+    |   dec
     ;
+
+asig    ::= ID EQUAL exp PUNTOCOMA
+        ;
+
+dec ::= INT ID EQUAL exp PUNTOCOMA
+    |   STR ID EQUAL exp PUNTOCOMA
+    ;
+decp    ::= decpp ID
+        ;
+decpp   ::= decpp ID COMA
+        |
+        ;
+
+exp ::= exp:val1 MAS:s t:val2   {:  
+                                    try {
+                                        String tipo = Operacion.autoCast(val1.getTipo(),TablaSimbolos.MUL,val2.getTipo());
+                                        Object result = Operacion.sumaTerminos(val1, val2);
+                                        RESULT = new Operacion(tipo,result);
+                                    } catch (NotCastException e) {
+                                        System.out.println("No se pudo castear el resultado");
+                                        RESULT = val1;
+                                    }
+                                :}
+    |   exp:val1 MENOS:s t:val2 {:
+                                    try {
+                                        String tipo = Operacion.autoCast(val1.getTipo(),TablaSimbolos.MUL,val2.getTipo());
+                                        Integer result = ((Integer)val1.getValor())-((Integer)val2.getValor());
+                                        RESULT = new Operacion(tipo,result);
+                                    } catch (NotCastException e) {
+                                        System.out.println("No se pudo castear el resultado");
+                                        RESULT = val1;
+                                    }
+                                :}
+    |   t:val   {:
+                    RESULT = val;
+                :}
+    ;
+
+t   ::= t:val1 MUL:s f:val2 {:
+                                try {
+                                    String tipo = Operacion.autoCast(val1.getTipo(),TablaSimbolos.MUL,val2.getTipo());
+                                    Integer result = ((Integer)val1.getValor())*((Integer)val2.getValor());
+                                    RESULT = new Operacion(tipo,result);
+                                } catch (NotCastException e) {
+                                    System.out.println("No se pudo castear el resultado");
+                                    RESULT = val1;
+                                }
+                            :}
+    |   t:val1 DIV:s f:val2 {:
+                                try {
+                                    String tipo = Operacion.autoCast(val1.getTipo(),TablaSimbolos.MUL,val2.getTipo());
+                                    Integer result = ((Integer)val1.getValor())/((Integer)val2.getValor());
+                                    RESULT = new Operacion(tipo,result);
+                                } catch (NotCastException e) {
+                                    System.out.println("No se pudo castear el resultado");
+                                    RESULT = val1;
+                                }
+                            :}
+    |   f:val   {:
+                    RESULT = val;
+                :}
+    ;
+
+f   ::= ID:val      {:
+                        Token token = (Token) val;
+                        System.out.println("Buscar en tabla de simbolos");
+                        FilaTabla simbolo = tablaSimbolos.buscar(token.getLexema());
+                        if(simbolo!=null){
+                            if(simbolo.getValor()!=null){
+                                RESULT = new Operacion(simbolo.getTipo(),simbolo.getValor());
+                            }else{
+                                System.out.println("La variable no tiene valor asignado");
+                            }
+                        }else{
+                            System.out.println("No existe la variable en el programa");
+                        }
+                    :}
+    |   ENTERO:val  {:
+                        Token token = (Token) val;
+                        RESULT = new Operacion(TablaSimbolos.INT,Integer.parseInt(token.getLexema()));
+                    :}
+    |   STRING:val  {:
+                        Token token = (Token) val;
+                        RESULT = new Operacion(TablaSimbolos.STRING,token.getLexema());
+                    :}
+    |   PA_A exp:val PA_C   {:
+                                RESULT = val;
+                            :}
+    ;
+
 
 /*Gramatica para lenguaje HTML*/
