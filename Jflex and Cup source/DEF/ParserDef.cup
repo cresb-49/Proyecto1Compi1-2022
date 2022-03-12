@@ -116,6 +116,7 @@ ini ::= asig
     |   dec
     ;
 
+/*Gramatica para declaracion de variables*/
 asig    ::= ID EQUAL exp PUNTOCOMA
         ;
 
@@ -204,6 +205,4 @@ f   ::= ID:val      {:
                                 RESULT = val;
                             :}
     ;
-
-
 /*Gramatica para lenguaje HTML*/
