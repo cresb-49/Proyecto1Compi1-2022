@@ -21,12 +21,17 @@ parser code {:
     private LexerJson lexerJson;
     private ArrayList<ErrorAnalisis> errorAnalisisesTmp;
     private SimbolosTerminalesJson simbolosTerminalesJson;
+    private ReporteJson reporteJson;
 
     
     public ParserJson (LexerJson lexerJson){ 
         super(lexerJson);
         this.lexerJson=lexerJson;
         this.simbolosTerminalesJson = new SimbolosTerminalesJson();
+    }
+
+    public ReporteJson getReporteJson() {
+        return reporteJson;
     }
 
     public void report_error(String message, Object info) {
@@ -90,18 +95,6 @@ parser code {:
         return status;
     }
 
-    private void referencia_numerica_incorrecta(Token token,Double valor){
-        this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN,valor.toString(), token.getLinea(),(token.getColumna()+1), ", Se espera un valor entero o una operacion con resultado entero"));
-    }
-
-    private void referencia_numero_negativo(Token token,Double valor){
-        this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,String.valueOf(valor.intValue()), token.getLinea(),(token.getColumna()+1), ", Se esperaba un valor positivo"));
-    }
-
-    private void referencia_numero_negativo_values(Token token,Double valor){
-        this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,valor.toString(), token.getLinea(),(token.getColumna()+1), ",Se espera un valor positivo o una operacion con resultado positivo"));
-    }
-
     protected int error_sync_size() {
 		return 1;
 	}
@@ -128,58 +121,146 @@ non terminal Metodo                 expMet,expMetp;
 
 /* The grammar rules */
 
-ini ::= LLA_A reportep LLA_C
+ini ::= LLA_A reportep:r LLA_C  {:
+                                    if(r!=null){
+                                        reporteJson=r;
+                                    }
+                                :}
     ;
 /*Gramatica para reporte Json*/
-reportep    ::= reporte:r SCORE DOSPUNTOS STRING:str    {:
+reportep    ::= reporte:r SCORE:p DOSPUNTOS STRING:str  {:
                                                             RESULT=r;
-                                                            Token tokenTmp;
-                                                            tokenTmp = (Token)str;
-                                                            System.out.println("Score: "+tokenTmp.getLexema());
+                                                            if(RESULT!=null){
+                                                                Token tokenTmp = (Token)str;
+                                                                boolean bandera = true;
+                                                                if(tokenTmp.getLexema().isEmpty()||tokenTmp.getLexema().isBlank()){
+                                                                    semantic_error(tokenTmp,"El valor de la cadena de texto esta vacia");
+                                                                    bandera=false;
+                                                                }
+                                                                String val="";
+                                                                try {
+                                                                    Double val2 = Double.valueOf(tokenTmp.getLexema());
+                                                                    val = val2.toString();
+                                                                } catch (NumberFormatException e) {
+                                                                    bandera=false;
+                                                                    semantic_error(tokenTmp,"El valor de la cadena no representa un valor numerico");
+                                                                }
+                                                                if(RESULT.getScore()!=null){
+                                                                    semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                    bandera=false;
+                                                                }
+                                                                if(bandera){
+                                                                    RESULT.setScore(val);
+                                                                }
+                                                            }
                                                         :}
-            |   reporte:r CLASS DOSPUNTOS CO_A contClass:cc CO_C    {:
+            |   reporte:r CLASS:p DOSPUNTOS CO_A contClass:cc CO_C  {:
                                                                         RESULT=r;
-                                                                        System.out.println("Clases: ");
+                                                                        if(RESULT!=null){
+                                                                            if(RESULT.getClases()!=null){
+                                                                                semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            }else{
+                                                                                RESULT.setClases(cc);
+                                                                            }
+                                                                        }
                                                                     :}
-            |   reporte:r VAR DOSPUNTOS CO_A contVar:cv CO_C {:
+            |   reporte:r VAR:p DOSPUNTOS CO_A contVar:cv CO_C  {:
                                                                     RESULT=r;
-                                                                    System.out.println("Variables: ");
+                                                                    if(RESULT!=null){
+                                                                        if(RESULT.getVariables()!=null){
+                                                                            semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                        }else{
+                                                                            RESULT.setVariables(cv);
+                                                                        }
+                                                                    }
                                                                 :}
-            |   reporte:r METD DOSPUNTOS CO_A contMet:cm CO_C   {:
+            |   reporte:r METD:p DOSPUNTOS CO_A contMet:cm CO_C {:
                                                                     RESULT=r;
-                                                                    System.out.println("Metodos: ");
+                                                                    if(RESULT!=null){
+                                                                        if(RESULT.getMetodos()!=null){
+                                                                            semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                        }else{
+                                                                            RESULT.setMetodos(cm);
+                                                                        }
+                                                                    }
                                                                 :}
-            |   reporte:r COMENT DOSPUNTOS CO_A contCom:cme CO_C    {:
-                                                                        RESULT=r;
-                                                                        System.out.println("Comentarios: ");
+            |   reporte:r COMENT:p DOSPUNTOS CO_A contCom:cme CO_C  {:
+                                                                        RESULT = r;
+                                                                        if(RESULT!=null){
+                                                                            if(RESULT.getComentarios()!=null){
+                                                                                semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            }else{
+                                                                                RESULT.setComentarios(cme);
+                                                                            }
+                                                                        }
                                                                     :}
             ;
 
-reporte ::= reporte:r SCORE DOSPUNTOS STRING:str COMA   {:
+reporte ::= reporte:r SCORE:p DOSPUNTOS STRING:str COMA   {:
                                                             RESULT=r;
-                                                            Token tokenTmp;
-                                                            tokenTmp = (Token)str;
-                                                            System.out.println("Score: "+tokenTmp.getLexema());
+                                                            if(RESULT!=null){
+                                                                Token tokenTmp = (Token)str;
+                                                                boolean bandera = true;
+                                                                if(tokenTmp.getLexema().isEmpty()||tokenTmp.getLexema().isBlank()){
+                                                                    semantic_error(tokenTmp,"El valor de la cadena de texto esta vacia");
+                                                                    bandera=false;
+                                                                }
+                                                                String val="";
+                                                                try {
+                                                                    Double val2 = Double.valueOf(tokenTmp.getLexema());
+                                                                    val = val2.toString();
+                                                                } catch (NumberFormatException e) {
+                                                                    bandera=false;
+                                                                    semantic_error(tokenTmp,"El valor de la cadena no representa un valor numerico");
+                                                                }
+                                                                if(RESULT.getScore()!=null){
+                                                                    semantic_error((Token)p,"La propiedad ya a sido generada con anterioridad");
+                                                                    bandera=false;
+                                                                }
+                                                                if(bandera){
+                                                                    RESULT.setScore(val);
+                                                                }
+                                                            }
                                                         :}
-        |   reporte:r CLASS DOSPUNTOS CO_A contClass:cc CO_C COMA   {:
+        |   reporte:r CLASS:p DOSPUNTOS CO_A contClass:cc CO_C COMA   {:
                                                                         RESULT=r;
-                                                                        System.out.println("Clases: ");
-                                                                    :}
-        |   reporte:r VAR DOSPUNTOS CO_A contVar:cv CO_C COMA   {:
-                                                                    RESULT=r;
-                                                                    System.out.println("Variables: ");
-                                                                :}
-        |   reporte:r METD DOSPUNTOS CO_A contMet:cm CO_C COMA  {:
-                                                                    RESULT=r;
-                                                                    System.out.println("Metodos: ");
-                                                                :}
-        |   reporte:r COMENT DOSPUNTOS CO_A contCom:cme CO_C COMA   {:
-                                                                        RESULT = r;
-                                                                        System.out.println("Comentarios: ");
                                                                         if(RESULT!=null){
-
-                                                                        }    
-                                                                        
+                                                                            if(RESULT.getClases()!=null){
+                                                                                semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            }else{
+                                                                                RESULT.setClases(cc);
+                                                                            }
+                                                                        }
+                                                                    :}
+        |   reporte:r VAR:p DOSPUNTOS CO_A contVar:cv CO_C COMA   {:
+                                                                    RESULT=r;
+                                                                    if(RESULT!=null){
+                                                                        if(RESULT.getVariables()!=null){
+                                                                            semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                        }else{
+                                                                            RESULT.setVariables(cv);
+                                                                        }
+                                                                    }
+                                                                :}
+        |   reporte:r METD:p DOSPUNTOS CO_A contMet:cm CO_C COMA  {:
+                                                                    RESULT=r;
+                                                                    if(RESULT!=null){
+                                                                        if(RESULT.getMetodos()!=null){
+                                                                            semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                        }else{
+                                                                            RESULT.setMetodos(cm);
+                                                                        }
+                                                                    }
+                                                                :}
+        |   reporte:r COMENT:p DOSPUNTOS CO_A contCom:cme CO_C COMA   {:
+                                                                        RESULT = r;
+                                                                        if(RESULT!=null){
+                                                                            if(RESULT.getComentarios()!=null){
+                                                                                semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            }else{
+                                                                                RESULT.setComentarios(cme);
+                                                                            }
+                                                                        }
                                                                     :}
         |                                               {:
                                                             RESULT = new ReporteJson();
@@ -191,7 +272,7 @@ contClass   ::= contClassp:cc LLA_A NAME DOSPUNTOS STRING:str LLA_C         {:
                                                                                 if(RESULT!=null){
                                                                                     Token token = (Token)str;
                                                                                     if(token.getLexema().isEmpty()||token.getLexema().isBlank()){
-                                                                                        System.out.println("La cadena esta vacia");
+                                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                                     }else{
                                                                                         Clase clase = new Clase(token.getLexema());
                                                                                         RESULT.add(clase);
@@ -205,7 +286,7 @@ contClassp  ::= contClassp:cc LLA_A NAME DOSPUNTOS STRING:str LLA_C COMA    {:
                                                                                 if(RESULT!=null){
                                                                                     Token token = (Token)str;
                                                                                     if(token.getLexema().isEmpty()||token.getLexema().isBlank()){
-                                                                                        System.out.println("La cadena esta vacia");
+                                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                                     }else{
                                                                                         Clase clase = new Clase(token.getLexema());
                                                                                         RESULT.add(clase);
@@ -262,11 +343,11 @@ expVar  ::= expVarp:expv NAME:p DOSPUNTOS STRING:str        {:
                                                                     Token parametro = (Token)p;
                                                                     boolean ban = true;
                                                                     if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        System.out.println("La cadena esta vacia");
+                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                         ban=false;
                                                                     }
                                                                     if(RESULT.getNombre()!=null){
-                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                         ban=false;
                                                                     }
                                                                     if(ban){
@@ -281,11 +362,11 @@ expVar  ::= expVarp:expv NAME:p DOSPUNTOS STRING:str        {:
                                                                     Token parametro = (Token)p;
                                                                     boolean ban = true;
                                                                     if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        System.out.println("La cadena esta vacia");
+                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                         ban=false;
                                                                     }
                                                                     if(RESULT.getFuncion()!=null){
-                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                         ban=false;
                                                                     }
                                                                     if(ban){
@@ -300,11 +381,11 @@ expVar  ::= expVarp:expv NAME:p DOSPUNTOS STRING:str        {:
                                                                     Token parametro = (Token)p;
                                                                     boolean ban = true;
                                                                     if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        System.out.println("La cadena esta vacia");
+                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                         ban=false;
                                                                     }
                                                                     if(RESULT.getTipo()!=null){
-                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                         ban=false;
                                                                     }
                                                                     if(ban){
@@ -321,11 +402,11 @@ expVarp ::= expVarp:expv NAME:p DOSPUNTOS STRING:str COMA   {:
                                                                     Token parametro = (Token)p;
                                                                     boolean ban = true;
                                                                     if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        System.out.println("La cadena esta vacia");
+                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                         ban=false;
                                                                     }
                                                                     if(RESULT.getNombre()!=null){
-                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                         ban=false;
                                                                     }
                                                                     if(ban){
@@ -340,11 +421,11 @@ expVarp ::= expVarp:expv NAME:p DOSPUNTOS STRING:str COMA   {:
                                                                     Token parametro = (Token)p;
                                                                     boolean ban = true;
                                                                     if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        System.out.println("La cadena esta vacia");
+                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                         ban=false;
                                                                     }
                                                                     if(RESULT.getFuncion()!=null){
-                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                         ban=false;
                                                                     }
                                                                     if(ban){
@@ -359,11 +440,11 @@ expVarp ::= expVarp:expv NAME:p DOSPUNTOS STRING:str COMA   {:
                                                                     Token parametro = (Token)p;
                                                                     boolean ban = true;
                                                                     if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        System.out.println("La cadena esta vacia");
+                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                         ban=false;
                                                                     }
                                                                     if(RESULT.getTipo()!=null){
-                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                         ban=false;
                                                                     }
                                                                     if(ban){
@@ -383,11 +464,11 @@ expMet  ::= expMetp:expm NAME:p DOSPUNTOS STRING:str    {:
                                                                 Token parametro = (Token)p;
                                                                 boolean ban = true;
                                                                 if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                    System.out.println("La cadena esta vacia");
+                                                                    semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                     ban=false;
                                                                 }
                                                                 if(RESULT.getNombre()!=null){
-                                                                    System.out.println("La propiedad ya habia sido definida");
+                                                                    semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                     ban=false;
                                                                 }
                                                                 if(ban){
@@ -402,11 +483,11 @@ expMet  ::= expMetp:expm NAME:p DOSPUNTOS STRING:str    {:
                                                                 Token parametro = (Token)p;
                                                                 boolean ban = true;
                                                                 if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                    System.out.println("La cadena esta vacia");
+                                                                    semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                     ban=false;
                                                                 }
                                                                 if(RESULT.getTipo()!=null){
-                                                                    System.out.println("La propiedad ya habia sido definida");
+                                                                    semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                     ban=false;
                                                                 }
                                                                 if(ban){
@@ -419,9 +500,8 @@ expMet  ::= expMetp:expm NAME:p DOSPUNTOS STRING:str    {:
                                                             if(RESULT!=null){
                                                                 Token token = (Token) ent;
                                                                 Token parametro = (Token)p;
-
                                                                 if(RESULT.getParametros()!=null){
-                                                                    System.out.println("La propiedad ya habia sido definida");
+                                                                    semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                 }else{
                                                                     RESULT.setParametros(Integer.valueOf(token.getLexema()));
                                                                 }
@@ -436,11 +516,11 @@ expMetp ::= expMetp:expm NAME:p DOSPUNTOS STRING:str COMA   {:
                                                                     Token parametro = (Token)p;
                                                                     boolean ban = true;
                                                                     if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        System.out.println("La cadena esta vacia");
+                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                         ban=false;
                                                                     }
                                                                     if(RESULT.getNombre()!=null){
-                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                         ban=false;
                                                                     }
                                                                     if(ban){
@@ -455,11 +535,11 @@ expMetp ::= expMetp:expm NAME:p DOSPUNTOS STRING:str COMA   {:
                                                                     Token parametro = (Token)p;
                                                                     boolean ban = true;
                                                                     if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        System.out.println("La cadena esta vacia");
+                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                         ban=false;
                                                                     }
                                                                     if(RESULT.getTipo()!=null){
-                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                         ban=false;
                                                                     }
                                                                     if(ban){
@@ -472,9 +552,8 @@ expMetp ::= expMetp:expm NAME:p DOSPUNTOS STRING:str COMA   {:
                                                                 if(RESULT!=null){
                                                                     Token token = (Token) ent;
                                                                     Token parametro = (Token)p;
-
                                                                     if(RESULT.getParametros()!=null){
-                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                     }else{
                                                                         RESULT.setParametros(Integer.valueOf(token.getLexema()));
                                                                     }
@@ -490,7 +569,7 @@ contCom ::= contComp:cme LLA_A TEXT DOSPUNTOS STRING:str LLA_C          {:
                                                                             if(RESULT!=null){
                                                                                 Token token = (Token)str;
                                                                                 if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                                    System.out.println("La cadena esta vacia");
+                                                                                    semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                                 }else{
                                                                                     Comentario comentario = new Comentario(token.getLexema());
                                                                                     RESULT.add(comentario);
@@ -504,7 +583,7 @@ contComp    ::= contComp:cme LLA_A TEXT DOSPUNTOS STRING:str LLA_C COMA {:
                                                                             if(RESULT!=null){
                                                                                 Token token = (Token)str;
                                                                                 if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                                    System.out.println("La cadena esta vacia");
+                                                                                    semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                                 }else{
                                                                                     Comentario comentario = new Comentario(token.getLexema());
                                                                                     RESULT.add(comentario);

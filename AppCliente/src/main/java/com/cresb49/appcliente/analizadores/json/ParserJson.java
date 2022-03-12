@@ -195,12 +195,17 @@ public class ParserJson extends java_cup.runtime.lr_parser {
     private LexerJson lexerJson;
     private ArrayList<ErrorAnalisis> errorAnalisisesTmp;
     private SimbolosTerminalesJson simbolosTerminalesJson;
+    private ReporteJson reporteJson;
 
     
     public ParserJson (LexerJson lexerJson){ 
         super(lexerJson);
         this.lexerJson=lexerJson;
         this.simbolosTerminalesJson = new SimbolosTerminalesJson();
+    }
+
+    public ReporteJson getReporteJson() {
+        return reporteJson;
     }
 
     public void report_error(String message, Object info) {
@@ -264,18 +269,6 @@ public class ParserJson extends java_cup.runtime.lr_parser {
         return status;
     }
 
-    private void referencia_numerica_incorrecta(Token token,Double valor){
-        this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN,valor.toString(), token.getLinea(),(token.getColumna()+1), ", Se espera un valor entero o una operacion con resultado entero"));
-    }
-
-    private void referencia_numero_negativo(Token token,Double valor){
-        this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,String.valueOf(valor.intValue()), token.getLinea(),(token.getColumna()+1), ", Se esperaba un valor positivo"));
-    }
-
-    private void referencia_numero_negativo_values(Token token,Double valor){
-        this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,valor.toString(), token.getLinea(),(token.getColumna()+1), ",Se espera un valor positivo o una operacion con resultado positivo"));
-    }
-
     protected int error_sync_size() {
 		return 1;
 	}
@@ -309,7 +302,14 @@ class CUP$ParserJson$actions {
           case 0: // ini ::= LLA_A reportep LLA_C 
             {
               Object RESULT =null;
-
+		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
+		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
+		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
+		
+                                    if(r!=null){
+                                        reporteJson=r;
+                                    }
+                                
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("ini",0, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
@@ -335,14 +335,37 @@ class CUP$ParserJson$actions {
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
 		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
 		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
+		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
 		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
 		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
 		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
 		
                                                             RESULT=r;
-                                                            Token tokenTmp;
-                                                            tokenTmp = (Token)str;
-                                                            System.out.println("Score: "+tokenTmp.getLexema());
+                                                            if(RESULT!=null){
+                                                                Token tokenTmp = (Token)str;
+                                                                boolean bandera = true;
+                                                                if(tokenTmp.getLexema().isEmpty()||tokenTmp.getLexema().isBlank()){
+                                                                    semantic_error(tokenTmp,"El valor de la cadena de texto esta vacia");
+                                                                    bandera=false;
+                                                                }
+                                                                String val="";
+                                                                try {
+                                                                    Double val2 = Double.valueOf(tokenTmp.getLexema());
+                                                                    val = val2.toString();
+                                                                } catch (NumberFormatException e) {
+                                                                    bandera=false;
+                                                                    semantic_error(tokenTmp,"El valor de la cadena no representa un valor numerico");
+                                                                }
+                                                                if(RESULT.getScore()!=null){
+                                                                    semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                    bandera=false;
+                                                                }
+                                                                if(bandera){
+                                                                    RESULT.setScore(val);
+                                                                }
+                                                            }
                                                         
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("reportep",2, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
@@ -355,12 +378,21 @@ class CUP$ParserJson$actions {
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
 		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).right;
 		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
 		int ccleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
 		int ccright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
 		ArrayList<Clase> cc = (ArrayList<Clase>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
 		
                                                                         RESULT=r;
-                                                                        System.out.println("Clases: ");
+                                                                        if(RESULT!=null){
+                                                                            if(RESULT.getClases()!=null){
+                                                                                semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            }else{
+                                                                                RESULT.setClases(cc);
+                                                                            }
+                                                                        }
                                                                     
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("reportep",2, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
@@ -373,12 +405,21 @@ class CUP$ParserJson$actions {
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
 		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).right;
 		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
 		int cvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
 		int cvright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
 		ArrayList<Variable> cv = (ArrayList<Variable>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
 		
                                                                     RESULT=r;
-                                                                    System.out.println("Variables: ");
+                                                                    if(RESULT!=null){
+                                                                        if(RESULT.getVariables()!=null){
+                                                                            semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                        }else{
+                                                                            RESULT.setVariables(cv);
+                                                                        }
+                                                                    }
                                                                 
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("reportep",2, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
@@ -391,12 +432,21 @@ class CUP$ParserJson$actions {
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
 		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).right;
 		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
 		int cmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
 		int cmright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
 		ArrayList<Metodo> cm = (ArrayList<Metodo>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
 		
                                                                     RESULT=r;
-                                                                    System.out.println("Metodos: ");
+                                                                    if(RESULT!=null){
+                                                                        if(RESULT.getMetodos()!=null){
+                                                                            semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                        }else{
+                                                                            RESULT.setMetodos(cm);
+                                                                        }
+                                                                    }
                                                                 
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("reportep",2, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
@@ -409,12 +459,21 @@ class CUP$ParserJson$actions {
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
 		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).right;
 		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
 		int cmeleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
 		int cmeright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
 		ArrayList<Comentario> cme = (ArrayList<Comentario>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
 		
-                                                                        RESULT=r;
-                                                                        System.out.println("Comentarios: ");
+                                                                        RESULT = r;
+                                                                        if(RESULT!=null){
+                                                                            if(RESULT.getComentarios()!=null){
+                                                                                semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            }else{
+                                                                                RESULT.setComentarios(cme);
+                                                                            }
+                                                                        }
                                                                     
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("reportep",2, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
@@ -427,14 +486,37 @@ class CUP$ParserJson$actions {
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
 		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
 		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
+		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
 		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
 		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
 		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
 		
                                                             RESULT=r;
-                                                            Token tokenTmp;
-                                                            tokenTmp = (Token)str;
-                                                            System.out.println("Score: "+tokenTmp.getLexema());
+                                                            if(RESULT!=null){
+                                                                Token tokenTmp = (Token)str;
+                                                                boolean bandera = true;
+                                                                if(tokenTmp.getLexema().isEmpty()||tokenTmp.getLexema().isBlank()){
+                                                                    semantic_error(tokenTmp,"El valor de la cadena de texto esta vacia");
+                                                                    bandera=false;
+                                                                }
+                                                                String val="";
+                                                                try {
+                                                                    Double val2 = Double.valueOf(tokenTmp.getLexema());
+                                                                    val = val2.toString();
+                                                                } catch (NumberFormatException e) {
+                                                                    bandera=false;
+                                                                    semantic_error(tokenTmp,"El valor de la cadena no representa un valor numerico");
+                                                                }
+                                                                if(RESULT.getScore()!=null){
+                                                                    semantic_error((Token)p,"La propiedad ya a sido generada con anterioridad");
+                                                                    bandera=false;
+                                                                }
+                                                                if(bandera){
+                                                                    RESULT.setScore(val);
+                                                                }
+                                                            }
                                                         
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("reporte",1, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
@@ -447,12 +529,21 @@ class CUP$ParserJson$actions {
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).left;
 		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).right;
 		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).right;
+		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
 		int ccleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
 		int ccright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
 		ArrayList<Clase> cc = (ArrayList<Clase>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
 		
                                                                         RESULT=r;
-                                                                        System.out.println("Clases: ");
+                                                                        if(RESULT!=null){
+                                                                            if(RESULT.getClases()!=null){
+                                                                                semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            }else{
+                                                                                RESULT.setClases(cc);
+                                                                            }
+                                                                        }
                                                                     
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("reporte",1, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
@@ -465,12 +556,21 @@ class CUP$ParserJson$actions {
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).left;
 		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).right;
 		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).right;
+		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
 		int cvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
 		int cvright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
 		ArrayList<Variable> cv = (ArrayList<Variable>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
 		
                                                                     RESULT=r;
-                                                                    System.out.println("Variables: ");
+                                                                    if(RESULT!=null){
+                                                                        if(RESULT.getVariables()!=null){
+                                                                            semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                        }else{
+                                                                            RESULT.setVariables(cv);
+                                                                        }
+                                                                    }
                                                                 
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("reporte",1, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
@@ -483,12 +583,21 @@ class CUP$ParserJson$actions {
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).left;
 		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).right;
 		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).right;
+		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
 		int cmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
 		int cmright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
 		ArrayList<Metodo> cm = (ArrayList<Metodo>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
 		
                                                                     RESULT=r;
-                                                                    System.out.println("Metodos: ");
+                                                                    if(RESULT!=null){
+                                                                        if(RESULT.getMetodos()!=null){
+                                                                            semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                        }else{
+                                                                            RESULT.setMetodos(cm);
+                                                                        }
+                                                                    }
                                                                 
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("reporte",1, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
@@ -501,16 +610,21 @@ class CUP$ParserJson$actions {
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).left;
 		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).right;
 		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).right;
+		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
 		int cmeleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
 		int cmeright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
 		ArrayList<Comentario> cme = (ArrayList<Comentario>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
 		
                                                                         RESULT = r;
-                                                                        System.out.println("Comentarios: ");
                                                                         if(RESULT!=null){
-
-                                                                        }    
-                                                                        
+                                                                            if(RESULT.getComentarios()!=null){
+                                                                                semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            }else{
+                                                                                RESULT.setComentarios(cme);
+                                                                            }
+                                                                        }
                                                                     
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("reporte",1, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
@@ -542,7 +656,7 @@ class CUP$ParserJson$actions {
                                                                                 if(RESULT!=null){
                                                                                     Token token = (Token)str;
                                                                                     if(token.getLexema().isEmpty()||token.getLexema().isBlank()){
-                                                                                        System.out.println("La cadena esta vacia");
+                                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                                     }else{
                                                                                         Clase clase = new Clase(token.getLexema());
                                                                                         RESULT.add(clase);
@@ -568,7 +682,7 @@ class CUP$ParserJson$actions {
                                                                                 if(RESULT!=null){
                                                                                     Token token = (Token)str;
                                                                                     if(token.getLexema().isEmpty()||token.getLexema().isBlank()){
-                                                                                        System.out.println("La cadena esta vacia");
+                                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                                     }else{
                                                                                         Clase clase = new Clase(token.getLexema());
                                                                                         RESULT.add(clase);
@@ -712,11 +826,11 @@ class CUP$ParserJson$actions {
                                                                     Token parametro = (Token)p;
                                                                     boolean ban = true;
                                                                     if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        System.out.println("La cadena esta vacia");
+                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                         ban=false;
                                                                     }
                                                                     if(RESULT.getNombre()!=null){
-                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                         ban=false;
                                                                     }
                                                                     if(ban){
@@ -748,11 +862,11 @@ class CUP$ParserJson$actions {
                                                                     Token parametro = (Token)p;
                                                                     boolean ban = true;
                                                                     if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        System.out.println("La cadena esta vacia");
+                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                         ban=false;
                                                                     }
                                                                     if(RESULT.getFuncion()!=null){
-                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                         ban=false;
                                                                     }
                                                                     if(ban){
@@ -784,11 +898,11 @@ class CUP$ParserJson$actions {
                                                                     Token parametro = (Token)p;
                                                                     boolean ban = true;
                                                                     if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        System.out.println("La cadena esta vacia");
+                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                         ban=false;
                                                                     }
                                                                     if(RESULT.getTipo()!=null){
-                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                         ban=false;
                                                                     }
                                                                     if(ban){
@@ -820,11 +934,11 @@ class CUP$ParserJson$actions {
                                                                     Token parametro = (Token)p;
                                                                     boolean ban = true;
                                                                     if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        System.out.println("La cadena esta vacia");
+                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                         ban=false;
                                                                     }
                                                                     if(RESULT.getNombre()!=null){
-                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                         ban=false;
                                                                     }
                                                                     if(ban){
@@ -856,11 +970,11 @@ class CUP$ParserJson$actions {
                                                                     Token parametro = (Token)p;
                                                                     boolean ban = true;
                                                                     if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        System.out.println("La cadena esta vacia");
+                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                         ban=false;
                                                                     }
                                                                     if(RESULT.getFuncion()!=null){
-                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                         ban=false;
                                                                     }
                                                                     if(ban){
@@ -892,11 +1006,11 @@ class CUP$ParserJson$actions {
                                                                     Token parametro = (Token)p;
                                                                     boolean ban = true;
                                                                     if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        System.out.println("La cadena esta vacia");
+                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                         ban=false;
                                                                     }
                                                                     if(RESULT.getTipo()!=null){
-                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                         ban=false;
                                                                     }
                                                                     if(ban){
@@ -939,11 +1053,11 @@ class CUP$ParserJson$actions {
                                                                 Token parametro = (Token)p;
                                                                 boolean ban = true;
                                                                 if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                    System.out.println("La cadena esta vacia");
+                                                                    semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                     ban=false;
                                                                 }
                                                                 if(RESULT.getNombre()!=null){
-                                                                    System.out.println("La propiedad ya habia sido definida");
+                                                                    semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                     ban=false;
                                                                 }
                                                                 if(ban){
@@ -975,11 +1089,11 @@ class CUP$ParserJson$actions {
                                                                 Token parametro = (Token)p;
                                                                 boolean ban = true;
                                                                 if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                    System.out.println("La cadena esta vacia");
+                                                                    semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                     ban=false;
                                                                 }
                                                                 if(RESULT.getTipo()!=null){
-                                                                    System.out.println("La propiedad ya habia sido definida");
+                                                                    semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                     ban=false;
                                                                 }
                                                                 if(ban){
@@ -1009,9 +1123,8 @@ class CUP$ParserJson$actions {
                                                             if(RESULT!=null){
                                                                 Token token = (Token) ent;
                                                                 Token parametro = (Token)p;
-
                                                                 if(RESULT.getParametros()!=null){
-                                                                    System.out.println("La propiedad ya habia sido definida");
+                                                                    semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                 }else{
                                                                     RESULT.setParametros(Integer.valueOf(token.getLexema()));
                                                                 }
@@ -1041,11 +1154,11 @@ class CUP$ParserJson$actions {
                                                                     Token parametro = (Token)p;
                                                                     boolean ban = true;
                                                                     if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        System.out.println("La cadena esta vacia");
+                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                         ban=false;
                                                                     }
                                                                     if(RESULT.getNombre()!=null){
-                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                         ban=false;
                                                                     }
                                                                     if(ban){
@@ -1077,11 +1190,11 @@ class CUP$ParserJson$actions {
                                                                     Token parametro = (Token)p;
                                                                     boolean ban = true;
                                                                     if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        System.out.println("La cadena esta vacia");
+                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                         ban=false;
                                                                     }
                                                                     if(RESULT.getTipo()!=null){
-                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                         ban=false;
                                                                     }
                                                                     if(ban){
@@ -1111,9 +1224,8 @@ class CUP$ParserJson$actions {
                                                                 if(RESULT!=null){
                                                                     Token token = (Token) ent;
                                                                     Token parametro = (Token)p;
-
                                                                     if(RESULT.getParametros()!=null){
-                                                                        System.out.println("La propiedad ya habia sido definida");
+                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
                                                                     }else{
                                                                         RESULT.setParametros(Integer.valueOf(token.getLexema()));
                                                                     }
@@ -1149,7 +1261,7 @@ class CUP$ParserJson$actions {
                                                                             if(RESULT!=null){
                                                                                 Token token = (Token)str;
                                                                                 if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                                    System.out.println("La cadena esta vacia");
+                                                                                    semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                                 }else{
                                                                                     Comentario comentario = new Comentario(token.getLexema());
                                                                                     RESULT.add(comentario);
@@ -1175,7 +1287,7 @@ class CUP$ParserJson$actions {
                                                                             if(RESULT!=null){
                                                                                 Token token = (Token)str;
                                                                                 if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                                    System.out.println("La cadena esta vacia");
+                                                                                    semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                                 }else{
                                                                                     Comentario comentario = new Comentario(token.getLexema());
                                                                                     RESULT.add(comentario);
