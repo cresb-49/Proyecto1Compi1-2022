@@ -1,6 +1,8 @@
 package com.cresb49.appcliente.analizadores.json.obj;
 
+import com.cresb49.appcliente.analizadores.ErrorAnalisis;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -8,6 +10,8 @@ import java.util.Objects;
  * @author Benjamin
  */
 public class Variable implements Serializable{
+    
+    private static final String ERROR_TYPE_SEM = "Semantico";
     private String nombre;
     private String tipo;
     private String funcion;
@@ -43,6 +47,20 @@ public class Variable implements Serializable{
 
     public void setFuncion(String funcion) {
         this.funcion = funcion;
+    }
+    
+    public ArrayList<ErrorAnalisis> validar(int linea, int columna) {
+        ArrayList<ErrorAnalisis> errores = new ArrayList<>();
+        if (this.nombre == null) {
+            errores.add(new ErrorAnalisis(ERROR_TYPE_SEM, "Variable", linea, columna,"No esta definido el parametro \"nombre\""));
+        }
+        if(this.tipo!=null){
+            errores.add(new ErrorAnalisis(ERROR_TYPE_SEM, "Variable", linea, columna,"No esta definido el parametro \"tipo\""));
+        }
+        if(this.funcion!=null){
+            errores.add(new ErrorAnalisis(ERROR_TYPE_SEM, "Variable", linea, columna,"No esta definido el parametro \"funcion\""));
+        }
+        return errores;
     }
 
     @Override

@@ -5,7 +5,9 @@
  */
 package com.cresb49.appcliente.analizadores.json.obj;
 
+import com.cresb49.appcliente.analizadores.ErrorAnalisis;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**

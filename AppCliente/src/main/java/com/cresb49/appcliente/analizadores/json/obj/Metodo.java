@@ -1,12 +1,17 @@
 package com.cresb49.appcliente.analizadores.json.obj;
 
+import com.cresb49.appcliente.analizadores.ErrorAnalisis;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
  *
  * @author Benjamin
  */
-public class Metodo {
+public class Metodo implements Serializable{
+    
+    private static final String ERROR_TYPE_SEM = "Semantico";
     private String nombre;
     private String tipo;
     private Integer parametros;
@@ -42,6 +47,20 @@ public class Metodo {
 
     public void setParametros(Integer parametros) {
         this.parametros = parametros;
+    }
+
+    public ArrayList<ErrorAnalisis> validar(int linea, int columna) {
+        ArrayList<ErrorAnalisis> errores = new ArrayList<>();
+        if (this.nombre == null) {
+            errores.add(new ErrorAnalisis(ERROR_TYPE_SEM, "Metodo", linea, columna,"No esta definido el parametro \"nombre\""));
+        }
+        if(this.tipo!=null){
+            errores.add(new ErrorAnalisis(ERROR_TYPE_SEM, "Metodo", linea, columna,"No esta definido el parametro \"tipo\""));
+        }
+        if(this.parametros!=null){
+            errores.add(new ErrorAnalisis(ERROR_TYPE_SEM, "Metodo", linea, columna,"No esta definido el parametro \"parametros\""));
+        }
+        return errores;
     }
 
     @Override

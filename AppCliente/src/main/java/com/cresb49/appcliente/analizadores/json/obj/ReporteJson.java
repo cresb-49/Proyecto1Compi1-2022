@@ -1,5 +1,6 @@
 package com.cresb49.appcliente.analizadores.json.obj;
 
+import com.cresb49.appcliente.analizadores.ErrorAnalisis;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -85,6 +86,12 @@ public class ReporteJson implements Serializable{
         comentarios.forEach(comentario -> {
             System.out.println(comentario.toString());
         });
+    }
+    
+    public ArrayList<ErrorAnalisis> validar(int linea, int columna) {
+        ArrayList<ErrorAnalisis> errores = new ArrayList<>();
+        
+        return errores;
     }
 
     @Override
