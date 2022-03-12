@@ -8,7 +8,6 @@ import java_cup.runtime.*;
 
 %%
 %class LexerDef
-%standalone
 %unicode
 %public
 %line
