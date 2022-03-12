@@ -25,6 +25,10 @@ import java_cup.runtime.*;
     private StringBuffer string = new StringBuffer();
     private ArrayList<ErrorAnalisis> errors;
 
+    public void setErrors(ArrayList<ErrorAnalisis> errors) {
+        this.errors = errors;
+    }
+
     public ArrayList<ErrorAnalisis> getErrors() {
         return errors;
     }

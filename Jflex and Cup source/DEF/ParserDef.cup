@@ -105,7 +105,7 @@ terminal    CO_A,CO_C,LLA_A,LLA_C,PA_A,PA_C,COMA,DOSPUNTOS,PUNTOCOMA,STRING,ENTE
 
 
 /* Non terminals */
-non terminal                        ini,asig,dec,dec_asig,decp,decpp;
+non terminal                        ini,asig,dec,dec_asig,decp,decpp,vartype;
 non terminal Operacion              exp,t,f;
 
 
@@ -117,17 +117,22 @@ ini ::= asig
     ;
 
 /*Gramatica para declaracion de variables*/
+
+
+dec ::= INT decp
+    |   STR decp
+    ;
+
+decp    ::= ID EQUAL exp PUNTOCOMA
+        |   decpp ID PUNTOCOMA
+        ;
+    
+decpp   ::= decpp ID COMA
+        ;
+
 asig    ::= ID EQUAL exp PUNTOCOMA
         ;
 
-dec ::= INT ID EQUAL exp PUNTOCOMA
-    |   STR ID EQUAL exp PUNTOCOMA
-    ;
-decp    ::= decpp ID
-        ;
-decpp   ::= decpp ID COMA
-        |
-        ;
 
 exp ::= exp:val1 MAS:s t:val2   {:  
                                     try {

@@ -1,33 +1,29 @@
-package com.cresb49.appcliente.analizadores.json;
+package com.cresb49.appcliente.analizadores.def;
 
 import com.cresb49.appcliente.analizadores.ErrorAnalisis;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
 
-/**
- *
- * @author Benjamin
- */
-public class AnalizarJson {
 
+public class AnalizarDef {
     private ArrayList<ErrorAnalisis> errores;
     private ArrayList<ErrorAnalisis> reporteFinalErrores;
-    private LexerJson lexerJson;
-    private ParserJson parserJson;
+    private LexerDef lexerDef;
+    private ParserDef parserDef;
 
-    public AnalizarJson() {
+    public AnalizarDef() {
     }
 
     public void ejecutar(String texto) {
         reporteFinalErrores = null;
         Reader reader = new StringReader(texto);
         errores = new ArrayList<>();
-        lexerJson = new LexerJson(reader);
-        lexerJson.setErrors(errores);
-        parserJson = new ParserJson(lexerJson);
+        lexerDef = new LexerDef(reader);
+        lexerDef.setErrors(errores);
+        parserDef = new ParserDef(lexerDef);
         try {
-            parserJson.parse();
+            parserDef.parse();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -37,11 +33,6 @@ public class AnalizarJson {
             System.out.println(errore.toString());
         }
         System.err.println("----------------VALORES RECUPERADOS-------------------");
-        if(parserJson.getReporteJson()!=null){
-            parserJson.getReporteJson().imprimirReporte();
-        }else{
-            System.out.println("Recuperacion null");
-        }
 
     }
     
