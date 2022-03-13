@@ -10,11 +10,7 @@ import com.cresb49.appcliente.analizadores.def.AnalizarDef;
 import com.cresb49.appcliente.analizadores.def.obj.exceptions.NoReporteJson;
 import com.cresb49.appcliente.analizadores.json.AnalizarJson;
 import com.cresb49.appcliente.analizadores.json.obj.*;
-import com.cresb49.appcliente.cliente.Cliente;
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JEditorPane;
 import javax.swing.JOptionPane;
 
@@ -24,7 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class FramePrincipal extends javax.swing.JFrame {
 
-    private static Cliente cliente = new Cliente();
+    
 
     /**
      * Creates new form FramePrincipal
@@ -362,16 +358,6 @@ public class FramePrincipal extends javax.swing.JFrame {
                 new FramePrincipal().setVisible(true);
             }
         });
-        soket();
-    }
-
-    public static void soket() {
-        Scanner escaner = new Scanner(System.in);
-        System.out.println("Ingresa la IP: [localhost por defecto]");
-        String ip = "localhost";
-        System.out.println("Puerto: [5050 por defecto] ");
-        String puerto = "5050";
-        cliente.ejecutarConexion(ip, Integer.parseInt(puerto));
     }
 
     public void renderizarHTML() {
