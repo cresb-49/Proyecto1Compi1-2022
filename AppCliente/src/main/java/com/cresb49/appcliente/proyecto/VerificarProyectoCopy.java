@@ -16,7 +16,7 @@ public class VerificarProyectoCopy {
         if (archivos != null) {
             for (File archivo : archivos.listFiles()) {
                 extencion = FilenameUtils.getExtension(archivo.getName());
-                if (!extencion.toLowerCase().equals(".java")) {
+                if (!extencion.toLowerCase().equals("java")) {
                     errores.add("El archivo: \"" + archivo.getName() + "\" no es un archivo .java");
                     System.out.println("El archivo: \"" + archivo.getName() + "\" no es un archivo .java");
                 }

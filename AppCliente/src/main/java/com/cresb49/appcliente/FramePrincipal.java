@@ -28,6 +28,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -436,13 +437,15 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ArrayList<String> errores = VerificarProyectoCopy.verificarArchivos(this.seleccionarDirectorio());
+        ArrayList<String> errores = VerificarProyectoCopy.verificarArchivos(this.seleccionarDirectorio(NombreCarpeta1));
         String mensaje = "";
         for (String error : errores) {
-            mensaje = mensaje + error;
+            mensaje = mensaje + error+"\n";
         }
         if(!errores.isEmpty()){
             JOptionPane.showMessageDialog(this, mensaje);
+            NombreCarpeta1.setText("no seleccionado");
+            this.estadoCarpeta1(false);
         }else{
             System.out.println("Cargamos carpeta1 al proyecto");
             this.estadoCarpeta1(true);
@@ -451,13 +454,15 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ArrayList<String> errores = VerificarProyectoCopy.verificarArchivos(this.seleccionarDirectorio());
+        ArrayList<String> errores = VerificarProyectoCopy.verificarArchivos(this.seleccionarDirectorio(NombreCarpeta2));
         String mensaje = "";
         for (String error : errores) {
             mensaje = mensaje + error;
         }
         if(!errores.isEmpty()){
             JOptionPane.showMessageDialog(this, mensaje);
+            NombreCarpeta2.setText("no seleccionado");
+            this.estadoCarpeta2(false);
         }else{
             System.out.println("Cargamos carpeta2 al proyecto");
             this.estadoCarpeta2(true);
@@ -627,12 +632,14 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         hilo.start();
     }
     
-    private File seleccionarDirectorio(){
+    private File seleccionarDirectorio(JLabel label){
         JFileChooser fc = new JFileChooser();
+        
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         
         int respuesta = fc.showOpenDialog(this);
         if(respuesta == JFileChooser.APPROVE_OPTION){
+            label.setText(fc.getSelectedFile().getName());
             return fc.getSelectedFile();
         }
         return null;
