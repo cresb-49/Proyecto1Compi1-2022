@@ -142,13 +142,18 @@ terminal    CO_A,CO_C,LLA_A,LLA_C,PA_A,PA_C,COMA,DOSPUNTOS,PUNTOCOMA,STRING,ENTE
 
 
 /* Non terminals */
-non terminal                        ini,asig,dec,decn;
+non terminal                        ini,asig,dec,decn,def;
 non terminal Pila<Token>            decp;
 non terminal Operacion              exp,t,f;
 
+non terminal                        html,htmlp,contHTML,inertags,inertagsp;
 
 
 /* Inicio de las reglas gramticales*/
+
+def ::= def html
+    |   ini
+    ;
 
 ini ::= ini asig
     |   ini dec
@@ -304,3 +309,22 @@ f   ::= ID:val      {:
                             :}
     ;
 /*Gramatica para lenguaje HTML*/
+
+html    ::= htmlp ME_QB HTML MA_Q
+        ;
+
+htmlp   ::= ME_Q HTML MA_Q contHTML
+        ;
+
+contHTML    ::= contHTML inertags
+            |
+            ;
+
+inertags   ::=  ME_Q BR MA_Q inertagsp ME_QB BR MA_Q
+            |   ME_Q H1 MA_Q inertagsp ME_QB H1 MA_Q
+            |   ME_Q H2 MA_Q inertagsp ME_QB H2 MA_Q
+            ;
+
+inertagsp   ::=  inertags
+            |    
+            ;

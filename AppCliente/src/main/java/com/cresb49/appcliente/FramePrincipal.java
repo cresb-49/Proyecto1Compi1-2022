@@ -106,7 +106,7 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("CARGA DE ARCHIVOS", jPanel1);
 
-        TextPaneDef.setText("</ iniciare a definir de alguna manera />\nInteger Max, i;\nMax=4;\ni=0;\nString texto=\"Su score fue de: \";\n</ Aqui defino el html />");
+        TextPaneDef.setText("</ iniciare a definir de alguna manera />\nInteger Max, i;\nMax=4;\ni=0;\nString texto=\"Su score fue de: \";\n</ Aqui defino el html />\n<html>\n\t<h1><h1>\n\t<h2><h2>\n\t<br>\n\t<h2><h2>\n\t<br>\n\t<h1><h1>\n</html>");
         jScrollPane3.setViewportView(TextPaneDef);
 
         ButtonEjecutar.setText("EJECUTAR");
@@ -454,7 +454,7 @@ public class FramePrincipal extends javax.swing.JFrame {
             this.limpiarConsolaDef();
             String text = ConsolaDef.getText();
             for (ErrorAnalisis errore : errores) {
-                text = text + "Error "+errore.getTipo()+", Linea: "+errore.getLinea()+", Columna: "+errore.getColumna()+" -> "+errore.getDescipcion()+"\n";
+                text = text + "Error "+errore.getTipo()+" \""+errore.getLexema()+"\""+", Linea: "+errore.getLinea()+", Columna: "+errore.getColumna()+" -> "+errore.getDescipcion()+"\n";
             }
             ConsolaDef.setText(text);
         }else{
