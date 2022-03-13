@@ -5,13 +5,18 @@
  */
 package com.cresb49.appcliente;
 
+import com.cresb49.appcliente.analizadores.ErrorAnalisis;
 import com.cresb49.appcliente.analizadores.def.AnalizarDef;
+import com.cresb49.appcliente.analizadores.def.obj.exceptions.NoReporteJson;
 import com.cresb49.appcliente.analizadores.json.AnalizarJson;
 import com.cresb49.appcliente.analizadores.json.obj.*;
 import com.cresb49.appcliente.cliente.Cliente;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JEditorPane;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -50,9 +55,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         TextPaneDef = new javax.swing.JTextPane();
         ButtonEjecutar = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         ConsolaDef = new javax.swing.JTextPane();
-        jButton4 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TextPaneJson = new javax.swing.JTextPane();
@@ -110,22 +116,45 @@ public class FramePrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("LIMPIAR CONSOLA");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "CONSOLA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 18))); // NOI18N
+
         ConsolaDef.setEditable(false);
-        ConsolaDef.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "CONSOLA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18))); // NOI18N
+        ConsolaDef.setBorder(null);
+        ConsolaDef.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jScrollPane4.setViewportView(ConsolaDef);
 
-        jButton4.setText("LIMPIAR CONSOLA");
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addComponent(ButtonEjecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -136,13 +165,13 @@ public class FramePrincipal extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonEjecutar)
                     .addComponent(jButton4))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -267,10 +296,20 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     private void ButtonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEjecutarActionPerformed
         // TODO add your handling code here:
-        AnalizarDef analizarDef = new AnalizarDef();
-        String texto = TextPaneDef.getText();
-        analizarDef.ejecutar(texto);
+        try {    
+            AnalizarDef analizarDef = new AnalizarDef();
+            String texto = TextPaneDef.getText();
+            analizarDef.ejecutar(texto,this.reportePrueba());
+            this.mostrarErroresConsola(analizarDef.getErrores());
+        } catch (NoReporteJson ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }//GEN-LAST:event_ButtonEjecutarActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        this.limpiarConsolaDef();
+    }//GEN-LAST:event_jButton4ActionPerformed
     
     private ReporteJson reportePrueba(){
         String score = "0.75";
@@ -399,6 +438,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -408,4 +448,21 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextPane jTextPane2;
     // End of variables declaration//GEN-END:variables
+
+    private void mostrarErroresConsola(ArrayList<ErrorAnalisis> errores) {
+        if(!errores.isEmpty()){
+            this.limpiarConsolaDef();
+            String text = ConsolaDef.getText();
+            for (ErrorAnalisis errore : errores) {
+                text = text + "Error "+errore.getTipo()+", Linea: "+errore.getLinea()+", Columna: "+errore.getColumna()+" -> "+errore.getDescipcion()+"\n";
+            }
+            ConsolaDef.setText(text);
+        }else{
+            this.limpiarConsolaDef();
+        }
+    }
+
+    private void limpiarConsolaDef() {
+        this.ConsolaDef.setText("");
+    }
 }
