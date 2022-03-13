@@ -2,5 +2,6 @@
     Proyecto1: "path/proyecto/1",
     Proyecto2: "path/proyecto/2",
     FileDef:"path/archivo/def",
-    ReporteJson:"path/reporte/json"
+    ReporteJson:"path/reporte/json",
+    FolderProyect:"path/folder/proyect"
 }

@@ -52,4 +52,9 @@ public class ProyectoCopy implements Serializable{
         this.pathArchivoJson = pathArchivoJson;
     }
     
+    public String proyectoToJson(){
+        String
+        
+    }
+    
 }
