@@ -514,7 +514,7 @@ class CUP$ParserDef$actions {
 		Operacion val2 = (Operacion)((java_cup.runtime.Symbol) CUP$ParserDef$stack.peek()).value;
 		  
                                     try {
-                                        String tipo = Operacion.autoCast(val1.getTipo(),TablaSimbolos.MUL,val2.getTipo());
+                                        String tipo = Operacion.autoCast(val1.getTipo(),TablaSimbolos.MAS,val2.getTipo());
                                         Object result = Operacion.sumaTerminos(val1, val2);
                                         RESULT = new Operacion(tipo,result);
                                     } catch (NotCastException e) {
@@ -542,7 +542,7 @@ class CUP$ParserDef$actions {
 		Operacion val2 = (Operacion)((java_cup.runtime.Symbol) CUP$ParserDef$stack.peek()).value;
 		
                                     try {
-                                        String tipo = Operacion.autoCast(val1.getTipo(),TablaSimbolos.MUL,val2.getTipo());
+                                        String tipo = Operacion.autoCast(val1.getTipo(),TablaSimbolos.MENOS,val2.getTipo());
                                         Integer result = ((Integer)val1.getValor())-((Integer)val2.getValor());
                                         RESULT = new Operacion(tipo,result);
                                     } catch (NotCastException e) {
@@ -612,7 +612,7 @@ class CUP$ParserDef$actions {
 		Operacion val2 = (Operacion)((java_cup.runtime.Symbol) CUP$ParserDef$stack.peek()).value;
 		
                                 try {
-                                    String tipo = Operacion.autoCast(val1.getTipo(),TablaSimbolos.MUL,val2.getTipo());
+                                    String tipo = Operacion.autoCast(val1.getTipo(),TablaSimbolos.DIV,val2.getTipo());
                                     Integer result = ((Integer)val1.getValor())/((Integer)val2.getValor());
                                     RESULT = new Operacion(tipo,result);
                                 } catch (NotCastException e) {
