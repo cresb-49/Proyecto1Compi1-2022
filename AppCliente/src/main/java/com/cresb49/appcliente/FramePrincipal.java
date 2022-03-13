@@ -43,7 +43,6 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     private Image imagenCarpeta = null;
     private Image imagenNoCarga = null;
     private ProyectoCopy proyectoCopy = null;
-    
 
     /**
      * Creates new form FramePrincipal
@@ -114,7 +113,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        EnviarCarpetasJava = new javax.swing.JButton();
         NombreCarpeta1 = new javax.swing.JLabel();
         NombreCarpeta2 = new javax.swing.JLabel();
         ImagenEstadoCarpeta1 = new javax.swing.JLabel();
@@ -164,10 +163,10 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             }
         });
 
-        jButton5.setText("Enviar");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        EnviarCarpetasJava.setText("Enviar");
+        EnviarCarpetasJava.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                EnviarCarpetasJavaActionPerformed(evt);
             }
         });
 
@@ -194,7 +193,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(76, 76, 76)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(EnviarCarpetasJava, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ImagenEstadoCarpeta1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -221,7 +220,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5)
+                .addComponent(EnviarCarpetasJava)
                 .addGap(241, 241, 241))
         );
 
@@ -446,13 +445,13 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         this.limpiarConsolaDef();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void EnviarCarpetasJavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarCarpetasJavaActionPerformed
         // TODO add your handling code here:
         cliente = new Cliente(5000, "localhost");
         cliente.setMensaje("Hola desde la app cliente");
         Thread hilo = new Thread(cliente);
         hilo.start();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_EnviarCarpetasJavaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -491,11 +490,11 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     private void AbrirProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirProyectoActionPerformed
         // TODO add your handling code here:
         JFileChooser fc = new JFileChooser();
-        
+
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos", "copy");
-        
+
         fc.setFileFilter(filter);
-        
+
         int respuesta = fc.showOpenDialog(this);
         if (respuesta == JFileChooser.APPROVE_OPTION) {
             File archivoElegido = fc.getSelectedFile();
@@ -504,11 +503,54 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
     private void GuardarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarProyectoActionPerformed
         // TODO add your handling code here:
-        if(proyectoCopy!=null){
-            
-        }else{
+        
+        
+        
+        
+        
+        
+        /*
+        if (proyectoCopy != null) {
+            if (proyectoCopy.getCarpeta1() != null) {
+                ArrayList<String> errores = VerificarProyectoCopy.verificarArchivos(proyectoCopy.getCarpeta1());
+                String mensaje = "";
+                for (String error : errores) {
+                    mensaje = mensaje + error + "\n";
+                }
+                if (!errores.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, mensaje);
+                    NombreCarpeta1.setText("no seleccionado");
+                    this.estadoCarpeta1(false);
+                } else {
+                    System.out.println("Cargamos carpeta1 al proyecto");
+                    this.estadoCarpeta1(true);
+                    this.NombreCarpeta1.setText(proyectoCopy.getCarpeta1().getName());
+                }
+            } else {
+
+            }
+            if (proyectoCopy.getCarpeta2() != null) {
+                ArrayList<String> errores = VerificarProyectoCopy.verificarArchivos(proyectoCopy.getCarpeta2());
+                String mensaje = "";
+                for (String error : errores) {
+                    mensaje = mensaje + error + "\n";
+                }
+                if (!errores.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, mensaje);
+                    NombreCarpeta1.setText("no seleccionado");
+                    this.estadoCarpeta1(false);
+                } else {
+                    System.out.println("Cargamos carpeta1 al proyecto");
+                    this.estadoCarpeta2(true);
+                    this.NombreCarpeta2.setText(proyectoCopy.getCarpeta2().getName());
+                }
+            } else {
+
+            }
+        } else {
             JOptionPane.showMessageDialog(this, "No a inicializado un proyecto:\nCargue las carpetas y luego envie lo datos para crear el proyecto");
         }
+        */
     }//GEN-LAST:event_GuardarProyectoActionPerformed
 
     private ReporteJson reportePrueba() {
@@ -613,6 +655,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     private javax.swing.JMenuItem AbrirProyecto;
     private javax.swing.JButton ButtonEjecutar;
     private javax.swing.JTextPane ConsolaDef;
+    private javax.swing.JButton EnviarCarpetasJava;
     private javax.swing.JMenuItem GuardarProyecto;
     private javax.swing.JLabel ImagenEstadoCarpeta1;
     private javax.swing.JLabel ImagenEstadoCarpeta2;
@@ -625,7 +668,6 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

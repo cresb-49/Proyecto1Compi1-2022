@@ -1,70 +1,55 @@
 package com.cresb49.appcliente.proyecto;
 
-import java.io.File;
 import java.io.Serializable;
 
 public class ProyectoCopy implements Serializable{
-    private File carpeta1;
-    private File carpeta2;
+    
+    
+    private String pathCarpeta1;
+    private String pathCarpeta2;
+    
+    private String pathArchivDef;
+    private String pathCarpetaProyecto;
+    private String pathArchivoJson;
 
-    private File archivDef;
-    private File archivoJson;
+    public String getPathCarpeta1() {
+        return pathCarpeta1;
+    }
 
-    public ProyectoCopy(){
+    public void setPathCarpeta1(String pathCarpeta1) {
+        this.pathCarpeta1 = pathCarpeta1;
+    }
 
+    public String getPathCarpeta2() {
+        return pathCarpeta2;
+    }
+
+    public void setPathCarpeta2(String pathCarpeta2) {
+        this.pathCarpeta2 = pathCarpeta2;
+    }
+
+    public String getPathArchivDef() {
+        return pathArchivDef;
+    }
+
+    public void setPathArchivDef(String pathArchivDef) {
+        this.pathArchivDef = pathArchivDef;
+    }
+
+    public String getPathCarpetaProyecto() {
+        return pathCarpetaProyecto;
+    }
+
+    public void setPathCarpetaProyecto(String pathCarpetaProyecto) {
+        this.pathCarpetaProyecto = pathCarpetaProyecto;
+    }
+
+    public String getPathArchivoJson() {
+        return pathArchivoJson;
+    }
+
+    public void setPathArchivoJson(String pathArchivoJson) {
+        this.pathArchivoJson = pathArchivoJson;
     }
     
-    public ProyectoCopy(File carpeta1,File carpeta2){
-        this.carpeta1 = carpeta1;
-        this.carpeta2 = carpeta2;
-    }
-
-    /**
-     * @return the archivDef
-     */
-    public File getArchivDef() {
-        return archivDef;
-    }
-    /**
-     * @return the archivoJson
-     */
-    public File getArchivoJson() {
-        return archivoJson;
-    }
-    /**
-     * @return the carpeta1
-     */
-    public File getCarpeta1() {
-        return carpeta1;
-    }
-    /**
-     * @return the carpeta2
-     */
-    public File getCarpeta2() {
-        return carpeta2;
-    }
-    /**
-     * @param archivDef the archivDef to set
-     */
-    public void setArchivDef(File archivDef) {
-        this.archivDef = archivDef;
-    }
-    /**
-     * @param archivoJson the archivoJson to set
-     */
-    public void setArchivoJson(File archivoJson) {
-        this.archivoJson = archivoJson;
-    }
-    /**
-     * @param carpeta1 the carpeta1 to set
-     */
-    public void setCarpeta1(File carpeta1) {
-        this.carpeta1 = carpeta1;
-    }
-    /**
-     * @param carpeta2 the carpeta2 to set
-     */
-    public void setCarpeta2(File carpeta2) {
-        this.carpeta2 = carpeta2;
-    }
 }
