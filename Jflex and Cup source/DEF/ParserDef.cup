@@ -3,6 +3,7 @@ package com.cresb49.appcliente.analizadores.def;
 import java.util.ArrayList;
 
 import com.cresb49.appcliente.analizadores.ErrorAnalisis;
+import com.cresb49.appcliente.analizadores.json.obj.ReporteJson;
 import com.cresb49.appcliente.analizadores.Token;
 import com.cresb49.appcliente.ED.Pila;
 import com.cresb49.appcliente.analizadores.def.obj.*;
@@ -22,6 +23,7 @@ parser code {:
     private ArrayList<ErrorAnalisis> errorAnalisisesTmp;
     private SimbolosTerminalesDef simbolosTerminalesDef;
     private TablaSimbolos tablaSimbolos;
+    private ReporteJson reporteJson;
     
     public ParserDef (LexerDef lexerDef){ 
         super(lexerDef);
@@ -99,13 +101,16 @@ parser code {:
         }
     }
 
-    private void create_var_asig_val(Token identificador,String tipo,Object value) {
+    private void create_var_asig_val(Token identificador,String tipo_id,String tipo_value,Object value) {
        FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
-
-        if(fila!=null){
-            tablaSimbolos.getFilas().add(new FilaTabla(identificador.getLexema(),tipo,null));
+        if(fila==null){
+            if(tipo_id.equals(tipo_value)){
+                tablaSimbolos.getFilas().add(new FilaTabla(identificador.getLexema(),tipo_id,value));
+            }else{
+                semantic_error(identificador,"La variable es de tipo: \""+tipo_id+"\", no puede asignar un \""+tipo_value+"\"");
+            }
         }else{
-            semantic_error(identificador,"La variable a la que le quiere asignar valor no esta definida");
+            semantic_error(identificador,"La variable ya a sido definida con anterioridad");
             //semantic_error(identificador,"El valor que se desea dar a la variable de de tipo \"\" y la variable es de tipo \"\"");
         }
     }
@@ -156,8 +161,22 @@ ini ::= ini asig
 /*Gramatica para declaracion de variables*/
 
 
-decn   ::=  INT ID:var EQUAL exp:val PUNTOCOMA
-        |   STR ID:var EQUAL exp:val PUNTOCOMA
+decn   ::=  INT ID:var EQUAL exp:val PUNTOCOMA  {:
+                                                    Token identificador = (Token)var;
+                                                    if(val!=null){
+                                                        create_var_asig_val((Token)var,TablaSimbolos.INT,val.getTipo(),val.getValor());
+                                                    }else{
+                                                        verificar_def_var(identificador,TablaSimbolos.INT);
+                                                    }
+                                                :}
+        |   STR ID:var EQUAL exp:val PUNTOCOMA  {:
+                                                    Token identificador = (Token)var;
+                                                    if(val!=null){
+                                                        create_var_asig_val((Token)var,TablaSimbolos.STRING,val.getTipo(),val.getValor());
+                                                    }else{
+                                                        verificar_def_var(identificador,TablaSimbolos.STRING);
+                                                    }
+                                                :}
         ;
 
 dec    ::=  INT decp:vars   {:
@@ -261,16 +280,15 @@ t   ::= t:val1 MUL:s f:val2 {:
 
 f   ::= ID:val      {:
                         Token token = (Token) val;
-                        System.out.println("Buscar en tabla de simbolos");
                         FilaTabla simbolo = tablaSimbolos.buscar(token.getLexema());
                         if(simbolo!=null){
                             if(simbolo.getValor()!=null){
                                 RESULT = new Operacion(simbolo.getTipo(),simbolo.getValor());
                             }else{
-                                System.out.println("La variable no tiene valor asignado");
+                                semantic_error(token, "La variable no esta inicializada");
                             }
                         }else{
-                            System.out.println("No existe la variable en el programa");
+                            semantic_error(token, "La variable no esta definida");
                         }
                     :}
     |   ENTERO:val  {:

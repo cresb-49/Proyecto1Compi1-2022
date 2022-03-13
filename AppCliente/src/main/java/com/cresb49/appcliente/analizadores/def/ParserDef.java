@@ -7,6 +7,7 @@ package com.cresb49.appcliente.analizadores.def;
 
 import java.util.ArrayList;
 import com.cresb49.appcliente.analizadores.ErrorAnalisis;
+import com.cresb49.appcliente.analizadores.json.obj.ReporteJson;
 import com.cresb49.appcliente.analizadores.Token;
 import com.cresb49.appcliente.ED.Pila;
 import com.cresb49.appcliente.analizadores.def.obj.*;
@@ -173,6 +174,7 @@ public class ParserDef extends java_cup.runtime.lr_parser {
     private ArrayList<ErrorAnalisis> errorAnalisisesTmp;
     private SimbolosTerminalesDef simbolosTerminalesDef;
     private TablaSimbolos tablaSimbolos;
+    private ReporteJson reporteJson;
     
     public ParserDef (LexerDef lexerDef){ 
         super(lexerDef);
@@ -250,13 +252,16 @@ public class ParserDef extends java_cup.runtime.lr_parser {
         }
     }
 
-    private void create_var_asig_val(Token identificador,String tipo,Object value) {
+    private void create_var_asig_val(Token identificador,String tipo_id,String tipo_value,Object value) {
        FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
-
-        if(fila!=null){
-            tablaSimbolos.getFilas().add(new FilaTabla(identificador.getLexema(),tipo,null));
+        if(fila==null){
+            if(tipo_id.equals(tipo_value)){
+                tablaSimbolos.getFilas().add(new FilaTabla(identificador.getLexema(),tipo_id,value));
+            }else{
+                semantic_error(identificador,"La variable es de tipo: \""+tipo_id+"\", no puede asignar un \""+tipo_value+"\"");
+            }
         }else{
-            semantic_error(identificador,"La variable a la que le quiere asignar valor no esta definida");
+            semantic_error(identificador,"La variable ya a sido definida con anterioridad");
             //semantic_error(identificador,"El valor que se desea dar a la variable de de tipo \"\" y la variable es de tipo \"\"");
         }
     }
@@ -273,6 +278,14 @@ public class ParserDef extends java_cup.runtime.lr_parser {
         return tablaSimbolos;
     }
 
+    public ReporteJson getReporteJson() {
+        return reporteJson;
+    }
+
+    public void setReporteJson(ReporteJson reporteJson) {
+        this.reporteJson = reporteJson;
+    }
+    
     protected int error_sync_size() {
 		return 1;
 	}
@@ -380,7 +393,14 @@ class CUP$ParserDef$actions {
 		int valleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).left;
 		int valright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).right;
 		Operacion val = (Operacion)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).value;
-
+		
+                                                    Token identificador = (Token)var;
+                                                    if(val!=null){
+                                                        create_var_asig_val((Token)var,TablaSimbolos.INT,val.getTipo(),val.getValor());
+                                                    }else{
+                                                        verificar_def_var(identificador,TablaSimbolos.INT);
+                                                    }
+                                                
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("decn",3, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-4)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
           return CUP$ParserDef$result;
@@ -395,7 +415,14 @@ class CUP$ParserDef$actions {
 		int valleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).left;
 		int valright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).right;
 		Operacion val = (Operacion)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).value;
-
+		
+                                                    Token identificador = (Token)var;
+                                                    if(val!=null){
+                                                        create_var_asig_val((Token)var,TablaSimbolos.STRING,val.getTipo(),val.getValor());
+                                                    }else{
+                                                        verificar_def_var(identificador,TablaSimbolos.STRING);
+                                                    }
+                                                
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("decn",3, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-4)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
           return CUP$ParserDef$result;
@@ -648,16 +675,15 @@ class CUP$ParserDef$actions {
 		Object val = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.peek()).value;
 		
                         Token token = (Token) val;
-                        System.out.println("Buscar en tabla de simbolos");
                         FilaTabla simbolo = tablaSimbolos.buscar(token.getLexema());
                         if(simbolo!=null){
                             if(simbolo.getValor()!=null){
                                 RESULT = new Operacion(simbolo.getTipo(),simbolo.getValor());
                             }else{
-                                System.out.println("La variable no tiene valor asignado");
+                                semantic_error(token, "La variable no esta inicializada");
                             }
                         }else{
-                            System.out.println("No existe la variable en el programa");
+                            semantic_error(token, "La variable no esta definida");
                         }
                     
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("f",7, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
