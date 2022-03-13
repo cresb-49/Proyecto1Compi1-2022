@@ -7,7 +7,9 @@ package com.cresb49.appcliente;
 
 import com.cresb49.appcliente.analizadores.def.AnalizarDef;
 import com.cresb49.appcliente.analizadores.json.AnalizarJson;
+import com.cresb49.appcliente.analizadores.json.obj.*;
 import com.cresb49.appcliente.cliente.Cliente;
+import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JEditorPane;
 
@@ -269,7 +271,25 @@ public class FramePrincipal extends javax.swing.JFrame {
         String texto = TextPaneDef.getText();
         analizarDef.ejecutar(texto);
     }//GEN-LAST:event_ButtonEjecutarActionPerformed
-
+    
+    private ReporteJson reportePrueba(){
+        String score = "0.75";
+        ArrayList<Clase> clases = new ArrayList<>();
+        ArrayList<Variable> variables = new ArrayList<>();
+        ArrayList<Metodo> metodos = new ArrayList<>();
+        ArrayList<Comentario> comentarios = new ArrayList();
+        clases.add(new Clase("clase1"));
+        clases.add(new Clase("clase2"));
+        variables.add(new Variable("var1", "int", "funcion1, funcion2"));
+        variables.add(new Variable("var2", "int", "funcion2, Clase hola"));
+        metodos.add(new Metodo("metodo1", "void", 2));
+        metodos.add(new Metodo("metodo2", "String", 0));
+        comentarios.add(new Comentario("hola es un comentario"));
+        comentarios.add(new Comentario("otro coment"));
+        ReporteJson reporteJson=new ReporteJson(score, clases, variables, metodos, comentarios);
+        return reporteJson;
+    }
+        
     /**
      * @param args the command line arguments
      */
