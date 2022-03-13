@@ -37,4 +37,12 @@ public class TablaSimbolos {
     public void resetTabla(){
         filas.clear();
     }
+    
+    public void imprimirTabla(){
+        System.out.println("---------------TABLA DE SIMBOLOS----------------");
+        for (FilaTabla fila : filas) {
+            System.out.println(fila.toString());
+        }
+        
+    }
 }
