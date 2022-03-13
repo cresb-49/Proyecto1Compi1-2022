@@ -230,20 +230,39 @@ public class ParserDef extends java_cup.runtime.lr_parser {
 
     private void verificar_def_var(Token token,String tipo) {
        FilaTabla fila = tablaSimbolos.buscar(token.getLexema());
-        if(fila!=null){
+        if(fila==null){
             tablaSimbolos.getFilas().add(new FilaTabla(token.getLexema(),tipo,null));
         }else{
             semantic_error(token,"La variable ya a sido definida con anterioridad");
         }
     }
 
-    private void asig_val_var(Token token,String tipo,Object value) {
-       FilaTabla fila = tablaSimbolos.buscar(token.getLexema());
-        if(fila!=null){
-            tablaSimbolos.getFilas().add(new FilaTabla(token.getLexema(),tipo,null));
+    private void asig_val_var(Token identificador,String tipo,Object value) {
+       FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
+        if(fila==null){
+            semantic_error(identificador,"La variable a la que le quiere asignar valor no esta definida");
         }else{
-            semantic_error(token,"El valor que se desea dar a la variable de de tipo \"\" y la variable es de tipo \"\"");
+            if(fila.getTipo().equals(tipo)){
+              fila.setValor(value);
+            }else{
+                semantic_error(identificador,"La variable es de tipo: \""+fila.getTipo()+"\", no puede asignar un \""+tipo+"\"");
+            }
         }
+    }
+
+    private void create_var_asig_val(Token identificador,String tipo,Object value) {
+       FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
+
+        if(fila!=null){
+            tablaSimbolos.getFilas().add(new FilaTabla(identificador.getLexema(),tipo,null));
+        }else{
+            semantic_error(identificador,"La variable a la que le quiere asignar valor no esta definida");
+            //semantic_error(identificador,"El valor que se desea dar a la variable de de tipo \"\" y la variable es de tipo \"\"");
+        }
+    }
+
+    private void error_cast(Token operador,String tipo1,String tipo2){
+        semantic_error(operador,"No se puede operar un valor: \""+tipo1+"\" con un valor:\""+tipo2+"\"");
     }
 
     private void semantic_error(Token token,String contexto) {
@@ -355,6 +374,12 @@ class CUP$ParserDef$actions {
           case 7: // decn ::= INT ID EQUAL exp PUNTOCOMA 
             {
               Object RESULT =null;
+		int varleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-3)).left;
+		int varright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-3)).right;
+		Object var = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-3)).value;
+		int valleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).right;
+		Operacion val = (Operacion)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).value;
 
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("decn",3, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-4)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
@@ -364,6 +389,12 @@ class CUP$ParserDef$actions {
           case 8: // decn ::= STR ID EQUAL exp PUNTOCOMA 
             {
               Object RESULT =null;
+		int varleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-3)).left;
+		int varright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-3)).right;
+		Object var = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-3)).value;
+		int valleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).right;
+		Operacion val = (Operacion)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).value;
 
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("decn",3, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-4)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
@@ -377,9 +408,8 @@ class CUP$ParserDef$actions {
 		int varsright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()).right;
 		Pila<Token> vars = (Pila<Token>)((java_cup.runtime.Symbol) CUP$ParserDef$stack.peek()).value;
 		
-                                Pila<Token> tmp = vars;
-                                if(tmp!=null){
-                                    ArrayList<Token> array =  tmp.toArrayList();
+                                if(vars!=null){
+                                    ArrayList<Token> array =  vars.toArrayList();
                                     if(array!=null){
                                         for (Token token : array) {
                                             verificar_def_var(token, TablaSimbolos.INT);
@@ -399,9 +429,8 @@ class CUP$ParserDef$actions {
 		int varsright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()).right;
 		Pila<Token> vars = (Pila<Token>)((java_cup.runtime.Symbol) CUP$ParserDef$stack.peek()).value;
 		
-                                Pila<Token> tmp = vars;
-                                if(tmp!=null){
-                                    ArrayList<Token> array =  tmp.toArrayList();
+                                if(vars!=null){
+                                    ArrayList<Token> array =  vars.toArrayList();
                                     if(array!=null){
                                         for (Token token : array) {
                                             verificar_def_var(token, TablaSimbolos.STRING);
@@ -427,6 +456,8 @@ class CUP$ParserDef$actions {
                                     RESULT = vars;
                                     if(RESULT!=null){
                                         RESULT.push((Token)id);
+                                    }else{
+                                        RESULT = new Pila<>();
                                     }
                                 
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("decp",4, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-2)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
@@ -452,7 +483,18 @@ class CUP$ParserDef$actions {
           case 13: // asig ::= ID EQUAL exp PUNTOCOMA 
             {
               Object RESULT =null;
-
+		int varleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-3)).left;
+		int varright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-3)).right;
+		Object var = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-3)).value;
+		int valleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).right;
+		Operacion val = (Operacion)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).value;
+		
+                                                Token identificador = (Token)var;
+                                                if(val!=null){
+                                                    asig_val_var(identificador,val.getTipo(),val.getValor());
+                                                }
+                                            
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("asig",1, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-3)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
           return CUP$ParserDef$result;
@@ -476,7 +518,8 @@ class CUP$ParserDef$actions {
                                         Object result = Operacion.sumaTerminos(val1, val2);
                                         RESULT = new Operacion(tipo,result);
                                     } catch (NotCastException e) {
-                                        System.out.println("No se pudo castear el resultado");
+                                        error_cast((Token)s,val1.getTipo(),val2.getTipo());
+                                        //System.out.println("No se pudo castear el resultado");
                                         RESULT = val1;
                                     }
                                 
@@ -503,7 +546,8 @@ class CUP$ParserDef$actions {
                                         Integer result = ((Integer)val1.getValor())-((Integer)val2.getValor());
                                         RESULT = new Operacion(tipo,result);
                                     } catch (NotCastException e) {
-                                        System.out.println("No se pudo castear el resultado");
+                                        error_cast((Token)s,val1.getTipo(),val2.getTipo());
+                                        //System.out.println("No se pudo castear el resultado");
                                         RESULT = val1;
                                     }
                                 
@@ -544,7 +588,8 @@ class CUP$ParserDef$actions {
                                     Integer result = ((Integer)val1.getValor())*((Integer)val2.getValor());
                                     RESULT = new Operacion(tipo,result);
                                 } catch (NotCastException e) {
-                                    System.out.println("No se pudo castear el resultado");
+                                    error_cast((Token)s,val1.getTipo(),val2.getTipo());
+                                    //System.out.println("No se pudo castear el resultado");
                                     RESULT = val1;
                                 }
                             
@@ -571,7 +616,8 @@ class CUP$ParserDef$actions {
                                     Integer result = ((Integer)val1.getValor())/((Integer)val2.getValor());
                                     RESULT = new Operacion(tipo,result);
                                 } catch (NotCastException e) {
-                                    System.out.println("No se pudo castear el resultado");
+                                    error_cast((Token)s,val1.getTipo(),val2.getTipo());
+                                    //System.out.println("No se pudo castear el resultado");
                                     RESULT = val1;
                                 }
                             

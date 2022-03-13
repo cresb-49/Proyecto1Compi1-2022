@@ -79,20 +79,39 @@ parser code {:
 
     private void verificar_def_var(Token token,String tipo) {
        FilaTabla fila = tablaSimbolos.buscar(token.getLexema());
-        if(fila!=null){
+        if(fila==null){
             tablaSimbolos.getFilas().add(new FilaTabla(token.getLexema(),tipo,null));
         }else{
             semantic_error(token,"La variable ya a sido definida con anterioridad");
         }
     }
 
-    private void asig_val_var(Token token,String tipo,Object value) {
-       FilaTabla fila = tablaSimbolos.buscar(token.getLexema());
-        if(fila!=null){
-            tablaSimbolos.getFilas().add(new FilaTabla(token.getLexema(),tipo,null));
+    private void asig_val_var(Token identificador,String tipo,Object value) {
+       FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
+        if(fila==null){
+            semantic_error(identificador,"La variable a la que le quiere asignar valor no esta definida");
         }else{
-            semantic_error(token,"El valor que se desea dar a la variable de de tipo \"\" y la variable es de tipo \"\"");
+            if(fila.getTipo().equals(tipo)){
+              fila.setValor(value);
+            }else{
+                semantic_error(identificador,"La variable es de tipo: \""+fila.getTipo()+"\", no puede asignar un \""+tipo+"\"");
+            }
         }
+    }
+
+    private void create_var_asig_val(Token identificador,String tipo,Object value) {
+       FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
+
+        if(fila!=null){
+            tablaSimbolos.getFilas().add(new FilaTabla(identificador.getLexema(),tipo,null));
+        }else{
+            semantic_error(identificador,"La variable a la que le quiere asignar valor no esta definida");
+            //semantic_error(identificador,"El valor que se desea dar a la variable de de tipo \"\" y la variable es de tipo \"\"");
+        }
+    }
+
+    private void error_cast(Token operador,String tipo1,String tipo2){
+        semantic_error(operador,"No se puede operar un valor: \""+tipo1+"\" con un valor:\""+tipo2+"\"");
     }
 
     private void semantic_error(Token token,String contexto) {
@@ -146,7 +165,7 @@ dec    ::=  INT decp:vars   {:
                                     ArrayList<Token> array =  vars.toArrayList();
                                     if(array!=null){
                                         for (Token token : array) {
-                                            verificar_def_var(token, TablaSimbolos.STRING);
+                                            verificar_def_var(token, TablaSimbolos.INT);
                                         }
                                     }
                                 }
@@ -167,6 +186,8 @@ decp    ::= ID:id COMA decp:vars {:
                                     RESULT = vars;
                                     if(RESULT!=null){
                                         RESULT.push((Token)id);
+                                    }else{
+                                        RESULT = new Pila<>();
                                     }
                                 :}
         |   ID:id PUNTOCOMA {:
@@ -175,7 +196,12 @@ decp    ::= ID:id COMA decp:vars {:
                             :}
         ;
 
-asig    ::= ID EQUAL exp PUNTOCOMA
+asig    ::= ID:var EQUAL exp:val PUNTOCOMA  {:
+                                                Token identificador = (Token)var;
+                                                if(val!=null){
+                                                    asig_val_var(identificador,val.getTipo(),val.getValor());
+                                                }
+                                            :}
         ;
 
 
@@ -185,7 +211,8 @@ exp ::= exp:val1 MAS:s t:val2   {:
                                         Object result = Operacion.sumaTerminos(val1, val2);
                                         RESULT = new Operacion(tipo,result);
                                     } catch (NotCastException e) {
-                                        System.out.println("No se pudo castear el resultado");
+                                        error_cast((Token)s,val1.getTipo(),val2.getTipo());
+                                        //System.out.println("No se pudo castear el resultado");
                                         RESULT = val1;
                                     }
                                 :}
@@ -195,7 +222,8 @@ exp ::= exp:val1 MAS:s t:val2   {:
                                         Integer result = ((Integer)val1.getValor())-((Integer)val2.getValor());
                                         RESULT = new Operacion(tipo,result);
                                     } catch (NotCastException e) {
-                                        System.out.println("No se pudo castear el resultado");
+                                        error_cast((Token)s,val1.getTipo(),val2.getTipo());
+                                        //System.out.println("No se pudo castear el resultado");
                                         RESULT = val1;
                                     }
                                 :}
@@ -210,7 +238,8 @@ t   ::= t:val1 MUL:s f:val2 {:
                                     Integer result = ((Integer)val1.getValor())*((Integer)val2.getValor());
                                     RESULT = new Operacion(tipo,result);
                                 } catch (NotCastException e) {
-                                    System.out.println("No se pudo castear el resultado");
+                                    error_cast((Token)s,val1.getTipo(),val2.getTipo());
+                                    //System.out.println("No se pudo castear el resultado");
                                     RESULT = val1;
                                 }
                             :}
@@ -220,7 +249,8 @@ t   ::= t:val1 MUL:s f:val2 {:
                                     Integer result = ((Integer)val1.getValor())/((Integer)val2.getValor());
                                     RESULT = new Operacion(tipo,result);
                                 } catch (NotCastException e) {
-                                    System.out.println("No se pudo castear el resultado");
+                                    error_cast((Token)s,val1.getTipo(),val2.getTipo());
+                                    //System.out.println("No se pudo castear el resultado");
                                     RESULT = val1;
                                 }
                             :}

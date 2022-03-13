@@ -33,7 +33,7 @@ public class AnalizarDef {
             System.out.println(errore.toString());
         }
         //System.err.println("----------------VALORES RECUPERADOS-------------------");
-
+        parserDef.getTablaSimbolos().imprimirTabla();
     }
     
     /**
