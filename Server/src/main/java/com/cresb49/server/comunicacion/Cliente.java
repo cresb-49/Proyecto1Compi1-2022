@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class Cliente implements Runnable {
 
-    private int puerto = 5000;
+    private int puerto = 6000;
     private String host = "localhost";
     private Object mensaje;
 

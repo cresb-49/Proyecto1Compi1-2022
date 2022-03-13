@@ -10,7 +10,11 @@ import com.cresb49.appcliente.analizadores.def.AnalizarDef;
 import com.cresb49.appcliente.analizadores.def.obj.exceptions.NoReporteJson;
 import com.cresb49.appcliente.analizadores.json.AnalizarJson;
 import com.cresb49.appcliente.analizadores.json.obj.*;
+import com.cresb49.appcliente.comunicacion.Cliente;
+import com.cresb49.appcliente.comunicacion.Servidor;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JEditorPane;
 import javax.swing.JOptionPane;
 
@@ -18,9 +22,9 @@ import javax.swing.JOptionPane;
  *
  * @author Benjamin
  */
-public class FramePrincipal extends javax.swing.JFrame {
+public class FramePrincipal extends javax.swing.JFrame implements Observer{
 
-    
+    private Cliente cliente = null;
 
     /**
      * Creates new form FramePrincipal
@@ -28,6 +32,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     public FramePrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.inicializarServidor();
         this.renderizarHTML();
     }
 
@@ -45,6 +50,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
@@ -79,25 +85,38 @@ public class FramePrincipal extends javax.swing.JFrame {
 
         jButton2.setText("Cargar Carpeta");
 
+        jButton5.setText("Enviar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 466, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(78, 78, 78))
+                .addGap(120, 120, 120)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(391, 391, 391)
+                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(120, 120, 120))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(96, 96, 96)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(498, Short.MAX_VALUE))
+                .addGap(59, 59, 59)
+                .addComponent(jButton5)
+                .addContainerGap(371, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("CARGA DE ARCHIVOS", jPanel1);
@@ -119,7 +138,7 @@ public class FramePrincipal extends javax.swing.JFrame {
             }
         });
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "CONSOLA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 18))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONSOLA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 18))); // NOI18N
 
         ConsolaDef.setEditable(false);
         ConsolaDef.setBorder(null);
@@ -306,6 +325,14 @@ public class FramePrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.limpiarConsolaDef();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        cliente = new Cliente(5000, "localhost");
+        cliente.setMensaje("Hola desde la app cliente");
+        Thread hilo = new Thread(cliente);
+        hilo.start();
+    }//GEN-LAST:event_jButton5ActionPerformed
     
     private ReporteJson reportePrueba(){
         String score = "0.75";
@@ -415,6 +442,7 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -450,5 +478,17 @@ public class FramePrincipal extends javax.swing.JFrame {
 
     private void limpiarConsolaDef() {
         this.ConsolaDef.setText("");
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        System.out.println("Se recibio una respuesta del servidor");
+    }
+
+    private void inicializarServidor() {
+        Servidor servidor = new Servidor(6000);
+        servidor.addObserver(this);
+        Thread hilo = new Thread(servidor);
+        hilo.start();
     }
 }
