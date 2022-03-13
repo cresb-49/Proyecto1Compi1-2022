@@ -55,12 +55,10 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
     private void estadoCarpeta1() {
         try {
-            
             ClassLoader loader = FramePrincipal.class.getClassLoader();
             java.net.URL imageURL = loader.getResource("com/resources/imgCarpeta.png");
             Image image = ImageIO.read(imageURL);
-            ImageIcon imageIcon = new ImageIcon(image);
-            ImagenEstadoCarpeta1.setIcon(imageIcon);
+            ImagenEstadoCarpeta1.setIcon(new ImageIcon(image.getScaledInstance(190, 190, Image.SCALE_DEFAULT)));
             
         } catch (Exception ex) {
             Logger.getLogger(FramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
