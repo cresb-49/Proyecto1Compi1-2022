@@ -47,6 +47,9 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     private Image imagenNoCarga = null;
     private ProyectoCopy proyectoCopy = null;
 
+    private File carpeta1 = null;
+    private File carpeta2 = null;
+
     /**
      * Creates new form FramePrincipal
      */
@@ -450,10 +453,22 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
     private void EnviarCarpetasJavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarCarpetasJavaActionPerformed
         // TODO add your handling code here:
-        cliente = new Cliente(5000, "localhost");
-        cliente.setMensaje("Hola desde la app cliente");
-        Thread hilo = new Thread(cliente);
-        hilo.start();
+        if (proyectoCopy == null) {
+            
+        }
+        if (carpeta1 != null && carpeta2 != null) {
+            cliente = new Cliente(5000, "localhost");
+            cliente.setMensaje("Hola desde la app cliente");
+            Thread hilo = new Thread(cliente);
+            hilo.start();
+        }else{
+            if(carpeta1!=null){
+                JOptionPane.showMessageDialog(null, "Guardado exitoso!", "Guardado exitoso!", JOptionPane.INFORMATION_MESSAGE);
+            }
+            if(carpeta2!=null){
+                JOptionPane.showMessageDialog(null, "Guardado exitoso!", "Guardado exitoso!", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_EnviarCarpetasJavaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -518,7 +533,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
                 PrintWriter printwriter = new PrintWriter(JFC);
                 printwriter.print(proyectoCopy.proyectoToJson());
                 printwriter.close();
-                
+
                 if (!(PATH.endsWith(".copy"))) {
                     File temp = new File(PATH + ".copy");
                     JFC.renameTo(temp);
