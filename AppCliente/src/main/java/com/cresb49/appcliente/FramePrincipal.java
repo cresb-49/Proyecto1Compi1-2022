@@ -12,6 +12,7 @@ import com.cresb49.appcliente.analizadores.json.AnalizarJson;
 import com.cresb49.appcliente.analizadores.json.obj.*;
 import com.cresb49.appcliente.comunicacion.Cliente;
 import com.cresb49.appcliente.comunicacion.Servidor;
+import com.cresb49.appcliente.proyecto.ProyectoCopy;
 import com.cresb49.appcliente.proyecto.VerificarProyectoCopy;
 import java.awt.Image;
 import java.io.File;
@@ -30,6 +31,7 @@ import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -40,6 +42,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     private Cliente cliente = null;
     private Image imagenCarpeta = null;
     private Image imagenNoCarga = null;
+    private ProyectoCopy proyectoCopy = null;
+    
 
     /**
      * Creates new form FramePrincipal
@@ -73,27 +77,27 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     }
 
     private void estadoCarpeta1(boolean estado) {
-       if(estado){
-            if(imagenCarpeta!=null){
+        if (estado) {
+            if (imagenCarpeta != null) {
                 ImagenEstadoCarpeta1.setIcon(new ImageIcon(imagenCarpeta.getScaledInstance(190, 190, Image.SCALE_DEFAULT)));
             }
-       }else{
-            if(imagenNoCarga!=null){
+        } else {
+            if (imagenNoCarga != null) {
                 ImagenEstadoCarpeta1.setIcon(new ImageIcon(imagenNoCarga.getScaledInstance(190, 190, Image.SCALE_DEFAULT)));
             }
-       }
+        }
     }
 
     private void estadoCarpeta2(boolean estado) {
-        if(estado){
-            if(imagenCarpeta!=null){
+        if (estado) {
+            if (imagenCarpeta != null) {
                 ImagenEstadoCarpeta2.setIcon(new ImageIcon(imagenCarpeta.getScaledInstance(190, 190, Image.SCALE_DEFAULT)));
             }
-       }else{
-            if(imagenNoCarga!=null){
+        } else {
+            if (imagenNoCarga != null) {
                 ImagenEstadoCarpeta2.setIcon(new ImageIcon(imagenNoCarga.getScaledInstance(190, 190, Image.SCALE_DEFAULT)));
             }
-       }
+        }
     }
 
     /**
@@ -136,8 +140,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         VentanaHTML = new javax.swing.JEditorPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        AbrirProyecto = new javax.swing.JMenuItem();
+        GuardarProyecto = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -376,16 +380,21 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
         jMenu1.setText("MENU");
 
-        jMenuItem2.setText("Abrir Proyecto");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        AbrirProyecto.setText("Abrir Proyecto");
+        AbrirProyecto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                AbrirProyectoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(AbrirProyecto);
 
-        jMenuItem3.setText("Guardar Proyecto");
-        jMenu1.add(jMenuItem3);
+        GuardarProyecto.setText("Guardar Proyecto");
+        GuardarProyecto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarProyectoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(GuardarProyecto);
 
         jMenuBar1.add(jMenu1);
 
@@ -450,13 +459,13 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         ArrayList<String> errores = VerificarProyectoCopy.verificarArchivos(this.seleccionarDirectorio(NombreCarpeta1));
         String mensaje = "";
         for (String error : errores) {
-            mensaje = mensaje + error+"\n";
+            mensaje = mensaje + error + "\n";
         }
-        if(!errores.isEmpty()){
+        if (!errores.isEmpty()) {
             JOptionPane.showMessageDialog(this, mensaje);
             NombreCarpeta1.setText("no seleccionado");
             this.estadoCarpeta1(false);
-        }else{
+        } else {
             System.out.println("Cargamos carpeta1 al proyecto");
             this.estadoCarpeta1(true);
         }
@@ -469,19 +478,38 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         for (String error : errores) {
             mensaje = mensaje + error;
         }
-        if(!errores.isEmpty()){
+        if (!errores.isEmpty()) {
             JOptionPane.showMessageDialog(this, mensaje);
             NombreCarpeta2.setText("no seleccionado");
             this.estadoCarpeta2(false);
-        }else{
+        } else {
             System.out.println("Cargamos carpeta2 al proyecto");
             this.estadoCarpeta2(true);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void AbrirProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirProyectoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+        JFileChooser fc = new JFileChooser();
+        
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos", "copy");
+        
+        fc.setFileFilter(filter);
+        
+        int respuesta = fc.showOpenDialog(this);
+        if (respuesta == JFileChooser.APPROVE_OPTION) {
+            File archivoElegido = fc.getSelectedFile();
+        }
+    }//GEN-LAST:event_AbrirProyectoActionPerformed
+
+    private void GuardarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarProyectoActionPerformed
+        // TODO add your handling code here:
+        if(proyectoCopy!=null){
+            
+        }else{
+            JOptionPane.showMessageDialog(this, "No a inicializado un proyecto:\nCargue las carpetas y luego envie lo datos para crear el proyecto");
+        }
+    }//GEN-LAST:event_GuardarProyectoActionPerformed
 
     private ReporteJson reportePrueba() {
         String score = "0.75";
@@ -582,8 +610,10 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem AbrirProyecto;
     private javax.swing.JButton ButtonEjecutar;
     private javax.swing.JTextPane ConsolaDef;
+    private javax.swing.JMenuItem GuardarProyecto;
     private javax.swing.JLabel ImagenEstadoCarpeta1;
     private javax.swing.JLabel ImagenEstadoCarpeta2;
     private javax.swing.JLabel NombreCarpeta1;
@@ -599,8 +629,6 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -646,14 +674,14 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         Thread hilo = new Thread(servidor);
         hilo.start();
     }
-    
-    private File seleccionarDirectorio(JLabel label){
+
+    private File seleccionarDirectorio(JLabel label) {
         JFileChooser fc = new JFileChooser();
-        
+
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        
+
         int respuesta = fc.showOpenDialog(this);
-        if(respuesta == JFileChooser.APPROVE_OPTION){
+        if (respuesta == JFileChooser.APPROVE_OPTION) {
             label.setText(fc.getSelectedFile().getName());
             return fc.getSelectedFile();
         }
