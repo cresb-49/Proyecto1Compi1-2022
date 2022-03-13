@@ -46,9 +46,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         initComponents();
         this.setLocationRelativeTo(null);
         this.cargarImagenes();
-        this.inicializarServidor();
-
         this.cargarEstadoCarpetas();
+        this.inicializarServidor();
         this.renderizarHTML();
     }
 
@@ -56,9 +55,10 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         try {
             ClassLoader loader = FramePrincipal.class.getClassLoader();
             java.net.URL imageURL1 = loader.getResource("com/resources/imgCarpeta.png");
-            java.net.URL imageURL2 = loader.getResource("com/resources/imgCarpeta.png");
+            java.net.URL imageURL2 = loader.getResource("com/resources/signoIncorrecto.png");
             Image imagenCarpeta = ImageIO.read(imageURL1);
             Image imagenNoCarga = ImageIO.read(imageURL2);
+            System.out.println("funciono");
             //ImagenEstadoCarpeta1.setIcon(new ImageIcon(image.getScaledInstance(190, 190, Image.SCALE_DEFAULT)));
         } catch (Exception ex) {
             Logger.getLogger(FramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -66,15 +66,32 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     }
 
     private void cargarEstadoCarpetas() {
-        this.estadoCarpeta1();
-        this.estadoCarpeta2();
+        this.estadoCarpeta1(false);
+        this.estadoCarpeta2(false);
     }
 
-    private void estadoCarpeta1() {
-       
+    private void estadoCarpeta1(boolean estado) {
+       if(estado){
+            if(imagenCarpeta!=null){
+                ImagenEstadoCarpeta1.setIcon(new ImageIcon(imagenCarpeta.getScaledInstance(190, 190, Image.SCALE_DEFAULT)));
+            }
+       }else{
+            if(imagenNoCarga!=null){
+                ImagenEstadoCarpeta1.setIcon(new ImageIcon(imagenNoCarga.getScaledInstance(190, 190, Image.SCALE_DEFAULT)));
+            }
+       }
     }
 
-    private void estadoCarpeta2() {
+    private void estadoCarpeta2(boolean estado) {
+        if(estado){
+            if(imagenCarpeta!=null){
+                ImagenEstadoCarpeta1.setIcon(new ImageIcon(imagenCarpeta.getScaledInstance(190, 190, Image.SCALE_DEFAULT)));
+            }
+       }else{
+            if(imagenNoCarga!=null){
+                ImagenEstadoCarpeta1.setIcon(new ImageIcon(imagenNoCarga.getScaledInstance(190, 190, Image.SCALE_DEFAULT)));
+            }
+       }
     }
 
     /**
