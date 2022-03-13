@@ -12,9 +12,20 @@ import com.cresb49.appcliente.analizadores.json.AnalizarJson;
 import com.cresb49.appcliente.analizadores.json.obj.*;
 import com.cresb49.appcliente.comunicacion.Cliente;
 import com.cresb49.appcliente.comunicacion.Servidor;
+import java.awt.Image;
+import java.io.IOException;
+
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.imageio.ImageIO;
+import javax.print.DocFlavor.URL;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JEditorPane;
 import javax.swing.JOptionPane;
 
@@ -22,7 +33,7 @@ import javax.swing.JOptionPane;
  *
  * @author Benjamin
  */
-public class FramePrincipal extends javax.swing.JFrame implements Observer{
+public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
     private Cliente cliente = null;
 
@@ -33,7 +44,30 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
         initComponents();
         this.setLocationRelativeTo(null);
         this.inicializarServidor();
+        this.cargarEstadoCarpetas();
         this.renderizarHTML();
+    }
+
+    private void cargarEstadoCarpetas() {
+        this.estadoCarpeta1();
+        this.estadoCarpeta2();
+    }
+
+    private void estadoCarpeta1() {
+        try {
+            
+            ClassLoader loader = FramePrincipal.class.getClassLoader();
+            java.net.URL imageURL = loader.getResource("com/resources/imgCarpeta.png");
+            Image image = ImageIO.read(imageURL);
+            ImageIcon imageIcon = new ImageIcon(image);
+            ImagenEstadoCarpeta1.setIcon(imageIcon);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(FramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void estadoCarpeta2() {
     }
 
     /**
@@ -342,10 +376,10 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
 
     private void ButtonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEjecutarActionPerformed
         // TODO add your handling code here:
-        try {    
+        try {
             AnalizarDef analizarDef = new AnalizarDef();
             String texto = TextPaneDef.getText();
-            analizarDef.ejecutar(texto,this.reportePrueba());
+            analizarDef.ejecutar(texto, this.reportePrueba());
             this.mostrarErroresConsola(analizarDef.getErrores());
         } catch (NoReporteJson ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
@@ -364,8 +398,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
         Thread hilo = new Thread(cliente);
         hilo.start();
     }//GEN-LAST:event_jButton5ActionPerformed
-    
-    private ReporteJson reportePrueba(){
+
+    private ReporteJson reportePrueba() {
         String score = "0.75";
         ArrayList<Clase> clases = new ArrayList<>();
         ArrayList<Variable> variables = new ArrayList<>();
@@ -379,10 +413,10 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
         metodos.add(new Metodo("metodo2", "String", 0));
         comentarios.add(new Comentario("hola es un comentario"));
         comentarios.add(new Comentario("otro coment"));
-        ReporteJson reporteJson=new ReporteJson(score, clases, variables, metodos, comentarios);
+        ReporteJson reporteJson = new ReporteJson(score, clases, variables, metodos, comentarios);
         return reporteJson;
     }
-        
+
     /**
      * @param args the command line arguments
      */
@@ -499,14 +533,14 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
     // End of variables declaration//GEN-END:variables
 
     private void mostrarErroresConsola(ArrayList<ErrorAnalisis> errores) {
-        if(!errores.isEmpty()){
+        if (!errores.isEmpty()) {
             this.limpiarConsolaDef();
             String text = ConsolaDef.getText();
             for (ErrorAnalisis errore : errores) {
-                text = text + "Error "+errore.getTipo()+" \""+errore.getLexema()+"\""+", Linea: "+errore.getLinea()+", Columna: "+errore.getColumna()+" -> "+errore.getDescipcion()+"\n";
+                text = text + "Error " + errore.getTipo() + " \"" + errore.getLexema() + "\"" + ", Linea: " + errore.getLinea() + ", Columna: " + errore.getColumna() + " -> " + errore.getDescipcion() + "\n";
             }
             ConsolaDef.setText(text);
-        }else{
+        } else {
             this.limpiarConsolaDef();
         }
     }
