@@ -5,12 +5,12 @@ import java.io.Serializable;
 public class ProyectoCopy implements Serializable{
     
     
-    private String pathCarpeta1;
-    private String pathCarpeta2;
+    private String pathCarpeta1="";
+    private String pathCarpeta2="";
     
-    private String pathArchivDef;
-    private String pathCarpetaProyecto;
-    private String pathArchivoJson;
+    private String pathArchivDef="";
+    private String pathCarpetaProyecto="";
+    private String pathArchivoJson="";
 
     public String getPathCarpeta1() {
         return pathCarpeta1;
@@ -53,8 +53,15 @@ public class ProyectoCopy implements Serializable{
     }
     
     public String proyectoToJson(){
-        String
-        
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("{");
+        stringBuffer.append("   Proyecto1: \""+pathCarpeta1+"\",");
+        stringBuffer.append("   Proyecto2: \""+pathCarpeta2+"\",");
+        stringBuffer.append("   FileDef: \""+pathArchivDef+"\",");
+        stringBuffer.append("   ReporteJson: \""+pathCarpetaProyecto+"\",");
+        stringBuffer.append("   FolderProyect: \""+pathArchivoJson+"\"");
+        stringBuffer.append("}");
+        return stringBuffer.toString();
     }
     
 }
