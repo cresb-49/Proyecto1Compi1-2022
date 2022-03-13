@@ -12,13 +12,17 @@ import com.cresb49.appcliente.analizadores.json.AnalizarJson;
 import com.cresb49.appcliente.analizadores.json.obj.*;
 import com.cresb49.appcliente.comunicacion.Cliente;
 import com.cresb49.appcliente.comunicacion.Servidor;
+import com.cresb49.appcliente.proyecto.CrearArchivoCopy;
 import com.cresb49.appcliente.proyecto.ProyectoCopy;
 import com.cresb49.appcliente.proyecto.VerificarProyectoCopy;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -503,12 +507,30 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
     private void GuardarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarProyectoActionPerformed
         // TODO add your handling code here:
-        
-        
-        
-        
-        
-        
+        ProyectoCopy proyectoCopy = new ProyectoCopy();
+
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Todos los archivos *.copy", "copy", "COPY"));
+        int seleccion = fileChooser.showSaveDialog(null);
+        try {
+            if (seleccion == JFileChooser.APPROVE_OPTION) {
+                File JFC = fileChooser.getSelectedFile();
+                String PATH = JFC.getAbsolutePath();
+                PrintWriter printwriter = new PrintWriter(JFC);
+                printwriter.print(proyectoCopy.proyectoToJson());
+                printwriter.close();
+                
+                if (!(PATH.endsWith(".copy"))) {
+                    File temp = new File(PATH + ".copy");
+                    JFC.renameTo(temp);
+                }
+
+                JOptionPane.showMessageDialog(null, "Guardado exitoso!", "Guardado exitoso!", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (HeadlessException | FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "Error al guardar el archivo!", "Oops! Error", JOptionPane.ERROR_MESSAGE);
+        }
+
         /*
         if (proyectoCopy != null) {
             if (proyectoCopy.getCarpeta1() != null) {
@@ -550,7 +572,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         } else {
             JOptionPane.showMessageDialog(this, "No a inicializado un proyecto:\nCargue las carpetas y luego envie lo datos para crear el proyecto");
         }
-        */
+         */
     }//GEN-LAST:event_GuardarProyectoActionPerformed
 
     private ReporteJson reportePrueba() {

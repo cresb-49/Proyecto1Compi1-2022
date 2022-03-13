@@ -54,12 +54,12 @@ public class ProyectoCopy implements Serializable{
     
     public String proyectoToJson(){
         StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append("{");
-        stringBuffer.append("   Proyecto1: \""+pathCarpeta1+"\",");
-        stringBuffer.append("   Proyecto2: \""+pathCarpeta2+"\",");
-        stringBuffer.append("   FileDef: \""+pathArchivDef+"\",");
-        stringBuffer.append("   ReporteJson: \""+pathCarpetaProyecto+"\",");
-        stringBuffer.append("   FolderProyect: \""+pathArchivoJson+"\"");
+        stringBuffer.append("{"+"\n");
+        stringBuffer.append("   Proyecto1: \""+pathCarpeta1+"\","+"\n");
+        stringBuffer.append("   Proyecto2: \""+pathCarpeta2+"\","+"\n");
+        stringBuffer.append("   FileDef: \""+pathArchivDef+"\","+"\n");
+        stringBuffer.append("   ReporteJson: \""+pathCarpetaProyecto+"\","+"\n");
+        stringBuffer.append("   FolderProyect: \""+pathArchivoJson+"\""+"\n");
         stringBuffer.append("}");
         return stringBuffer.toString();
     }
