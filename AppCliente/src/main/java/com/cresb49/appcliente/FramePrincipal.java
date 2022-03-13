@@ -12,7 +12,9 @@ import com.cresb49.appcliente.analizadores.json.AnalizarJson;
 import com.cresb49.appcliente.analizadores.json.obj.*;
 import com.cresb49.appcliente.comunicacion.Cliente;
 import com.cresb49.appcliente.comunicacion.Servidor;
+import com.cresb49.appcliente.proyecto.VerificarProyectoCopy;
 import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 
 import java.io.InputStream;
@@ -25,6 +27,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JEditorPane;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -142,8 +145,18 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
 
         jButton1.setText("Cargar Carpeta");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cargar Carpeta");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Enviar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -225,7 +238,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             }
         });
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONSOLA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 18))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "CONSOLA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 18))); // NOI18N
 
         ConsolaDef.setEditable(false);
         ConsolaDef.setBorder(null);
@@ -421,6 +434,36 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         hilo.start();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ArrayList<String> errores = VerificarProyectoCopy.verificarArchivos(this.seleccionarDirectorio());
+        String mensaje = "";
+        for (String error : errores) {
+            mensaje = mensaje + error;
+        }
+        if(!errores.isEmpty()){
+            JOptionPane.showMessageDialog(this, mensaje);
+        }else{
+            System.out.println("Cargamos carpeta1 al proyecto");
+            this.estadoCarpeta1(true);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        ArrayList<String> errores = VerificarProyectoCopy.verificarArchivos(this.seleccionarDirectorio());
+        String mensaje = "";
+        for (String error : errores) {
+            mensaje = mensaje + error;
+        }
+        if(!errores.isEmpty()){
+            JOptionPane.showMessageDialog(this, mensaje);
+        }else{
+            System.out.println("Cargamos carpeta2 al proyecto");
+            this.estadoCarpeta2(true);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private ReporteJson reportePrueba() {
         String score = "0.75";
         ArrayList<Clase> clases = new ArrayList<>();
@@ -582,5 +625,16 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         servidor.addObserver(this);
         Thread hilo = new Thread(servidor);
         hilo.start();
+    }
+    
+    private File seleccionarDirectorio(){
+        JFileChooser fc = new JFileChooser();
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        
+        int respuesta = fc.showOpenDialog(this);
+        if(respuesta == JFileChooser.APPROVE_OPTION){
+            return fc.getSelectedFile();
+        }
+        return null;
     }
 }
