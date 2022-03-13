@@ -377,6 +377,11 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         jMenu1.setText("MENU");
 
         jMenuItem2.setText("Abrir Proyecto");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Guardar Proyecto");
@@ -473,6 +478,10 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             this.estadoCarpeta2(true);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private ReporteJson reportePrueba() {
         String score = "0.75";
