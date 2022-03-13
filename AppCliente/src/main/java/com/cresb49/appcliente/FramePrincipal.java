@@ -12,7 +12,6 @@ import com.cresb49.appcliente.analizadores.json.AnalizarJson;
 import com.cresb49.appcliente.analizadores.json.obj.*;
 import com.cresb49.appcliente.comunicacion.Cliente;
 import com.cresb49.appcliente.comunicacion.Servidor;
-import com.cresb49.appcliente.proyecto.CrearArchivoCopy;
 import com.cresb49.appcliente.proyecto.ProyectoCopy;
 import com.cresb49.appcliente.proyecto.VerificarProyectoCopy;
 import java.awt.HeadlessException;
