@@ -153,6 +153,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         ConsoleLog.setText(ConsoleLog.getText()+ "Nueva informacion recibida\n");
+        System.out.println("Mensaje Recivido");
         System.out.println(arg.toString());
         System.out.println("Voy a responder al cliente");
         this.responderCliente();

@@ -47,10 +47,7 @@ public class Servidor extends Observable implements Runnable{
                 System.out.println("El cliente se conecto");
                 
                 in = new ObjectInputStream(socket.getInputStream());
-                
-                System.out.println("Mensaje Recivido");
                 Object mensaje = in.readObject();
-                System.out.println(mensaje.toString());
                 
                 this.setChanged();
                 this.notifyObservers(mensaje);
