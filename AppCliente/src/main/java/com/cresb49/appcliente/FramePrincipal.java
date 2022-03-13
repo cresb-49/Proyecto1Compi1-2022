@@ -36,6 +36,8 @@ import javax.swing.JOptionPane;
 public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
     private Cliente cliente = null;
+    private Image imagenCarpeta = null;
+    private Image imagenNoCarga = null;
 
     /**
      * Creates new form FramePrincipal
@@ -43,9 +45,24 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     public FramePrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.cargarImagenes();
         this.inicializarServidor();
+
         this.cargarEstadoCarpetas();
         this.renderizarHTML();
+    }
+
+    private void cargarImagenes() {
+        try {
+            ClassLoader loader = FramePrincipal.class.getClassLoader();
+            java.net.URL imageURL1 = loader.getResource("com/resources/imgCarpeta.png");
+            java.net.URL imageURL2 = loader.getResource("com/resources/imgCarpeta.png");
+            Image imagenCarpeta = ImageIO.read(imageURL1);
+            Image imagenNoCarga = ImageIO.read(imageURL2);
+            //ImagenEstadoCarpeta1.setIcon(new ImageIcon(image.getScaledInstance(190, 190, Image.SCALE_DEFAULT)));
+        } catch (Exception ex) {
+            Logger.getLogger(FramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void cargarEstadoCarpetas() {
@@ -54,15 +71,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     }
 
     private void estadoCarpeta1() {
-        try {
-            ClassLoader loader = FramePrincipal.class.getClassLoader();
-            java.net.URL imageURL = loader.getResource("com/resources/imgCarpeta.png");
-            Image image = ImageIO.read(imageURL);
-            ImagenEstadoCarpeta1.setIcon(new ImageIcon(image.getScaledInstance(190, 190, Image.SCALE_DEFAULT)));
-            
-        } catch (Exception ex) {
-            Logger.getLogger(FramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
     }
 
     private void estadoCarpeta2() {
