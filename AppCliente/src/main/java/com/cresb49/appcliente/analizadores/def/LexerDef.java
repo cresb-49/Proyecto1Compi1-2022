@@ -644,6 +644,9 @@ public class LexerDef implements java_cup.runtime.Scanner {
     private void habilitar_ingresar_id(){
         this.ingresar_id = true;
     }
+    private void dehabilitar_ingresar_id(){
+        this.ingresar_id = true;
+    }
 
     public TablaEjecucion getTablaEjecucion() {
         return tablaEjecucion;
@@ -655,6 +658,14 @@ public class LexerDef implements java_cup.runtime.Scanner {
 
     private void asig_valor_agregar_tabla_ejecucion(Token token){
         if(habilitar_cont){
+            token.setId(contador_tokens);
+            this.tablaEjecucion.getFilas().add(token);
+            contador_tokens++;
+        }
+    }
+
+    private void ingresar_id_tabla(Token token){
+        if(habilitar_cont && ingresar_id){
             token.setId(contador_tokens);
             this.tablaEjecucion.getFilas().add(token);
             contador_tokens++;
@@ -1068,6 +1079,7 @@ public class LexerDef implements java_cup.runtime.Scanner {
     this.anterior = this.actual;
     this.habilitar_cont = false;
     this.contador_tokens = 0;
+    dehabilitar_ingresar_id();
     return new java_cup.runtime.Symbol(ParserDefSym.EOF,yyline+1,yycolumn+1,this.actual);
  }
       }
@@ -1096,7 +1108,7 @@ public class LexerDef implements java_cup.runtime.Scanner {
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         this.actual.setAccion(Token.CONSULTAR);
-                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
+                        this.ingresar_id_tabla(this.actual);
                         return new Symbol(ParserDefSym.ID,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("Identificador: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
@@ -1210,6 +1222,7 @@ public class LexerDef implements java_cup.runtime.Scanner {
             { yybegin(INERTEXT);
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        dehabilitar_ingresar_id();
                         return new Symbol(ParserDefSym.MA_Q,yyline+1,yycolumn+1,this.actual);
                         //System.out.println(">: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
@@ -1377,6 +1390,7 @@ public class LexerDef implements java_cup.runtime.Scanner {
           case 39:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        dehabilitar_ingresar_id();
                         return new Symbol(ParserDefSym.PA_C_D,yyline+1,yycolumn+1,this.actual);
                         //System.out.println(")$$: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
@@ -1395,6 +1409,7 @@ public class LexerDef implements java_cup.runtime.Scanner {
             { yybegin(YYINITIAL);
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        habilitar_ingresar_id();
                         return new Symbol(ParserDefSym.D_PA_A,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("$$(: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
@@ -1453,6 +1468,7 @@ public class LexerDef implements java_cup.runtime.Scanner {
           case 48:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        habilitar_ingresar_id();
                         return new Symbol(ParserDefSym.ITERATOR,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("iterador: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }

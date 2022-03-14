@@ -51,6 +51,9 @@ import java_cup.runtime.*;
     private void habilitar_ingresar_id(){
         this.ingresar_id = true;
     }
+    private void dehabilitar_ingresar_id(){
+        this.ingresar_id = true;
+    }
 
     public TablaEjecucion getTablaEjecucion() {
         return tablaEjecucion;
@@ -68,12 +71,21 @@ import java_cup.runtime.*;
         }
     }
 
+    private void ingresar_id_tabla(Token token){
+        if(habilitar_cont && ingresar_id){
+            token.setId(contador_tokens);
+            this.tablaEjecucion.getFilas().add(token);
+            contador_tokens++;
+        }
+    }
+
 %}
 %eofval{
     this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,this.anterior);
     this.anterior = this.actual;
     this.habilitar_cont = false;
     this.contador_tokens = 0;
+    dehabilitar_ingresar_id();
     return new java_cup.runtime.Symbol(ParserDefSym.EOF,yyline+1,yycolumn+1,this.actual);
 %eofval}
 
@@ -188,6 +200,7 @@ text = [\w]+([ ]+[\w]+)*
     "iterador"      {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        habilitar_ingresar_id();
                         return new Symbol(ParserDefSym.ITERATOR,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("iterador: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
@@ -206,6 +219,7 @@ text = [\w]+([ ]+[\w]+)*
     ")$$"           {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        dehabilitar_ingresar_id();
                         return new Symbol(ParserDefSym.PA_C_D,yyline+1,yycolumn+1,this.actual);
                         //System.out.println(")$$: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
@@ -213,7 +227,7 @@ text = [\w]+([ ]+[\w]+)*
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         this.actual.setAccion(Token.CONSULTAR);
-                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
+                        this.ingresar_id_tabla(this.actual);
                         return new Symbol(ParserDefSym.ID,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("Identificador: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
@@ -269,6 +283,7 @@ text = [\w]+([ ]+[\w]+)*
                         yybegin(INERTEXT);
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        dehabilitar_ingresar_id();
                         return new Symbol(ParserDefSym.MA_Q,yyline+1,yycolumn+1,this.actual);
                         //System.out.println(">: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
@@ -374,6 +389,7 @@ text = [\w]+([ ]+[\w]+)*
                         yybegin(YYINITIAL);
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        habilitar_ingresar_id();
                         return new Symbol(ParserDefSym.D_PA_A,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("$$(: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
