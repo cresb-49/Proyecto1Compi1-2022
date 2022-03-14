@@ -1,0 +1,142 @@
+import java_cup.runtime.*;
+
+class ParserDef;
+
+parser code {:
+    // Connect this parser to a scanner!
+
+    private static final String ERROR_TYPE_SIN = "Sintactico";
+    private static final String ERROR_TYPE_SEM = "Semantico";
+
+    private LexerDef lexerDef;
+    private ArrayList<ErrorAnalisis> errorAnalisisesTmp;
+    private SimbolosTerminalesDef simbolosTerminalesDef;
+    private TablaSimbolos tablaSimbolos;
+    private ReporteJson reporteJson;
+    
+    public ParserDef (LexerDef lexerDef){ 
+        super(lexerDef);
+        this.lexerDef=lexerDef;
+        this.tablaSimbolos = new TablaSimbolos();
+        this.simbolosTerminalesDef = new SimbolosTerminalesDef();
+    }
+
+    public void report_error(String message, Object info) {
+        System.out.println("public void report_error");
+    }
+    
+    public void report_fatal_error(String message, Object info) {
+        System.out.println("public void report_fatal_error");
+    }
+
+    public void syntax_error(Symbol cur_token) {
+        Token tok = (Token) cur_token.value;
+        if(tok!=null){
+            if (cur_token.sym == ParserDefSym.EOF) {
+                String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesDef.obtenerSimbolos(expected_token_ids()).toString();
+                //System.out.println("FIN ARCHIVO"+" "+er);
+                this.lexerDef.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er));
+                //System.out.println(er);
+            } else {
+                String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesDef.obtenerSimbolos(expected_token_ids()).toString();
+                //System.out.println(tok.getLexema()+" "+er);
+                this.lexerDef.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN,tok.getLexema(), tok.getLinea(), tok.getColumna(), er));
+                //System.out.println(er);
+            }
+        }else{
+            String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesDef.obtenerSimbolos(expected_token_ids()).toString();
+            //System.out.println("FIN ARCHIVO"+" "+er);
+            this.lexerDef.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er));
+            //System.out.println(er);
+        }
+    }
+
+    public void unrecovered_syntax_error(Symbol cur_token) {
+        if (cur_token.sym == ParserDefSym.EOF) {
+            String er = "Error irrecuperable se llego al final del archivo";
+            //System.out.println("FIN ARCHIVO"+" "+er);
+            this.lexerDef.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er));
+            //System.out.println(er);
+        } else {
+            Token tok = (Token) cur_token.value;
+            //String er = "Error irrecuperable, un posible simbolo esperado: "+ simbolosTerminalesDef.obtenerSimbolos(expected_token_ids()).toString();
+            String er = "Error irrecuperable resuelva el error anterior";
+            //System.out.println(tok.getLexema()+" "+er);
+            this.lexerDef.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN, tok.getLexema(), tok.getLinea(), tok.getColumna(), er));
+            //System.out.println(er);
+        }
+    }
+
+
+    private void verificar_def_var(Token token,String tipo) {
+       FilaTabla fila = tablaSimbolos.buscar(token.getLexema());
+        if(fila==null){
+            tablaSimbolos.getFilas().add(new FilaTabla(token.getLexema(),tipo,null));
+        }else{
+            semantic_error(token,"La variable ya a sido definida con anterioridad");
+        }
+    }
+
+    private void asig_val_var(Token identificador,String tipo,Object value) {
+       FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
+        if(fila==null){
+            semantic_error(identificador,"La variable a la que le quiere asignar valor no esta definida");
+        }else{
+            if(fila.getTipo().equals(tipo)){
+              fila.setValor(value);
+            }else{
+                semantic_error(identificador,"La variable es de tipo: \""+fila.getTipo()+"\", no puede asignar un \""+tipo+"\"");
+            }
+        }
+    }
+
+    private void create_var_asig_val(Token identificador,String tipo_id,String tipo_value,Object value) {
+       FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
+        if(fila==null){
+            if(tipo_id.equals(tipo_value)){
+                tablaSimbolos.getFilas().add(new FilaTabla(identificador.getLexema(),tipo_id,value));
+            }else{
+                semantic_error(identificador,"La variable es de tipo: \""+tipo_id+"\", no puede asignar un \""+tipo_value+"\"");
+            }
+        }else{
+            semantic_error(identificador,"La variable ya a sido definida con anterioridad");
+            //semantic_error(identificador,"El valor que se desea dar a la variable de de tipo \"\" y la variable es de tipo \"\"");
+        }
+    }
+
+    private void error_cast(Token operador,String tipo1,String tipo2){
+        semantic_error(operador,"No se puede operar un valor: \""+tipo1+"\" con un valor:\""+tipo2+"\"");
+    }
+
+    private void semantic_error(Token token,String contexto) {
+        this.lexerDef.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,token.getLexema(), token.getLinea(), token.getColumna(), contexto));
+    }
+
+    public TablaSimbolos getTablaSimbolos() {
+        return tablaSimbolos;
+    }
+
+    protected int error_sync_size() {
+		return 1;
+	}
+:}
+
+/* define how to connect to the scanner! */
+scan with {: return this.lexerDef.next_token(); :};
+
+/* Terminals (tokens returned by the scanner). */
+terminal    CO_A,CO_C,LLA_A,LLA_C,PA_A,PA_C,COMA,DOSPUNTOS,PUNTOCOMA,STRING,ENTERO,
+            INT,STR,HTML,H1,H2,TABLE,FOR,TR,TD,BR,ITERATOR,HASTA,TEXT,
+            D_PA_A,PA_C_D,ID,EQUAL,ME_Q,MA_Q,ME_QB,MAS,MENOS,DIV,MUL;
+
+
+/* Non terminals */
+non terminal                        ini,asig,dec,decn,def;
+non terminal Pila<Token>            decp;
+non terminal Operacion              exp,t,f;
+
+non terminal                        html,htmlp,contHTML,inertags,inertagsp;
+
+
+/* Inicio de las reglas gramticales*/
+

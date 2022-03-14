@@ -320,11 +320,11 @@ contHTML    ::= contHTML inertags
             |
             ;
 
-inertags   ::=  ME_Q BR MA_Q inertagsp ME_QB BR MA_Q
+inertags   ::=  ME_Q BR MA_Q
             |   ME_Q H1 MA_Q inertagsp ME_QB H1 MA_Q
             |   ME_Q H2 MA_Q inertagsp ME_QB H2 MA_Q
             ;
 
 inertagsp   ::=  inertags
-            |    
+            |    TEXT
             ;
