@@ -1295,7 +1295,12 @@ class CUP$ParserDef$actions {
           case 58: // thc ::= thc TEXT 
             {
               Object RESULT =null;
-
+		int txtleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()).left;
+		int txtright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()).right;
+		Token txt = (Token)((java_cup.runtime.Symbol) CUP$ParserDef$stack.peek()).value;
+		
+                                        txt.setValorToken(txt.getLexema());
+                                    
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("thc",21, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
           return CUP$ParserDef$result;
@@ -1328,7 +1333,9 @@ class CUP$ParserDef$actions {
 		int txtleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()).left;
 		int txtright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()).right;
 		Token txt = (Token)((java_cup.runtime.Symbol) CUP$ParserDef$stack.peek()).value;
-
+		
+                                        txt.setValorToken(txt.getLexema());
+                                    
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("thc",21, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
           return CUP$ParserDef$result;
@@ -1367,7 +1374,12 @@ class CUP$ParserDef$actions {
           case 65: // tdc ::= tdc TEXT 
             {
               Object RESULT =null;
-
+		int txtleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()).left;
+		int txtright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()).right;
+		Token txt = (Token)((java_cup.runtime.Symbol) CUP$ParserDef$stack.peek()).value;
+		
+                                        txt.setValorToken(txt.getLexema());
+                                    
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("tdc",20, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
           return CUP$ParserDef$result;
@@ -1400,7 +1412,9 @@ class CUP$ParserDef$actions {
 		int txtleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()).left;
 		int txtright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()).right;
 		Token txt = (Token)((java_cup.runtime.Symbol) CUP$ParserDef$stack.peek()).value;
-
+		
+                                        txt.setValorToken(txt.getLexema());
+                                    
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("tdc",20, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
           return CUP$ParserDef$result;

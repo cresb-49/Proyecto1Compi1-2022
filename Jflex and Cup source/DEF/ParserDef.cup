@@ -399,19 +399,27 @@ trc ::= trc ME_Q TH:tagini MA_Q thc ME_QB TH:tagfin MA_Q    {:
     ;
 
 thc ::= thc inertags
-    |   thc TEXT
+    |   thc TEXT:txt                {:
+                                        txt.setValorToken(txt.getLexema());
+                                    :}
     |   thc D_PA_A ID:var PA_C_D
     |   inertags
-    |   TEXT:txt
+    |   TEXT:txt                    {:
+                                        txt.setValorToken(txt.getLexema());
+                                    :}
     |   D_PA_A ID:var PA_C_D
     |   thc error
     ;
 
 tdc ::= tdc inertags   
-    |   tdc TEXT
+    |   tdc TEXT:txt                {:
+                                        txt.setValorToken(txt.getLexema());
+                                    :}
     |   tdc D_PA_A ID:var PA_C_D
     |   inertags
-    |   TEXT:txt
+    |   TEXT:txt                    {:
+                                        txt.setValorToken(txt.getLexema());
+                                    :}
     |   D_PA_A ID:var PA_C_D
     |   tdc error
     ;
