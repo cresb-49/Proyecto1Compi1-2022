@@ -7,7 +7,8 @@ public class Token {
     public static final int PRINT = 1;
     public static final int CAMBIAR = 3;
     public static final int CONSULTAR = 4;
-    public static final int BUCLE = 5;
+    public static final int BUCLE_INI = 5;
+    public static final int BUCLE_FIN = 6;
     
 
     private String lexema;

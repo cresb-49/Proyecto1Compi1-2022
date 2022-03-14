@@ -11,19 +11,38 @@ public class TablaEjecucion {
     public TablaEjecucion() {
         ejecuciones = new ArrayList<>();
     }
-    
-    public ArrayList<Token> getFilas(){
+
+    public ArrayList<Token> getFilas() {
         return ejecuciones;
     }
-    
-    public void resetTabla(){
+
+    public void resetTabla() {
         ejecuciones.clear();
     }
 
     public void imprimirTabla() {
         System.out.println("---------------TABLA DE EJECUCION----------------");
         for (Token ejecucion : ejecuciones) {
-            System.out.println("Accion: "+ ejecucion.getAccion()+",Valor: "+ejecucion.getValorToken());
+            System.out.println("Accion: " + this.accion(ejecucion.getAccion()) + " ,Valor: " + ejecucion.getValorToken() + " ,Token->val: " + ejecucion.getLexema());
         }
+    }
+
+    private String accion(int accion) {
+
+        switch (accion) {
+            case Token.VIEW:
+                return "VIEW";
+            case Token.PRINT:
+                return "PRINT";
+            case Token.CAMBIAR:
+                return "CAMBIAR";
+            case Token.CONSULTAR:
+                return "CONSULTAR";
+            case Token.BUCLE_INI:
+                return "BUCLE_INI";
+            case Token.BUCLE_FIN:
+                return "BUCLE_FIN";
+        }
+        return "ERROR ACCION";
     }
 }

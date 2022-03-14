@@ -22,6 +22,7 @@ import java_cup.runtime.*;
     private Token anterior;
     private Token actual; 
     private boolean habilitar_cont=false;
+    private boolean ingresar_id=false;
 
     private int contador_tokens = 0;
 
@@ -45,6 +46,10 @@ import java_cup.runtime.*;
 
     private void habilitar_conteo(){
         this.habilitar_cont = true;
+    }
+
+    private void habilitar_ingresar_id(){
+        this.ingresar_id = true;
     }
 
     public TablaEjecucion getTablaEjecucion() {
@@ -144,7 +149,6 @@ text = [\w]+([ ]+[\w]+)*
     "for"           {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
-                        this.actual.setAccion(Token.BUCLE);
                         this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.FOR,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("for: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
@@ -208,6 +212,8 @@ text = [\w]+([ ]+[\w]+)*
     {Identifier}    {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        this.actual.setAccion(Token.CONSULTAR);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.ID,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("Identificador: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }

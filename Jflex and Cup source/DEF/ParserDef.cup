@@ -88,6 +88,17 @@ parser code {:
         }
     }
 
+    private void verificar_tipo_var_for(Token identificador,String tipo){
+        FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
+        if(fila!=null){
+            if(!(fila.getTipo().equals(tipo))){
+                semantic_error(identificador,"Debe utilizar una variable de tipo Integer");
+            }
+        }else{
+            semantic_error(identificador,"La variable que sea utilizar no existe en el programa");
+        }
+    }
+
     private void asig_val_var(Token identificador,String tipo,Object value) {
        FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
         if(fila==null){
@@ -148,7 +159,8 @@ non terminal                        ini,asig,dec,decn,def;
 non terminal Pila<Token>            decp;
 non terminal Operacion              exp,t,f;
 
-non terminal                        html,htmlp,contHTML,inertags,inertagsp,inertagspp,table,tablec,trc,metFor,contFor,tdc,thc,tablecpp,actionfor;
+non terminal                        html,htmlp,contHTML,inertags,inertagsp,inertagspp,table,tablec,trc,metFor,contFor,tdc,thc,tablecpp,actionfor,
+                                    tdcp,thcp;
 
 
 /* Inicio de las reglas gramticales*/
@@ -398,38 +410,56 @@ trc ::= trc ME_Q TH:tagini MA_Q thc ME_QB TH:tagfin MA_Q    {:
     |   trc error
     ;
 
-thc ::= thc inertags
-    |   thc TEXT:txt                {:
-                                        txt.setValorToken(txt.getLexema());
-                                    :}
-    |   thc D_PA_A ID:var PA_C_D
-    |   inertags
-    |   TEXT:txt                    {:
-                                        txt.setValorToken(txt.getLexema());
-                                    :}
-    |   D_PA_A ID:var PA_C_D
-    |   thc error
+thc ::= thcp
+    |
     ;
 
-tdc ::= tdc inertags   
-    |   tdc TEXT:txt                {:
+thcp ::= thcp inertags
+    |   thcp TEXT:txt                {:
                                         txt.setValorToken(txt.getLexema());
                                     :}
-    |   tdc D_PA_A ID:var PA_C_D
+    |   thcp D_PA_A ID:var PA_C_D    {:
+
+                                    :}
     |   inertags
     |   TEXT:txt                    {:
                                         txt.setValorToken(txt.getLexema());
                                     :}
-    |   D_PA_A ID:var PA_C_D
-    |   tdc error
+    |   D_PA_A ID:var PA_C_D        {:
+                                        
+                                    :}
+    |   thcp error
+    ;
+
+tdc ::= tdcp
+    |
+    ;
+
+tdcp ::= tdcp inertags   
+    |   tdcp TEXT:txt                {:
+                                        txt.setValorToken(txt.getLexema());
+                                    :}
+    |   tdcp D_PA_A ID:var PA_C_D    {:
+                                        
+                                    :}
+    |   inertags
+    |   TEXT:txt                    {:
+                                        txt.setValorToken(txt.getLexema());
+                                    :}
+    |   D_PA_A ID:var PA_C_D        {:
+                                        
+                                    :}
+    |   tdcp error
     ;
 
 metFor  ::= ME_Q actionfor
         ;
 
-actionfor   ::= FOR:tagini ITERATOR DOSPUNTOS exp:iter HASTA DOSPUNTOS exp:max PUNTOCOMA MA_Q contFor:contenido ME_QB FOR:tagfin MA_Q   {:
-                                                                                                                                            
-                                                                                                                                        :}
+actionfor   ::= FOR:tagini ITERATOR:it DOSPUNTOS ID:var_ite HASTA:has DOSPUNTOS exp:max PUNTOCOMA MA_Q contFor:contenido ME_QB FOR:tagfin MA_Q  {:
+                                                                                                                                                    verificar_tipo_var_for((Token)var_ite,TablaSimbolos.INT);
+                                                                                                                                                    tagini.setAccion(Token.BUCLE_INI);
+                                                                                                                                                    tagfin.setAccion(Token.BUCLE_FIN);
+                                                                                                                                                :}
             ;
 
 contFor ::= tablec
