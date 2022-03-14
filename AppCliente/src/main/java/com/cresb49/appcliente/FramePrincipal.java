@@ -19,18 +19,13 @@ import com.cresb49.appcliente.proyecto.exceptions.NotDirectoryCreate;
 import java.awt.HeadlessException;
 import java.awt.Image;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 
-import java.io.InputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -467,10 +462,10 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             hilo.start();
         } else {
             if (carpeta1 != null) {
-                JOptionPane.showMessageDialog(null, "Guardado exitoso!", "Guardado exitoso!", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Guardado exitoso!", "Guardado exitoso!", JOptionPane.INFORMATION_MESSAGE);
             }
             if (carpeta2 != null) {
-                JOptionPane.showMessageDialog(null, "Guardado exitoso!", "Guardado exitoso!", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Guardado exitoso!", "Guardado exitoso!", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }//GEN-LAST:event_EnviarCarpetasJavaActionPerformed
@@ -526,24 +521,13 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
     private void GuardarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarProyectoActionPerformed
         // TODO add your handling code here:
-        this.proyectoCopy = new ProyectoCopy();
-
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Todos los archivos *.copy", "copy", "COPY"));
-        int seleccion = fileChooser.showSaveDialog(null);
-        try {
-            if (seleccion == JFileChooser.APPROVE_OPTION) {
-                File JFC = fileChooser.getSelectedFile();
-                CrearArchivos.crear_guardar(JFC, proyectoCopy);
-                JOptionPane.showMessageDialog(null, "Guardado exitoso!", "Guardado exitoso!", JOptionPane.INFORMATION_MESSAGE);
-            }
-        } catch (HeadlessException e) {
-            JOptionPane.showMessageDialog(null, "Error al guardar el archivo!", "Oops! Error\n"+e.getMessage(), JOptionPane.ERROR_MESSAGE);
-        }catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Error al crear proyecto!", "Problemas con la escritura:\n"+ex.getMessage(), JOptionPane.INFORMATION_MESSAGE);
-        } catch (NotDirectoryCreate ex) {
-            JOptionPane.showMessageDialog(null, "Error al crear proyecto!", "Conflicto con directorios!\n"+"Escriba otro nombre, para el proyecto", JOptionPane.INFORMATION_MESSAGE);
+        if(proyectoCopy==null){
+            this.proyectoCopy = new ProyectoCopy();
+            this.crear_guardar_proyecto();
+        }else{
+            
         }
+        
     }//GEN-LAST:event_GuardarProyectoActionPerformed
 
     private ReporteJson reportePrueba() {
@@ -724,6 +708,32 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     }
 
     private void cargarArchivo(File archivoElegido) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivoElegido))){
+            this.proyectoCopy = (ProyectoCopy) ois.readObject();
+            JOptionPane.showMessageDialog(this, "Guardado exitoso!", "Guardado exitoso!", JOptionPane.INFORMATION_MESSAGE);
+        } catch (ClassNotFoundException e) {
+            JOptionPane.showMessageDialog(this, "Error al cargar el archivo!", "El archivo que desea cargar esta dañado" + e.getMessage(), JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error al cargar el archivo!", "No se puede abrir el archivo:\n"+ex.getMessage()+ ex.getMessage(), JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
+    private void crear_guardar_proyecto() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Todos los archivos *.copy", "copy", "COPY"));
+        int seleccion = fileChooser.showSaveDialog(null);
+        try {
+            if (seleccion == JFileChooser.APPROVE_OPTION) {
+                File JFC = fileChooser.getSelectedFile();
+                CrearArchivos.crear_guardar(JFC, proyectoCopy);
+                JOptionPane.showMessageDialog(this, "Guardado exitoso!", "Guardado exitoso!", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(this, "Error al guardar el archivo!", "Oops! Error\n" + e.getMessage(), JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error al crear proyecto!", "Problemas con la escritura:\n" + ex.getMessage(), JOptionPane.INFORMATION_MESSAGE);
+        } catch (NotDirectoryCreate ex) {
+            JOptionPane.showMessageDialog(this, "Error al crear proyecto!", "Conflicto con directorios!\n" + "Escriba otro nombre, para el proyecto", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 }
