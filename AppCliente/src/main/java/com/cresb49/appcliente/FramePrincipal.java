@@ -229,7 +229,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
         jTabbedPane1.addTab("CARGA DE ARCHIVOS", jPanel1);
 
-        TextPaneDef.setText("</ iniciare a definir de alguna manera />\nInteger Max, i;\nMax=4;\ni=0;\nString texto=\"Su score fue de: \";\n</ Aqui defino el html />\n<html>\n\t<h1></h1>\n\t<h2></h2>\n\t<br>\n\t<h2></h2>\n\t<br>\n\t<h1></h1>\n</html>");
+        TextPaneDef.setText("</ iniciare a definir de alguna manera />\nInteger Max, i;\nMax=4;\ni=0;\nString texto=\"Su score fue de: \";\n</ Aqui defino el html />\n<html>\n\t<h1>hola</h1>\n\t<h2>prueba renderizado</h2>\n\t<br>\n\t<h2>hola</h2>\n\t<br>\n\t<h1>hola</h1>\n</html>");
         jScrollPane3.setViewportView(TextPaneDef);
 
         ButtonEjecutar.setText("EJECUTAR");
@@ -440,6 +440,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             String texto = TextPaneDef.getText();
             analizarDef.ejecutar(texto, this.reportePrueba());
             this.mostrarErroresConsola(analizarDef.getErrores());
+            VentanaHTML.setText(analizarDef.getHTML());
         } catch (NoReporteJson ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }

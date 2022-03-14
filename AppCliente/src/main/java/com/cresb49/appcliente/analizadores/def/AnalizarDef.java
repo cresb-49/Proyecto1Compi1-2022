@@ -1,6 +1,7 @@
 package com.cresb49.appcliente.analizadores.def;
 
 import com.cresb49.appcliente.analizadores.ErrorAnalisis;
+import com.cresb49.appcliente.analizadores.def.obj.RenderizarHTML;
 import com.cresb49.appcliente.analizadores.def.obj.TablaEjecucion;
 import com.cresb49.appcliente.analizadores.def.obj.exceptions.NoReporteJson;
 import com.cresb49.appcliente.analizadores.json.obj.ReporteJson;
@@ -13,6 +14,7 @@ public class AnalizarDef {
     private ArrayList<ErrorAnalisis> errores;
     private LexerDef lexerDef;
     private ParserDef parserDef;
+    private RenderizarHTML renderizarHTML;
 
     public AnalizarDef() {
     }
@@ -22,6 +24,7 @@ public class AnalizarDef {
             throw new NoReporteJson("Debe de tener un resultado Json cargado en el proyecto");
         } else {
             Reader reader = new StringReader(texto);
+            
             errores = new ArrayList<>();
             lexerDef = new LexerDef(reader);
             lexerDef.setErrors(errores);
@@ -40,7 +43,13 @@ public class AnalizarDef {
             //System.err.println("----------------VALORES RECUPERADOS-------------------");
             parserDef.getTablaSimbolos().imprimirTabla();
             lexerDef.getTablaEjecucion().imprimirTabla();
+            
+            renderizarHTML = new RenderizarHTML(parserDef.getTablaSimbolos(),lexerDef.getTablaEjecucion());
         }
+    }
+    
+    public String getHTML(){
+        return renderizarHTML.HTML();
     }
     
     public ArrayList<ErrorAnalisis> getErrores() {

@@ -82,7 +82,7 @@ Number = [0-9]
 Entero = {Number}+
 
 Identifier = [:jletter:] [:jletterdigit:]*
-text = [\w]+([ ]+[/w]+)*
+text = [\w]+([ ]+[\w]+)*
 
 
 
@@ -342,7 +342,14 @@ text = [\w]+([ ]+[/w]+)*
 }
 
 <INERTEXT>{
-    {WhiteSpace}                   { /* ignore */ }
+    {text}          { 
+                        this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        this.actual.setAccion(Token.PRINT);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
+                        return new Symbol(ParserDefSym.TEXT,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("text: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
     "</"            {
                         yybegin(YYINITIAL);
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
@@ -364,14 +371,7 @@ text = [\w]+([ ]+[/w]+)*
                         return new Symbol(ParserDefSym.D_PA_A,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("$$(: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
-    {text}          { 
-                        this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
-                        this.actual.setAccion(Token.PRINT);
-                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
-                        return new Symbol(ParserDefSym.TEXT,yyline+1,yycolumn+1,this.actual);
-                        //System.out.println("text: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
-                    }
+    {WhiteSpace}                   { /* ignore */ }
 }
 
 /*

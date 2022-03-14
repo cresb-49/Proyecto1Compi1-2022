@@ -349,6 +349,7 @@ inertagsp   ::= inertags
                                 txt.setValorToken(txt.getLexema());
                             :}
             |   D_PA_A ID:var PA_C_D
+            |
             ;
 
 table   ::= ME_Q TABLE:tagini MA_Q tablec ME_QB TABLE:tagfin MA_Q   {:

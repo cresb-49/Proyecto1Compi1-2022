@@ -292,7 +292,7 @@
                       <SubComponents>
                         <Component class="javax.swing.JTextPane" name="TextPaneDef">
                           <Properties>
-                            <Property name="text" type="java.lang.String" value="&lt;/ iniciare a definir de alguna manera /&gt;&#xa;Integer Max, i;&#xa;Max=4;&#xa;i=0;&#xa;String texto=&quot;Su score fue de: &quot;;&#xa;&lt;/ Aqui defino el html /&gt;&#xa;&lt;html&gt;&#xa;&#x9;&lt;h1&gt;&lt;/h1&gt;&#xa;&#x9;&lt;h2&gt;&lt;/h2&gt;&#xa;&#x9;&lt;br&gt;&#xa;&#x9;&lt;h2&gt;&lt;/h2&gt;&#xa;&#x9;&lt;br&gt;&#xa;&#x9;&lt;h1&gt;&lt;/h1&gt;&#xa;&lt;/html&gt;"/>
+                            <Property name="text" type="java.lang.String" value="&lt;/ iniciare a definir de alguna manera /&gt;&#xa;Integer Max, i;&#xa;Max=4;&#xa;i=0;&#xa;String texto=&quot;Su score fue de: &quot;;&#xa;&lt;/ Aqui defino el html /&gt;&#xa;&lt;html&gt;&#xa;&#x9;&lt;h1&gt;hola&lt;/h1&gt;&#xa;&#x9;&lt;h2&gt;prueba renderizado&lt;/h2&gt;&#xa;&#x9;&lt;br&gt;&#xa;&#x9;&lt;h2&gt;hola&lt;/h2&gt;&#xa;&#x9;&lt;br&gt;&#xa;&#x9;&lt;h1&gt;hola&lt;/h1&gt;&#xa;&lt;/html&gt;"/>
                           </Properties>
                         </Component>
                       </SubComponents>
