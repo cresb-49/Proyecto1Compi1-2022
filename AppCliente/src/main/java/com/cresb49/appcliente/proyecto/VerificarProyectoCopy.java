@@ -6,6 +6,14 @@ import org.apache.commons.io.FilenameUtils;
 
 public class VerificarProyectoCopy {
 
+    private static final String MODEL_JSON = "{\n"
+            + "    Score: \"\",\n"
+            + "    Clases: [],\n"
+            + "    Variables: [],\n"
+            + "    Metodos: [],\n"
+            + "    Comentarios: []\n"
+            + "}";
+
     public VerificarProyectoCopy() {
 
     }

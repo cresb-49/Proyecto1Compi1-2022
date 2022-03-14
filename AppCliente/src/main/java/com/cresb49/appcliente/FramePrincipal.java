@@ -12,15 +12,19 @@ import com.cresb49.appcliente.analizadores.json.AnalizarJson;
 import com.cresb49.appcliente.analizadores.json.obj.*;
 import com.cresb49.appcliente.comunicacion.Cliente;
 import com.cresb49.appcliente.comunicacion.Servidor;
+import com.cresb49.appcliente.proyecto.CrearArchivos;
 import com.cresb49.appcliente.proyecto.ProyectoCopy;
 import com.cresb49.appcliente.proyecto.VerificarProyectoCopy;
+import com.cresb49.appcliente.proyecto.exceptions.NotDirectoryCreate;
 import java.awt.HeadlessException;
 import java.awt.Image;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import java.io.InputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -454,18 +458,18 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     private void EnviarCarpetasJavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarCarpetasJavaActionPerformed
         // TODO add your handling code here:
         if (proyectoCopy == null) {
-            
+
         }
         if (carpeta1 != null && carpeta2 != null) {
             cliente = new Cliente(5000, "localhost");
             cliente.setMensaje("Hola desde la app cliente");
             Thread hilo = new Thread(cliente);
             hilo.start();
-        }else{
-            if(carpeta1!=null){
+        } else {
+            if (carpeta1 != null) {
                 JOptionPane.showMessageDialog(null, "Guardado exitoso!", "Guardado exitoso!", JOptionPane.INFORMATION_MESSAGE);
             }
-            if(carpeta2!=null){
+            if (carpeta2 != null) {
                 JOptionPane.showMessageDialog(null, "Guardado exitoso!", "Guardado exitoso!", JOptionPane.INFORMATION_MESSAGE);
             }
         }
@@ -516,12 +520,13 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         int respuesta = fc.showOpenDialog(this);
         if (respuesta == JFileChooser.APPROVE_OPTION) {
             File archivoElegido = fc.getSelectedFile();
+            this.cargarArchivo(archivoElegido);
         }
     }//GEN-LAST:event_AbrirProyectoActionPerformed
 
     private void GuardarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarProyectoActionPerformed
         // TODO add your handling code here:
-        ProyectoCopy proyectoCopy = new ProyectoCopy();
+        this.proyectoCopy = new ProyectoCopy();
 
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Todos los archivos *.copy", "copy", "COPY"));
@@ -529,64 +534,16 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         try {
             if (seleccion == JFileChooser.APPROVE_OPTION) {
                 File JFC = fileChooser.getSelectedFile();
-                String PATH = JFC.getAbsolutePath();
-                PrintWriter printwriter = new PrintWriter(JFC);
-                printwriter.print(proyectoCopy.proyectoToJson());
-                printwriter.close();
-
-                if (!(PATH.endsWith(".copy"))) {
-                    File temp = new File(PATH + ".copy");
-                    JFC.renameTo(temp);
-                }
-
+                CrearArchivos.crear_guardar(JFC, proyectoCopy);
                 JOptionPane.showMessageDialog(null, "Guardado exitoso!", "Guardado exitoso!", JOptionPane.INFORMATION_MESSAGE);
             }
-        } catch (HeadlessException | FileNotFoundException e) {
-            JOptionPane.showMessageDialog(null, "Error al guardar el archivo!", "Oops! Error", JOptionPane.ERROR_MESSAGE);
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, "Error al guardar el archivo!", "Oops! Error\n"+e.getMessage(), JOptionPane.ERROR_MESSAGE);
+        }catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Error al crear proyecto!", "Problemas con la escritura:\n"+ex.getMessage(), JOptionPane.INFORMATION_MESSAGE);
+        } catch (NotDirectoryCreate ex) {
+            JOptionPane.showMessageDialog(null, "Error al crear proyecto!", "Conflicto con directorios!\n"+"Escriba otro nombre, para el proyecto", JOptionPane.INFORMATION_MESSAGE);
         }
-
-        /*
-        if (proyectoCopy != null) {
-            if (proyectoCopy.getCarpeta1() != null) {
-                ArrayList<String> errores = VerificarProyectoCopy.verificarArchivos(proyectoCopy.getCarpeta1());
-                String mensaje = "";
-                for (String error : errores) {
-                    mensaje = mensaje + error + "\n";
-                }
-                if (!errores.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, mensaje);
-                    NombreCarpeta1.setText("no seleccionado");
-                    this.estadoCarpeta1(false);
-                } else {
-                    System.out.println("Cargamos carpeta1 al proyecto");
-                    this.estadoCarpeta1(true);
-                    this.NombreCarpeta1.setText(proyectoCopy.getCarpeta1().getName());
-                }
-            } else {
-
-            }
-            if (proyectoCopy.getCarpeta2() != null) {
-                ArrayList<String> errores = VerificarProyectoCopy.verificarArchivos(proyectoCopy.getCarpeta2());
-                String mensaje = "";
-                for (String error : errores) {
-                    mensaje = mensaje + error + "\n";
-                }
-                if (!errores.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, mensaje);
-                    NombreCarpeta1.setText("no seleccionado");
-                    this.estadoCarpeta1(false);
-                } else {
-                    System.out.println("Cargamos carpeta1 al proyecto");
-                    this.estadoCarpeta2(true);
-                    this.NombreCarpeta2.setText(proyectoCopy.getCarpeta2().getName());
-                }
-            } else {
-
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "No a inicializado un proyecto:\nCargue las carpetas y luego envie lo datos para crear el proyecto");
-        }
-         */
     }//GEN-LAST:event_GuardarProyectoActionPerformed
 
     private ReporteJson reportePrueba() {
@@ -764,5 +721,9 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             return fc.getSelectedFile();
         }
         return null;
+    }
+
+    private void cargarArchivo(File archivoElegido) {
+
     }
 }
