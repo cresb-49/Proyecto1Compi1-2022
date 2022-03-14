@@ -447,7 +447,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     private void EnviarCarpetasJavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarCarpetasJavaActionPerformed
         // TODO add your handling code here:
         if (proyectoCopy == null) {
-
+            
         }
         if (carpeta1 != null && carpeta2 != null) {
             cliente = new Cliente(5000, "localhost");
@@ -476,7 +476,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         }
         if (!errores.isEmpty()) {
             JOptionPane.showMessageDialog(this, mensaje);
-            this.proyectoCopy.setPathCarpeta2("");
+            this.proyectoCopy.setPathCarpeta1("");
+            this.carpeta1=null;
             this.estadoCarpeta1(false);
         } else {
             this.estadoCarpeta1(true);
@@ -497,6 +498,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             JOptionPane.showMessageDialog(this, mensaje);
             NombreCarpeta2.setText("no seleccionado");
             this.proyectoCopy.setPathCarpeta2("");
+            this.carpeta2=null;
             this.estadoCarpeta2(false);
         } else {
             this.estadoCarpeta2(true);
@@ -704,8 +706,10 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             label.setText(fc.getSelectedFile().getName());
             if(pos==1){
                 proyectoCopy.setPathCarpeta1(fc.getSelectedFile().getAbsolutePath());
+                this.carpeta1=fc.getSelectedFile();
             }else{
                 proyectoCopy.setPathCarpeta2(fc.getSelectedFile().getAbsolutePath());
+                this.carpeta2=fc.getSelectedFile();
             }
             return fc.getSelectedFile();
         }
