@@ -472,24 +472,29 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ArrayList<String> errores = VerificarProyectoCopy.verificarArchivos(this.seleccionarDirectorio(NombreCarpeta1));
+        if(this.proyectoCopy==null){
+            this.crearProyecto();
+        }
+        ArrayList<String> errores = VerificarProyectoCopy.verificarArchivos(this.seleccionarDirectorio(NombreCarpeta1,this.proyectoCopy,1));
         String mensaje = "";
         for (String error : errores) {
             mensaje = mensaje + error + "\n";
         }
         if (!errores.isEmpty()) {
             JOptionPane.showMessageDialog(this, mensaje);
-            NombreCarpeta1.setText("no seleccionado");
+            this.proyectoCopy.setPathCarpeta2("");
             this.estadoCarpeta1(false);
         } else {
-            System.out.println("Cargamos carpeta1 al proyecto");
             this.estadoCarpeta1(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ArrayList<String> errores = VerificarProyectoCopy.verificarArchivos(this.seleccionarDirectorio(NombreCarpeta2));
+        if(this.proyectoCopy==null){
+            this.crearProyecto();
+        }
+        ArrayList<String> errores = VerificarProyectoCopy.verificarArchivos(this.seleccionarDirectorio(NombreCarpeta2,this.proyectoCopy,2));
         String mensaje = "";
         for (String error : errores) {
             mensaje = mensaje + error;
@@ -497,9 +502,9 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         if (!errores.isEmpty()) {
             JOptionPane.showMessageDialog(this, mensaje);
             NombreCarpeta2.setText("no seleccionado");
+            this.proyectoCopy.setPathCarpeta2("");
             this.estadoCarpeta2(false);
         } else {
-            System.out.println("Cargamos carpeta2 al proyecto");
             this.estadoCarpeta2(true);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -507,11 +512,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     private void AbrirProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirProyectoActionPerformed
         // TODO add your handling code here:
         JFileChooser fc = new JFileChooser();
-
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos", "copy");
-
         fc.setFileFilter(filter);
-
         int respuesta = fc.showOpenDialog(this);
         if (respuesta == JFileChooser.APPROVE_OPTION) {
             File archivoElegido = fc.getSelectedFile();
@@ -525,7 +527,11 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             this.proyectoCopy = new ProyectoCopy();
             this.crear_guardar_proyecto();
         }else{
-            
+            if(proyectoCopy.getPathCarpetaProyecto().isEmpty()||proyectoCopy.getPathCarpetaProyecto().isBlank()){
+                this.crear_guardar_proyecto();
+            }else{
+                this.guardar_proyecto();
+            }
         }
         
     }//GEN-LAST:event_GuardarProyectoActionPerformed
@@ -694,7 +700,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         hilo.start();
     }
 
-    private File seleccionarDirectorio(JLabel label) {
+    private File seleccionarDirectorio(JLabel label,ProyectoCopy proyectoCopy,int pos) {
         JFileChooser fc = new JFileChooser();
 
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -702,6 +708,11 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         int respuesta = fc.showOpenDialog(this);
         if (respuesta == JFileChooser.APPROVE_OPTION) {
             label.setText(fc.getSelectedFile().getName());
+            if(pos==1){
+                proyectoCopy.setPathCarpeta1(fc.getSelectedFile().getAbsolutePath());
+            }else{
+                proyectoCopy.setPathCarpeta2(fc.getSelectedFile().getAbsolutePath());
+            }
             return fc.getSelectedFile();
         }
         return null;
@@ -710,7 +721,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     private void cargarArchivo(File archivoElegido) {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivoElegido))){
             this.proyectoCopy = (ProyectoCopy) ois.readObject();
-            JOptionPane.showMessageDialog(this, "Guardado exitoso!", "Guardado exitoso!", JOptionPane.INFORMATION_MESSAGE);
+            System.out.println(this.proyectoCopy.toString());
+            JOptionPane.showMessageDialog(this, "Carga exitosa!", "Carga exitosa!", JOptionPane.INFORMATION_MESSAGE);
         } catch (ClassNotFoundException e) {
             JOptionPane.showMessageDialog(this, "Error al cargar el archivo!", "El archivo que desea cargar esta dañado" + e.getMessage(), JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
@@ -735,5 +747,13 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         } catch (NotDirectoryCreate ex) {
             JOptionPane.showMessageDialog(this, "Error al crear proyecto!", "Conflicto con directorios!\n" + "Escriba otro nombre, para el proyecto", JOptionPane.INFORMATION_MESSAGE);
         }
+    }
+    
+    private void crearProyecto(){
+        this.proyectoCopy = new ProyectoCopy();
+    }
+
+    private void guardar_proyecto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

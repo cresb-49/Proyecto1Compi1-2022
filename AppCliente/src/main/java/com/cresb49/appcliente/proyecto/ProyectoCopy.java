@@ -50,4 +50,10 @@ public class ProyectoCopy implements Serializable{
     public void setPathArchivoJson(String pathArchivoJson) {
         this.pathArchivoJson = pathArchivoJson;
     }   
+
+    @Override
+    public String toString() {
+        return "ProyectoCopy{" + "pathCarpeta1=" + pathCarpeta1 + ", pathCarpeta2=" + pathCarpeta2 + ", pathArchivDef=" + pathArchivDef + ", pathCarpetaProyecto=" + pathCarpetaProyecto + ", pathArchivoJson=" + pathArchivoJson + '}';
+    }
+    
 }

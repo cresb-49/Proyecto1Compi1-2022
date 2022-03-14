@@ -24,8 +24,10 @@ public class CrearArchivos {
         File archivoJson = new File(pathJson);
         File archivoDef = new File(pathDef);
         
+        proyectoCopy.setPathCarpetaProyecto(carpeta);
         proyectoCopy.setPathArchivDef(pathDef);
         proyectoCopy.setPathArchivoJson(pathJson);
+        
         
         if (!carpetaFile.exists()) {
             
