@@ -76,7 +76,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             System.out.println("funciono");
             //ImagenEstadoCarpeta1.setIcon(new ImageIcon(image.getScaledInstance(190, 190, Image.SCALE_DEFAULT)));
         } catch (Exception ex) {
-            Logger.getLogger(FramePrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
 

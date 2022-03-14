@@ -1,8 +1,10 @@
 package com.cresb49.appcliente.proyecto;
 
 import com.cresb49.appcliente.proyecto.exceptions.NotDirectoryCreate;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import javax.swing.JOptionPane;
@@ -30,6 +32,12 @@ public class CrearArchivos {
             carpetaFile.mkdir();
             archivoDef.createNewFile();
             archivoJson.createNewFile();
+            
+            FileWriter fw = new FileWriter(archivoJson);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(VerificarProyectoCopy.MODEL_JSON);
+            bw.close();
+            
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(pathCopy));
             oos.writeObject(proyectoCopy);
             oos.close();
