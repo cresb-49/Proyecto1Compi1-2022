@@ -31,11 +31,11 @@ public class TablaEjecucion {
 
         switch (accion) {
             case Token.VIEW:
-                return "VIEW";
+                return "VIEW     ";
             case Token.PRINT:
-                return "PRINT";
+                return "PRINT    ";
             case Token.CAMBIAR:
-                return "CAMBIAR";
+                return "CAMBIAR  ";
             case Token.CONSULTAR:
                 return "CONSULTAR";
             case Token.BUCLE_INI:
