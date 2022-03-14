@@ -451,7 +451,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         } else {
 
             if (this.proyectoCopy.getPathCarpetaProyecto().isBlank() || this.proyectoCopy.getPathCarpetaProyecto().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Crear Proyecto", "Para continuar genere un poryecto", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Para continuar genere un proyecto", "Crear Proyecto" ,JOptionPane.INFORMATION_MESSAGE);
                 this.crear_guardar_proyecto();
             }
             if (!(this.proyectoCopy.getPathCarpetaProyecto().isBlank() || this.proyectoCopy.getPathCarpetaProyecto().isEmpty())) {
