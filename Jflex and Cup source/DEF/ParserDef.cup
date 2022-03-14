@@ -137,7 +137,7 @@ scan with {: return this.lexerDef.next_token(); :};
 
 /* Terminals (tokens returned by the scanner). */
 terminal    CO_A,CO_C,LLA_A,LLA_C,PA_A,PA_C,COMA,DOSPUNTOS,PUNTOCOMA,STRING,ENTERO,
-            INT,STR,HTML,H1,H2,TABLE,FOR,TR,TD,BR,ITERATOR,HASTA,TEXT,
+            INT,STR,HTML,H1,H2,TABLE,FOR,TR,TH,TD,BR,ITERATOR,HASTA,TEXT,
             D_PA_A,PA_C_D,ID,EQUAL,ME_Q,MA_Q,ME_QB,MAS,MENOS,DIV,MUL;
 
 
@@ -146,7 +146,7 @@ non terminal                        ini,asig,dec,decn,def;
 non terminal Pila<Token>            decp;
 non terminal Operacion              exp,t,f;
 
-non terminal                        html,htmlp,contHTML,inertags,inertagsp;
+non terminal                        html,htmlp,contHTML,inertags,inertagsp,table,tablec,trc,metFor,contFor,tdc,thc,thcp,tdcp;
 
 
 /* Inicio de las reglas gramticales*/
@@ -317,6 +317,7 @@ htmlp   ::= ME_Q HTML MA_Q contHTML
         ;
 
 contHTML    ::= contHTML inertags
+            |   contHTML table
             |
             ;
 
@@ -325,6 +326,27 @@ inertags   ::=  ME_Q BR MA_Q
             |   ME_Q H2 MA_Q inertagsp ME_QB H2 MA_Q
             ;
 
-inertagsp   ::=  inertags
-            |    TEXT
+inertagsp   ::= inertags
+            |   TEXT:txt
+            |   D_PA_A ID:var PA_C_D
             ;
+
+table   ::= ME_Q TABLE MA_Q tablec ME_QB TABLE MA_Q
+        ;
+
+tablec  ::= tablec ME_Q TR MA_Q trc ME_QB TR MA_Q
+        |   ME_Q TR MA_Q trc ME_QB TR MA_Q
+        ;
+
+trc ::= ME_Q TH MA_Q thc ME_QB TH MA_Q
+    |   ME_Q TD MA_Q tdc ME_QB TD MA_Q
+    ;
+
+thc ::= ME_Q TH MA_Q inertags ME_QB TH MA_Q
+    ;
+
+tdc ::= ME_Q TD MA_Q inertags ME_QB TD MA_Q
+    ;
+
+metFor  ::= ME_Q FOR ITERATOR DOSPUNTOS exp:iter HASTA DOSPUNTOS exp:max PUNTOCOMA MA_Q contFor:contenido ME_QB FOR MA_Q
+        ;
