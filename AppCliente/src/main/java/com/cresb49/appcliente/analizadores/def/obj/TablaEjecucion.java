@@ -23,7 +23,7 @@ public class TablaEjecucion {
     public void imprimirTabla() {
         System.out.println("---------------TABLA DE EJECUCION----------------");
         for (Token ejecucion : ejecuciones) {
-            System.out.println(ejecucion.getValorToken());
+            System.out.println("Accion: "+ ejecucion.getAccion()+",Valor: "+ejecucion.getValorToken());
         }
     }
 }

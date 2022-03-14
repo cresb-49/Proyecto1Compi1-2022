@@ -144,7 +144,7 @@ text = [\w]+([ ]+[/w]+)*
     "for"           {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
-                        this.actual.setAccion(Token.PRINT);
+                        this.actual.setAccion(Token.BUCLE);
                         this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.FOR,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("for: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));

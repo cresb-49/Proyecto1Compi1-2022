@@ -41,6 +41,7 @@ public class TablaSimbolos {
     public void imprimirTabla(){
         System.out.println("---------------TABLA DE SIMBOLOS----------------");
         for (FilaTabla fila : filas) {
+
             System.out.println(fila.toString());
         }
         

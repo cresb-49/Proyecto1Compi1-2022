@@ -1064,6 +1064,7 @@ public class LexerDef implements java_cup.runtime.Scanner {
           {     this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,this.anterior);
     this.anterior = this.actual;
     this.habilitar_cont = false;
+    this.contador_tokens = 0;
     return new java_cup.runtime.Symbol(ParserDefSym.EOF,yyline+1,yycolumn+1,this.actual);
  }
       }
@@ -1379,7 +1380,7 @@ public class LexerDef implements java_cup.runtime.Scanner {
           case 40:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
-                        this.actual.setAccion(Token.PRINT);
+                        this.actual.setAccion(Token.BUCLE);
                         this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.FOR,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("for: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
