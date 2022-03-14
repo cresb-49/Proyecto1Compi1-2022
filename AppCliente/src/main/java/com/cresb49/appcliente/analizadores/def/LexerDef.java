@@ -6,6 +6,7 @@ package com.cresb49.appcliente.analizadores.def;
 
 import com.cresb49.appcliente.analizadores.Token;
 import com.cresb49.appcliente.analizadores.ErrorAnalisis;
+import com.cresb49.appcliente.analizadores.def.obj.TablaEjecucion;
 
 import java.util.ArrayList;
 import java_cup.runtime.*;
@@ -615,10 +616,15 @@ public class LexerDef implements java_cup.runtime.Scanner {
     private static final String ERROR_TYPE = "Léxico";
     private Token anterior;
     private Token actual; 
+    private boolean habilitar_cont=false;
+
+    private int contador_tokens = 0;
 
     private int stringColumnInit = 0; 
     private StringBuffer string = new StringBuffer();
     private ArrayList<ErrorAnalisis> errors;
+
+    private TablaEjecucion tablaEjecucion;
 
     public void setErrors(ArrayList<ErrorAnalisis> errors) {
         this.errors = errors;
@@ -630,6 +636,17 @@ public class LexerDef implements java_cup.runtime.Scanner {
 
     private void addError(ErrorAnalisis error){
         this.errors.add(error);
+    }
+
+    private void habilitar_conteo(){
+        this.habilitar_cont = true;
+    }
+
+    private void asig_valor_agregar_tabla_ejecucion(Token token){
+        if(habilitar_cont){
+            token.setId(contador_tokens);
+            contador_tokens++;
+        }
     }
 
 
@@ -1037,6 +1054,7 @@ public class LexerDef implements java_cup.runtime.Scanner {
             zzDoEOF();
           {     this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,this.anterior);
     this.anterior = this.actual;
+    this.habilitar_cont = false;
     return new java_cup.runtime.Symbol(ParserDefSym.EOF,yyline+1,yycolumn+1,this.actual);
  }
       }
@@ -1220,6 +1238,8 @@ public class LexerDef implements java_cup.runtime.Scanner {
           case 24:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        this.actual.setAccion(Token.PRINT);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.TEXT,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("text: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
@@ -1245,6 +1265,8 @@ public class LexerDef implements java_cup.runtime.Scanner {
           case 27:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        this.actual.setAccion(Token.PRINT);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.BR,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("br: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
@@ -1253,6 +1275,8 @@ public class LexerDef implements java_cup.runtime.Scanner {
           case 28:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        this.actual.setAccion(Token.PRINT);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.H1,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("h1: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
@@ -1261,6 +1285,8 @@ public class LexerDef implements java_cup.runtime.Scanner {
           case 29:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        this.actual.setAccion(Token.PRINT);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.H2,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("h2: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
@@ -1269,6 +1295,8 @@ public class LexerDef implements java_cup.runtime.Scanner {
           case 30:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        this.actual.setAccion(Token.PRINT);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.TD,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("td: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
@@ -1277,6 +1305,8 @@ public class LexerDef implements java_cup.runtime.Scanner {
           case 31:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        this.actual.setAccion(Token.PRINT);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.TH,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("tr: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
@@ -1285,6 +1315,8 @@ public class LexerDef implements java_cup.runtime.Scanner {
           case 32:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        this.actual.setAccion(Token.PRINT);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.TR,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("tr: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
@@ -1338,6 +1370,8 @@ public class LexerDef implements java_cup.runtime.Scanner {
           case 40:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        this.actual.setAccion(Token.PRINT);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.FOR,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("for: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
@@ -1353,8 +1387,11 @@ public class LexerDef implements java_cup.runtime.Scanner {
             // fall through
           case 89: break;
           case 42:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+            { habilitar_conteo();
+                        this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        this.actual.setAccion(Token.PRINT);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.HTML,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("html: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
@@ -1376,6 +1413,8 @@ public class LexerDef implements java_cup.runtime.Scanner {
           case 45:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        this.actual.setAccion(Token.PRINT);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.TABLE,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("table: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }

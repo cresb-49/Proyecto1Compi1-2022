@@ -2,6 +2,7 @@ package com.cresb49.appcliente.analizadores.def;
 
 import com.cresb49.appcliente.analizadores.Token;
 import com.cresb49.appcliente.analizadores.ErrorAnalisis;
+import com.cresb49.appcliente.analizadores.def.obj.TablaEjecucion;
 
 import java.util.ArrayList;
 import java_cup.runtime.*;
@@ -20,10 +21,15 @@ import java_cup.runtime.*;
     private static final String ERROR_TYPE = "Léxico";
     private Token anterior;
     private Token actual; 
+    private boolean habilitar_cont=false;
+
+    private int contador_tokens = 0;
 
     private int stringColumnInit = 0; 
     private StringBuffer string = new StringBuffer();
     private ArrayList<ErrorAnalisis> errors;
+
+    private TablaEjecucion tablaEjecucion;
 
     public void setErrors(ArrayList<ErrorAnalisis> errors) {
         this.errors = errors;
@@ -37,10 +43,22 @@ import java_cup.runtime.*;
         this.errors.add(error);
     }
 
+    private void habilitar_conteo(){
+        this.habilitar_cont = true;
+    }
+
+    private void asig_valor_agregar_tabla_ejecucion(Token token){
+        if(habilitar_cont){
+            token.setId(contador_tokens);
+            contador_tokens++;
+        }
+    }
+
 %}
 %eofval{
     this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,this.anterior);
     this.anterior = this.actual;
+    this.habilitar_cont = false;
     return new java_cup.runtime.Symbol(ParserDefSym.EOF,yyline+1,yycolumn+1,this.actual);
 %eofval}
 
@@ -81,56 +99,75 @@ text = [\w]+([ ]+[/w]+)*
                         //System.out.println("String: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     "html"          {
+                        habilitar_conteo();
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        this.actual.setAccion(Token.PRINT);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.HTML,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("html: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     "h1"            {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        this.actual.setAccion(Token.PRINT);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.H1,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("h1: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     "h2"            {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        this.actual.setAccion(Token.PRINT);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.H2,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("h2: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     "table"         {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        this.actual.setAccion(Token.PRINT);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.TABLE,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("table: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     "for"           {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        this.actual.setAccion(Token.PRINT);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.FOR,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("for: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     "th"            {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        this.actual.setAccion(Token.PRINT);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.TH,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("tr: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     "tr"            {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        this.actual.setAccion(Token.PRINT);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.TR,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("tr: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     "td"            {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        this.actual.setAccion(Token.PRINT);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.TD,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("td: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     "br"            {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        this.actual.setAccion(Token.PRINT);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.BR,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("br: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
@@ -320,6 +357,8 @@ text = [\w]+([ ]+[/w]+)*
     {text}          { 
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        this.actual.setAccion(Token.PRINT);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.TEXT,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("text: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
