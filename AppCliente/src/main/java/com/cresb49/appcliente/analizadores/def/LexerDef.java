@@ -645,7 +645,7 @@ public class LexerDef implements java_cup.runtime.Scanner {
         this.ingresar_id = true;
     }
     private void dehabilitar_ingresar_id(){
-        this.ingresar_id = true;
+        this.ingresar_id = false;
     }
 
     public TablaEjecucion getTablaEjecucion() {
@@ -1434,6 +1434,7 @@ public class LexerDef implements java_cup.runtime.Scanner {
           case 44:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        dehabilitar_ingresar_id();
                         return new Symbol(ParserDefSym.HASTA,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("hasta: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }

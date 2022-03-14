@@ -52,7 +52,7 @@ import java_cup.runtime.*;
         this.ingresar_id = true;
     }
     private void dehabilitar_ingresar_id(){
-        this.ingresar_id = true;
+        this.ingresar_id = false;
     }
 
     public TablaEjecucion getTablaEjecucion() {
@@ -207,6 +207,7 @@ text = [\w]+([ ]+[\w]+)*
     "hasta"         {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        dehabilitar_ingresar_id();
                         return new Symbol(ParserDefSym.HASTA,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("hasta: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }

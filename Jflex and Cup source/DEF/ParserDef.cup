@@ -160,7 +160,7 @@ non terminal Pila<Token>            decp;
 non terminal Operacion              exp,t,f;
 
 non terminal                        html,htmlp,contHTML,inertags,inertagsp,inertagspp,table,tablec,trc,metFor,contFor,tdc,thc,tablecpp,actionfor,
-                                    tdcp,thcp;
+                                    tdcp,thcp,paramhasta;
 
 
 /* Inicio de las reglas gramticales*/
@@ -455,11 +455,17 @@ tdcp ::= tdcp inertags
 metFor  ::= ME_Q actionfor
         ;
 
-actionfor   ::= FOR:tagini ITERATOR:it DOSPUNTOS ID:var_ite HASTA:has DOSPUNTOS exp:max PUNTOCOMA MA_Q contFor:contenido ME_QB FOR:tagfin MA_Q  {:
-                                                                                                                                                    verificar_tipo_var_for((Token)var_ite,TablaSimbolos.INT);
-                                                                                                                                                    tagini.setAccion(Token.BUCLE_INI);
-                                                                                                                                                    tagfin.setAccion(Token.BUCLE_FIN);
-                                                                                                                                                :}
+actionfor   ::= FOR:tagini ITERATOR:it DOSPUNTOS ID:var_ite HASTA:has DOSPUNTOS paramhasta:max PUNTOCOMA MA_Q contFor:contenido ME_QB FOR:tagfin MA_Q   {:
+                                                                                                                                                            verificar_tipo_var_for((Token)var_ite,TablaSimbolos.INT);
+                                                                                                                                                            tagini.setAccion(Token.BUCLE_INI);
+                                                                                                                                                            tagfin.setAccion(Token.BUCLE_FIN);
+                                                                                                                                                        :}
+            ;
+paramhasta ::=  ID:var  {:
+                            verificar_tipo_var_for((Token)var,TablaSimbolos.INT);
+                        :}
+            |   ENTERO
+            |   error MA_Q
             ;
 
 contFor ::= tablec
