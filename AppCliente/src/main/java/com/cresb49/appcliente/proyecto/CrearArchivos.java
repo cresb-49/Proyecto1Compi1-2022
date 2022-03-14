@@ -22,15 +22,17 @@ public class CrearArchivos {
         File archivoJson = new File(pathJson);
         File archivoDef = new File(pathDef);
         
+        proyectoCopy.setPathArchivDef(pathDef);
+        proyectoCopy.setPathArchivoJson(pathJson);
         
         if (!carpetaFile.exists()) {
-            carpetaFile.mkdir();
             
+            carpetaFile.mkdir();
             archivoDef.createNewFile();
             archivoJson.createNewFile();
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(pathCopy));
             oos.writeObject(proyectoCopy);
-            
+            oos.close();
         } else {
             throw new NotDirectoryCreate();
         }
