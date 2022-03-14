@@ -53,7 +53,6 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         this.setLocationRelativeTo(null);
         this.cargarImagenes();
         this.inicializarServidor();
-        this.renderizarHTML();
         this.cargarEstadoCarpetas();
     }
 
@@ -605,51 +604,6 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
                 new FramePrincipal().setVisible(true);
             }
         });
-    }
-
-    public void renderizarHTML() {
-        JEditorPane panelHTML = this.VentanaHTML;
-        panelHTML.setContentType("text/html");
-        panelHTML.setText(
-                "<html>\n"
-                + "<h1>TITULO<h1>\n"
-                + "     <body>\n"
-                + "        <table border=\"1\">\n"
-                + "            <tr>\n"
-                + "                <th>Numero</th>\n"
-                + "                <th>Variable</th>\n"
-                + "                <th>Tipo</th>\n"
-                + "                <th>Función</th>\n"
-                + "            </tr>\n"
-                + "            <tr>\n"
-                + "                <td>1</td>\n"
-                + "                <td>2</td>\n"
-                + "                <td>3</td>\n"
-                + "                <td>4</td>\n"
-                + "            </tr>\n"
-                + "            <tr>\n"
-                + "                <td>1</td>\n"
-                + "                <td>2</td>\n"
-                + "                <td>3</td>\n"
-                + "                <td>4</td>\n"
-                + "            </tr>\n"
-                + "            <tr>\n"
-                + "                <td>1</td>\n"
-                + "                <td>2</td>\n"
-                + "                <td>3</td>\n"
-                + "                <td>4</td>\n"
-                + "            </tr>\n"
-                + "            <tr>\n"
-                + "                <td>1</td>\n"
-                + "                <td>2</td>\n"
-                + "                <td>3</td>\n"
-                + "                <td>4</td>\n"
-                + "            </tr>\n"
-                + "        </table>\n"
-                + "     </body>\n"
-                + "</html>"
-        );
-
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
