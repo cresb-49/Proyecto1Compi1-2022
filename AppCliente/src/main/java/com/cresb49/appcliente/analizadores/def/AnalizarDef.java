@@ -1,6 +1,7 @@
 package com.cresb49.appcliente.analizadores.def;
 
 import com.cresb49.appcliente.analizadores.ErrorAnalisis;
+import com.cresb49.appcliente.analizadores.def.obj.TablaEjecucion;
 import com.cresb49.appcliente.analizadores.def.obj.exceptions.NoReporteJson;
 import com.cresb49.appcliente.analizadores.json.obj.ReporteJson;
 import java.io.Reader;
@@ -24,6 +25,7 @@ public class AnalizarDef {
             errores = new ArrayList<>();
             lexerDef = new LexerDef(reader);
             lexerDef.setErrors(errores);
+            lexerDef.setTablaEjecucion(new TablaEjecucion());
             parserDef = new ParserDef(lexerDef);
             try {
                 parserDef.parse();
@@ -37,6 +39,7 @@ public class AnalizarDef {
             }
             //System.err.println("----------------VALORES RECUPERADOS-------------------");
             parserDef.getTablaSimbolos().imprimirTabla();
+            lexerDef.getTablaEjecucion().imprimirTabla();
         }
     }
     

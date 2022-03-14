@@ -47,9 +47,18 @@ import java_cup.runtime.*;
         this.habilitar_cont = true;
     }
 
+    public TablaEjecucion getTablaEjecucion() {
+        return tablaEjecucion;
+    }
+
+    public void setTablaEjecucion(TablaEjecucion tablaEjecucion) {
+        this.tablaEjecucion = tablaEjecucion;
+    }
+
     private void asig_valor_agregar_tabla_ejecucion(Token token){
         if(habilitar_cont){
             token.setId(contador_tokens);
+            this.tablaEjecucion.getFilas().add(token);
             contador_tokens++;
         }
     }
@@ -59,6 +68,7 @@ import java_cup.runtime.*;
     this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,this.anterior);
     this.anterior = this.actual;
     this.habilitar_cont = false;
+    this.contador_tokens = 0;
     return new java_cup.runtime.Symbol(ParserDefSym.EOF,yyline+1,yycolumn+1,this.actual);
 %eofval}
 

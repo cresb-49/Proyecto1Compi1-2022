@@ -642,9 +642,18 @@ public class LexerDef implements java_cup.runtime.Scanner {
         this.habilitar_cont = true;
     }
 
+    public TablaEjecucion getTablaEjecucion() {
+        return tablaEjecucion;
+    }
+
+    public void setTablaEjecucion(TablaEjecucion tablaEjecucion) {
+        this.tablaEjecucion = tablaEjecucion;
+    }
+
     private void asig_valor_agregar_tabla_ejecucion(Token token){
         if(habilitar_cont){
             token.setId(contador_tokens);
+            this.tablaEjecucion.getFilas().add(token);
             contador_tokens++;
         }
     }

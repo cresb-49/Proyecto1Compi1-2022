@@ -8,15 +8,22 @@ public class TablaEjecucion {
 
     ArrayList<Token> ejecuciones;
 
-    public TablaEjecucion(){
+    public TablaEjecucion() {
         ejecuciones = new ArrayList<>();
     }
+    
+    public ArrayList<Token> getFilas(){
+        return ejecuciones;
+    }
+    
+    public void resetTabla(){
+        ejecuciones.clear();
+    }
 
-    public void imprimirTabla(){
+    public void imprimirTabla() {
         System.out.println("---------------TABLA DE EJECUCION----------------");
         for (Token ejecucion : ejecuciones) {
-            System.out.println(ejecucion.toString());
+            System.out.println(ejecucion.getValorToken());
         }
-        
     }
 }
