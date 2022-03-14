@@ -310,10 +310,10 @@ f   ::= ID:val      {:
     ;
 /*Gramatica para lenguaje HTML*/
 
-html    ::= htmlp ME_QB HTML MA_Q
+html    ::= htmlp ME_QB HTML:tagfin MA_Q
         ;
 
-htmlp   ::= ME_Q HTML MA_Q contHTML
+htmlp   ::= ME_Q HTML:tagini MA_Q contHTML
         ;
 
 contHTML    ::= contHTML inertags
@@ -335,13 +335,13 @@ inertagsp   ::= inertags
             |   D_PA_A ID:var PA_C_D
             ;
 
-table   ::= ME_Q TABLE MA_Q tablec ME_QB TABLE MA_Q
+table   ::= ME_Q TABLE:tagini MA_Q tablec ME_QB TABLE:tagfin MA_Q
         |   error MA_Q
         ;
 
 tablec  ::= tablec ME_Q tablecpp
         |   ME_Q inertagspp
-        |   ME_Q TR MA_Q trc ME_QB TR MA_Q
+        |   ME_Q TR:tagini MA_Q trc ME_QB TR:tagfin MA_Q
         |   ME_Q actionfor
         |   tablec error
         ;
@@ -351,11 +351,11 @@ tablecpp    ::= TR MA_Q trc ME_QB TR MA_Q
             |   actionfor
             ;
 
-trc ::= trc ME_Q TH MA_Q thc ME_QB TH MA_Q
-    |   trc ME_Q TD MA_Q tdc ME_QB TD MA_Q
+trc ::= trc ME_Q TH:tagini MA_Q thc ME_QB TH:tagfin MA_Q
+    |   trc ME_Q TD:tagini MA_Q tdc ME_QB TD:tagfin MA_Q
     |   trc inertags
-    |   ME_Q TH MA_Q thc ME_QB TH MA_Q
-    |   ME_Q TD MA_Q tdc ME_QB TD MA_Q
+    |   ME_Q TH:tagini MA_Q thc ME_QB TH:tagfin MA_Q
+    |   ME_Q TD:tagini MA_Q tdc ME_QB TD:tagfin MA_Q
     |   inertags
     |   trc error
     ;
@@ -381,7 +381,7 @@ tdc ::= tdc inertags
 metFor  ::= ME_Q actionfor
         ;
 
-actionfor   ::= FOR ITERATOR DOSPUNTOS exp:iter HASTA DOSPUNTOS exp:max PUNTOCOMA MA_Q contFor:contenido ME_QB FOR MA_Q
+actionfor   ::= FOR:tagini ITERATOR DOSPUNTOS exp:iter HASTA DOSPUNTOS exp:max PUNTOCOMA MA_Q contFor:contenido ME_QB FOR:tagfin MA_Q
             ;
 
 contFor ::= tablec
