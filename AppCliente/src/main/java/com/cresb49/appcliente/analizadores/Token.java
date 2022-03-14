@@ -1,6 +1,14 @@
 package com.cresb49.appcliente.analizadores;
 
 public class Token {
+
+    //CONSTANTES DE TOKENS
+    public static final int VIEW = 0;
+    public static final int PRINT = 1;
+    public static final int CAMBIAR = 3;
+    public static final int CONSULTAR = 4;
+    
+
     private String lexema;
     private Object value;
     private int linea;
@@ -8,7 +16,25 @@ public class Token {
     private Token sigToken;
     private Token antToken;
 
+
+    //ATRIBUTOS ESPECIALES DE LOS TOKENS
+    private int id;
+    private int accion;
+    private Object valorToken;
+
+
     public Token(String lexema, Object value, int linea, int columna, Token sigToken, Token antToken) {
+        this.lexema = lexema;
+        this.value = value;
+        this.linea = linea;
+        this.columna = columna;
+        this.sigToken = sigToken;
+        this.antToken = antToken;
+    }
+
+
+    public Token(int id,String lexema, Object value, int linea, int columna, Token sigToken, Token antToken) {
+        this.id = id;
         this.lexema = lexema;
         this.value = value;
         this.linea = linea;
@@ -66,5 +92,29 @@ public class Token {
 
     public void setAntToken(Token antToken) {
         this.antToken = antToken;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getAccion() {
+        return accion;
+    }
+
+    public void setAccion(int accion) {
+        this.accion = accion;
+    }
+
+    public Object getValorToken() {
+        return valorToken;
+    }
+
+    public void setValorToken(Object valorToken) {
+        this.valorToken = valorToken;
     }
 }
