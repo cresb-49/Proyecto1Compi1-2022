@@ -5,34 +5,28 @@
  */
 package com.cresb49.appcliente;
 
-import com.cresb49.appcliente.analizadores.ErrorAnalisis;
+import com.cresb49.appcliente.analizadores.*;
 import com.cresb49.appcliente.analizadores.def.AnalizarDef;
 import com.cresb49.appcliente.analizadores.def.obj.exceptions.NoReporteJson;
 import com.cresb49.appcliente.analizadores.json.AnalizarJson;
-import com.cresb49.appcliente.analizadores.json.obj.*;
-import com.cresb49.appcliente.comunicacion.Cliente;
-import com.cresb49.appcliente.comunicacion.Servidor;
-import com.cresb49.appcliente.proyecto.CrearArchivos;
-import com.cresb49.appcliente.proyecto.ProyectoCopy;
-import com.cresb49.appcliente.proyecto.VerificarProyectoCopy;
+import com.cresb49.appcliente.analizadores.json.obj.Clase;
+import com.cresb49.appcliente.analizadores.json.obj.Comentario;
+import com.cresb49.appcliente.analizadores.json.obj.Metodo;
+import com.cresb49.appcliente.analizadores.json.obj.ReporteJson;
+import com.cresb49.appcliente.analizadores.json.obj.Variable;
+import com.cresb49.appcliente.comunicacion.*;
+import com.cresb49.appcliente.proyecto.*;
 import com.cresb49.appcliente.proyecto.exceptions.NotDirectoryCreate;
 import java.awt.HeadlessException;
 import java.awt.Image;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JEditorPane;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
