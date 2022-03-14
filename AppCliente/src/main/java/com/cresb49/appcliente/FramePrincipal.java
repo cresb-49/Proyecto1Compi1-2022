@@ -38,6 +38,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     private Cliente cliente = null;
     private Image imagenCarpeta = null;
     private Image imagenNoCarga = null;
+
+    private String generalPath = null;
     private ProyectoCopy proyectoCopy = null;
 
     private File carpeta1 = null;
@@ -127,12 +129,14 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         jPanel6 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         ConsolaDef = new javax.swing.JTextPane();
+        jButton5 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TextPaneJson = new javax.swing.JTextPane();
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane2 = new javax.swing.JTextPane();
+        jButton6 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         VentanaHTML = new javax.swing.JEditorPane();
@@ -264,6 +268,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
         );
 
+        jButton5.setText("GUARDAR MODIFICACIONES");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -276,8 +282,9 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addComponent(ButtonEjecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jButton5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -288,7 +295,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonEjecutar)
-                    .addComponent(jButton4))
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -308,6 +316,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
         jScrollPane2.setViewportView(jTextPane2);
 
+        jButton6.setText("GUARDAR MODIFICACIONES");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -315,21 +325,26 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jButton6)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton6)
+                    .addComponent(jButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addGap(14, 14, 14))
         );
 
         jTabbedPane2.addTab("resultado.json", jPanel3);
@@ -418,15 +433,6 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-
-        AnalizarJson analizarJson = new AnalizarJson();
-        String texto = TextPaneJson.getText();
-        analizarJson.ejecutar(texto);
-
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void ButtonEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonEjecutarActionPerformed
         // TODO add your handling code here:
         try {
@@ -447,11 +453,11 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     private void EnviarCarpetasJavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarCarpetasJavaActionPerformed
         // TODO add your handling code here:
         if (this.proyectoCopy == null) {
-            JOptionPane.showMessageDialog(this,"No hay un proyecto cargado al programa","Sin proyecto cargado", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No hay un proyecto cargado al programa", "Sin proyecto cargado", JOptionPane.INFORMATION_MESSAGE);
         } else {
 
             if (this.proyectoCopy.getPathCarpetaProyecto().isBlank() || this.proyectoCopy.getPathCarpetaProyecto().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Para continuar genere un proyecto", "Crear Proyecto" ,JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Para continuar genere un proyecto", "Crear Proyecto", JOptionPane.INFORMATION_MESSAGE);
                 this.crear_guardar_proyecto();
             }
             if (!(this.proyectoCopy.getPathCarpetaProyecto().isBlank() || this.proyectoCopy.getPathCarpetaProyecto().isEmpty())) {
@@ -522,8 +528,13 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     private void GuardarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarProyectoActionPerformed
         // TODO add your handling code here:
         if (proyectoCopy == null) {
-            this.proyectoCopy = new ProyectoCopy();
-            this.crear_guardar_proyecto();
+
+            if (carpeta1 != null && carpeta2 != null) {
+                this.proyectoCopy = new ProyectoCopy();
+                this.crear_guardar_proyecto();
+            } else {
+                JOptionPane.showMessageDialog(this, "Cargue las dos carpetas con archivos JAVA", "Cargue los archivos JAVA", JOptionPane.INFORMATION_MESSAGE);
+            }
         } else {
             if (proyectoCopy.getPathCarpetaProyecto().isEmpty() || proyectoCopy.getPathCarpetaProyecto().isBlank()) {
                 this.crear_guardar_proyecto();
@@ -533,6 +544,14 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         }
 
     }//GEN-LAST:event_GuardarProyectoActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+
+        AnalizarJson analizarJson = new AnalizarJson();
+        String texto = TextPaneJson.getText();
+        analizarJson.ejecutar(texto);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private ReporteJson reportePrueba() {
         String score = "0.75";
@@ -649,6 +668,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -722,11 +743,13 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivoElegido))) {
             this.proyectoCopy = (ProyectoCopy) ois.readObject();
             System.out.println(this.proyectoCopy.toString());
+            this.generalPath = archivoElegido.getParentFile().getParent();
+            System.out.println("path general: " + this.generalPath);
             JOptionPane.showMessageDialog(this, "Carga exitosa!", "Carga exitosa!", JOptionPane.INFORMATION_MESSAGE);
         } catch (ClassNotFoundException e) {
-            JOptionPane.showMessageDialog(this,  "El archivo que desea cargar esta dañado" + e.getMessage(),"Error al cargar el archivo!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El archivo que desea cargar esta dañado" + e.getMessage(), "Error al cargar el archivo!", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "No se puede abrir el archivo:\n" + ex.getMessage() + ex.getMessage(),"Error al cargar el archivo!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se puede abrir el archivo:\n" + ex.getMessage() + ex.getMessage(), "Error al cargar el archivo!", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -738,16 +761,17 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             if (seleccion == JFileChooser.APPROVE_OPTION) {
                 File JFC = fileChooser.getSelectedFile();
                 CrearArchivos.crear_guardar(JFC, proyectoCopy);
+                this.generalPath = JFC.getParent();
                 JOptionPane.showMessageDialog(this, "Guardado exitoso!", "Guardado exitoso!", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "No guardo el proyecto!", "No guardo el proyecto!", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (HeadlessException e) {
-            JOptionPane.showMessageDialog(this,  "Oops! Error\n" + e.getMessage(),"Error al guardar el archivo!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Oops! Error\n" + e.getMessage(), "Error al guardar el archivo!", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this,  "Problemas con la escritura:\n" + ex.getMessage(),"Error al crear proyecto!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Problemas con la escritura:\n" + ex.getMessage(), "Error al crear proyecto!", JOptionPane.INFORMATION_MESSAGE);
         } catch (NotDirectoryCreate ex) {
-            JOptionPane.showMessageDialog(this,  "Conflicto con directorios!\n" + "Escriba otro nombre, para el proyecto","Error al crear proyecto!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Conflicto con directorios!\n" + "Escriba otro nombre, para el proyecto", "Error al crear proyecto!", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -756,6 +780,6 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     }
 
     private void guardar_proyecto() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 }
