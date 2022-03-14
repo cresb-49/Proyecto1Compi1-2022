@@ -146,7 +146,7 @@ non terminal                        ini,asig,dec,decn,def;
 non terminal Pila<Token>            decp;
 non terminal Operacion              exp,t,f;
 
-non terminal                        html,htmlp,contHTML,inertags,inertagsp,inertagspp,table,tablec,tablecp,trc,metFor,contFor,tdc,thc,tablecpp;
+non terminal                        html,htmlp,contHTML,inertags,inertagsp,inertagspp,table,tablec,trc,metFor,contFor,tdc,thc,tablecpp,actionfor;
 
 
 /* Inicio de las reglas gramticales*/
@@ -342,17 +342,14 @@ table   ::= ME_Q TABLE MA_Q tablec ME_QB TABLE MA_Q
 tablec  ::= tablec ME_Q tablecpp
         |   ME_Q inertagspp
         |   ME_Q TR MA_Q trc ME_QB TR MA_Q
-        |   ME_Q FOR ITERATOR DOSPUNTOS exp:iter HASTA DOSPUNTOS exp:max PUNTOCOMA MA_Q contFor:contenido ME_QB FOR MA_Q
+        |   ME_Q actionfor
         |   tablec error
         ;
 
 tablecpp    ::= TR MA_Q trc ME_QB TR MA_Q
             |   inertagspp
-            |   FOR ITERATOR DOSPUNTOS exp:iter HASTA DOSPUNTOS exp:max PUNTOCOMA MA_Q contFor:contenido ME_QB FOR MA_Q
+            |   actionfor
             ;
-
-tablecp ::= ME_Q TR MA_Q trc ME_QB TR MA_Q
-        ;
 
 trc ::= trc ME_Q TH MA_Q thc ME_QB TH MA_Q
     |   trc ME_Q TD MA_Q tdc ME_QB TD MA_Q
@@ -381,7 +378,11 @@ tdc ::= tdc inertags
     |   tdc error
     ;
 
-metFor  ::= ME_Q FOR ITERATOR DOSPUNTOS exp:iter HASTA DOSPUNTOS exp:max PUNTOCOMA MA_Q contFor:contenido ME_QB FOR MA_Q
+metFor  ::= ME_Q actionfor
         ;
+
+actionfor   ::= FOR ITERATOR DOSPUNTOS exp:iter HASTA DOSPUNTOS exp:max PUNTOCOMA MA_Q contFor:contenido ME_QB FOR MA_Q
+            ;
+
 contFor ::= tablec
         ;
