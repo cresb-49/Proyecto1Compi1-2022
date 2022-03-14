@@ -13,6 +13,7 @@ import java.util.List;
  * @author Benjamin
  */
 public class SimbolosTerminalesDef {
+
     public static final String[] terminalNames = new String[]{
         "",
         "",
@@ -35,6 +36,7 @@ public class SimbolosTerminalesDef {
         "table",
         "for",
         "tr",
+        "th",
         "td",
         "br",
         "iterador",

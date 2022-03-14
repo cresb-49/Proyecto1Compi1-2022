@@ -200,6 +200,12 @@ text = [\w]+([ ]+[/w]+)*
                         return new Symbol(ParserDefSym.EQUAL,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("= : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
+    "</"            {
+                        this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserDefSym.ME_QB,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("</: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
     "<"             {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -212,12 +218,6 @@ text = [\w]+([ ]+[/w]+)*
                         this.anterior = this.actual;
                         return new Symbol(ParserDefSym.MA_Q,yyline+1,yycolumn+1,this.actual);
                         //System.out.println(">: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
-                    }
-    "</"            {
-                        this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
-                        return new Symbol(ParserDefSym.ME_QB,yyline+1,yycolumn+1,this.actual);
-                        //System.out.println("</: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     [(]             {
                         this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,this.anterior);

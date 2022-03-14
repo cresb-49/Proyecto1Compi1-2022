@@ -313,7 +313,7 @@ f   ::= ID:val      {:
 html    ::= htmlp ME_QB HTML MA_Q
         ;
 
-htmlp   ::= ME_Q HTML MA_Q contHTML
+htmlp   ::= ME_QB HTML MA_Q contHTML
         ;
 
 contHTML    ::= contHTML inertags
