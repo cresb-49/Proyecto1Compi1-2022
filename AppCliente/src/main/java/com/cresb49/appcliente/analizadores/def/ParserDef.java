@@ -902,6 +902,9 @@ class CUP$ParserDef$actions {
           case 26: // html ::= htmlp ME_QB HTML MA_Q 
             {
               Object RESULT =null;
+		int tagfinleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).left;
+		int tagfinright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).right;
+		Object tagfin = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).value;
 
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("html",9, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-3)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
@@ -911,6 +914,9 @@ class CUP$ParserDef$actions {
           case 27: // htmlp ::= ME_Q HTML MA_Q contHTML 
             {
               Object RESULT =null;
+		int taginileft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-2)).left;
+		int taginiright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-2)).right;
+		Object tagini = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-2)).value;
 
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("htmlp",10, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-3)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
@@ -1025,6 +1031,12 @@ class CUP$ParserDef$actions {
           case 39: // table ::= ME_Q TABLE MA_Q tablec ME_QB TABLE MA_Q 
             {
               Object RESULT =null;
+		int taginileft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)).left;
+		int taginiright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)).right;
+		Object tagini = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)).value;
+		int tagfinleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).left;
+		int tagfinright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).right;
+		Object tagfin = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).value;
 
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("table",15, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-6)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
@@ -1061,6 +1073,12 @@ class CUP$ParserDef$actions {
           case 43: // tablec ::= ME_Q TR MA_Q trc ME_QB TR MA_Q 
             {
               Object RESULT =null;
+		int taginileft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)).left;
+		int taginiright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)).right;
+		Object tagini = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)).value;
+		int tagfinleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).left;
+		int tagfinright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).right;
+		Object tagfin = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).value;
 
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("tablec",16, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-6)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
@@ -1115,6 +1133,12 @@ class CUP$ParserDef$actions {
           case 49: // trc ::= trc ME_Q TH MA_Q thc ME_QB TH MA_Q 
             {
               Object RESULT =null;
+		int taginileft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)).left;
+		int taginiright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)).right;
+		Object tagini = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)).value;
+		int tagfinleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).left;
+		int tagfinright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).right;
+		Object tagfin = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).value;
 
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("trc",17, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-7)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
@@ -1124,6 +1148,12 @@ class CUP$ParserDef$actions {
           case 50: // trc ::= trc ME_Q TD MA_Q tdc ME_QB TD MA_Q 
             {
               Object RESULT =null;
+		int taginileft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)).left;
+		int taginiright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)).right;
+		Object tagini = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)).value;
+		int tagfinleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).left;
+		int tagfinright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).right;
+		Object tagfin = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).value;
 
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("trc",17, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-7)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
@@ -1142,6 +1172,12 @@ class CUP$ParserDef$actions {
           case 52: // trc ::= ME_Q TH MA_Q thc ME_QB TH MA_Q 
             {
               Object RESULT =null;
+		int taginileft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)).left;
+		int taginiright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)).right;
+		Object tagini = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)).value;
+		int tagfinleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).left;
+		int tagfinright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).right;
+		Object tagfin = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).value;
 
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("trc",17, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-6)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
@@ -1151,6 +1187,12 @@ class CUP$ParserDef$actions {
           case 53: // trc ::= ME_Q TD MA_Q tdc ME_QB TD MA_Q 
             {
               Object RESULT =null;
+		int taginileft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)).left;
+		int taginiright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)).right;
+		Object tagini = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)).value;
+		int tagfinleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).left;
+		int tagfinright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).right;
+		Object tagfin = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).value;
 
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("trc",17, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-6)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
@@ -1331,6 +1373,9 @@ class CUP$ParserDef$actions {
           case 71: // actionfor ::= FOR ITERATOR DOSPUNTOS exp HASTA DOSPUNTOS exp PUNTOCOMA MA_Q contFor ME_QB FOR MA_Q 
             {
               Object RESULT =null;
+		int taginileft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-12)).left;
+		int taginiright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-12)).right;
+		Object tagini = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-12)).value;
 		int iterleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-9)).left;
 		int iterright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-9)).right;
 		Operacion iter = (Operacion)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-9)).value;
@@ -1340,6 +1385,9 @@ class CUP$ParserDef$actions {
 		int contenidoleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-3)).left;
 		int contenidoright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-3)).right;
 		Object contenido = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-3)).value;
+		int tagfinleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).left;
+		int tagfinright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).right;
+		Object tagfin = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).value;
 
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("actionfor",23, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-12)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
