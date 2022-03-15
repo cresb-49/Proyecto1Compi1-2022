@@ -1,6 +1,7 @@
+package com.cresb49.server.AnalizadorJava;
 import java_cup.runtime.*;
 
-class ParserDef;
+class ParserJava;
 
 parser code {:
     // Connect this parser to a scanner!
@@ -125,18 +126,36 @@ parser code {:
 scan with {: return this.lexerDef.next_token(); :};
 
 /* Terminals (tokens returned by the scanner). */
-terminal    CO_A,CO_C,LLA_A,LLA_C,PA_A,PA_C,COMA,DOSPUNTOS,PUNTOCOMA,STRING,ENTERO,
-            INT,STR,HTML,H1,H2,TABLE,FOR,TR,TD,BR,ITERATOR,HASTA,TEXT,
-            D_PA_A,PA_C_D,ID,EQUAL,ME_Q,MA_Q,ME_QB,MAS,MENOS,DIV,MUL;
+terminal Token  IMPORT,PUBLIC,PRIVATE,PROTECTED,FINAL,BREAK,RETURN,INT,BOOL,STR,CHAR,DOUBLE,OBJ,
+                IF,ELSE,FOR,DO,WHILE,SWITCH,CASE,ID,DECIMAL,NUMBERS,DIFERENTE,IGUAL,MENOR_IGUAL,
+                MAYOR_IGUAL,MENOR_QUE,MAYOR_QUE,AND,OR,NOT,SUMAR,RESTAR,MUL,DIV,MAS,MENOS,PA_A,
+                PA_C,CO_A,CO_C,LLA_A,LLA_C,PUNTO,COMA,DOSPUNTOS,PUNTOCOMA,STRING;
 
 
 /* Non terminals */
-non terminal                        ini,asig,dec,decn,def;
-non terminal Pila<Token>            decp;
-non terminal Operacion              exp,t,f;
-
-non terminal                        html,htmlp,contHTML,inertags,inertagsp;
-
-
+non terminal                        initJava,contClass,importJava,importJavaContenido,importJavaContenidoD,
+                                    importJavaContenidoD2;
 /* Inicio de las reglas gramticales*/
+initJava    ::= importJava
+            ;
 
+/*Gramatica de imports*/
+
+importJava  ::= importJava IMPORT importJavaContenido
+            |   IMPORT importJavaContenido
+            |   importJava error
+            ;
+
+importJavaContenido ::= importJavaContenidoD
+                    |   ID PUNTO importJavaContenidoD
+                    |   error PUNTO
+                    ;
+
+importJavaContenidoD    ::= ID importJavaContenidoD2
+                        ;
+
+importJavaContenidoD2   ::= PUNTOCOMA
+                        |   PUNTOCOMA MUL PUNTOCOMA
+                        |   PUNTOCOMA importJavaContenidoD
+                        |   error PUNTOCOMA
+                        ;
