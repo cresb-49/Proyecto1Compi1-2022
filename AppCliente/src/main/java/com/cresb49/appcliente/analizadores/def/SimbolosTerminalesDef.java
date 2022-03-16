@@ -24,6 +24,7 @@ public class SimbolosTerminalesDef {
         "(",
         ")",
         ",",
+        ".",
         ":",
         ";",
         "cadena",
