@@ -45,10 +45,11 @@ public class RenderizarHTML {
         pila_intruccion_eje_false = new Pila<>();
         pila_var_bucle = new Pila<>();
 
-        String hmtl = "";
+        String html = "";
 
         Token temp_ejecucion;
         Integer instruccion = 0;
+        this.aisg_modo_ejecucion(true);
 
         while (instruccion < tablaEjecucion.getFilas().size()) {
             System.out.println("Ejecutando la instruccion #" + instruccion);
@@ -56,10 +57,11 @@ public class RenderizarHTML {
             switch (temp_ejecucion.getAccion()) {
                 case Token.PRINT:
                     if (this.modo_ejecucion) {
-                        hmtl = hmtl + temp_ejecucion.getValorToken() + "\n";
+                        html = html + temp_ejecucion.getValorToken() + "\n";
                     }
                     break;
                 case Token.BUCLE_INI:
+                    System.out.println("Inicio de BUCLE");
                     int temp_instruccion = instruccion;
                     System.out.println("Ingreso a la pila_bucle la instruccion #" + instruccion);
                     pila_bucle.push(temp_instruccion);
@@ -68,6 +70,7 @@ public class RenderizarHTML {
                         System.out.println("Ingreso a la pila_var_bucle la instruccion #" + instruccion);
                         pila_var_bucle.push(tablaEjecucion.getFilas().get(instruccion).getLexema());
                         if (!this.validarCiclo(tablaEjecucion.getFilas().get(instruccion),tablaEjecucion.getFilas().get(instruccion + 1))) {
+                            System.out.println("Ciclo no valido Modo Ejecucion falso");
                             this.aisg_modo_ejecucion(false);
                             pila_intruccion_eje_false.push(temp_instruccion);
                             try {
@@ -76,9 +79,11 @@ public class RenderizarHTML {
                                 System.out.println("La pila_var_bucle estaba vacia -> BUCLE_IN");
                             }
                         }
+                        instruccion++;
                     }
                     break;
                 case Token.BUCLE_FIN:
+                System.out.println("Fin de BUCLE");
                     if(modo_ejecucion){
                         try {
                             String nombre_var = pila_var_bucle.pop();
@@ -86,23 +91,30 @@ public class RenderizarHTML {
                             Integer valor = (Integer) variable.getValor();
                             valor++;
                             variable.setValor(valor);
+                            System.out.println("Sume uno a la variable: "+variable.getNombre()+"="+variable.getValor());
                         } catch (NoDataException e) {
                             System.out.println("La pila_var_bucle estaba vacia -> BUCLE_FIN");
                         }
                         try {
                             Integer ints = pila_bucle.pop();
                             instruccion = ints - 1;
+                            System.out.println("Asigne la instruccion #"+(instruccion+1));
                         } catch (NoDataException e) {
                             System.out.println("La pila_bucle estaba vacia -> BUCLE_FIN");
                         }
                     }else{
                         try {
-                            if(pila_bucle.peek().equals(pila_intruccion_eje_false.peek())){
-                                this.aisg_modo_ejecucion(true);
+                            if(pila_intruccion_eje_false.isEmpty()){
                                 pila_bucle.pop();
-                                pila_intruccion_eje_false.pop();
                             }else{
-                                pila_bucle.pop();
+                                if(pila_bucle.peek().equals(pila_intruccion_eje_false.peek())){
+                                    System.out.println("Fin BUCLE Modo Ejecucion falso -> AHORA true");
+                                    this.aisg_modo_ejecucion(true);
+                                    pila_bucle.pop();
+                                    pila_intruccion_eje_false.pop();
+                                }else{
+                                    pila_bucle.pop();
+                                }
                             }
                         } catch (NoDataException e) {
                             e.printStackTrace();
@@ -122,7 +134,7 @@ public class RenderizarHTML {
             instruccion++;
         }
         System.out.println("Termino el renderizado del HTML");
-        return hmtl;
+        return html;
     }
 
     private boolean validarCiclo(Token var, Token valMax) {

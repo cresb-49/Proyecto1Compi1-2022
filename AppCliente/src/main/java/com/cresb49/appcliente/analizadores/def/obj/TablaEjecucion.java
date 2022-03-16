@@ -24,7 +24,7 @@ public class TablaEjecucion {
     public void imprimirTabla() {
         System.out.println("---------------TABLA DE EJECUCION----------------");
         for (Token ejecucion : ejecuciones) {
-            System.out.println("Accion: " + this.accion(ejecucion.getAccion()) + " ,Valor: " + ejecucion.getValorToken() + " ,Token->val: " + ejecucion.getLexema());
+            System.out.println("#"+ejecucion.getId()+" ,Accion: " + this.accion(ejecucion.getAccion()) + " ,Valor: " + ejecucion.getValorToken() + " ,Token->val: " + ejecucion.getLexema());
         }
     }
     

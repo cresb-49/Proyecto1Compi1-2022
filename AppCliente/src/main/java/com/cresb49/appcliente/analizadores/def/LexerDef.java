@@ -1444,6 +1444,8 @@ public class LexerDef implements java_cup.runtime.Scanner {
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         dehabilitar_ingresar_id();
+                        this.actual.setAccion(Token.CONSULTAR);
+                        this.asig_valor_agregar_tabla_ejecucion(this.actual);
                         return new Symbol(ParserDefSym.HASTA,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("hasta: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
