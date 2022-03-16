@@ -8,21 +8,21 @@ package com.cresb49.appcliente.analizadores.def;
 /** CUP generated class containing symbol constants. */
 public class ParserDefSym {
   /* terminals */
-  public static final int PA_C_D = 18;
-  public static final int DOSPUNTOS = 9;
-  public static final int STR = 14;
+  public static final int PA_C_D = 19;
+  public static final int DOSPUNTOS = 10;
+  public static final int STR = 15;
   public static final int ME_QB = 23;
-  public static final int ENTERO = 12;
+  public static final int ENTERO = 13;
   public static final int LLA_C = 5;
   public static final int LLA_A = 4;
-  public static final int INT = 13;
-  public static final int PUNTOCOMA = 10;
+  public static final int INT = 14;
+  public static final int PUNTOCOMA = 11;
   public static final int MA_Q = 22;
   public static final int FOR = 32;
-  public static final int HASTA = 16;
-  public static final int ITERATOR = 15;
+  public static final int HASTA = 17;
+  public static final int ITERATOR = 16;
   public static final int DIV = 26;
-  public static final int ID = 19;
+  public static final int ID = 38;
   public static final int EOF = 0;
   public static final int EQUAL = 20;
   public static final int TABLE = 31;
@@ -35,11 +35,12 @@ public class ParserDefSym {
   public static final int PA_A = 6;
   public static final int CO_C = 3;
   public static final int CO_A = 2;
-  public static final int D_PA_A = 17;
+  public static final int D_PA_A = 18;
   public static final int TR = 33;
+  public static final int PUNTO = 9;
   public static final int ME_Q = 21;
   public static final int TH = 34;
-  public static final int STRING = 11;
+  public static final int STRING = 12;
   public static final int TD = 35;
   public static final int TEXT = 37;
   public static final int HTML = 28;
@@ -56,6 +57,7 @@ public class ParserDefSym {
   "PA_A",
   "PA_C",
   "COMA",
+  "PUNTO",
   "DOSPUNTOS",
   "PUNTOCOMA",
   "STRING",
@@ -66,7 +68,6 @@ public class ParserDefSym {
   "HASTA",
   "D_PA_A",
   "PA_C_D",
-  "ID",
   "EQUAL",
   "ME_Q",
   "MA_Q",
@@ -84,7 +85,8 @@ public class ParserDefSym {
   "TH",
   "TD",
   "BR",
-  "TEXT"
+  "TEXT",
+  "ID"
   };
 }
 

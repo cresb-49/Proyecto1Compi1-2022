@@ -121,6 +121,7 @@ public class RenderizarHTML {
             }
             instruccion++;
         }
+        System.out.println("Termino el renderizado del HTML");
         return hmtl;
     }
 
@@ -129,16 +130,15 @@ public class RenderizarHTML {
         if (variable.getValor() == null) {
             System.out.println("La variable \"" + variable.getNombre() + "\" es nula");
         } else {
-            FilaTabla var_max = tablaSimbolos.buscar(valMax.getLexema());
-            if (var_max == null) {
+            if(valMax.getValorToken() instanceof Integer){
                 int valor_maximo = (int) valMax.getValorToken();
                 int val_variable = (int) variable.getValor();
                 return val_variable <= valor_maximo;
-            } else {
-                int valor_maximo = (int) var_max.getValor();
+            }else if(valMax.getValorToken() instanceof FilaTabla){
+                int valor_maximo = (int) ((FilaTabla)valMax.getValorToken()).getValor();
                 int val_variable = (int) variable.getValor();
                 return val_variable <= valor_maximo;
-            }
+            }   
         }
         return false;
     }

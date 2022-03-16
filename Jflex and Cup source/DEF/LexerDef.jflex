@@ -315,7 +315,7 @@ text = [\w]+([ ]+[\w]+)*
     [.]             {
                         this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
-                        return new Symbol(ParserDefSym.COMA,yyline+1,yycolumn+1,this.actual);
+                        return new Symbol(ParserDefSym.PUNTO,yyline+1,yycolumn+1,this.actual);
                         //System.out.println(".: "+yytext()+" , Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     [,]             {
