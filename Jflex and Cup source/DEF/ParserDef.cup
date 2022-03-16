@@ -98,6 +98,14 @@ parser code {:
             semantic_error(identificador,"La variable que sea utilizar no existe en el programa");
         }
     }
+    private void varificar_no_null(Token identificador){
+        FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
+        if(fila!=null){
+            if(fila.getValor()==null){
+                semantic_error(identificador,"La variable no esta inicializada");
+            }
+        }
+    }
 
     private void asig_val_var(Token identificador,String tipo,Object value) {
        FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
@@ -457,16 +465,19 @@ metFor  ::= ME_Q actionfor
 
 actionfor   ::= FOR:tagini ITERATOR:it DOSPUNTOS ID:var_ite HASTA:has DOSPUNTOS paramhasta:max PUNTOCOMA MA_Q contFor:contenido ME_QB FOR:tagfin MA_Q   {:
                                                                                                                                                             verificar_tipo_var_for((Token)var_ite,TablaSimbolos.INT);
+                                                                                                                                                            varificar_no_null((Token)var_ite);
                                                                                                                                                             tagini.setAccion(Token.BUCLE_INI);
                                                                                                                                                             tagfin.setAccion(Token.BUCLE_FIN);
                                                                                                                                                         :}
             ;
 paramhasta ::=  ID:var  {:
                             verificar_tipo_var_for((Token)var,TablaSimbolos.INT);
-                        :}
-            |   ENTERO  {:
+                            varificar_no_null((Token)var);
                             
                         :}
+            |   ENTERO:en   {:
+                                RESULT = ((Token)en).getValue();
+                            :}
             |   error MA_Q
             ;
 

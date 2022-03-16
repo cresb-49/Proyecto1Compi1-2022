@@ -407,6 +407,14 @@ public class ParserDef extends java_cup.runtime.lr_parser {
             semantic_error(identificador,"La variable que sea utilizar no existe en el programa");
         }
     }
+    private void varificar_no_null(Token identificador){
+        FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
+        if(fila!=null){
+            if(fila.getValor()==null){
+                semantic_error(identificador,"La variable no esta inicializada");
+            }
+        }
+    }
 
     private void asig_val_var(Token identificador,String tipo,Object value) {
        FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
@@ -1534,6 +1542,7 @@ class CUP$ParserDef$actions {
 		Token tagfin = (Token)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).value;
 		
                                                                                                                                                             verificar_tipo_var_for((Token)var_ite,TablaSimbolos.INT);
+                                                                                                                                                            varificar_no_null((Token)var_ite);
                                                                                                                                                             tagini.setAccion(Token.BUCLE_INI);
                                                                                                                                                             tagfin.setAccion(Token.BUCLE_FIN);
                                                                                                                                                         
@@ -1550,6 +1559,8 @@ class CUP$ParserDef$actions {
 		Object var = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.peek()).value;
 		
                             verificar_tipo_var_for((Token)var,TablaSimbolos.INT);
+                            varificar_no_null((Token)var);
+                            
                         
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("paramhasta",26, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
@@ -1559,7 +1570,12 @@ class CUP$ParserDef$actions {
           case 78: // paramhasta ::= ENTERO 
             {
               Object RESULT =null;
-
+		int enleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()).left;
+		int enright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()).right;
+		Object en = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.peek()).value;
+		
+                                RESULT = ((Token)en).getValue();
+                            
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("paramhasta",26, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
           return CUP$ParserDef$result;
