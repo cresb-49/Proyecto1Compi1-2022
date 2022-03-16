@@ -38,7 +38,7 @@ public class RenderizarHTML {
         this.tablaEjecucion = tablaEjecucion;
     }
 
-    public String HTML() {
+    public String HTML(){
 
         String hmtl = "";
 
@@ -64,29 +64,56 @@ public class RenderizarHTML {
                         pila_var_bucle.push(tablaEjecucion.getFilas().get(instruccion).getLexema());
                         if (!this.validarCiclo(tablaEjecucion.getFilas().get(instruccion),tablaEjecucion.getFilas().get(instruccion + 1))) {
                             this.aisg_modo_ejecucion(false);
-                            try {
+                            /*try {
                                 pila_bucle.pop();
                             } catch (NoDataException e) {
                                 System.out.println("La pila_bucle estaba vacia -> BUCLE_IN");
-                            }
+                            }*/
                             try {
                                 pila_var_bucle.pop();
                             } catch (NoDataException e) {
                                 System.out.println("La pila_var_bucle estaba vacia -> BUCLE_IN");
                             }
                         }
-                        instruccion++;
                     }
                     break;
                 case Token.BUCLE_FIN:
-                    if(pila_bucle.isEmpty()){
-                        this.aisg_modo_ejecucion(true);
+                    if(pila_bucle.isEmpty()==false&&this.modo_ejecucion==false){
+                        try {
+                            pila_bucle.pop();
+                        } catch (NoDataException e) {
+                            System.out.println("La pila_bucle estaba vacia -> BUCLE_FIN");
+                        }
+                        if(pila_bucle.isEmpty()){
+                            this.aisg_modo_ejecucion(true);
+                        }
+                    }
+
+
+                    
+                    if(pila_var_bucle.isEmpty()){
+
+
+                        if(pila_bucle.isEmpty()){
+
+                        }else{
+
+                        }
                     }else{
                         try {
-                            int tmp = pila_bucle.pop();
-                            instruccion = tmp - 1;
+                            String nombre_var = pila_var_bucle.pop();
+                            FilaTabla variable = tablaSimbolos.buscar(nombre_var);
+                            Integer valor = (Integer) variable.getValor();
+                            valor++;
+                            variable.setValor(valor);
                         } catch (NoDataException e) {
-                            System.out.println("La pila estaba vacia -> BUCLE_FIN");
+                            System.out.println("La pila_var_bucle estaba vacia -> BUCLE_FIN");
+                        }
+                        try {
+                            Integer ints = pila_bucle.pop();
+                            instruccion = ints - 1;
+                        } catch (NoDataException e) {
+                            System.out.println("La pila_bucle estaba vacia -> BUCLE_FIN");
                         }
                     }
                     break;
