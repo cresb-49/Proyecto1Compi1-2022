@@ -3,7 +3,7 @@ package com.cresb49.appcliente.analizadores.def;
 import java.util.ArrayList;
 
 import com.cresb49.appcliente.analizadores.ErrorAnalisis;
-import com.cresb49.appcliente.analizadores.json.obj.ReporteJson;
+import com.cresb49.appcliente.analizadores.json.obj.*;
 import com.cresb49.appcliente.analizadores.Token;
 import com.cresb49.appcliente.ED.Pila;
 import com.cresb49.appcliente.analizadores.def.obj.*;
@@ -123,6 +123,18 @@ parser code {:
         }
     }
 
+    private void verificarDosId(Token id1,Token id2){
+
+    }
+
+    private void verificarDosId_id2Index(Token id1,Token id2){
+        
+    }
+
+    private void verificarTresId(Token id1,Token id2,Token id3){
+        
+    }
+
     private void create_var_asig_val(Token identificador,String tipo_id,String tipo_value,Object value) {
        FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
         if(fila==null){
@@ -170,7 +182,7 @@ non terminal                        ini,asig,dec,decn,def;
 non terminal Pila<Token>            decp;
 non terminal Operacion              exp,t,f;
 
-non terminal                        html,htmlp,contHTML,inertags,inertagsp,inertagspp,table,tablec,trc,metFor,contFor,tdc,thc,tablecpp,actionfor,
+non terminal                        html,contHTML,inertags,inertagsp,inertagspp,table,tablec,trc,metFor,contFor,tdc,thc,tablecpp,actionfor,
                                     tdcp,thcp,paramhasta,trcp,varHTML4;
 non terminal Pila<AccesoVariables>  varHTML,varHTML2,varHTML3;
 
@@ -336,14 +348,10 @@ f   ::= ID:val      {:
     ;
 /*Gramatica para lenguaje HTML*/
 
-html    ::= htmlp ME_QB HTML:tagfin MA_Q    {:
-                                                tagfin.setValorToken("</hmtl>");
-                                            :}
-        ;
-
-htmlp   ::= ME_Q HTML:tagini MA_Q contHTML  {:
-                                                tagini.setValorToken("<hmtl>");
-                                            :}
+html    ::= ME_Q HTML:tagini MA_Q contHTML ME_QB HTML:tagfin MA_Q   {:
+                                                                        tagini.setValorToken("<hmtl>");
+                                                                        tagfin.setValorToken("</hmtl>");
+                                                                    :}
         ;
 
 contHTML    ::= contHTML inertags
@@ -448,11 +456,7 @@ tdcp ::= tdcp inertags
     |   tdcp error
     ;
 
-varHTML ::= D_PA_A varHTML2:var PA_C_D  {:
-                                            if(var!=null){
-                                                var.imprimirPila();                                    
-                                            }
-                                        :}
+varHTML ::= D_PA_A varHTML2:var PA_C_D
         ;
 
 varHTML2    ::= ID:id1  {:
@@ -462,43 +466,25 @@ varHTML2    ::= ID:id1  {:
                             }
                             id1.setAccion(Token.CONSULTAR);
                         :}
-            |   ID:id1 PUNTO varHTML3:pila  {:
-                                                System.out.println("Derive aqui");
-                                                RESULT = pila;
-                                                RESULT.push(new AccesoVariables(((Token)id1), null));
-                                            :}
-            ;
-
-varHTML3    ::= ID:id CO_A varHTML4:index CO_C PUNTO varHTML3:pila  {:
-                                                                        RESULT = pila;
-                                                                        if(RESULT!=null){
-                                                                            RESULT.push(new AccesoVariables(((Token)id),index));
-                                                                        }
-                                                                    :}
-            |   ID:id PUNTO varHTML3:pila       {:
-                                                    RESULT = pila;
-                                                    if(RESULT!=null){
-                                                        RESULT.push(new AccesoVariables(((Token)id),null));
-                                                    }
-                                                :}
-            |   ID:id CO_A varHTML4:index CO_C  {:
-                                                    RESULT = new Pila<>();
-                                                    RESULT.push(new AccesoVariables(((Token)id),index));
-                                                :}
-            |   ID:id                           {:
-                                                    RESULT = new Pila<>();
-                                                    RESULT.push(new AccesoVariables(((Token)id),null));
-                                                :}
-            ;
-
-varHTML4    ::= ID:var    {:
-                                        verificar_tipo_var_for((Token)var,TablaSimbolos.INT);
-                                        varificar_no_null((Token)var);
-                                        FilaTabla variable = tablaSimbolos.buscar(((Token)var).getLexema());
-                                        if(variable!=null){
-                                            RESULT = variable;
-                                        }
+            |   ID:id1 PUNTO ID:id2 {:
+                                        verificarDosId(id1,id2);
                                     :}
+            |   ID:id1 PUNTO ID:id2 CO_A varHTML4:index CO_C    {:
+                                                                    verificarDosId_id2Index(id1,id2);    
+                                                                :}
+            |   ID:id1 PUNTO ID:id2 CO_A varHTML4:index CO_C PUNTO ID:id3   {:
+                                                                                verificarTresId(id1,id2,id3);
+                                                                            :}
+            ;
+
+varHTML4    ::= ID:var  {:
+                            verificar_tipo_var_for((Token)var,TablaSimbolos.INT);
+                            varificar_no_null((Token)var);
+                            FilaTabla variable = tablaSimbolos.buscar(((Token)var).getLexema());
+                            if(variable!=null){
+                                RESULT = variable;
+                            }
+                        :}
             |   ENTERO:en           {:
                                         RESULT = Integer.parseInt(((Token)en).getLexema());
                                     :}
