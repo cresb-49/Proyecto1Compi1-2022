@@ -6,7 +6,8 @@ import com.cresb49.appcliente.analizadores.Token;
 
 public class TablaEjecucion {
 
-    ArrayList<Token> ejecuciones;
+    private ArrayList<Token> ejecuciones;
+    
 
     public TablaEjecucion() {
         ejecuciones = new ArrayList<>();
@@ -26,6 +27,7 @@ public class TablaEjecucion {
             System.out.println("Accion: " + this.accion(ejecucion.getAccion()) + " ,Valor: " + ejecucion.getValorToken() + " ,Token->val: " + ejecucion.getLexema());
         }
     }
+    
 
     private String accion(int accion) {
 
