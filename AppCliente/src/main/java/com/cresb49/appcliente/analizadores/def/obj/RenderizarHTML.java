@@ -87,19 +87,7 @@ public class RenderizarHTML {
                         if(pila_bucle.isEmpty()){
                             this.aisg_modo_ejecucion(true);
                         }
-                    }
-
-
-                    
-                    if(pila_var_bucle.isEmpty()){
-
-
-                        if(pila_bucle.isEmpty()){
-
-                        }else{
-
-                        }
-                    }else{
+                    }else if(pila_bucle.isEmpty()==false&&this.modo_ejecucion==true){
                         try {
                             String nombre_var = pila_var_bucle.pop();
                             FilaTabla variable = tablaSimbolos.buscar(nombre_var);
@@ -115,6 +103,8 @@ public class RenderizarHTML {
                         } catch (NoDataException e) {
                             System.out.println("La pila_bucle estaba vacia -> BUCLE_FIN");
                         }
+                    }else{
+                        System.out.println("Error de logica");
                     }
                     break;
                 case Token.CONSULTAR:
