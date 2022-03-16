@@ -3,6 +3,7 @@ package com.cresb49.appcliente.analizadores.def.obj;
 import com.cresb49.appcliente.ED.Pila;
 import com.cresb49.appcliente.ED.Exceptions.NoDataException;
 import com.cresb49.appcliente.analizadores.Token;
+import java.util.Objects;
 
 public class RenderizarHTML {
 
@@ -10,6 +11,7 @@ public class RenderizarHTML {
     private TablaEjecucion tablaEjecucion;
 
     private Pila<Integer> pila_bucle;
+    private Pila<Integer> pila_intruccion_eje_false;
     private Pila<String> pila_var_bucle;
 
     private boolean modo_ejecucion;
@@ -39,6 +41,9 @@ public class RenderizarHTML {
     }
 
     public String HTML(){
+        pila_bucle = new Pila<>();
+        pila_intruccion_eje_false = new Pila<>();
+        pila_var_bucle = new Pila<>();
 
         String hmtl = "";
 
@@ -64,11 +69,7 @@ public class RenderizarHTML {
                         pila_var_bucle.push(tablaEjecucion.getFilas().get(instruccion).getLexema());
                         if (!this.validarCiclo(tablaEjecucion.getFilas().get(instruccion),tablaEjecucion.getFilas().get(instruccion + 1))) {
                             this.aisg_modo_ejecucion(false);
-                            /*try {
-                                pila_bucle.pop();
-                            } catch (NoDataException e) {
-                                System.out.println("La pila_bucle estaba vacia -> BUCLE_IN");
-                            }*/
+                            pila_intruccion_eje_false.push(temp_instruccion);
                             try {
                                 pila_var_bucle.pop();
                             } catch (NoDataException e) {
@@ -78,16 +79,7 @@ public class RenderizarHTML {
                     }
                     break;
                 case Token.BUCLE_FIN:
-                    if(pila_bucle.isEmpty()==false&&this.modo_ejecucion==false){
-                        try {
-                            pila_bucle.pop();
-                        } catch (NoDataException e) {
-                            System.out.println("La pila_bucle estaba vacia -> BUCLE_FIN");
-                        }
-                        if(pila_bucle.isEmpty()){
-                            this.aisg_modo_ejecucion(true);
-                        }
-                    }else if(pila_bucle.isEmpty()==false&&this.modo_ejecucion==true){
+                    if(modo_ejecucion){
                         try {
                             String nombre_var = pila_var_bucle.pop();
                             FilaTabla variable = tablaSimbolos.buscar(nombre_var);
@@ -104,12 +96,24 @@ public class RenderizarHTML {
                             System.out.println("La pila_bucle estaba vacia -> BUCLE_FIN");
                         }
                     }else{
-                        System.out.println("Error de logica");
+                        try {
+                            if(pila_bucle.peek().equals(pila_intruccion_eje_false.peek())){
+                                this.aisg_modo_ejecucion(true);
+                                pila_bucle.pop();
+                                pila_intruccion_eje_false.pop();
+                            }else{
+                                pila_bucle.pop();
+                            }
+                        } catch (NoDataException e) {
+                            e.printStackTrace();
+                        }
                     }
                     break;
                 case Token.CONSULTAR:
+                System.out.println("No efectuo consultar -> " + temp_ejecucion.getLexema());
                     break;
                 case Token.CAMBIAR:
+                System.out.println("No efectuo cambiar -> " + temp_ejecucion.getLexema());
                     break;
                 default:
                     System.out.println("No efectuo accion -> " + temp_ejecucion.getLexema());

@@ -464,7 +464,9 @@ actionfor   ::= FOR:tagini ITERATOR:it DOSPUNTOS ID:var_ite HASTA:has DOSPUNTOS 
 paramhasta ::=  ID:var  {:
                             verificar_tipo_var_for((Token)var,TablaSimbolos.INT);
                         :}
-            |   ENTERO
+            |   ENTERO  {:
+                            
+                        :}
             |   error MA_Q
             ;
 
