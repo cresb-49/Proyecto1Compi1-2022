@@ -124,15 +124,106 @@ parser code {:
     }
 
     private void verificarDosId(Token id1,Token id2){
-
+      if(id1.getLexema().equals("RESULT")){
+        switch (id2.getLexema()) {
+          case "Score":
+            break;
+          case "Clases":
+            break;
+          case "Variables":
+            break;
+          case "Metodos":
+            break;
+          case "Comentarios":
+            break;
+          default:
+            semantic_error(id2,"No es un parametro de la variable: "+id1.getLexema());
+            break;
+        }
+      }else{
+        semantic_error(id1,"No es una variable que contenga parametros internos");
+        semantic_error(id2,"No es un parametro de la variable: "+id1.getLexema());
+      }
     }
 
     private void verificarDosId_id2Index(Token id1,Token id2){
-        
+      if(id1.getLexema().equals("RESULT")){
+        switch (id2.getLexema()) {
+          case "Clases":
+            break;
+          case "Variables":
+            break;
+          case "Metodos":
+            break;
+          case "Comentarios":
+            break;
+          default:
+            semantic_error(id2,"No es un parametro de la variable: "+id1.getLexema());
+            semantic_error(id2,"No es un parametro vectorial: "+id1.getLexema());
+            break;
+        }
+      }else{
+        semantic_error(id1,"No es una variable que contenga parametros internos");
+        semantic_error(id2,"No es un parametro de la variable: "+id1.getLexema());
+        semantic_error(id2,"No es un parametro vectorial: "+id1.getLexema());
+      }
     }
 
     private void verificarTresId(Token id1,Token id2,Token id3){
-        
+        if(id1.getLexema().equals("RESULT")){
+        switch (id2.getLexema()) {
+          case "Clases":
+            if(id3.getLexema().equals("Nombre")){
+                
+            }else{
+                semantic_error(id3,"No es un parametro de la variable "+id2.getLexema());
+            }
+            break;
+          case "Variables":
+            switch(id3.getLexema()){
+                case "Nombre":
+                break;
+                case "Tipo":
+                break;
+                case "Funcion":
+                break;
+                default:
+                    semantic_error(id3,"No es un parametro de la variable "+id2.getLexema());
+                break;
+            }
+            break;
+          case "Metodos":
+            switch(id3.getLexema()){
+                case "Nombre":
+                break;
+                case "Tipo":
+                break;
+                case "Parametros":
+                break;
+                default:
+                    semantic_error(id3,"No es un parametro de la variable "+id2.getLexema());
+                break;
+            }
+            break;
+          case "Comentarios":
+            switch(id3.getLexema()){
+                case "Texto":
+                break;
+                default:
+                    semantic_error(id3,"No es un parametro de la variable "+id2.getLexema());
+                break;
+            }
+            break;
+          default:
+            semantic_error(id2,"No es un parametro de la variable: "+id1.getLexema());
+            semantic_error(id2,"No es un parametro vectorial: "+id1.getLexema());
+            break;
+        }
+      }else{
+        semantic_error(id1,"No es una variable que contenga parametros internos");
+        semantic_error(id2,"No es un parametro de la variable: "+id1.getLexema());
+        semantic_error(id2,"No es un parametro vectorial: "+id1.getLexema());
+      }
     }
 
     private void create_var_asig_val(Token identificador,String tipo_id,String tipo_value,Object value) {
