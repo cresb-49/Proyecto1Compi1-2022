@@ -145,10 +145,12 @@ public class RenderizarHTML {
             if(valMax.getValorToken() instanceof Integer){
                 int valor_maximo = (int) valMax.getValorToken();
                 int val_variable = (int) variable.getValor();
+                System.out.println(variable.getNombre()+"="+val_variable+" <= "+valor_maximo);
                 return val_variable <= valor_maximo;
             }else if(valMax.getValorToken() instanceof FilaTabla){
                 int valor_maximo = (int) ((FilaTabla)valMax.getValorToken()).getValor();
                 int val_variable = (int) variable.getValor();
+                System.out.println(variable.getNombre()+"="+val_variable+" <= "+valor_maximo);
                 return val_variable <= valor_maximo;
             }   
         }

@@ -9,6 +9,7 @@ public class Token {
     public static final int CONSULTAR = 4;
     public static final int BUCLE_INI = 5;
     public static final int BUCLE_FIN = 6;
+    public static final int IGNORE = 7;
     
 
     private String lexema;
