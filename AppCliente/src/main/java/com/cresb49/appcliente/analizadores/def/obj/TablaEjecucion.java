@@ -30,7 +30,6 @@ public class TablaEjecucion {
     
 
     private String accion(int accion) {
-
         switch (accion) {
             case Token.VIEW:
                 return "VIEW     ";
@@ -44,6 +43,8 @@ public class TablaEjecucion {
                 return "BUCLE_INI";
             case Token.BUCLE_FIN:
                 return "BUCLE_FIN";
+            case Token.IGNORE:
+                return "IGNORE";
         }
         return "ERROR ACCION";
     }

@@ -372,7 +372,7 @@ inertagsp   ::= inertags
             |   TEXT:txt    {:
                                 txt.setValorToken(txt.getLexema());
                             :}
-            |   D_PA_A ID:var PA_C_D
+            |   varHTML
             |
             ;
 
@@ -448,7 +448,11 @@ tdcp ::= tdcp inertags
     |   tdcp error
     ;
 
-varHTML ::= D_PA_A varHTML2:var PA_C_D  {::}
+varHTML ::= D_PA_A varHTML2:var PA_C_D  {:
+                                            if(var!=null){
+                                                var.imprimirPila();                                    
+                                            }
+                                        :}
         ;
 
 varHTML2    ::= ID:id1  {:
@@ -457,23 +461,33 @@ varHTML2    ::= ID:id1  {:
                               semantic_error(id1,"La variable que desea utilizar no esta definida en el programa");
                             }
                             id1.setAccion(Token.CONSULTAR);
-                            RESULT = new Pila<>();
-                            RESULT.push(new AccesoVariables(((Token)id1), variable, null));
                         :}
             |   ID:id1 PUNTO varHTML3:pila  {:
+                                                System.out.println("Derive aqui");
                                                 RESULT = pila;
-                                                RESULT.push(new AccesoVariables(((Token)id1), null, null));
+                                                RESULT.push(new AccesoVariables(((Token)id1), null));
                                             :}
             ;
 
-varHTML3    ::= ID:id2 CO_A varHTML4:index CO_C PUNTO ID:id3    {:
-                                                                    RESULT = new Pila<>();
-                                                                    RESULT.push(new AccesoVariables(((Token)id3), null, null));
-                                                                    RESULT.push(new AccesoVariables(((Token)id2), null, null));
-                                                                :}
-            |   ID:id2 CO_A varHTML4:index CO_C {:
+varHTML3    ::= ID:id CO_A varHTML4:index CO_C PUNTO varHTML3:pila  {:
+                                                                        RESULT = pila;
+                                                                        if(RESULT!=null){
+                                                                            RESULT.push(new AccesoVariables(((Token)id),index));
+                                                                        }
+                                                                    :}
+            |   ID:id PUNTO varHTML3:pila       {:
+                                                    RESULT = pila;
+                                                    if(RESULT!=null){
+                                                        RESULT.push(new AccesoVariables(((Token)id),null));
+                                                    }
+                                                :}
+            |   ID:id CO_A varHTML4:index CO_C  {:
                                                     RESULT = new Pila<>();
-                                                    RESULT.push(new AccesoVariables(((Token)id2), null, index));
+                                                    RESULT.push(new AccesoVariables(((Token)id),index));
+                                                :}
+            |   ID:id                           {:
+                                                    RESULT = new Pila<>();
+                                                    RESULT.push(new AccesoVariables(((Token)id),null));
                                                 :}
             ;
 

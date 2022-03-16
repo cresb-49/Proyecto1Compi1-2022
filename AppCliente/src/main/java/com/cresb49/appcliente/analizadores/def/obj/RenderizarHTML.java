@@ -69,8 +69,7 @@ public class RenderizarHTML {
                         instruccion++;
                         System.out.println("Ingreso a la pila_var_bucle la instruccion #" + instruccion);
                         pila_var_bucle.push(tablaEjecucion.getFilas().get(instruccion).getLexema());
-                        if (!this.validarCiclo(tablaEjecucion.getFilas().get(instruccion),
-                                tablaEjecucion.getFilas().get(instruccion + 1))) {
+                        if (!this.validarCiclo(tablaEjecucion.getFilas().get(instruccion),tablaEjecucion.getFilas().get(instruccion + 1))) {
                             System.out.println("Ciclo no valido Modo Ejecucion falso");
                             this.aisg_modo_ejecucion(false);
                             pila_intruccion_eje_false.push(temp_instruccion);
@@ -92,8 +91,7 @@ public class RenderizarHTML {
                             Integer valor = (Integer) variable.getValor();
                             valor++;
                             variable.setValor(valor);
-                            System.out.println(
-                                    "Sume uno a la variable: " + variable.getNombre() + "=" + variable.getValor());
+                            System.out.println("Sume uno a la variable: " + variable.getNombre() + "=" + variable.getValor());
                         } catch (NoDataException e) {
                             System.out.println("La pila_var_bucle estaba vacia -> BUCLE_FIN");
                         }
@@ -125,8 +123,12 @@ public class RenderizarHTML {
                     break;
                 case Token.CONSULTAR:
                     if (this.modo_ejecucion) {
-                        FilaTabla variable = tablaSimbolos.buscar(temp_ejecucion.getLexema());
-                        html = html + variable.getValor() + "\n";
+                        System.out.println("Variable: "+temp_ejecucion.getLexema()+" ,Valor: "+tablaSimbolos.buscar(temp_ejecucion.getLexema()).getValor());
+                        if(temp_ejecucion.getLexema().equals("RESULT")){
+                            html = html +"ObjectRESULT"+tablaSimbolos.buscar(temp_ejecucion.getLexema()).getValor().hashCode() + "\n";
+                        }else{
+                            html = html + tablaSimbolos.buscar(temp_ejecucion.getLexema()).getValor() + "\n";
+                        }
                     }
                     break;
                 case Token.CAMBIAR:

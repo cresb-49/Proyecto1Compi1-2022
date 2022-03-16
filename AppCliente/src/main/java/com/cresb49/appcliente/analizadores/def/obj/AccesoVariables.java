@@ -4,14 +4,12 @@ import com.cresb49.appcliente.analizadores.Token;
 
 public class AccesoVariables {
     private Token token;
-    private Object variable;
     private Object index;
     public AccesoVariables(){
 
     }
-    public AccesoVariables(Token token,Object variable,Object index){
+    public AccesoVariables(Token token,Object index){
         this.token = token;
-        this.variable = variable;
         this.index = index;
     }
     public Object getIndex() {
@@ -20,16 +18,15 @@ public class AccesoVariables {
     public Token getToken() {
         return token;
     }
-    public Object getVariable() {
-        return variable;
-    }
     public void setIndex(Object index) {
         this.index = index;
     }
     public void setToken(Token token) {
         this.token = token;
     }
-    public void setVariable(Object variable) {
-        this.variable = variable;
+
+    @Override
+    public String toString() {
+        return "AccesoVariables{" + "token=" + token + ", index=" + index + '}';
     }
 }
