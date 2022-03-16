@@ -435,12 +435,12 @@ public class ParserDef extends java_cup.runtime.lr_parser {
           case "Comentarios":
             break;
           default:
-            semantic_error(id2,"No es un parametro de la variable: "+id1.getLexema());
+            semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\"");
             break;
         }
       }else{
         semantic_error(id1,"No es una variable que contenga parametros internos");
-        semantic_error(id2,"No es un parametro de la variable: "+id1.getLexema());
+        semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\"");
       }
     }
 
@@ -456,14 +456,14 @@ public class ParserDef extends java_cup.runtime.lr_parser {
           case "Comentarios":
             break;
           default:
-            semantic_error(id2,"No es un parametro de la variable: "+id1.getLexema());
-            semantic_error(id2,"No es un parametro vectorial: "+id1.getLexema());
+            semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\"");
+            semantic_error(id2,"No es un parametro vectorial: \""+id1.getLexema()+"\"");
             break;
         }
       }else{
         semantic_error(id1,"No es una variable que contenga parametros internos");
-        semantic_error(id2,"No es un parametro de la variable: "+id1.getLexema());
-        semantic_error(id2,"No es un parametro vectorial: "+id1.getLexema());
+        semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\"");
+        semantic_error(id2,"No es un parametro vectorial: \""+id1.getLexema()+"\"");
       }
     }
 
@@ -474,7 +474,7 @@ public class ParserDef extends java_cup.runtime.lr_parser {
             if(id3.getLexema().equals("Nombre")){
                 
             }else{
-                semantic_error(id3,"No es un parametro de la variable "+id2.getLexema());
+                semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\"");
             }
             break;
           case "Variables":
@@ -486,7 +486,7 @@ public class ParserDef extends java_cup.runtime.lr_parser {
                 case "Funcion":
                 break;
                 default:
-                    semantic_error(id3,"No es un parametro de la variable "+id2.getLexema());
+                    semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\"");
                 break;
             }
             break;
@@ -499,7 +499,7 @@ public class ParserDef extends java_cup.runtime.lr_parser {
                 case "Parametros":
                 break;
                 default:
-                    semantic_error(id3,"No es un parametro de la variable "+id2.getLexema());
+                    semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\"");
                 break;
             }
             break;
@@ -508,19 +508,21 @@ public class ParserDef extends java_cup.runtime.lr_parser {
                 case "Texto":
                 break;
                 default:
-                    semantic_error(id3,"No es un parametro de la variable "+id2.getLexema());
+                    semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\"");
                 break;
             }
             break;
           default:
-            semantic_error(id2,"No es un parametro de la variable: "+id1.getLexema());
-            semantic_error(id2,"No es un parametro vectorial: "+id1.getLexema());
+            semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\"");
+            semantic_error(id2,"No es un parametro vectorial: \""+id1.getLexema()+"\"");
+            semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\"");
             break;
         }
       }else{
         semantic_error(id1,"No es una variable que contenga parametros internos");
-        semantic_error(id2,"No es un parametro de la variable: "+id1.getLexema());
-        semantic_error(id2,"No es un parametro vectorial: "+id1.getLexema());
+        semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\"");
+        semantic_error(id2,"No es un parametro vectorial: \""+id1.getLexema()+"\"");
+        semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\"");
       }
     }
 
