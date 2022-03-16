@@ -42,24 +42,33 @@ public class RenderizarHTML {
         String hmtl = "";
 
         Token temp_ejecucion;
-        for (Integer instruccion = 0; instruccion < tablaEjecucion.getFilas().size(); instruccion++) {
-            System.out.println("Ejecutando la instruccion #"+instruccion);
+        Integer instruccion = 0;
+
+        while (instruccion < tablaEjecucion.getFilas().size()) {
+            System.out.println("Ejecutando la instruccion #" + instruccion);
             temp_ejecucion = tablaEjecucion.getFilas().get(instruccion);
 
             switch (temp_ejecucion.getAccion()) {
                 case Token.PRINT:
-                    hmtl = hmtl + temp_ejecucion.getValorToken() + "\n";
+                    if (this.modo_ejecucion) {
+                        hmtl = hmtl + temp_ejecucion.getValorToken() + "\n";
+                    }
                     break;
                 case Token.BUCLE_INI:
                     int temp_instruccion = instruccion;
                     pila_bucle.push(temp_instruccion);
                     instruccion++;
-                    if(!this.validarCiclo(tablaEjecucion.getFilas().get(instruccion),tablaEjecucion.getFilas().get(instruccion+1))){
+                    if (!this.validarCiclo(tablaEjecucion.getFilas().get(instruccion),
+                            tablaEjecucion.getFilas().get(instruccion + 1))) {
                         this.aisg_modo_ejecucion(false);
                     }
                     instruccion++;
                     break;
                 case Token.BUCLE_FIN:
+                    if(){
+
+                    }
+                    
                     break;
                 case Token.CONSULTAR:
                     break;
@@ -69,21 +78,22 @@ public class RenderizarHTML {
                     System.out.println("No efectuo accion -> " + temp_ejecucion.getLexema());
                     break;
             }
+            instruccion++;
         }
         return hmtl;
     }
 
     private boolean validarCiclo(Token var, Token valMax) {
         FilaTabla variable = tablaSimbolos.buscar(var.getLexema());
-        if(variable.getValor()==null){
-            System.out.println("La variable \""+variable.getNombre()+"\" es nula");
-        }else{
+        if (variable.getValor() == null) {
+            System.out.println("La variable \"" + variable.getNombre() + "\" es nula");
+        } else {
             FilaTabla var_max = tablaSimbolos.buscar(valMax.getLexema());
-            if(var_max == null){
+            if (var_max == null) {
                 int valor_maximo = (int) valMax.getValorToken();
                 int val_variable = (int) variable.getValor();
                 return val_variable <= valor_maximo;
-            }else{
+            } else {
                 int valor_maximo = (int) var_max.getValor();
                 int val_variable = (int) variable.getValor();
                 return val_variable <= valor_maximo;
@@ -92,10 +102,8 @@ public class RenderizarHTML {
         return false;
     }
 
-    public void aisg_modo_ejecucion(boolean estado){
+    public void aisg_modo_ejecucion(boolean estado) {
         this.modo_ejecucion = estado;
     }
-
-    
 
 }
