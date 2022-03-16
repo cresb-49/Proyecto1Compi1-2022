@@ -329,8 +329,11 @@ public class ParserDef extends java_cup.runtime.lr_parser {
     public ParserDef (LexerDef lexerDef){ 
         super(lexerDef);
         this.lexerDef=lexerDef;
-        this.tablaSimbolos = new TablaSimbolos();
         this.simbolosTerminalesDef = new SimbolosTerminalesDef();
+    }
+
+    public void setTablasimbolos(TablaSimbolos tablaSimbolos){
+        this.tablaSimbolos = tablaSimbolos;
     }
 
     public void report_error(String message, Object info) {
@@ -1457,6 +1460,7 @@ class CUP$ParserDef$actions {
                             if(variable==null){
                               semantic_error(id1,"La variable que desea utilizar no esta definida en el programa");
                             }
+                            id1.setAccion(Token.CONSULTAR);
                             RESULT = new Pila<>();
                             RESULT.push(new AccesoVariables(((Token)id1), variable, null));
                         

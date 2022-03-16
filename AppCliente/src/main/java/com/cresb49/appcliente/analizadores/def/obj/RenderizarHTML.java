@@ -40,7 +40,7 @@ public class RenderizarHTML {
         this.tablaEjecucion = tablaEjecucion;
     }
 
-    public String HTML(){
+    public String HTML() {
         pila_bucle = new Pila<>();
         pila_intruccion_eje_false = new Pila<>();
         pila_var_bucle = new Pila<>();
@@ -65,11 +65,12 @@ public class RenderizarHTML {
                     int temp_instruccion = instruccion;
                     System.out.println("Ingreso a la pila_bucle la instruccion #" + instruccion);
                     pila_bucle.push(temp_instruccion);
-                    if(this.modo_ejecucion){
+                    if (this.modo_ejecucion) {
                         instruccion++;
                         System.out.println("Ingreso a la pila_var_bucle la instruccion #" + instruccion);
                         pila_var_bucle.push(tablaEjecucion.getFilas().get(instruccion).getLexema());
-                        if (!this.validarCiclo(tablaEjecucion.getFilas().get(instruccion),tablaEjecucion.getFilas().get(instruccion + 1))) {
+                        if (!this.validarCiclo(tablaEjecucion.getFilas().get(instruccion),
+                                tablaEjecucion.getFilas().get(instruccion + 1))) {
                             System.out.println("Ciclo no valido Modo Ejecucion falso");
                             this.aisg_modo_ejecucion(false);
                             pila_intruccion_eje_false.push(temp_instruccion);
@@ -83,36 +84,37 @@ public class RenderizarHTML {
                     }
                     break;
                 case Token.BUCLE_FIN:
-                System.out.println("Fin de BUCLE");
-                    if(modo_ejecucion){
+                    System.out.println("Fin de BUCLE");
+                    if (modo_ejecucion) {
                         try {
                             String nombre_var = pila_var_bucle.pop();
                             FilaTabla variable = tablaSimbolos.buscar(nombre_var);
                             Integer valor = (Integer) variable.getValor();
                             valor++;
                             variable.setValor(valor);
-                            System.out.println("Sume uno a la variable: "+variable.getNombre()+"="+variable.getValor());
+                            System.out.println(
+                                    "Sume uno a la variable: " + variable.getNombre() + "=" + variable.getValor());
                         } catch (NoDataException e) {
                             System.out.println("La pila_var_bucle estaba vacia -> BUCLE_FIN");
                         }
                         try {
                             Integer ints = pila_bucle.pop();
                             instruccion = ints - 1;
-                            System.out.println("Asigne la instruccion #"+(instruccion+1));
+                            System.out.println("Asigne la instruccion #" + (instruccion + 1));
                         } catch (NoDataException e) {
                             System.out.println("La pila_bucle estaba vacia -> BUCLE_FIN");
                         }
-                    }else{
+                    } else {
                         try {
-                            if(pila_intruccion_eje_false.isEmpty()){
+                            if (pila_intruccion_eje_false.isEmpty()) {
                                 pila_bucle.pop();
-                            }else{
-                                if(pila_bucle.peek().equals(pila_intruccion_eje_false.peek())){
+                            } else {
+                                if (pila_bucle.peek().equals(pila_intruccion_eje_false.peek())) {
                                     System.out.println("Fin BUCLE Modo Ejecucion falso -> AHORA true");
                                     this.aisg_modo_ejecucion(true);
                                     pila_bucle.pop();
                                     pila_intruccion_eje_false.pop();
-                                }else{
+                                } else {
                                     pila_bucle.pop();
                                 }
                             }
@@ -122,10 +124,13 @@ public class RenderizarHTML {
                     }
                     break;
                 case Token.CONSULTAR:
-                System.out.println("No efectuo consultar -> " + temp_ejecucion.getLexema());
+                    if (this.modo_ejecucion) {
+                        FilaTabla variable = tablaSimbolos.buscar(temp_ejecucion.getLexema());
+                        html = html + variable.getValor() + "\n";
+                    }
                     break;
                 case Token.CAMBIAR:
-                System.out.println("No efectuo cambiar -> " + temp_ejecucion.getLexema());
+                    System.out.println("No efectuo cambiar -> " + temp_ejecucion.getLexema());
                     break;
                 default:
                     System.out.println("No efectuo accion -> " + temp_ejecucion.getLexema());
@@ -142,17 +147,17 @@ public class RenderizarHTML {
         if (variable.getValor() == null) {
             System.out.println("La variable \"" + variable.getNombre() + "\" es nula");
         } else {
-            if(valMax.getValorToken() instanceof Integer){
+            if (valMax.getValorToken() instanceof Integer) {
                 int valor_maximo = (int) valMax.getValorToken();
                 int val_variable = (int) variable.getValor();
-                System.out.println(variable.getNombre()+"="+val_variable+" <= "+valor_maximo);
+                System.out.println(variable.getNombre() + "=" + val_variable + " <= " + valor_maximo);
                 return val_variable <= valor_maximo;
-            }else if(valMax.getValorToken() instanceof FilaTabla){
-                int valor_maximo = (int) ((FilaTabla)valMax.getValorToken()).getValor();
+            } else if (valMax.getValorToken() instanceof FilaTabla) {
+                int valor_maximo = (int) ((FilaTabla) valMax.getValorToken()).getValor();
                 int val_variable = (int) variable.getValor();
-                System.out.println(variable.getNombre()+"="+val_variable+" <= "+valor_maximo);
+                System.out.println(variable.getNombre() + "=" + val_variable + " <= " + valor_maximo);
                 return val_variable <= valor_maximo;
-            }   
+            }
         }
         return false;
     }

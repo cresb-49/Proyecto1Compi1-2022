@@ -1,13 +1,17 @@
 package com.cresb49.appcliente.analizadores.def;
 
 import com.cresb49.appcliente.analizadores.ErrorAnalisis;
+import com.cresb49.appcliente.analizadores.def.obj.FilaTabla;
 import com.cresb49.appcliente.analizadores.def.obj.RenderizarHTML;
 import com.cresb49.appcliente.analizadores.def.obj.TablaEjecucion;
+import com.cresb49.appcliente.analizadores.def.obj.TablaSimbolos;
 import com.cresb49.appcliente.analizadores.def.obj.exceptions.NoReporteJson;
 import com.cresb49.appcliente.analizadores.json.obj.ReporteJson;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
+
+import javax.swing.text.TabableView;
 
 public class AnalizarDef {
 
@@ -30,6 +34,9 @@ public class AnalizarDef {
             lexerDef.setErrors(errores);
             lexerDef.setTablaEjecucion(new TablaEjecucion());
             parserDef = new ParserDef(lexerDef);
+            TablaSimbolos tablaSimbolos = new TablaSimbolos();
+            tablaSimbolos.getFilas().add(new FilaTabla("RESULT",TablaSimbolos.OBJECT, reporteJson));
+            parserDef.setTablasimbolos(tablaSimbolos);
             try {
                 parserDef.parse();
             } catch (Exception e) {

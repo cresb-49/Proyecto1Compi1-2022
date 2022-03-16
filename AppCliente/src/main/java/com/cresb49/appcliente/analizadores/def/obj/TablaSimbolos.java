@@ -10,6 +10,7 @@ public class TablaSimbolos {
 
     public static final String INT = "Integer";
     public static final String STRING = "String";
+    public static final String OBJECT = "Object";
     public static final String MAS = "+";
     public static final String MENOS = "-";
     public static final String MUL = "*";
