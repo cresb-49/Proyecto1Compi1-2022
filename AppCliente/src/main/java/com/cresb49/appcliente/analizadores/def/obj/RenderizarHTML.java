@@ -1,6 +1,7 @@
 package com.cresb49.appcliente.analizadores.def.obj;
 
 import com.cresb49.appcliente.ED.Pila;
+import com.cresb49.appcliente.ED.Exceptions.NoDataException;
 import com.cresb49.appcliente.analizadores.Token;
 
 public class RenderizarHTML {
@@ -9,7 +10,7 @@ public class RenderizarHTML {
     private TablaEjecucion tablaEjecucion;
 
     private Pila<Integer> pila_bucle;
-    private Pila<String> var_bucle;
+    private Pila<String> pila_var_bucle;
 
     private boolean modo_ejecucion;
 
@@ -47,7 +48,6 @@ public class RenderizarHTML {
         while (instruccion < tablaEjecucion.getFilas().size()) {
             System.out.println("Ejecutando la instruccion #" + instruccion);
             temp_ejecucion = tablaEjecucion.getFilas().get(instruccion);
-
             switch (temp_ejecucion.getAccion()) {
                 case Token.PRINT:
                     if (this.modo_ejecucion) {
@@ -56,19 +56,39 @@ public class RenderizarHTML {
                     break;
                 case Token.BUCLE_INI:
                     int temp_instruccion = instruccion;
+                    System.out.println("Ingreso a la pila_bucle la instruccion #" + instruccion);
                     pila_bucle.push(temp_instruccion);
-                    instruccion++;
-                    if (!this.validarCiclo(tablaEjecucion.getFilas().get(instruccion),
-                            tablaEjecucion.getFilas().get(instruccion + 1))) {
-                        this.aisg_modo_ejecucion(false);
+                    if(this.modo_ejecucion){
+                        instruccion++;
+                        System.out.println("Ingreso a la pila_var_bucle la instruccion #" + instruccion);
+                        pila_var_bucle.push(tablaEjecucion.getFilas().get(instruccion).getLexema());
+                        if (!this.validarCiclo(tablaEjecucion.getFilas().get(instruccion),tablaEjecucion.getFilas().get(instruccion + 1))) {
+                            this.aisg_modo_ejecucion(false);
+                            try {
+                                pila_bucle.pop();
+                            } catch (NoDataException e) {
+                                System.out.println("La pila_bucle estaba vacia -> BUCLE_IN");
+                            }
+                            try {
+                                pila_var_bucle.pop();
+                            } catch (NoDataException e) {
+                                System.out.println("La pila_var_bucle estaba vacia -> BUCLE_IN");
+                            }
+                        }
+                        instruccion++;
                     }
-                    instruccion++;
                     break;
                 case Token.BUCLE_FIN:
-                    if(){
-
+                    if(pila_bucle.isEmpty()){
+                        this.aisg_modo_ejecucion(true);
+                    }else{
+                        try {
+                            int tmp = pila_bucle.pop();
+                            instruccion = tmp - 1;
+                        } catch (NoDataException e) {
+                            System.out.println("La pila estaba vacia -> BUCLE_FIN");
+                        }
                     }
-                    
                     break;
                 case Token.CONSULTAR:
                     break;
