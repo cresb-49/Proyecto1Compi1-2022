@@ -232,7 +232,7 @@ public class RenderizarHTML {
             }else if(var instanceof Metodo){
                 switch(parametroConsulta.getLexema()){
                     case "Nombre":
-                        return ""+((Clase)var).getNombre();
+                        return ""+((Metodo)var).getNombre();
                     case "Tipo":
                         return ""+((Metodo)var).getTipo();
                     case "Parametros":
