@@ -168,6 +168,7 @@ parser code {:
 
     private void verificarDosId_id2Index(Token id1,Token id2,AccesoVariables acc){
       if(id1.getLexema().equals("RESULT")){
+        id1.setAccion(Token.IGNORE);
         FilaTabla var = this.tablaSimbolos.buscar("RESULT");
         switch (id2.getLexema()) {
           case "Clases":
@@ -609,6 +610,7 @@ varHTML2    ::= ID:id1  {:
 varHTML4    ::= ID:var  {:
                             verificar_tipo_var_for((Token)var,TablaSimbolos.INT);
                             varificar_no_null((Token)var);
+                            var.setAccion(Token.IGNORE);
                             FilaTabla variable = tablaSimbolos.buscar(((Token)var).getLexema());
                             if(variable!=null){
                                 RESULT = variable;

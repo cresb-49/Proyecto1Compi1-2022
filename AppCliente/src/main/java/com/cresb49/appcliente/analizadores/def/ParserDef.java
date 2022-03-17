@@ -466,6 +466,7 @@ public class ParserDef extends java_cup.runtime.lr_parser {
 
     private void verificarDosId_id2Index(Token id1,Token id2,AccesoVariables acc){
       if(id1.getLexema().equals("RESULT")){
+        id1.setAccion(Token.IGNORE);
         FilaTabla var = this.tablaSimbolos.buscar("RESULT");
         switch (id2.getLexema()) {
           case "Clases":
@@ -1618,8 +1619,6 @@ class CUP$ParserDef$actions {
 		
                                                                     AccesoVariables acc = new AccesoVariables();
                                                                     verificarDosId_id2Index(id1,id2,acc);
-                                                                    id1.setAccion(Token.IGNORE);
-                                                                    id2.setAccion(Token.IGNORE);
                                                                     acc.setIndex(index);
                                                                     id2.setValorToken(acc);    
                                                                 
@@ -1663,6 +1662,7 @@ class CUP$ParserDef$actions {
 		
                             verificar_tipo_var_for((Token)var,TablaSimbolos.INT);
                             varificar_no_null((Token)var);
+                            var.setAccion(Token.IGNORE);
                             FilaTabla variable = tablaSimbolos.buscar(((Token)var).getLexema());
                             if(variable!=null){
                                 RESULT = variable;

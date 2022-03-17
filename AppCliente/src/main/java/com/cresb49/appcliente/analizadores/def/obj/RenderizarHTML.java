@@ -3,6 +3,7 @@ package com.cresb49.appcliente.analizadores.def.obj;
 import com.cresb49.appcliente.ED.Pila;
 import com.cresb49.appcliente.ED.Exceptions.NoDataException;
 import com.cresb49.appcliente.analizadores.Token;
+import com.cresb49.appcliente.analizadores.json.obj.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -134,7 +135,9 @@ public class RenderizarHTML {
                             if (acc.getIndex() instanceof Integer){
                                 try{
                                     if(acc.getarreglo() instanceof ArrayList){
-                                        html = html + ((ArrayList<Object>)acc.getarreglo()).get((Integer)acc.getIndex()) + "\n";
+                                        ArrayList<Object> lista = (ArrayList<Object>) acc.getarreglo();
+                                        Object objetoList = lista.get((int) acc.getIndex());
+                                        html = html + this.tipoVar(objetoList)+"\n";
                                     }
                                 }catch(Exception ex){
                                     System.out.println("El indice de acceso es mayor al tamaño del arreglo");
@@ -144,7 +147,9 @@ public class RenderizarHTML {
                                 FilaTabla indexVar = (FilaTabla) acc.getIndex();
                                 try{
                                     if(acc.getarreglo() instanceof ArrayList){
-                                        html = html + ((ArrayList<Object>)acc.getarreglo()).get((Integer)indexVar.getValor()) + "\n";
+                                        ArrayList<Object> lista = (ArrayList<Object>) acc.getarreglo();
+                                        Object objetoList = lista.get((Integer)indexVar.getValor());                                  
+                                        html = html + this.tipoVar(objetoList)+"\n";
                                     }
                                 }catch(Exception ex){
                                     System.out.println("El indice de acceso es mayor al tamaño del arreglo");
@@ -185,6 +190,20 @@ public class RenderizarHTML {
 
     public void aisg_modo_ejecucion(boolean estado) {
         this.modo_ejecucion = estado;
+    }
+
+    private String tipoVar(Object objetoList) {
+        if(objetoList instanceof Variable){
+            return "ObjetoVariable"+objetoList.hashCode();
+        }else if(objetoList instanceof Clase){
+            return "ObjetoClase"+objetoList.hashCode();
+        }else if(objetoList instanceof Metodo){
+            return "ObjetoMetodo"+objetoList.hashCode();
+        }else if(objetoList instanceof Comentario){
+            return "ObjetoComentario"+objetoList.hashCode();
+        }else{
+            return "ObjetoGenerico";
+        }
     }
 
 }
