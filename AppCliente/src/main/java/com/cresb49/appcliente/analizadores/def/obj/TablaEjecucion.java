@@ -45,6 +45,8 @@ public class TablaEjecucion {
                 return "BUCLE_FIN";
             case Token.IGNORE:
                 return "IGNORE";
+            case Token.VAR_CONSULT:
+                return "VAR_CONSULT";
         }
         return "ERROR ACCION";
     }

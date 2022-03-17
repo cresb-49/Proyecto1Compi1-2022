@@ -5,7 +5,6 @@ import com.cresb49.appcliente.ED.Exceptions.NoDataException;
 import com.cresb49.appcliente.analizadores.Token;
 import com.cresb49.appcliente.analizadores.json.obj.*;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class RenderizarHTML {
 
@@ -15,6 +14,8 @@ public class RenderizarHTML {
     private Pila<Integer> pila_bucle;
     private Pila<Integer> pila_intruccion_eje_false;
     private Pila<String> pila_var_bucle;
+
+    private Pila<Object> pila_consulta;
 
     private boolean modo_ejecucion;
 
@@ -71,7 +72,8 @@ public class RenderizarHTML {
                         instruccion++;
                         System.out.println("Ingreso a la pila_var_bucle la instruccion #" + instruccion);
                         pila_var_bucle.push(tablaEjecucion.getFilas().get(instruccion).getLexema());
-                        if (!this.validarCiclo(tablaEjecucion.getFilas().get(instruccion),tablaEjecucion.getFilas().get(instruccion + 1))) {
+                        if (!this.validarCiclo(tablaEjecucion.getFilas().get(instruccion),
+                                tablaEjecucion.getFilas().get(instruccion + 1))) {
                             System.out.println("Ciclo no valido Modo Ejecucion falso");
                             this.aisg_modo_ejecucion(false);
                             pila_intruccion_eje_false.push(temp_instruccion);
@@ -93,7 +95,8 @@ public class RenderizarHTML {
                             Integer valor = (Integer) variable.getValor();
                             valor++;
                             variable.setValor(valor);
-                            System.out.println("Sume uno a la variable: " + variable.getNombre() + "=" + variable.getValor());
+                            System.out.println(
+                                    "Sume uno a la variable: " + variable.getNombre() + "=" + variable.getValor());
                         } catch (NoDataException e) {
                             System.out.println("La pila_var_bucle estaba vacia -> BUCLE_FIN");
                         }
@@ -129,29 +132,64 @@ public class RenderizarHTML {
                     }
                     break;
                 case Token.CAMBIAR:
-                    if(this.modo_ejecucion){
-                        if(temp_ejecucion.getValorToken() instanceof AccesoVariables){
+                    if (this.modo_ejecucion) {
+                        if (temp_ejecucion.getValorToken() instanceof AccesoVariables) {
                             AccesoVariables acc = (AccesoVariables) temp_ejecucion.getValorToken();
-                            if (acc.getIndex() instanceof Integer){
-                                try{
-                                    if(acc.getarreglo() instanceof ArrayList){
+                            if (acc.getIndex() instanceof Integer) {
+                                try {
+                                    if (acc.getarreglo() instanceof ArrayList) {
                                         ArrayList<Object> lista = (ArrayList<Object>) acc.getarreglo();
                                         Object objetoList = lista.get((int) acc.getIndex());
-                                        html = html + this.tipoVar(objetoList)+"\n";
+                                        html = html + this.tipoVar(objetoList) + "\n";
                                     }
-                                }catch(Exception ex){
+                                } catch (Exception ex) {
                                     System.out.println("El indice de acceso es mayor al tamaño del arreglo");
                                 }
                             }
-                            if(acc.getIndex() instanceof FilaTabla){
+                            if (acc.getIndex() instanceof FilaTabla) {
                                 FilaTabla indexVar = (FilaTabla) acc.getIndex();
-                                try{
-                                    if(acc.getarreglo() instanceof ArrayList){
+                                try {
+                                    if (acc.getarreglo() instanceof ArrayList) {
                                         ArrayList<Object> lista = (ArrayList<Object>) acc.getarreglo();
-                                        Object objetoList = lista.get((Integer)indexVar.getValor());                                  
-                                        html = html + this.tipoVar(objetoList)+"\n";
+                                        Object objetoList = lista.get((Integer) indexVar.getValor());
+                                        html = html + this.tipoVar(objetoList) + "\n";
                                     }
-                                }catch(Exception ex){
+                                } catch (Exception ex) {
+                                    System.out.println("El indice de acceso es mayor al tamaño del arreglo");
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case Token.VAR_CONSULT:
+                    if (this.modo_ejecucion) {
+                        html = html +this.obtenerValor(temp_ejecucion)+ "\n";
+                    }
+                    break;
+                case Token.VIEW:
+                    if (this.modo_ejecucion) {
+                        if (temp_ejecucion.getValorToken() instanceof AccesoVariables) {
+                            AccesoVariables acc = (AccesoVariables) temp_ejecucion.getValorToken();
+                            if (acc.getIndex() instanceof Integer) {
+                                try {
+                                    if (acc.getarreglo() instanceof ArrayList) {
+                                        ArrayList<Object> lista = (ArrayList<Object>) acc.getarreglo();
+                                        Object objetoList = lista.get((int) acc.getIndex());
+                                        pila_consulta.push(objetoList);
+                                    }
+                                } catch (Exception ex) {
+                                    System.out.println("El indice de acceso es mayor al tamaño del arreglo");
+                                }
+                            }
+                            if (acc.getIndex() instanceof FilaTabla) {
+                                FilaTabla indexVar = (FilaTabla) acc.getIndex();
+                                try {
+                                    if (acc.getarreglo() instanceof ArrayList) {
+                                        ArrayList<Object> lista = (ArrayList<Object>) acc.getarreglo();
+                                        Object objetoList = lista.get((Integer) indexVar.getValor());
+                                        pila_consulta.push(objetoList);
+                                    }
+                                } catch (Exception ex) {
                                     System.out.println("El indice de acceso es mayor al tamaño del arreglo");
                                 }
                             }
@@ -159,13 +197,53 @@ public class RenderizarHTML {
                     }
                     break;
                 default:
-                    System.out.println("No efectuo accion -> " + temp_ejecucion.getLexema());
+                    System.out.println("Instruccion ignorada -> " + temp_ejecucion.getLexema());
                     break;
             }
             instruccion++;
         }
         System.out.println("Termino el renderizado del HTML");
         return html;
+    }
+
+    private String obtenerValor(Token parametroConsulta) {
+        try {
+            Object var = pila_consulta.pop();
+            if(var instanceof Clase){
+                switch(parametroConsulta.getLexema()){
+                    case "Nombre":
+                        return ""+((Clase)var).getNombre();
+                }
+            }else if(var instanceof Variable){
+                switch(parametroConsulta.getLexema()){
+                    case "Nombre":
+                        return ""+((Variable)var).getNombre();
+                    case "Tipo":
+                        return ""+((Variable)var).getTipo();
+                    case "Funcion":
+                        return ""+((Variable)var).getFuncion();
+                }
+            }else if(var instanceof Comentario){
+                switch(parametroConsulta.getLexema()){
+                    case "Texto":
+                        return ""+((Comentario)var).getTexto();
+                }
+            }else if(var instanceof Metodo){
+                switch(parametroConsulta.getLexema()){
+                    case "Nombre":
+                        return ""+((Clase)var).getNombre();
+                    case "Tipo":
+                        return ""+((Metodo)var).getTipo();
+                    case "Parametros":
+                        return ""+((Metodo)var).getParametros();
+                }
+            }else{
+                return "";
+            }   
+        } catch (NoDataException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     private boolean validarCiclo(Token var, Token valMax) {
@@ -193,15 +271,15 @@ public class RenderizarHTML {
     }
 
     private String tipoVar(Object objetoList) {
-        if(objetoList instanceof Variable){
-            return "ObjetoVariable"+objetoList.hashCode();
-        }else if(objetoList instanceof Clase){
-            return "ObjetoClase"+objetoList.hashCode();
-        }else if(objetoList instanceof Metodo){
-            return "ObjetoMetodo"+objetoList.hashCode();
-        }else if(objetoList instanceof Comentario){
-            return "ObjetoComentario"+objetoList.hashCode();
-        }else{
+        if (objetoList instanceof Variable) {
+            return "ObjetoVariable" + objetoList.hashCode();
+        } else if (objetoList instanceof Clase) {
+            return "ObjetoClase" + objetoList.hashCode();
+        } else if (objetoList instanceof Metodo) {
+            return "ObjetoMetodo" + objetoList.hashCode();
+        } else if (objetoList instanceof Comentario) {
+            return "ObjetoComentario" + objetoList.hashCode();
+        } else {
             return "ObjetoGenerico";
         }
     }

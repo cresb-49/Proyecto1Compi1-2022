@@ -499,10 +499,12 @@ public class ParserDef extends java_cup.runtime.lr_parser {
 
     private void verificarTresId(Token id1,Token id2,Token id3){
         if(id1.getLexema().equals("RESULT")){
+            id1.setAccion(Token.IGNORE);
+            id2.setAccion(Token.VIEW);
         switch (id2.getLexema()) {
           case "Clases":
             if(id3.getLexema().equals("Nombre")){
-                
+                id3.setAccion(Token.VAR_CONSULT);
             }else{
                 semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\"");
             }
@@ -510,10 +512,13 @@ public class ParserDef extends java_cup.runtime.lr_parser {
           case "Variables":
             switch(id3.getLexema()){
                 case "Nombre":
+                    id3.setAccion(Token.VAR_CONSULT);
                 break;
                 case "Tipo":
+                    id3.setAccion(Token.VAR_CONSULT);
                 break;
                 case "Funcion":
+                    id3.setAccion(Token.VAR_CONSULT);
                 break;
                 default:
                     semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\" ,se esperaba [Nombre,Tipo,Funcion]");
@@ -523,10 +528,13 @@ public class ParserDef extends java_cup.runtime.lr_parser {
           case "Metodos":
             switch(id3.getLexema()){
                 case "Nombre":
+                    id3.setAccion(Token.VAR_CONSULT);
                 break;
                 case "Tipo":
+                    id3.setAccion(Token.VAR_CONSULT);
                 break;
                 case "Parametros":
+                    id3.setAccion(Token.VAR_CONSULT);
                 break;
                 default:
                     semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\" ,se esperaba [Nombre,Tipo,Parametros]");
@@ -536,6 +544,7 @@ public class ParserDef extends java_cup.runtime.lr_parser {
           case "Comentarios":
             switch(id3.getLexema()){
                 case "Texto":
+                    id3.setAccion(Token.VAR_CONSULT);
                 break;
                 default:
                     semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\" ,se esperaba [Texto]");
@@ -1643,10 +1652,10 @@ class CUP$ParserDef$actions {
 		int id3right = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()).right;
 		Token id3 = (Token)((java_cup.runtime.Symbol) CUP$ParserDef$stack.peek()).value;
 		
+                                                                                AccesoVariables acc = new AccesoVariables();
                                                                                 verificarTresId(id1,id2,id3);
-                                                                                id1.setAccion(Token.IGNORE);
-                                                                                id2.setAccion(Token.IGNORE);
-                                                                                id3.setAccion(Token.IGNORE);
+                                                                                acc.setIndex(index);
+                                                                                id2.setValorToken(acc);
                                                                             
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("varHTML2",29, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-7)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
