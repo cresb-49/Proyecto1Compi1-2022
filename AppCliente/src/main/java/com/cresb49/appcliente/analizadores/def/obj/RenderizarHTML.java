@@ -123,12 +123,7 @@ public class RenderizarHTML {
                     break;
                 case Token.CONSULTAR:
                     if (this.modo_ejecucion) {
-                        System.out.println("Variable: "+temp_ejecucion.getLexema()+" ,Valor: "+tablaSimbolos.buscar(temp_ejecucion.getLexema()).getValor());
-                        if(temp_ejecucion.getLexema().equals("RESULT")){
-                            html = html +"ObjectRESULT"+tablaSimbolos.buscar(temp_ejecucion.getLexema()).getValor().hashCode() + "\n";
-                        }else{
-                            html = html + tablaSimbolos.buscar(temp_ejecucion.getLexema()).getValor() + "\n";
-                        }
+                        html = html + tablaSimbolos.buscar(temp_ejecucion.getLexema()).getValor() + "\n";
                     }
                     break;
                 case Token.CAMBIAR:

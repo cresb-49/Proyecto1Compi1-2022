@@ -421,18 +421,36 @@ public class ParserDef extends java_cup.runtime.lr_parser {
         }
     }
 
+    private void verificarUnId(Token id){
+      if(id.getLexema().equals("RESULT")){
+        id.setAccion(Token.PRINT);
+        id.setValorToken("ObjectRESULT"+this.reporteJson.hashCode());
+      }
+    }
+
     private void verificarDosId(Token id1,Token id2){
       if(id1.getLexema().equals("RESULT")){
+        id1.setAccion(Token.IGNORE);
         switch (id2.getLexema()) {
           case "Score":
+            id2.setAccion(Token.PRINT);
+            id2.setValorToken(this.reporteJson.getScore());
             break;
           case "Clases":
+            id2.setAccion(Token.PRINT);
+            id2.setValorToken("ObjectClases"+this.reporteJson.getClases().hashCode());
             break;
           case "Variables":
+            id2.setAccion(Token.PRINT);
+            id2.setValorToken("ObjectVariables"+this.reporteJson.getClases().hashCode());
             break;
           case "Metodos":
+            id2.setAccion(Token.PRINT);
+            id2.setValorToken("ObjectMetodos"+this.reporteJson.getClases().hashCode());
             break;
           case "Comentarios":
+            id2.setAccion(Token.PRINT);
+            id2.setValorToken("ObjectComentarios"+this.reporteJson.getClases().hashCode());
             break;
           default:
             semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\" ,se esperaba [Score,Clases,Variables,Metodos,Comentarios]");
@@ -1550,6 +1568,7 @@ class CUP$ParserDef$actions {
                               semantic_error(id1,"La variable que desea utilizar no esta definida en el programa");
                             }
                             id1.setAccion(Token.CONSULTAR);
+                            verificarUnId(id1);
                         
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("varHTML2",29, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
@@ -1567,6 +1586,8 @@ class CUP$ParserDef$actions {
 		Token id2 = (Token)((java_cup.runtime.Symbol) CUP$ParserDef$stack.peek()).value;
 		
                                         verificarDosId(id1,id2);
+                                        id1.setAccion(Token.IGNORE);
+                                        id2.setAccion(Token.IGNORE);
                                     
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("varHTML2",29, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-2)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
@@ -1587,6 +1608,8 @@ class CUP$ParserDef$actions {
 		Object index = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).value;
 		
                                                                     verificarDosId_id2Index(id1,id2);    
+                                                                    id1.setAccion(Token.IGNORE);
+                                                                    id2.setAccion(Token.IGNORE);
                                                                 
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("varHTML2",29, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
@@ -1610,6 +1633,9 @@ class CUP$ParserDef$actions {
 		Token id3 = (Token)((java_cup.runtime.Symbol) CUP$ParserDef$stack.peek()).value;
 		
                                                                                 verificarTresId(id1,id2,id3);
+                                                                                id1.setAccion(Token.IGNORE);
+                                                                                id2.setAccion(Token.IGNORE);
+                                                                                id3.setAccion(Token.IGNORE);
                                                                             
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("varHTML2",29, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-7)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }

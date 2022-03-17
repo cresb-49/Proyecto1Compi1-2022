@@ -123,18 +123,36 @@ parser code {:
         }
     }
 
+    private void verificarUnId(Token id){
+      if(id.getLexema().equals("RESULT")){
+        id.setAccion(Token.PRINT);
+        id.setValorToken("ObjectRESULT"+this.reporteJson.hashCode());
+      }
+    }
+
     private void verificarDosId(Token id1,Token id2){
       if(id1.getLexema().equals("RESULT")){
+        id1.setAccion(Token.IGNORE);
         switch (id2.getLexema()) {
           case "Score":
+            id2.setAccion(Token.PRINT);
+            id2.setValorToken(this.reporteJson.getScore());
             break;
           case "Clases":
+            id2.setAccion(Token.PRINT);
+            id2.setValorToken("ObjectClases"+this.reporteJson.getClases().hashCode());
             break;
           case "Variables":
+            id2.setAccion(Token.PRINT);
+            id2.setValorToken("ObjectVariables"+this.reporteJson.getClases().hashCode());
             break;
           case "Metodos":
+            id2.setAccion(Token.PRINT);
+            id2.setValorToken("ObjectMetodos"+this.reporteJson.getClases().hashCode());
             break;
           case "Comentarios":
+            id2.setAccion(Token.PRINT);
+            id2.setValorToken("ObjectComentarios"+this.reporteJson.getClases().hashCode());
             break;
           default:
             semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\" ,se esperaba [Score,Clases,Variables,Metodos,Comentarios]");
@@ -558,15 +576,23 @@ varHTML2    ::= ID:id1  {:
                               semantic_error(id1,"La variable que desea utilizar no esta definida en el programa");
                             }
                             id1.setAccion(Token.CONSULTAR);
+                            verificarUnId(id1);
                         :}
             |   ID:id1 PUNTO ID:id2 {:
                                         verificarDosId(id1,id2);
+                                        id1.setAccion(Token.IGNORE);
+                                        id2.setAccion(Token.IGNORE);
                                     :}
             |   ID:id1 PUNTO ID:id2 CO_A varHTML4:index CO_C    {:
                                                                     verificarDosId_id2Index(id1,id2);    
+                                                                    id1.setAccion(Token.IGNORE);
+                                                                    id2.setAccion(Token.IGNORE);
                                                                 :}
             |   ID:id1 PUNTO ID:id2 CO_A varHTML4:index CO_C PUNTO ID:id3   {:
                                                                                 verificarTresId(id1,id2,id3);
+                                                                                id1.setAccion(Token.IGNORE);
+                                                                                id2.setAccion(Token.IGNORE);
+                                                                                id3.setAccion(Token.IGNORE);
                                                                             :}
             ;
 
