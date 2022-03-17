@@ -269,6 +269,29 @@ public class ParserJson extends java_cup.runtime.lr_parser {
         return status;
     }
 
+    private void verificar_reporte_json(ReporteJson verReporteJson){
+        if(verReporteJson.getScore() == null){
+          String error = "Error en definicion, el resultado Json no tiene Score";
+          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Score", 1, 1, error));
+        }
+        if(verReporteJson.getClases() == null){
+          String error = "Error en definicion, el resultado Json no tiene lista de Clases";
+          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Score", 1, 1, error));
+        }
+        if(verReporteJson.getVariables() == null){
+          String error = "Error en definicion, el resultado Json no tiene lista de Variables";
+          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Score", 1, 1, error));
+        }
+        if(verReporteJson.getMetodos() == null){
+          String error = "Error en definicion, el resultado Json no tiene lista de Metodos";
+          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Score", 1, 1, error));
+        }
+        if(verReporteJson.getComentarios() == null){
+          String error = "Error en definicion, el resultado Json no tiene lista de Comentarios";
+          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Score", 1, 1, error));
+        }
+    }
+
     protected int error_sync_size() {
 		return 1;
 	}
@@ -308,6 +331,7 @@ class CUP$ParserJson$actions {
 		
                                     if(r!=null){
                                         reporteJson=r;
+                                        verificar_reporte_json(reporteJson);
                                     }
                                 
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("ini",0, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
