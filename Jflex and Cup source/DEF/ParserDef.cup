@@ -272,6 +272,18 @@ parser code {:
       }
     }
 
+    private Object devolver_val_2Id(Token id1,Token id2){
+        
+    }
+
+    private Object devolver_val_2Id_index(Token id1,Token id2,Integer index){
+
+    }
+
+    private Object devolver_val_3Id(Token id1,Token id2,Token id3,Integer index){
+
+    }
+
     private void create_var_asig_val(Token identificador,String tipo_id,String tipo_value,Object value) {
        FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
         if(fila==null){
@@ -471,6 +483,15 @@ f   ::= ID:val      {:
                             semantic_error(token, "La variable no esta definida");
                         }
                     :}
+    |   ID:id1 PUNTO ID:id2     {:
+
+                                :}
+    |   ID:id1 PUNTO ID:id2 CO_A exp:index CO_C         {:
+                                                            
+                                                        :}
+    |   ID:id1 PUNTO ID:id2 CO_A exp:index CO_C PUNTO ID:id3   {:
+
+                                                                    :}
     |   ENTERO:val  {:
                         Token token = (Token) val;
                         RESULT = new Operacion(TablaSimbolos.INT,Integer.parseInt(token.getLexema()));
