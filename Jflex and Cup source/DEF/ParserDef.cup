@@ -319,9 +319,8 @@ non terminal                        ini,asig,dec,decn,def;
 non terminal Pila<Token>            decp;
 non terminal Operacion              exp,t,f;
 
-non terminal                        html,contHTML,inertags,inertagsp,inertagspp,table,tablec,trc,metFor,contFor,tdc,thc,tablecpp,actionfor,
-                                    tdcp,thcp,paramhasta,trcp,varHTML4;
-non terminal Pila<AccesoVariables>  varHTML,varHTML2,varHTML3;
+non terminal                        html,contHTML,tablec,contFor,trc,paramhasta,etiquetas;
+non terminal                        varHTML2,varHTML4;
 
 
 /* Inicio de las reglas gramticales*/
@@ -491,110 +490,68 @@ html    ::= ME_Q HTML:tagini MA_Q contHTML ME_QB HTML:tagfin MA_Q   {:
                                                                     :}
         ;
 
-contHTML    ::= contHTML inertags
-            |   contHTML table
-            |   contHTML metFor
+contHTML    ::= contHTML ME_Q etiquetas
+            |   contHTML TEXT:txt   {:
+                                        txt.setValorToken(txt.getLexema());
+                                    :}
+            |   contHTML D_PA_A varHTML2:var PA_C_D
             |
             ;
 
-inertags   ::=  ME_Q inertagspp
+etiquetas ::=   BR:tag MA_Q     {:
+                                    tag.setValorToken("<br>");
+                                :}
+            |   H1:tagini MA_Q contHTML ME_QB H1:tagfin MA_Q                {:
+                                                                                tagini.setValorToken("<h1>");
+                                                                                tagfin.setValorToken("</h1>");
+                                                                            :}
+            |   H2:tagini MA_Q contHTML ME_QB H2:tagfin MA_Q                {:
+                                                                                tagini.setValorToken("<h2>");
+                                                                                tagfin.setValorToken("</h2>");
+                                                                            :}
+            |   TABLE:tagini MA_Q tablec ME_QB TABLE:tagfin MA_Q                {:
+                                                                                    tagini.setValorToken("<table border=\"1\">");
+                                                                                    tagfin.setValorToken("</table>");
+                                                                                :}
+            |   FOR:tagini ITERATOR:it DOSPUNTOS ID:var_ite HASTA:has DOSPUNTOS paramhasta:max PUNTOCOMA MA_Q contFor:contenido ME_QB FOR:tagfin MA_Q   {:
+                                                                                                                                                            verificar_tipo_var_for((Token)var_ite,TablaSimbolos.INT);
+                                                                                                                                                            varificar_no_null((Token)var_ite);
+                                                                                                                                                            tagini.setAccion(Token.BUCLE_INI);
+                                                                                                                                                            tagfin.setAccion(Token.BUCLE_FIN);
+                                                                                                                                                            if(max!=null){
+                                                                                                                                                                Token limite = (Token)has;
+                                                                                                                                                                if(max instanceof Integer){
+                                                                                                                                                                    limite.setValorToken(max);
+                                                                                                                                                                }else if(max instanceof FilaTabla){
+                                                                                                                                                                    limite.setValorToken(max);
+                                                                                                                                                                }else{
+                                                                                                                                                                  System.out.println("Analizador sintactico: error al recupera valor maximo de ciclo");
+                                                                                                                                                                }
+                                                                                                                                                            }
+
+                                                                                                                                                        :}
             ;
 
-inertagspp  ::= BR:tag MA_Q {:
-                                tag.setValorToken("<br>");
-                            :}
-            |   H1:tagini MA_Q inertagsp ME_QB H1:tagfin MA_Q   {:
-                                                                    tagini.setValorToken("<h1>");
-                                                                    tagfin.setValorToken("</h1>");
+contFor ::= tablec
+        |   contHTML
+        ;
+
+tablec  ::= tablec ME_Q TR:tagini MA_Q trc ME_QB TR:tagfin MA_Q {:
+                                                                    tagini.setValorToken("<tr>");
+                                                                    tagfin.setValorToken("</tr>");
                                                                 :}
-            |   H2:tagini MA_Q inertagsp ME_QB H2:tagfin MA_Q   {:
-                                                                    tagini.setValorToken("<h2>");
-                                                                    tagfin.setValorToken("</h2>");
+        ;
+
+trc ::= trc ME_Q TH:tagini MA_Q contHTML ME_QB TH:tagfin MA_Q   {:
+                                                                    tagini.setValorToken("<th>");
+                                                                    tagfin.setValorToken("</th>");
                                                                 :}
-            ;
-
-inertagsp   ::= inertags
-            |   TEXT:txt    {:
-                                txt.setValorToken(txt.getLexema());
-                            :}
-            |   varHTML
-            |
-            ;
-
-table   ::= ME_Q TABLE:tagini MA_Q tablec ME_QB TABLE:tagfin MA_Q   {:
-                                                                        tagini.setValorToken("<table border=\"1\">");
-                                                                        tagfin.setValorToken("</table>");
-                                                                    :}
-        |   error MA_Q
-        ;
-
-tablec  ::= tablec ME_Q tablecpp
-        |   ME_Q tablecpp
-        |   tablec error
-        ;
-
-tablecpp    ::= TR:tagini MA_Q trc ME_QB TR:tagfin MA_Q {:
-                                                            tagini.setValorToken("<tr>");
-                                                            tagfin.setValorToken("</tr>");
-                                                        :}
-            |   inertagspp
-            |   actionfor
-            ;
-
-trc ::= trc ME_Q trcp
-    |   trc inertags
-    |   ME_Q trcp
-    |   inertags
-    |   trc error
+    |   trc ME_Q TD:tagini MA_Q contHTML ME_QB TD:tagfin MA_Q   {:
+                                                                    tagini.setValorToken("<td>");
+                                                                    tagfin.setValorToken("</td>");
+                                                                :}
+    |   
     ;
-
-trcp    ::= TH:tagini MA_Q thc ME_QB TH:tagfin MA_Q    {:
-                                                                tagini.setValorToken("<th>");
-                                                                tagfin.setValorToken("</th>");
-                                                            :}
-        |   TD:tagini MA_Q tdc ME_QB TD:tagfin MA_Q    {:
-                                                                tagini.setValorToken("<td>");
-                                                                tagfin.setValorToken("</td>");
-                                                            :}
-        ;
-
-
-thc ::= thcp
-    |
-    ;
-
-thcp ::= thcp inertags
-    |   thcp TEXT:txt                {:
-                                        txt.setValorToken(txt.getLexema());
-                                    :}
-    |   thcp varHTML
-    |   inertags
-    |   TEXT:txt                    {:
-                                        txt.setValorToken(txt.getLexema());
-                                    :}
-    |   varHTML
-    |   thcp error
-    ;
-
-tdc ::= tdcp
-    |
-    ;
-
-tdcp ::= tdcp inertags   
-    |   tdcp TEXT:txt                {:
-                                        txt.setValorToken(txt.getLexema());
-                                    :}
-    |   tdcp varHTML
-    |   inertags
-    |   TEXT:txt                    {:
-                                        txt.setValorToken(txt.getLexema());
-                                    :}
-    |   varHTML
-    |   tdcp error
-    ;
-
-varHTML ::= D_PA_A varHTML2:var PA_C_D
-        ;
 
 varHTML2    ::= ID:id1  {:
                             FilaTabla variable = tablaSimbolos.buscar(id1.getLexema());
@@ -635,27 +592,6 @@ varHTML4    ::= ID:var  {:
                                     :}
             ;
 
-metFor  ::= ME_Q actionfor
-        ;
-
-actionfor   ::= FOR:tagini ITERATOR:it DOSPUNTOS ID:var_ite HASTA:has DOSPUNTOS paramhasta:max PUNTOCOMA MA_Q contFor:contenido ME_QB FOR:tagfin MA_Q   {:
-                                                                                                                                                            verificar_tipo_var_for((Token)var_ite,TablaSimbolos.INT);
-                                                                                                                                                            varificar_no_null((Token)var_ite);
-                                                                                                                                                            tagini.setAccion(Token.BUCLE_INI);
-                                                                                                                                                            tagfin.setAccion(Token.BUCLE_FIN);
-                                                                                                                                                            if(max!=null){
-                                                                                                                                                                Token limite = (Token)has;
-                                                                                                                                                                if(max instanceof Integer){
-                                                                                                                                                                    limite.setValorToken(max);
-                                                                                                                                                                }else if(max instanceof FilaTabla){
-                                                                                                                                                                    limite.setValorToken(max);
-                                                                                                                                                                }else{
-                                                                                                                                                                  System.out.println("Analizador sintactico: error al recupera valor maximo de ciclo");
-                                                                                                                                                                }
-                                                                                                                                                            }
-
-                                                                                                                                                        :}
-            ;
 paramhasta ::=  ID:var  {:
                             verificar_tipo_var_for((Token)var,TablaSimbolos.INT);
                             varificar_no_null((Token)var);
@@ -670,5 +606,3 @@ paramhasta ::=  ID:var  {:
             |   error MA_Q
             ;
 
-contFor ::= tablec
-        ;
