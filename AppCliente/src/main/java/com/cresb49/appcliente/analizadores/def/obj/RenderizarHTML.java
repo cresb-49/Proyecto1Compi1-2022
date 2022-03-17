@@ -3,6 +3,7 @@ package com.cresb49.appcliente.analizadores.def.obj;
 import com.cresb49.appcliente.ED.Pila;
 import com.cresb49.appcliente.ED.Exceptions.NoDataException;
 import com.cresb49.appcliente.analizadores.Token;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class RenderizarHTML {
@@ -132,15 +133,23 @@ public class RenderizarHTML {
                             AccesoVariables acc = (AccesoVariables) temp_ejecucion.getValorToken();
                             if (acc.getIndex() instanceof Integer){
                                 try{
-                                    
+                                    if(acc.getarreglo() instanceof ArrayList){
+                                        ((ArrayList<Object>)acc.getarreglo()).get((Integer)acc.getIndex());
+                                    }
                                 }catch(Exception ex){
-
+                                    System.out.println("El indice de acceso es mayor al tamaño del arreglo");
                                 }
                             }
                             if(acc.getIndex() instanceof FilaTabla){
-
+                                FilaTabla indexVar = (FilaTabla) acc.getIndex();
+                                try{
+                                    if(acc.getarreglo() instanceof ArrayList){
+                                        ((ArrayList<Object>)acc.getarreglo()).get((Integer)indexVar.getValor());
+                                    }
+                                }catch(Exception ex){
+                                    System.out.println("El indice de acceso es mayor al tamaño del arreglo");
+                                }
                             }
-
                         }
                     }
                     break;
