@@ -50,7 +50,7 @@ public class Servidor extends Observable implements Runnable{
                 
                 in = new ObjectInputStream(socket.getInputStream());
                 
-                Object mensaje = in.readObject();
+                Object mensaje = mensaje = in.readObject();
                 
                 this.setChanged();
                 this.notifyObservers(mensaje);
@@ -61,9 +61,9 @@ public class Servidor extends Observable implements Runnable{
                 
             }
         } catch (IOException ex) {
-            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
                 
     }

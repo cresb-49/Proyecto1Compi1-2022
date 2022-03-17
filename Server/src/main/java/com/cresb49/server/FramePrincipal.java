@@ -5,8 +5,8 @@
  */
 package com.cresb49.server;
 
+import com.cresb49.appcliente.Objetos.CompararProyectos;
 import com.cresb49.server.Objetos.AnalizarProyectos;
-import com.cresb49.server.Objetos.CompararProyectos;
 import com.cresb49.server.comunicacion.Cliente;
 import com.cresb49.server.comunicacion.Servidor;
 import java.util.Observable;

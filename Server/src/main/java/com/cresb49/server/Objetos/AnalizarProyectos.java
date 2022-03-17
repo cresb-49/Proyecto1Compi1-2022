@@ -2,6 +2,8 @@ package com.cresb49.server.Objetos;
 
 import java.io.File;
 
+import com.cresb49.appcliente.Objetos.CompararProyectos;
+
 public class AnalizarProyectos {
     public AnalizarProyectos(){
 
