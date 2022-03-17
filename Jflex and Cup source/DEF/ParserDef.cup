@@ -319,7 +319,7 @@ non terminal                        ini,asig,dec,decn,def;
 non terminal Pila<Token>            decp;
 non terminal Operacion              exp,t,f;
 
-non terminal                        html,contHTML,tablec,contFor,trc,paramhasta,etiquetas;
+non terminal                        html,contHTML,tablec,tablectag,trc,paramhasta,etiquetas;
 non terminal                        varHTML2,varHTML4;
 
 
@@ -535,7 +535,7 @@ etiquetas ::=   BR:tag MA_Q     {:
                                                                                     tagini.setValorToken("<table border=\"1\">");
                                                                                     tagfin.setValorToken("</table>");
                                                                                 :}
-            |   FOR:tagini ITERATOR:it DOSPUNTOS ID:var_ite HASTA:has DOSPUNTOS paramhasta:max PUNTOCOMA MA_Q contFor:contenido ME_QB FOR:tagfin MA_Q   {:
+            |   FOR:tagini ITERATOR:it DOSPUNTOS ID:var_ite HASTA:has DOSPUNTOS paramhasta:max PUNTOCOMA MA_Q contHTML ME_QB FOR:tagfin MA_Q   {:
                                                                                                                                                             verificar_tipo_var_for((Token)var_ite,TablaSimbolos.INT);
                                                                                                                                                             varificar_no_null((Token)var_ite);
                                                                                                                                                             tagini.setAccion(Token.BUCLE_INI);
@@ -552,30 +552,83 @@ etiquetas ::=   BR:tag MA_Q     {:
                                                                                                                                                             }
 
                                                                                                                                                         :}
+            |   error MA_Q
+            |   error ME_QB
+            |   error ME_Q
             ;
 
-contFor ::= tablec
-        |   contHTML
-        ;
-
-tablec  ::= tablec ME_Q TR:tagini MA_Q trc ME_QB TR:tagfin MA_Q {:
-                                                                    tagini.setValorToken("<tr>");
-                                                                    tagfin.setValorToken("</tr>");
-                                                                :}
-        |   tablec ME_Q TR:tagini MA_Q ME_QB TR:tagfin MA_Q     {:
-                                                                    tagini.setValorToken("<tr>");
-                                                                    tagfin.setValorToken("</tr>");
-                                                                :}
-        |   ME_Q TR:tagini MA_Q trc ME_QB TR:tagfin MA_Q        {:
-                                                                    tagini.setValorToken("<tr>");
-                                                                    tagfin.setValorToken("</tr>");
-                                                                :}
-        |   ME_Q TR:tagini MA_Q ME_QB TR:tagfin MA_Q            {:
-                                                                    tagini.setValorToken("<tr>");
-                                                                    tagfin.setValorToken("</tr>");
-                                                                :}
+tablec  ::= tablec ME_Q tablectag
+        |   ME_Q tablectag
+        |   tablec TEXT:txt         {:
+                                        txt.setValorToken(txt.getLexema());
+                                    :}
+        |   tablec D_PA_A varHTML2:var PA_C_D
+        |   TEXT:txt        {:
+                                txt.setValorToken(txt.getLexema());
+                            :}
+        |   D_PA_A varHTML2:var PA_C_D
         |   tablec error
         ;
+
+tablectag   ::= TR:tagini MA_Q trc ME_QB TR:tagfin MA_Q         {:
+                                                                    tagini.setValorToken("<tr>");
+                                                                    tagfin.setValorToken("</tr>");
+                                                                :}
+            |   TR:tagini MA_Q ME_QB TR:tagfin MA_Q             {:
+                                                                    tagini.setValorToken("<tr>");
+                                                                    tagfin.setValorToken("</tr>");
+                                                                :}
+            |   BR:tag MA_Q     {:
+                                    tag.setValorToken("<br>");
+                                :}
+            |   H1:tagini MA_Q contHTML ME_QB H1:tagfin MA_Q                {:
+                                                                                tagini.setValorToken("<h1>");
+                                                                                tagfin.setValorToken("</h1>");
+                                                                            :}
+            |   H1:tagini MA_Q ME_QB H1:tagfin MA_Q                         {:
+                                                                                tagini.setValorToken("<h1>");
+                                                                                tagfin.setValorToken("</h1>");
+                                                                            :}
+            |   H2:tagini MA_Q contHTML ME_QB H2:tagfin MA_Q                {:
+                                                                                tagini.setValorToken("<h2>");
+                                                                                tagfin.setValorToken("</h2>");
+                                                                            :}
+            |   H2:tagini MA_Q ME_QB H2:tagfin MA_Q                         {:
+                                                                                tagini.setValorToken("<h2>");
+                                                                                tagfin.setValorToken("</h2>");
+                                                                            :}
+            |   TABLE:tagini MA_Q tablec ME_QB TABLE:tagfin MA_Q                {:
+                                                                                    tagini.setValorToken("<table border=\"1\">");
+                                                                                    tagfin.setValorToken("</table>");
+                                                                                :}
+            |   TABLE:tagini MA_Q ME_QB TABLE:tagfin MA_Q                       {:
+                                                                                    tagini.setValorToken("<table border=\"1\">");
+                                                                                    tagfin.setValorToken("</table>");
+                                                                                :}
+            |   FOR:tagini ITERATOR:it DOSPUNTOS ID:var_ite HASTA:has DOSPUNTOS paramhasta:max PUNTOCOMA MA_Q tablec ME_QB FOR:tagfin MA_Q   {:
+                                                                                                                                                            verificar_tipo_var_for((Token)var_ite,TablaSimbolos.INT);
+                                                                                                                                                            varificar_no_null((Token)var_ite);
+                                                                                                                                                            tagini.setAccion(Token.BUCLE_INI);
+                                                                                                                                                            tagfin.setAccion(Token.BUCLE_FIN);
+                                                                                                                                                            if(max!=null){
+                                                                                                                                                                Token limite = (Token)has;
+                                                                                                                                                                if(max instanceof Integer){
+                                                                                                                                                                    limite.setValorToken(max);
+                                                                                                                                                                }else if(max instanceof FilaTabla){
+                                                                                                                                                                    limite.setValorToken(max);
+                                                                                                                                                                }else{
+                                                                                                                                                                  System.out.println("Analizador sintactico: error al recupera valor maximo de ciclo");
+                                                                                                                                                                }
+                                                                                                                                                            }
+
+                                                                                                                                                        :}
+            |   error MA_Q
+            |   error ME_QB
+            |   error ME_Q
+            ;
+
+
+
 
 trc ::= trc ME_Q TH:tagini MA_Q contHTML ME_QB TH:tagfin MA_Q   {:
                                                                     tagini.setValorToken("<th>");
