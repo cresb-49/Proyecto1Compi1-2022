@@ -149,7 +149,7 @@ non terminal                        initJava,contClass,importJava,importJavaCont
 non terminal                        t,f,exp;
 non terminal                        tBool,fBool,expBool,eBool,gBool,hBool;
 /* Inicio de las reglas gramticales*/
-initJava    ::= initJava importJava
+initJava    ::= importJava initJava
             |   classJava
             ;
 
@@ -161,7 +161,7 @@ importJava  ::= IMPORT ID importJavaContenido
             ;
 
 importJavaContenido ::= PUNTO ID importJavaContenido
-                    |   PUNTO ID MUL PUNTOCOMA
+                    |   PUNTO MUL PUNTOCOMA
                     |   PUNTOCOMA
                     |   error PUNTO
                     |   error PUNTOCOMA
@@ -204,10 +204,10 @@ tipo        ::= INT
             |   OBJ
             ;
 
-classJava   ::= visibilidad CLASS ID PA_A sentencias PA_C
-            |   visibilidad CLASS ID PA_A PA_C
-            |   visibilidad FINAL CLASS ID PA_A sentencias PA_C
-            |   visibilidad FINAL CLASS ID PA_A PA_C
+classJava   ::= visibilidad CLASS ID LLA_A sentencias LLA_C
+            |   visibilidad CLASS ID LLA_A LLA_C
+            |   visibilidad FINAL CLASS ID LLA_A sentencias LLA_C
+            |   visibilidad FINAL CLASS ID LLA_A LLA_C
             ;
 
 metodo      ::= visibilidad tipo ID PA_A PA_C LLA_A LLA_C

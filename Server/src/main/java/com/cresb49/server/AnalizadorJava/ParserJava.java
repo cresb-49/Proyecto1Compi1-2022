@@ -36,7 +36,7 @@ public class ParserJava extends java_cup.runtime.lr_parser {
     unpackFromStrings(new String[] {
     "\000\153\000\002\002\004\000\002\002\004\000\002\002" +
     "\003\000\002\004\005\000\002\004\004\000\002\004\004" +
-    "\000\002\005\005\000\002\005\006\000\002\005\003\000" +
+    "\000\002\005\005\000\002\005\005\000\002\005\003\000" +
     "\002\005\004\000\002\005\004\000\002\011\003\000\002" +
     "\011\003\000\002\011\003\000\002\013\003\000\002\013" +
     "\003\000\002\013\003\000\002\013\003\000\002\013\003" +
@@ -75,30 +75,32 @@ public class ParserJava extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\045\000\010\005\007\006\011\007\005\001\002\000" +
-    "\006\010\034\065\033\001\002\000\006\010\ufff4\065\ufff4" +
-    "\001\002\000\010\002\uffff\003\uffff\004\uffff\001\002\000" +
-    "\006\010\ufff5\065\ufff5\001\002\000\010\002\015\003\013" +
-    "\004\012\001\002\000\006\010\ufff6\065\ufff6\001\002\000" +
-    "\004\030\020\001\002\000\006\060\016\063\017\001\002" +
-    "\000\010\002\001\003\001\004\001\001\002\000\004\002" +
-    "\000\001\002\000\010\002\ufffd\003\ufffd\004\ufffd\001\002" +
-    "\000\010\002\ufffc\003\ufffc\004\ufffc\001\002\000\010\003" +
-    "\023\060\022\063\024\001\002\000\010\002\ufffe\003\ufffe" +
-    "\004\ufffe\001\002\000\004\030\027\001\002\000\006\060" +
-    "\025\063\026\001\002\000\010\002\ufff9\003\ufff9\004\ufff9" +
-    "\001\002\000\010\002\ufff8\003\ufff8\004\ufff8\001\002\000" +
-    "\010\002\ufff7\003\ufff7\004\ufff7\001\002\000\012\003\023" +
-    "\046\031\060\022\063\024\001\002\000\010\002\ufffb\003" +
-    "\ufffb\004\ufffb\001\002\000\004\063\032\001\002\000\010" +
-    "\002\ufffa\003\ufffa\004\ufffa\001\002\000\004\030\043\001" +
-    "\002\000\004\065\035\001\002\000\004\030\036\001\002" +
-    "\000\004\052\037\001\002\000\004\053\041\001\002\000" +
-    "\004\053\042\001\002\000\010\002\uffea\003\uffea\004\uffea" +
-    "\001\002\000\010\002\uffeb\003\uffeb\004\uffeb\001\002\000" +
-    "\004\052\044\001\002\000\004\053\046\001\002\000\004" +
-    "\053\047\001\002\000\010\002\uffec\003\uffec\004\uffec\001" +
-    "\002\000\010\002\uffed\003\uffed\004\uffed\001\002" });
+    "\000\046\000\014\003\011\004\014\005\004\006\012\007" +
+    "\005\001\002\000\006\010\ufff5\065\ufff5\001\002\000\006" +
+    "\010\ufff4\065\ufff4\001\002\000\006\010\035\065\034\001" +
+    "\002\000\004\002\033\001\002\000\014\003\011\004\014" +
+    "\005\004\006\012\007\005\001\002\000\006\060\030\063" +
+    "\031\001\002\000\006\010\ufff6\065\ufff6\001\002\000\004" +
+    "\002\uffff\001\002\000\004\030\015\001\002\000\010\003" +
+    "\020\060\017\063\021\001\002\000\014\003\ufffe\004\ufffe" +
+    "\005\ufffe\006\ufffe\007\ufffe\001\002\000\006\030\024\046" +
+    "\025\001\002\000\006\060\022\063\023\001\002\000\014" +
+    "\003\ufff9\004\ufff9\005\ufff9\006\ufff9\007\ufff9\001\002\000" +
+    "\014\003\ufff8\004\ufff8\005\ufff8\006\ufff8\007\ufff8\001\002" +
+    "\000\014\003\ufff7\004\ufff7\005\ufff7\006\ufff7\007\ufff7\001" +
+    "\002\000\010\003\020\060\017\063\021\001\002\000\004" +
+    "\063\026\001\002\000\014\003\ufffa\004\ufffa\005\ufffa\006" +
+    "\ufffa\007\ufffa\001\002\000\014\003\ufffb\004\ufffb\005\ufffb" +
+    "\006\ufffb\007\ufffb\001\002\000\014\003\ufffd\004\ufffd\005" +
+    "\ufffd\006\ufffd\007\ufffd\001\002\000\014\003\ufffc\004\ufffc" +
+    "\005\ufffc\006\ufffc\007\ufffc\001\002\000\004\002\001\001" +
+    "\002\000\004\002\000\001\002\000\004\030\044\001\002" +
+    "\000\004\065\036\001\002\000\004\030\037\001\002\000" +
+    "\004\056\040\001\002\000\004\057\041\001\002\000\004" +
+    "\002\uffea\001\002\000\004\057\043\001\002\000\004\002" +
+    "\uffeb\001\002\000\004\056\045\001\002\000\004\057\046" +
+    "\001\002\000\004\002\uffec\001\002\000\004\057\050\001" +
+    "\002\000\004\002\uffed\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -106,19 +108,20 @@ public class ParserJava extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\045\000\010\002\007\010\005\011\003\001\001\000" +
-    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\004\004\013\001\001\000\002\001\001\000" +
+    "\000\046\000\012\002\006\004\007\010\012\011\005\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\012\002\031\004\007\010\012\011" +
+    "\005\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\004\005\015\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\004\005" +
-    "\020\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\026\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\004\005\027\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\004\012\037" +
-    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\004\012\044\001\001\000\002" +
-    "\001\001\000\002\001\001\000\002\001\001" });
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\004\012\041\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\004\012\046\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -309,7 +312,7 @@ class CUP$ParserJava$actions {
       switch (CUP$ParserJava$act_num)
         {
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 0: // initJava ::= initJava importJava 
+          case 0: // initJava ::= importJava initJava 
             {
               Object RESULT =null;
 
@@ -377,11 +380,11 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 7: // importJavaContenido ::= PUNTO ID MUL PUNTOCOMA 
+          case 7: // importJavaContenido ::= PUNTO MUL PUNTOCOMA 
             {
               Object RESULT =null;
 
-              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("importJavaContenido",3, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
+              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("importJavaContenido",3, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
 
@@ -494,7 +497,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 20: // classJava ::= visibilidad CLASS ID PA_A sentencias PA_C 
+          case 20: // classJava ::= visibilidad CLASS ID LLA_A sentencias LLA_C 
             {
               Object RESULT =null;
 
@@ -503,7 +506,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 21: // classJava ::= visibilidad CLASS ID PA_A PA_C 
+          case 21: // classJava ::= visibilidad CLASS ID LLA_A LLA_C 
             {
               Object RESULT =null;
 
@@ -512,7 +515,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 22: // classJava ::= visibilidad FINAL CLASS ID PA_A sentencias PA_C 
+          case 22: // classJava ::= visibilidad FINAL CLASS ID LLA_A sentencias LLA_C 
             {
               Object RESULT =null;
 
@@ -521,7 +524,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 23: // classJava ::= visibilidad FINAL CLASS ID PA_A PA_C 
+          case 23: // classJava ::= visibilidad FINAL CLASS ID LLA_A LLA_C 
             {
               Object RESULT =null;
 
