@@ -601,66 +601,66 @@ public class ParserDef extends java_cup.runtime.lr_parser {
             id1.setAccion(Token.IGNORE);
             FilaTabla var = this.tablaSimbolos.buscar("RESULT");
             id2.setAccion(Token.VIEW);
-        switch (id2.getLexema()) {
-          case "Clases":
-            acc.setArreglo(((ReporteJson)var.getValor()).getClases());
-            if(id3.getLexema().equals("Nombre")){
-                id3.setAccion(Token.VAR_CONSULT);
-            }else{
+            switch (id2.getLexema()) {
+            case "Clases":
+                acc.setArreglo(((ReporteJson)var.getValor()).getClases());
+                if(id3.getLexema().equals("Nombre")){
+                    id3.setAccion(Token.VAR_CONSULT);
+                }else{
+                    semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\"");
+                }
+                break;
+            case "Variables":
+                acc.setArreglo(((ReporteJson)var.getValor()).getVariables());
+                switch(id3.getLexema()){
+                    case "Nombre":
+                        id3.setAccion(Token.VAR_CONSULT);
+                    break;
+                    case "Tipo":
+                        id3.setAccion(Token.VAR_CONSULT);
+                    break;
+                    case "Funcion":
+                        id3.setAccion(Token.VAR_CONSULT);
+                    break;
+                    default:
+                        semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\" ,se esperaba [Nombre,Tipo,Funcion]");
+                    break;
+                }
+                break;
+            case "Metodos":
+                acc.setArreglo(((ReporteJson)var.getValor()).getMetodos());
+                switch(id3.getLexema()){
+                    case "Nombre":
+                        id3.setAccion(Token.VAR_CONSULT);
+                    break;
+                    case "Tipo":
+                        id3.setAccion(Token.VAR_CONSULT);
+                    break;
+                    case "Parametros":
+                        id3.setAccion(Token.VAR_CONSULT);
+                    break;
+                    default:
+                        semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\" ,se esperaba [Nombre,Tipo,Parametros]");
+                    break;
+                }
+                break;
+            case "Comentarios":
+                acc.setArreglo(((ReporteJson)var.getValor()).getComentarios());
+                switch(id3.getLexema()){
+                    case "Texto":
+                        id3.setAccion(Token.VAR_CONSULT);
+                    break;
+                    default:
+                        semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\" ,se esperaba [Texto]");
+                    break;
+                }
+                break;
+            default:
+                semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\",se esperaba [Clases,Variables,Metodos,Comentarios]");
+                semantic_error(id2,"No es un parametro vectorial: \""+id1.getLexema()+"\"");
                 semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\"");
-            }
-            break;
-          case "Variables":
-            acc.setArreglo(((ReporteJson)var.getValor()).getVariables());
-            switch(id3.getLexema()){
-                case "Nombre":
-                    id3.setAccion(Token.VAR_CONSULT);
-                break;
-                case "Tipo":
-                    id3.setAccion(Token.VAR_CONSULT);
-                break;
-                case "Funcion":
-                    id3.setAccion(Token.VAR_CONSULT);
-                break;
-                default:
-                    semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\" ,se esperaba [Nombre,Tipo,Funcion]");
                 break;
             }
-            break;
-          case "Metodos":
-            acc.setArreglo(((ReporteJson)var.getValor()).getMetodos());
-            switch(id3.getLexema()){
-                case "Nombre":
-                    id3.setAccion(Token.VAR_CONSULT);
-                break;
-                case "Tipo":
-                    id3.setAccion(Token.VAR_CONSULT);
-                break;
-                case "Parametros":
-                    id3.setAccion(Token.VAR_CONSULT);
-                break;
-                default:
-                    semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\" ,se esperaba [Nombre,Tipo,Parametros]");
-                break;
-            }
-            break;
-          case "Comentarios":
-            acc.setArreglo(((ReporteJson)var.getValor()).getComentarios());
-            switch(id3.getLexema()){
-                case "Texto":
-                    id3.setAccion(Token.VAR_CONSULT);
-                break;
-                default:
-                    semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\" ,se esperaba [Texto]");
-                break;
-            }
-            break;
-          default:
-            semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\",se esperaba [Clases,Variables,Metodos,Comentarios]");
-            semantic_error(id2,"No es un parametro vectorial: \""+id1.getLexema()+"\"");
-            semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\"");
-            break;
-        }
       }else{
         semantic_error(id1,"No es una variable que contenga parametros internos");
         semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\"");
@@ -669,16 +669,111 @@ public class ParserDef extends java_cup.runtime.lr_parser {
       }
     }
 
-    private Object devolver_val_2Id(Token id1,Token id2){
-
+    private Operacion devolver_val_2Id(Token id1,Token id2){
+      if(id1.getLexema().equals("RESULT")){
+        FilaTabla var = this.tablaSimbolos.buscar("RESULT");
+        switch (id2.getLexema()) {
+          case "Score":
+            return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getScore());
+          case "Clases":
+            return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getClases());
+          case "Variables":
+            return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getVariables());
+          case "Metodos":
+            return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getMetodos());
+          case "Comentarios":
+            return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getComentarios());
+          default:
+            semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\" ,se esperaba [Score,Clases,Variables,Metodos,Comentarios]");
+        }
+      }else{
+        semantic_error(id1,"No es una variable que contenga parametros internos");
+        semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\"");
+      }
+      return new Operacion(TablaSimbolos.OBJECT,null);
     }
 
-    private Object devolver_val_2Id_index(Token id1,Token id2,Integer index){
-
+    private Operacion devolver_val_2Id_index(Token id1,Token id2,Integer index){
+        if(id1.getLexema().equals("RESULT")){
+        FilaTabla var = this.tablaSimbolos.buscar("RESULT");
+        switch (id2.getLexema()) {
+          case "Clases":
+            return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getClases().get(index));
+          case "Variables":
+            return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getVariables().get(index));
+          case "Metodos":
+            return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getMetodos().get(index));
+          case "Comentarios":
+            return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getComentarios().get(index));
+          default:
+            semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\" ,se esperaba [Clases,Variables,Metodos,Comentarios]");
+        }
+      }else{
+        semantic_error(id1,"No es una variable que contenga parametros internos");
+        semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\"");
+      }
+      return new Operacion(TablaSimbolos.OBJECT,null);
     }
 
-    private Object devolver_val_3Id(Token id1,Token id2,Token id3,Integer index){
-
+    private Operacion devolver_val_3Id(Token id1,Token id2,Token id3,Integer index){
+        if(id1.getLexema().equals("RESULT")){
+            FilaTabla var = this.tablaSimbolos.buscar("RESULT");
+            switch (id2.getLexema()) {
+            case "Clases":
+                if(id3.getLexema().equals("Nombre")){
+                    return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getClases().get(index).getNombre());
+                }else{
+                    semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\"");
+                }
+                break;
+            case "Variables":
+                switch(id3.getLexema()){
+                    case "Nombre":
+                        return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getVariables().get(index).getNombre());
+                    case "Tipo":
+                         return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getVariables().get(index).getTipo());
+                    case "Funcion":
+                         return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getVariables().get(index).getFuncion());
+                    default:
+                        semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\" ,se esperaba [Nombre,Tipo,Funcion]");
+                    break;
+                }
+                break;
+            case "Metodos":
+                switch(id3.getLexema()){
+                    case "Nombre":
+                        return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getMetodos().get(index).getNombre());
+                    case "Tipo":
+                        return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getMetodos().get(index).getTipo());
+                    case "Parametros":
+                        return new Operacion(TablaSimbolos.INT,((ReporteJson)var.getValor()).getMetodos().get(index).getParametros());
+                    default:
+                        semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\" ,se esperaba [Nombre,Tipo,Parametros]");
+                    break;
+                }
+                break;
+            case "Comentarios":
+                switch(id3.getLexema()){
+                    case "Texto":
+                         return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getComentarios().get(index).getTexto());
+                    default:
+                        semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\" ,se esperaba [Texto]");
+                    break;
+                }
+                break;
+            default:
+                semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\",se esperaba [Clases,Variables,Metodos,Comentarios]");
+                semantic_error(id2,"No es un parametro vectorial: \""+id1.getLexema()+"\"");
+                semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\"");
+                break;
+            }
+      }else{
+        semantic_error(id1,"No es una variable que contenga parametros internos");
+        semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\"");
+        semantic_error(id2,"No es un parametro vectorial: \""+id1.getLexema()+"\"");
+        semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\"");
+      }
+      return new Operacion(TablaSimbolos.OBJECT,null);
     }
 
     private void create_var_asig_val(Token identificador,String tipo_id,String tipo_value,Object value) {
