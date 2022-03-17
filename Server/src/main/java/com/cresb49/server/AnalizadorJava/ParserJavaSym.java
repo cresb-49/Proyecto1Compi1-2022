@@ -22,6 +22,7 @@ public class ParserJavaSym {
   public static final int INT = 9;
   public static final int PUNTOCOMA = 49;
   public static final int FOR = 17;
+  public static final int STATIC = 56;
   public static final int NOT = 33;
   public static final int AND = 31;
   public static final int IGUAL = 26;
@@ -55,6 +56,7 @@ public class ParserJavaSym {
   public static final int PROTECTED = 5;
   public static final int FINAL = 6;
   public static final int WHILE = 19;
+  public static final int DEFAULT = 55;
   public static final int MAYOR_IGUAL = 28;
   public static final int PUBLIC = 3;
   public static final int STRING = 50;
@@ -118,7 +120,9 @@ public class ParserJavaSym {
   "CLASS",
   "EQUAL",
   "TRUE",
-  "FALSE"
+  "FALSE",
+  "DEFAULT",
+  "STATIC"
   };
 }
 

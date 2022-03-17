@@ -130,14 +130,17 @@ terminal Token  IMPORT,PUBLIC,PRIVATE,PROTECTED,FINAL,BREAK,RETURN,INT,BOOL,STR,
                 IF,ELSE,FOR,DO,WHILE,SWITCH,CASE,ID,DECIMAL,ENTERO,DIFERENTE,IGUAL,MENOR_IGUAL,
                 MAYOR_IGUAL,MENOR_QUE,MAYOR_QUE,AND,OR,NOT,SUMAR,RESTAR,MUL,DIV,MAS,MENOS,PA_A,
                 PA_C,CO_A,CO_C,LLA_A,LLA_C,PUNTO,COMA,DOSPUNTOS,PUNTOCOMA,STRING,CLASS,EQUAL,TRUE,
-                FALSE;
+                FALSE,DEFAULT,STATIC;
 
 
 /* Non terminals */
 non terminal                        initJava,contClass,importJava,importJavaContenido,importJavaContenidoD,
                                     importJavaContenidoD2,classJava,visibilidad,sentencias,tipo,metodo,sentencias2,
-                                    agregarfor,operadorRelacional,sentenciasfor;
+                                    agregarfor,operadorRelacional,sentenciasfor,ciclowhile,sentenciasWhile,condicionalif,constructor,
+                                    cliclofor,cicloDoWhile,sentanciasif,contenidoSwitch,contenidoSwitch2,condicionalSwitch,sentenciasSwitch,
+                                    llamadaFuncion,declararVariables,listaVariables,listaVariables2;
 non terminal                        t,f,exp;
+non terminal                        tBool,fBool,expBool,eBool,gBool,hBool;
 /* Inicio de las reglas gramticales*/
 initJava    ::= classJava
             ;
@@ -187,7 +190,33 @@ classJava   ::= visibilidad CLASS ID PA_A sentencias PA_C
 
 metodo      ::= visibilidad tipo ID PA_A PA_C LLA_A LLA_C
             |   visibilidad tipo ID PA_A PA_C LLA_A sentencias2 LLA_C
+            |   visibilidad tipo ID PA_A PA_C LLA_A sentencias2 RETURN exp PUNTOCOMA LLA_C
+            |   visibilidad tipo ID PA_A PA_C LLA_A RETURN exp PUNTOCOMA LLA_C
             ;
+
+asignacionvariables ::= ID EQUAL exp PUNTOCOMA
+                    ;
+
+declararVariables   ::= visibilidad tipo STATIC FINAL listaVariables PUNTOCOMA
+                    |   visibilidad tipo STATIC listaVariables PUNTOCOMA
+                    |   visibilidad tipo FINAL listaVariables PUNTOCOMA
+                    |   visibilidad tipo listaVariables PUNTOCOMA
+                    ;
+
+listaVariables  ::= ID
+                |   ID EQUAL exp
+                |   ID COMA listaVariables2
+                |   ID EQUAL exp COMA listaVariables2
+                ;
+listaVariables2 ::= ID EQUAL exp COMA listaVariables2
+                |   ID COMA listaVariables2
+                |   ID EQUAL exp
+                |   ID 
+                ;
+
+llamadaFuncion  ::= ID PA_A PA_C PUNTOCOMA
+                |   ID PA_A PA_C PUNTOCOMA
+                ;
 
 constructor ::= PUBLIC ID PA_A PA_C LLA_A LLA_C
             ;
@@ -196,8 +225,71 @@ cliclofor   ::= FOR PA_A PA_C INT ID EQUAL exp PUNTOCOMA ID operadorRelacional e
             |   FOR PA_A PA_C INT ID EQUAL exp PUNTOCOMA ID operadorRelacional exp PUNTOCOMA ID agregarfor LLA_A sentenciasfor LLA_C
             ;
 
-ciclowile   ::= 
+ciclowhile  ::= WHILE PA_A expBool PA_C LLA_A LLA_C
+            |   WHILE PA_A expBool PA_C LLA_A sentenciasWhile LLA_C
+            ;
 
+cicloDoWhile    ::= DO LLA_A LLA_C WHILE PA_A expBool PA_C PUNTOCOMA
+                |   DO LLA_A sentenciasWhile LLA_C WHILE PA_A expBool PA_C PUNTOCOMA
+                ;
+
+condicionalif   ::= IF PA_A expBool PA_C LLA_A sentanciasif LLA_C
+                |   IF PA_A expBool PA_C LLA_A LLA_C
+                |   IF PA_A expBool PA_C LLA_A sentanciasif LLA_C ELSE LLA_A LLA_C
+                |   IF PA_A expBool PA_C LLA_A sentanciasif LLA_C ELSE LLA_A sentanciasif LLA_C
+                |   IF PA_A expBool PA_C LLA_A LLA_C ELSE LLA_A LLA_C
+                |   IF PA_A expBool PA_C LLA_A LLA_C ELSE LLA_A sentanciasif LLA_C
+                ;
+
+condicionalSwitch   ::= SWITCH PA_A exp PA_C LLA_A contenidoSwitch LLA_C
+                    |   SWITCH PA_A exp PA_C LLA_A LLA_C
+                    ;
+
+contenidoSwitch ::= CASE exp DOSPUNTOS BREAK PUNTOCOMA
+                |   CASE exp DOSPUNTOS sentenciasSwitch BREAK PUNTOCOMA
+                |   contenidoSwitch2 DEFAULT DOSPUNTOS sentenciasSwitch
+                |   contenidoSwitch2 DEFAULT DOSPUNTOS 
+                |   contenidoSwitch2 CASE exp DOSPUNTOS sentenciasSwitch BREAK PUNTOCOMA
+                |   contenidoSwitch2 CASE exp DOSPUNTOS  BREAK PUNTOCOMA
+                ;
+
+contenidoSwitch2    ::= contenidoSwitch2 CASE exp DOSPUNTOS sentenciasSwitch BREAK PUNTOCOMA
+                    |   contenidoSwitch2 CASE exp DOSPUNTOS BREAK PUNTOCOMA
+                    |   CASE exp DOSPUNTOS sentenciasSwitch BREAK PUNTOCOMA
+                    |   CASE exp DOSPUNTOS BREAK PUNTOCOMA
+                    ;
+
+
+expBool ::= NOT expBool
+        |   tBool
+        ;
+
+tBool   ::= tBool MENOR_QUE fBool
+        |   tBool MAYOR_QUE fBool
+        |   tBool MENOR_IGUAL fBool
+        |   tBool MAYOR_QUE fBool
+        |   fBool 
+        ;
+
+fBool   ::= fBool DIFERENTE eBool
+        |   fBool IGUAL eBool
+        |   eBool
+        ;
+
+eBool   ::= eBool AND gBool
+        |   gBool
+        ;
+
+gBool   ::= gBool OR hBool
+        |   hBool
+        ;
+hBool   ::= TRUE
+        |   FALSE
+        |   ID
+        |   ENTERO
+        |   DECIMAL
+        |   PA_A expBool PA_C
+        ;
 
 agregarfor  ::= SUMAR
             |   RESTAR
