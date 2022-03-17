@@ -5,10 +5,17 @@ import java.io.File;
 import com.cresb49.appcliente.Objetos.CompararProyectos;
 
 public class AnalizarProyectos {
+
+    
     public AnalizarProyectos(){
 
     }
     public void realizarAnalisis(CompararProyectos compararProyectos){
+
+
+
+
+
         for (File archivo : compararProyectos.getCarpeta1().listFiles()) {
             System.out.println("Archivo Proyecto 1 -> "+archivo.getName());
         }

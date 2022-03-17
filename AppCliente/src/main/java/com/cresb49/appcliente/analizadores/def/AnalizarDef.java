@@ -11,8 +11,6 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
 
-import javax.swing.text.TabableView;
-
 public class AnalizarDef {
 
     private ArrayList<ErrorAnalisis> errores;

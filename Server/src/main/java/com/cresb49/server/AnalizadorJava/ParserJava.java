@@ -160,8 +160,15 @@ public class ParserJava extends java_cup.runtime.lr_parser {
     public ParserJava (LexerJava lexerJava){ 
         super(lexerJava);
         this.lexerJava=lexerJava;
-        this.tablaSimbolos = new TablaSimbolos();
         this.simbolosTerminalesJava = new SimbolosTerminalesJava();
+    }
+
+    public void setTablasimbolos(TablaSimbolos tablaSimbolos){
+        this.tablaSimbolos = tablaSimbolos;
+    }
+
+    public TablaSimbolos getTablaSimbolos(){
+        return this.tablaSimbolos;
     }
 
     public void report_error(String message, Object info) {
