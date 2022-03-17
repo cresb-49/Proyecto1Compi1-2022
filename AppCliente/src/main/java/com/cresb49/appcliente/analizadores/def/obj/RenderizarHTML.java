@@ -127,7 +127,22 @@ public class RenderizarHTML {
                     }
                     break;
                 case Token.CAMBIAR:
-                    System.out.println("No efectuo cambiar -> " + temp_ejecucion.getLexema());
+                    if(this.modo_ejecucion){
+                        if(temp_ejecucion.getValorToken() instanceof AccesoVariables){
+                            AccesoVariables acc = (AccesoVariables) temp_ejecucion.getValorToken();
+                            if (acc.getIndex() instanceof Integer){
+                                try{
+                                    
+                                }catch(Exception ex){
+
+                                }
+                            }
+                            if(acc.getIndex() instanceof FilaTabla){
+
+                            }
+
+                        }
+                    }
                     break;
                 default:
                     System.out.println("No efectuo accion -> " + temp_ejecucion.getLexema());

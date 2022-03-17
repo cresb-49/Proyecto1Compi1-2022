@@ -469,19 +469,19 @@ public class ParserDef extends java_cup.runtime.lr_parser {
         FilaTabla var = this.tablaSimbolos.buscar("RESULT");
         switch (id2.getLexema()) {
           case "Clases":
-            id2.setAccion(Token.CONSULTAR);
+            id2.setAccion(Token.CAMBIAR);
             acc.setArreglo(((ReporteJson)var.getValor()).getClases());
             break;
           case "Variables":
-            id2.setAccion(Token.CONSULTAR);
+            id2.setAccion(Token.CAMBIAR);
             acc.setArreglo(((ReporteJson)var.getValor()).getVariables());
             break;
           case "Metodos":
-            id2.setAccion(Token.CONSULTAR);
+            id2.setAccion(Token.CAMBIAR);
             acc.setArreglo(((ReporteJson)var.getValor()).getMetodos());
             break;
           case "Comentarios":
-            id2.setAccion(Token.CONSULTAR);
+            id2.setAccion(Token.CAMBIAR);
             acc.setArreglo(((ReporteJson)var.getValor()).getComentarios());
             break;
           default:

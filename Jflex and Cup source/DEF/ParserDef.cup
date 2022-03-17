@@ -171,19 +171,19 @@ parser code {:
         FilaTabla var = this.tablaSimbolos.buscar("RESULT");
         switch (id2.getLexema()) {
           case "Clases":
-            id2.setAccion(Token.CONSULTAR);
+            id2.setAccion(Token.CAMBIAR);
             acc.setArreglo(((ReporteJson)var.getValor()).getClases());
             break;
           case "Variables":
-            id2.setAccion(Token.CONSULTAR);
+            id2.setAccion(Token.CAMBIAR);
             acc.setArreglo(((ReporteJson)var.getValor()).getVariables());
             break;
           case "Metodos":
-            id2.setAccion(Token.CONSULTAR);
+            id2.setAccion(Token.CAMBIAR);
             acc.setArreglo(((ReporteJson)var.getValor()).getMetodos());
             break;
           case "Comentarios":
-            id2.setAccion(Token.CONSULTAR);
+            id2.setAccion(Token.CAMBIAR);
             acc.setArreglo(((ReporteJson)var.getValor()).getComentarios());
             break;
           default:
@@ -595,8 +595,6 @@ varHTML2    ::= ID:id1  {:
             |   ID:id1 PUNTO ID:id2 CO_A varHTML4:index CO_C    {:
                                                                     AccesoVariables acc = new AccesoVariables();
                                                                     verificarDosId_id2Index(id1,id2,acc);
-                                                                    id1.setAccion(Token.IGNORE);
-                                                                    id2.setAccion(Token.IGNORE);
                                                                     acc.setIndex(index);
                                                                     id2.setValorToken(acc);    
                                                                 :}
