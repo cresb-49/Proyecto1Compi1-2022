@@ -11,6 +11,7 @@ public class ParserJavaSym {
   public static final int DOSPUNTOS = 48;
   public static final int CHAR = 12;
   public static final int STR = 11;
+  public static final int ENTERO = 24;
   public static final int LLA_C = 45;
   public static final int CASE = 21;
   public static final int DIFERENTE = 25;
@@ -26,13 +27,15 @@ public class ParserJavaSym {
   public static final int IGUAL = 26;
   public static final int OR = 32;
   public static final int BOOL = 10;
+  public static final int CLASS = 51;
   public static final int DIV = 37;
   public static final int IF = 15;
-  public static final int NUMBERS = 24;
   public static final int ID = 22;
   public static final int EOF = 0;
   public static final int DECIMAL = 23;
   public static final int RETURN = 8;
+  public static final int EQUAL = 52;
+  public static final int TRUE = 53;
   public static final int error = 1;
   public static final int OBJ = 14;
   public static final int COMA = 47;
@@ -57,6 +60,7 @@ public class ParserJavaSym {
   public static final int STRING = 50;
   public static final int MENOR_QUE = 29;
   public static final int MENOR_IGUAL = 27;
+  public static final int FALSE = 54;
   public static final int DO = 18;
   public static final int MAS = 38;
   public static final String[] terminalNames = new String[] {
@@ -84,7 +88,7 @@ public class ParserJavaSym {
   "CASE",
   "ID",
   "DECIMAL",
-  "NUMBERS",
+  "ENTERO",
   "DIFERENTE",
   "IGUAL",
   "MENOR_IGUAL",
@@ -110,7 +114,11 @@ public class ParserJavaSym {
   "COMA",
   "DOSPUNTOS",
   "PUNTOCOMA",
-  "STRING"
+  "STRING",
+  "CLASS",
+  "EQUAL",
+  "TRUE",
+  "FALSE"
   };
 }
 

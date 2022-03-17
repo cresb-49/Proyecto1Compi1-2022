@@ -4,7 +4,6 @@ import java_cup.runtime.*;
 
 %%
 %class LexerJava
-%standalone
 %unicode
 %public
 %line
@@ -63,6 +62,18 @@ Decimal = {Entero}[.]{Entero}
 
 
 <YYINITIAL> {
+    "true"        {
+                        this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserGraphicsSym.TRUE,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "false"        {
+                        this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserGraphicsSym.FALSE,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
     "import"        {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -183,6 +194,12 @@ Decimal = {Entero}[.]{Entero}
                         return new Symbol(ParserGraphicsSym.CASE,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("case: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
+    "class"          {
+                        this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserGraphicsSym.CLASS,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("case: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
     {Identifier}    {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -201,7 +218,7 @@ Decimal = {Entero}[.]{Entero}
     {Entero}       {
                         this.actual = new Token(yytext(),new Integer(yytext()),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
-                        return new Symbol(ParserGraphicsSym.NUMBERS,yyline+1,yycolumn+1,this.actual);
+                        return new Symbol(ParserGraphicsSym.ENTERO,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("Numero: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     "!="            {
@@ -214,6 +231,12 @@ Decimal = {Entero}[.]{Entero}
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserGraphicsSym.IGUAL,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("== : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "="            {
+                        this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserGraphicsSym.EQUAL,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("== : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     "<="            {

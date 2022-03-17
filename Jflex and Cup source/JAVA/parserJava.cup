@@ -127,16 +127,19 @@ scan with {: return this.lexerDef.next_token(); :};
 
 /* Terminals (tokens returned by the scanner). */
 terminal Token  IMPORT,PUBLIC,PRIVATE,PROTECTED,FINAL,BREAK,RETURN,INT,BOOL,STR,CHAR,DOUBLE,OBJ,
-                IF,ELSE,FOR,DO,WHILE,SWITCH,CASE,ID,DECIMAL,NUMBERS,DIFERENTE,IGUAL,MENOR_IGUAL,
+                IF,ELSE,FOR,DO,WHILE,SWITCH,CASE,ID,DECIMAL,ENTERO,DIFERENTE,IGUAL,MENOR_IGUAL,
                 MAYOR_IGUAL,MENOR_QUE,MAYOR_QUE,AND,OR,NOT,SUMAR,RESTAR,MUL,DIV,MAS,MENOS,PA_A,
-                PA_C,CO_A,CO_C,LLA_A,LLA_C,PUNTO,COMA,DOSPUNTOS,PUNTOCOMA,STRING;
+                PA_C,CO_A,CO_C,LLA_A,LLA_C,PUNTO,COMA,DOSPUNTOS,PUNTOCOMA,STRING,CLASS,EQUAL,TRUE,
+                FALSE;
 
 
 /* Non terminals */
 non terminal                        initJava,contClass,importJava,importJavaContenido,importJavaContenidoD,
-                                    importJavaContenidoD2;
+                                    importJavaContenidoD2,classJava,visibilidad,sentencias,tipo,metodo,sentencias2,
+                                    agregarfor,operadorRelacional,sentenciasfor;
+non terminal                        t,f,exp;
 /* Inicio de las reglas gramticales*/
-initJava    ::= importJava
+initJava    ::= classJava
             ;
 
 /*Gramatica de imports*/
@@ -149,6 +152,7 @@ importJava  ::= importJava IMPORT importJavaContenido
 importJavaContenido ::= importJavaContenidoD
                     |   ID PUNTO importJavaContenidoD
                     |   error PUNTO
+                    |   error PUNTOCOMA
                     ;
 
 importJavaContenidoD    ::= ID importJavaContenidoD2
@@ -159,3 +163,68 @@ importJavaContenidoD2   ::= PUNTOCOMA
                         |   PUNTOCOMA importJavaContenidoD
                         |   error PUNTOCOMA
                         ;
+
+/*Gramatica de un archivo de java*/
+
+visibilidad ::= PRIVATE
+            |   PUBLIC
+            |   PROTECTED
+            ;
+
+tipo        ::= INT
+            |   BOOL
+            |   STR
+            |   CHAR
+            |   DOUBLE
+            |   OBJ
+            ;
+
+classJava   ::= visibilidad CLASS ID PA_A sentencias PA_C
+            |   visibilidad CLASS ID PA_A PA_C
+            |   visibilidad FINAL CLASS ID PA_A sentencias PA_C
+            |   visibilidad FINAL CLASS ID PA_A PA_C
+            ;
+
+metodo      ::= visibilidad tipo ID PA_A PA_C LLA_A LLA_C
+            |   visibilidad tipo ID PA_A PA_C LLA_A sentencias2 LLA_C
+            ;
+
+constructor ::= PUBLIC ID PA_A PA_C LLA_A LLA_C
+            ;
+
+cliclofor   ::= FOR PA_A PA_C INT ID EQUAL exp PUNTOCOMA ID operadorRelacional exp PUNTOCOMA ID agregarfor LLA_A LLA_C
+            |   FOR PA_A PA_C INT ID EQUAL exp PUNTOCOMA ID operadorRelacional exp PUNTOCOMA ID agregarfor LLA_A sentenciasfor LLA_C
+            ;
+
+ciclowile   ::= 
+
+
+agregarfor  ::= SUMAR
+            |   RESTAR
+            |   EQUAL exp
+            ;
+
+operadorRelacional  ::= MAYOR_QUE
+                    |   MENOR_QUE
+                    |   MENOR_IGUAL
+                    |   MAYOR_IGUAL
+                    |   IGUAL
+                    |   DIFERENTE
+                    ;
+
+exp ::= exp MAS t
+    |   exp MENOS t
+    |   t
+    ;
+
+t   ::= t MUL f
+    |   t DIV f
+    |   f
+    ;
+
+f   ::= ID
+    |   DECIMAL
+    |   ENTERO
+    |   STRING
+    |   PA_A exp PA_C
+    ;

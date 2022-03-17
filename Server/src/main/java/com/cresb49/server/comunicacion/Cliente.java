@@ -15,7 +15,7 @@ public class Cliente implements Runnable {
     private Object mensaje;
 
     public Cliente() {
-
+        
     }
     
     public Cliente(int puerto,String host){
