@@ -1,32 +1,30 @@
 package com.cresb49.appcliente.analizadores.def.obj;
 
-import com.cresb49.appcliente.analizadores.Token;
-
 public class AccesoVariables {
-    private Token token;
+    private Object arreglo;
     private Object index;
     public AccesoVariables(){
 
     }
-    public AccesoVariables(Token token,Object index){
-        this.token = token;
+    public AccesoVariables(Object arreglo,Object index){
+        this.arreglo = arreglo;
         this.index = index;
     }
     public Object getIndex() {
         return index;
     }
-    public Token getToken() {
-        return token;
+    public Object getarreglo() {
+        return arreglo;
     }
     public void setIndex(Object index) {
         this.index = index;
     }
-    public void setToken(Token token) {
-        this.token = token;
+    public void setArreglo(Object arreglo) {
+        this.arreglo = arreglo;
     }
 
     @Override
     public String toString() {
-        return "AccesoVariables{" + "token=" + token + ", index=" + index + '}';
+        return "AccesoVariables{" + "arreglo=" + arreglo + ", index=" + index + '}';
     }
 }
