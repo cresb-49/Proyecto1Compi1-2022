@@ -34,41 +34,40 @@ public class ParserJava extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\156\000\002\002\003\000\002\002\004\000\002\004" +
-    "\005\000\002\004\004\000\002\004\004\000\002\005\003" +
-    "\000\002\005\005\000\002\005\004\000\002\005\004\000" +
-    "\002\006\004\000\002\007\003\000\002\007\005\000\002" +
-    "\007\004\000\002\007\004\000\002\011\003\000\002\011" +
-    "\003\000\002\011\003\000\002\013\003\000\002\013\003" +
-    "\000\002\013\003\000\002\013\003\000\002\013\003\000" +
-    "\002\013\003\000\002\010\010\000\002\010\007\000\002" +
-    "\010\011\000\002\010\010\000\002\014\011\000\002\014" +
-    "\012\000\002\014\015\000\002\014\014\000\002\035\010" +
-    "\000\002\035\007\000\002\035\007\000\002\035\006\000" +
-    "\002\036\003\000\002\036\005\000\002\036\005\000\002" +
-    "\036\007\000\002\037\007\000\002\037\005\000\002\037" +
-    "\005\000\002\037\003\000\002\034\006\000\002\034\006" +
-    "\000\002\024\010\000\002\025\022\000\002\025\023\000" +
-    "\002\021\010\000\002\021\011\000\002\026\012\000\002" +
-    "\026\013\000\002\023\011\000\002\023\010\000\002\023" +
-    "\014\000\002\023\015\000\002\023\013\000\002\023\014" +
-    "\000\002\032\011\000\002\032\010\000\002\030\007\000" +
-    "\002\030\010\000\002\030\006\000\002\030\005\000\002" +
-    "\030\011\000\002\030\010\000\002\031\011\000\002\031" +
-    "\010\000\002\031\010\000\002\031\007\000\002\045\004" +
-    "\000\002\045\003\000\002\043\005\000\002\043\005\000" +
-    "\002\043\005\000\002\043\005\000\002\043\003\000\002" +
-    "\044\005\000\002\044\005\000\002\044\003\000\002\046" +
-    "\005\000\002\046\003\000\002\047\005\000\002\047\003" +
-    "\000\002\050\003\000\002\050\003\000\002\050\003\000" +
-    "\002\050\003\000\002\050\003\000\002\050\005\000\002" +
-    "\016\003\000\002\016\003\000\002\016\004\000\002\017" +
-    "\003\000\002\017\003\000\002\017\003\000\002\017\003" +
-    "\000\002\017\003\000\002\017\003\000\002\042\005\000" +
-    "\002\042\005\000\002\042\003\000\002\040\005\000\002" +
-    "\040\005\000\002\040\003\000\002\041\003\000\002\041" +
-    "\003\000\002\041\003\000\002\041\003\000\002\041\005" +
-    "" });
+    "\000\153\000\002\002\004\000\002\002\004\000\002\002" +
+    "\003\000\002\004\005\000\002\004\004\000\002\004\004" +
+    "\000\002\005\005\000\002\005\006\000\002\005\003\000" +
+    "\002\005\004\000\002\005\004\000\002\011\003\000\002" +
+    "\011\003\000\002\011\003\000\002\013\003\000\002\013" +
+    "\003\000\002\013\003\000\002\013\003\000\002\013\003" +
+    "\000\002\013\003\000\002\010\010\000\002\010\007\000" +
+    "\002\010\011\000\002\010\010\000\002\014\011\000\002" +
+    "\014\012\000\002\014\015\000\002\014\014\000\002\035" +
+    "\010\000\002\035\007\000\002\035\007\000\002\035\006" +
+    "\000\002\036\003\000\002\036\005\000\002\036\005\000" +
+    "\002\036\007\000\002\037\007\000\002\037\005\000\002" +
+    "\037\005\000\002\037\003\000\002\034\006\000\002\034" +
+    "\006\000\002\024\010\000\002\025\022\000\002\025\023" +
+    "\000\002\021\010\000\002\021\011\000\002\026\012\000" +
+    "\002\026\013\000\002\023\011\000\002\023\010\000\002" +
+    "\023\014\000\002\023\015\000\002\023\013\000\002\023" +
+    "\014\000\002\032\011\000\002\032\010\000\002\030\007" +
+    "\000\002\030\010\000\002\030\006\000\002\030\005\000" +
+    "\002\030\011\000\002\030\010\000\002\031\011\000\002" +
+    "\031\010\000\002\031\010\000\002\031\007\000\002\045" +
+    "\004\000\002\045\003\000\002\043\005\000\002\043\005" +
+    "\000\002\043\005\000\002\043\005\000\002\043\003\000" +
+    "\002\044\005\000\002\044\005\000\002\044\003\000\002" +
+    "\046\005\000\002\046\003\000\002\047\005\000\002\047" +
+    "\003\000\002\050\003\000\002\050\003\000\002\050\003" +
+    "\000\002\050\003\000\002\050\003\000\002\050\005\000" +
+    "\002\016\003\000\002\016\003\000\002\016\004\000\002" +
+    "\017\003\000\002\017\003\000\002\017\003\000\002\017" +
+    "\003\000\002\017\003\000\002\017\003\000\002\042\005" +
+    "\000\002\042\005\000\002\042\003\000\002\040\005\000" +
+    "\002\040\005\000\002\040\003\000\002\041\003\000\002" +
+    "\041\003\000\002\041\003\000\002\041\003\000\002\041" +
+    "\005" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -76,17 +75,30 @@ public class ParserJava extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\025\000\010\005\007\006\011\007\005\001\002\000" +
-    "\006\010\014\065\013\001\002\000\006\010\ufff1\065\ufff1" +
-    "\001\002\000\004\002\001\001\002\000\006\010\ufff2\065" +
-    "\ufff2\001\002\000\004\002\012\001\002\000\006\010\ufff3" +
-    "\065\ufff3\001\002\000\004\002\000\001\002\000\004\030" +
-    "\023\001\002\000\004\065\015\001\002\000\004\030\016" +
-    "\001\002\000\004\052\017\001\002\000\004\053\021\001" +
-    "\002\000\004\053\022\001\002\000\004\002\uffe7\001\002" +
-    "\000\004\002\uffe8\001\002\000\004\052\024\001\002\000" +
-    "\004\053\026\001\002\000\004\053\027\001\002\000\004" +
-    "\002\uffe9\001\002\000\004\002\uffea\001\002" });
+    "\000\045\000\010\005\007\006\011\007\005\001\002\000" +
+    "\006\010\034\065\033\001\002\000\006\010\ufff4\065\ufff4" +
+    "\001\002\000\010\002\uffff\003\uffff\004\uffff\001\002\000" +
+    "\006\010\ufff5\065\ufff5\001\002\000\010\002\015\003\013" +
+    "\004\012\001\002\000\006\010\ufff6\065\ufff6\001\002\000" +
+    "\004\030\020\001\002\000\006\060\016\063\017\001\002" +
+    "\000\010\002\001\003\001\004\001\001\002\000\004\002" +
+    "\000\001\002\000\010\002\ufffd\003\ufffd\004\ufffd\001\002" +
+    "\000\010\002\ufffc\003\ufffc\004\ufffc\001\002\000\010\003" +
+    "\023\060\022\063\024\001\002\000\010\002\ufffe\003\ufffe" +
+    "\004\ufffe\001\002\000\004\030\027\001\002\000\006\060" +
+    "\025\063\026\001\002\000\010\002\ufff9\003\ufff9\004\ufff9" +
+    "\001\002\000\010\002\ufff8\003\ufff8\004\ufff8\001\002\000" +
+    "\010\002\ufff7\003\ufff7\004\ufff7\001\002\000\012\003\023" +
+    "\046\031\060\022\063\024\001\002\000\010\002\ufffb\003" +
+    "\ufffb\004\ufffb\001\002\000\004\063\032\001\002\000\010" +
+    "\002\ufffa\003\ufffa\004\ufffa\001\002\000\004\030\043\001" +
+    "\002\000\004\065\035\001\002\000\004\030\036\001\002" +
+    "\000\004\052\037\001\002\000\004\053\041\001\002\000" +
+    "\004\053\042\001\002\000\010\002\uffea\003\uffea\004\uffea" +
+    "\001\002\000\010\002\uffeb\003\uffeb\004\uffeb\001\002\000" +
+    "\004\052\044\001\002\000\004\053\046\001\002\000\004" +
+    "\053\047\001\002\000\010\002\uffec\003\uffec\004\uffec\001" +
+    "\002\000\010\002\uffed\003\uffed\004\uffed\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -94,14 +106,19 @@ public class ParserJava extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\025\000\010\002\007\010\005\011\003\001\001\000" +
+    "\000\045\000\010\002\007\010\005\011\003\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\004\004\013\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\004\005" +
+    "\020\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\004\012\017\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\004\012\024\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001" });
+    "\001\000\004\005\027\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\004\012\037" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\004\012\044\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -292,11 +309,11 @@ class CUP$ParserJava$actions {
       switch (CUP$ParserJava$act_num)
         {
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 0: // initJava ::= classJava 
+          case 0: // initJava ::= initJava importJava 
             {
               Object RESULT =null;
 
-              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("initJava",0, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
+              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("initJava",0, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
 
@@ -315,7 +332,16 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 2: // importJava ::= importJava IMPORT importJavaContenido 
+          case 2: // initJava ::= classJava 
+            {
+              Object RESULT =null;
+
+              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("initJava",0, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
+            }
+          return CUP$ParserJava$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 3: // importJava ::= IMPORT ID importJavaContenido 
             {
               Object RESULT =null;
 
@@ -324,7 +350,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 3: // importJava ::= IMPORT importJavaContenido 
+          case 4: // importJava ::= error PUNTO 
             {
               Object RESULT =null;
 
@@ -333,7 +359,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 4: // importJava ::= importJava error 
+          case 5: // importJava ::= error PUNTOCOMA 
             {
               Object RESULT =null;
 
@@ -342,16 +368,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 5: // importJavaContenido ::= importJavaContenidoD 
-            {
-              Object RESULT =null;
-
-              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("importJavaContenido",3, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
-            }
-          return CUP$ParserJava$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 6: // importJavaContenido ::= ID PUNTO importJavaContenidoD 
+          case 6: // importJavaContenido ::= PUNTO ID importJavaContenido 
             {
               Object RESULT =null;
 
@@ -360,7 +377,25 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 7: // importJavaContenido ::= error PUNTO 
+          case 7: // importJavaContenido ::= PUNTO ID MUL PUNTOCOMA 
+            {
+              Object RESULT =null;
+
+              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("importJavaContenido",3, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
+            }
+          return CUP$ParserJava$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 8: // importJavaContenido ::= PUNTOCOMA 
+            {
+              Object RESULT =null;
+
+              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("importJavaContenido",3, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
+            }
+          return CUP$ParserJava$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 9: // importJavaContenido ::= error PUNTO 
             {
               Object RESULT =null;
 
@@ -369,7 +404,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 8: // importJavaContenido ::= error PUNTOCOMA 
+          case 10: // importJavaContenido ::= error PUNTOCOMA 
             {
               Object RESULT =null;
 
@@ -378,52 +413,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 9: // importJavaContenidoD ::= ID importJavaContenidoD2 
-            {
-              Object RESULT =null;
-
-              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("importJavaContenidoD",4, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
-            }
-          return CUP$ParserJava$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 10: // importJavaContenidoD2 ::= PUNTOCOMA 
-            {
-              Object RESULT =null;
-
-              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("importJavaContenidoD2",5, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
-            }
-          return CUP$ParserJava$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 11: // importJavaContenidoD2 ::= PUNTOCOMA MUL PUNTOCOMA 
-            {
-              Object RESULT =null;
-
-              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("importJavaContenidoD2",5, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
-            }
-          return CUP$ParserJava$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 12: // importJavaContenidoD2 ::= PUNTOCOMA importJavaContenidoD 
-            {
-              Object RESULT =null;
-
-              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("importJavaContenidoD2",5, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
-            }
-          return CUP$ParserJava$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 13: // importJavaContenidoD2 ::= error PUNTOCOMA 
-            {
-              Object RESULT =null;
-
-              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("importJavaContenidoD2",5, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
-            }
-          return CUP$ParserJava$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 14: // visibilidad ::= PRIVATE 
+          case 11: // visibilidad ::= PRIVATE 
             {
               Object RESULT =null;
 
@@ -432,7 +422,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 15: // visibilidad ::= PUBLIC 
+          case 12: // visibilidad ::= PUBLIC 
             {
               Object RESULT =null;
 
@@ -441,7 +431,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 16: // visibilidad ::= PROTECTED 
+          case 13: // visibilidad ::= PROTECTED 
             {
               Object RESULT =null;
 
@@ -450,7 +440,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 17: // tipo ::= INT 
+          case 14: // tipo ::= INT 
             {
               Object RESULT =null;
 
@@ -459,7 +449,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 18: // tipo ::= BOOL 
+          case 15: // tipo ::= BOOL 
             {
               Object RESULT =null;
 
@@ -468,7 +458,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 19: // tipo ::= STR 
+          case 16: // tipo ::= STR 
             {
               Object RESULT =null;
 
@@ -477,7 +467,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 20: // tipo ::= CHAR 
+          case 17: // tipo ::= CHAR 
             {
               Object RESULT =null;
 
@@ -486,7 +476,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 21: // tipo ::= DOUBLE 
+          case 18: // tipo ::= DOUBLE 
             {
               Object RESULT =null;
 
@@ -495,7 +485,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 22: // tipo ::= OBJ 
+          case 19: // tipo ::= OBJ 
             {
               Object RESULT =null;
 
@@ -504,7 +494,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 23: // classJava ::= visibilidad CLASS ID PA_A sentencias PA_C 
+          case 20: // classJava ::= visibilidad CLASS ID PA_A sentencias PA_C 
             {
               Object RESULT =null;
 
@@ -513,7 +503,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 24: // classJava ::= visibilidad CLASS ID PA_A PA_C 
+          case 21: // classJava ::= visibilidad CLASS ID PA_A PA_C 
             {
               Object RESULT =null;
 
@@ -522,7 +512,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 25: // classJava ::= visibilidad FINAL CLASS ID PA_A sentencias PA_C 
+          case 22: // classJava ::= visibilidad FINAL CLASS ID PA_A sentencias PA_C 
             {
               Object RESULT =null;
 
@@ -531,7 +521,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 26: // classJava ::= visibilidad FINAL CLASS ID PA_A PA_C 
+          case 23: // classJava ::= visibilidad FINAL CLASS ID PA_A PA_C 
             {
               Object RESULT =null;
 
@@ -540,7 +530,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 27: // metodo ::= visibilidad tipo ID PA_A PA_C LLA_A LLA_C 
+          case 24: // metodo ::= visibilidad tipo ID PA_A PA_C LLA_A LLA_C 
             {
               Object RESULT =null;
 
@@ -549,7 +539,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 28: // metodo ::= visibilidad tipo ID PA_A PA_C LLA_A sentencias2 LLA_C 
+          case 25: // metodo ::= visibilidad tipo ID PA_A PA_C LLA_A sentencias2 LLA_C 
             {
               Object RESULT =null;
 
@@ -558,7 +548,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 29: // metodo ::= visibilidad tipo ID PA_A PA_C LLA_A sentencias2 RETURN exp PUNTOCOMA LLA_C 
+          case 26: // metodo ::= visibilidad tipo ID PA_A PA_C LLA_A sentencias2 RETURN exp PUNTOCOMA LLA_C 
             {
               Object RESULT =null;
 
@@ -567,7 +557,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 30: // metodo ::= visibilidad tipo ID PA_A PA_C LLA_A RETURN exp PUNTOCOMA LLA_C 
+          case 27: // metodo ::= visibilidad tipo ID PA_A PA_C LLA_A RETURN exp PUNTOCOMA LLA_C 
             {
               Object RESULT =null;
 
@@ -576,7 +566,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 31: // declararVariables ::= visibilidad tipo STATIC FINAL listaVariables PUNTOCOMA 
+          case 28: // declararVariables ::= visibilidad tipo STATIC FINAL listaVariables PUNTOCOMA 
             {
               Object RESULT =null;
 
@@ -585,7 +575,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 32: // declararVariables ::= visibilidad tipo STATIC listaVariables PUNTOCOMA 
+          case 29: // declararVariables ::= visibilidad tipo STATIC listaVariables PUNTOCOMA 
             {
               Object RESULT =null;
 
@@ -594,7 +584,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 33: // declararVariables ::= visibilidad tipo FINAL listaVariables PUNTOCOMA 
+          case 30: // declararVariables ::= visibilidad tipo FINAL listaVariables PUNTOCOMA 
             {
               Object RESULT =null;
 
@@ -603,7 +593,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 34: // declararVariables ::= visibilidad tipo listaVariables PUNTOCOMA 
+          case 31: // declararVariables ::= visibilidad tipo listaVariables PUNTOCOMA 
             {
               Object RESULT =null;
 
@@ -612,7 +602,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 35: // listaVariables ::= ID 
+          case 32: // listaVariables ::= ID 
             {
               Object RESULT =null;
 
@@ -621,7 +611,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 36: // listaVariables ::= ID EQUAL exp 
+          case 33: // listaVariables ::= ID EQUAL exp 
             {
               Object RESULT =null;
 
@@ -630,7 +620,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 37: // listaVariables ::= ID COMA listaVariables2 
+          case 34: // listaVariables ::= ID COMA listaVariables2 
             {
               Object RESULT =null;
 
@@ -639,7 +629,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 38: // listaVariables ::= ID EQUAL exp COMA listaVariables2 
+          case 35: // listaVariables ::= ID EQUAL exp COMA listaVariables2 
             {
               Object RESULT =null;
 
@@ -648,7 +638,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 39: // listaVariables2 ::= ID EQUAL exp COMA listaVariables2 
+          case 36: // listaVariables2 ::= ID EQUAL exp COMA listaVariables2 
             {
               Object RESULT =null;
 
@@ -657,7 +647,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 40: // listaVariables2 ::= ID COMA listaVariables2 
+          case 37: // listaVariables2 ::= ID COMA listaVariables2 
             {
               Object RESULT =null;
 
@@ -666,7 +656,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 41: // listaVariables2 ::= ID EQUAL exp 
+          case 38: // listaVariables2 ::= ID EQUAL exp 
             {
               Object RESULT =null;
 
@@ -675,7 +665,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 42: // listaVariables2 ::= ID 
+          case 39: // listaVariables2 ::= ID 
             {
               Object RESULT =null;
 
@@ -684,7 +674,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 43: // llamadaFuncion ::= ID PA_A PA_C PUNTOCOMA 
+          case 40: // llamadaFuncion ::= ID PA_A PA_C PUNTOCOMA 
             {
               Object RESULT =null;
 
@@ -693,7 +683,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 44: // llamadaFuncion ::= ID PA_A PA_C PUNTOCOMA 
+          case 41: // llamadaFuncion ::= ID PA_A PA_C PUNTOCOMA 
             {
               Object RESULT =null;
 
@@ -702,7 +692,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 45: // constructor ::= PUBLIC ID PA_A PA_C LLA_A LLA_C 
+          case 42: // constructor ::= PUBLIC ID PA_A PA_C LLA_A LLA_C 
             {
               Object RESULT =null;
 
@@ -711,7 +701,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 46: // cliclofor ::= FOR PA_A PA_C INT ID EQUAL exp PUNTOCOMA ID operadorRelacional exp PUNTOCOMA ID agregarfor LLA_A LLA_C 
+          case 43: // cliclofor ::= FOR PA_A PA_C INT ID EQUAL exp PUNTOCOMA ID operadorRelacional exp PUNTOCOMA ID agregarfor LLA_A LLA_C 
             {
               Object RESULT =null;
 
@@ -720,7 +710,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 47: // cliclofor ::= FOR PA_A PA_C INT ID EQUAL exp PUNTOCOMA ID operadorRelacional exp PUNTOCOMA ID agregarfor LLA_A sentenciasfor LLA_C 
+          case 44: // cliclofor ::= FOR PA_A PA_C INT ID EQUAL exp PUNTOCOMA ID operadorRelacional exp PUNTOCOMA ID agregarfor LLA_A sentenciasfor LLA_C 
             {
               Object RESULT =null;
 
@@ -729,7 +719,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 48: // ciclowhile ::= WHILE PA_A expBool PA_C LLA_A LLA_C 
+          case 45: // ciclowhile ::= WHILE PA_A expBool PA_C LLA_A LLA_C 
             {
               Object RESULT =null;
 
@@ -738,7 +728,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 49: // ciclowhile ::= WHILE PA_A expBool PA_C LLA_A sentenciasWhile LLA_C 
+          case 46: // ciclowhile ::= WHILE PA_A expBool PA_C LLA_A sentenciasWhile LLA_C 
             {
               Object RESULT =null;
 
@@ -747,7 +737,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 50: // cicloDoWhile ::= DO LLA_A LLA_C WHILE PA_A expBool PA_C PUNTOCOMA 
+          case 47: // cicloDoWhile ::= DO LLA_A LLA_C WHILE PA_A expBool PA_C PUNTOCOMA 
             {
               Object RESULT =null;
 
@@ -756,7 +746,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 51: // cicloDoWhile ::= DO LLA_A sentenciasWhile LLA_C WHILE PA_A expBool PA_C PUNTOCOMA 
+          case 48: // cicloDoWhile ::= DO LLA_A sentenciasWhile LLA_C WHILE PA_A expBool PA_C PUNTOCOMA 
             {
               Object RESULT =null;
 
@@ -765,7 +755,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 52: // condicionalif ::= IF PA_A expBool PA_C LLA_A sentanciasif LLA_C 
+          case 49: // condicionalif ::= IF PA_A expBool PA_C LLA_A sentanciasif LLA_C 
             {
               Object RESULT =null;
 
@@ -774,7 +764,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 53: // condicionalif ::= IF PA_A expBool PA_C LLA_A LLA_C 
+          case 50: // condicionalif ::= IF PA_A expBool PA_C LLA_A LLA_C 
             {
               Object RESULT =null;
 
@@ -783,7 +773,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 54: // condicionalif ::= IF PA_A expBool PA_C LLA_A sentanciasif LLA_C ELSE LLA_A LLA_C 
+          case 51: // condicionalif ::= IF PA_A expBool PA_C LLA_A sentanciasif LLA_C ELSE LLA_A LLA_C 
             {
               Object RESULT =null;
 
@@ -792,7 +782,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 55: // condicionalif ::= IF PA_A expBool PA_C LLA_A sentanciasif LLA_C ELSE LLA_A sentanciasif LLA_C 
+          case 52: // condicionalif ::= IF PA_A expBool PA_C LLA_A sentanciasif LLA_C ELSE LLA_A sentanciasif LLA_C 
             {
               Object RESULT =null;
 
@@ -801,7 +791,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 56: // condicionalif ::= IF PA_A expBool PA_C LLA_A LLA_C ELSE LLA_A LLA_C 
+          case 53: // condicionalif ::= IF PA_A expBool PA_C LLA_A LLA_C ELSE LLA_A LLA_C 
             {
               Object RESULT =null;
 
@@ -810,7 +800,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 57: // condicionalif ::= IF PA_A expBool PA_C LLA_A LLA_C ELSE LLA_A sentanciasif LLA_C 
+          case 54: // condicionalif ::= IF PA_A expBool PA_C LLA_A LLA_C ELSE LLA_A sentanciasif LLA_C 
             {
               Object RESULT =null;
 
@@ -819,7 +809,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 58: // condicionalSwitch ::= SWITCH PA_A exp PA_C LLA_A contenidoSwitch LLA_C 
+          case 55: // condicionalSwitch ::= SWITCH PA_A exp PA_C LLA_A contenidoSwitch LLA_C 
             {
               Object RESULT =null;
 
@@ -828,7 +818,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 59: // condicionalSwitch ::= SWITCH PA_A exp PA_C LLA_A LLA_C 
+          case 56: // condicionalSwitch ::= SWITCH PA_A exp PA_C LLA_A LLA_C 
             {
               Object RESULT =null;
 
@@ -837,7 +827,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 60: // contenidoSwitch ::= CASE exp DOSPUNTOS BREAK PUNTOCOMA 
+          case 57: // contenidoSwitch ::= CASE exp DOSPUNTOS BREAK PUNTOCOMA 
             {
               Object RESULT =null;
 
@@ -846,7 +836,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 61: // contenidoSwitch ::= CASE exp DOSPUNTOS sentenciasSwitch BREAK PUNTOCOMA 
+          case 58: // contenidoSwitch ::= CASE exp DOSPUNTOS sentenciasSwitch BREAK PUNTOCOMA 
             {
               Object RESULT =null;
 
@@ -855,7 +845,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 62: // contenidoSwitch ::= contenidoSwitch2 DEFAULT DOSPUNTOS sentenciasSwitch 
+          case 59: // contenidoSwitch ::= contenidoSwitch2 DEFAULT DOSPUNTOS sentenciasSwitch 
             {
               Object RESULT =null;
 
@@ -864,7 +854,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 63: // contenidoSwitch ::= contenidoSwitch2 DEFAULT DOSPUNTOS 
+          case 60: // contenidoSwitch ::= contenidoSwitch2 DEFAULT DOSPUNTOS 
             {
               Object RESULT =null;
 
@@ -873,7 +863,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 64: // contenidoSwitch ::= contenidoSwitch2 CASE exp DOSPUNTOS sentenciasSwitch BREAK PUNTOCOMA 
+          case 61: // contenidoSwitch ::= contenidoSwitch2 CASE exp DOSPUNTOS sentenciasSwitch BREAK PUNTOCOMA 
             {
               Object RESULT =null;
 
@@ -882,7 +872,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 65: // contenidoSwitch ::= contenidoSwitch2 CASE exp DOSPUNTOS BREAK PUNTOCOMA 
+          case 62: // contenidoSwitch ::= contenidoSwitch2 CASE exp DOSPUNTOS BREAK PUNTOCOMA 
             {
               Object RESULT =null;
 
@@ -891,7 +881,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 66: // contenidoSwitch2 ::= contenidoSwitch2 CASE exp DOSPUNTOS sentenciasSwitch BREAK PUNTOCOMA 
+          case 63: // contenidoSwitch2 ::= contenidoSwitch2 CASE exp DOSPUNTOS sentenciasSwitch BREAK PUNTOCOMA 
             {
               Object RESULT =null;
 
@@ -900,7 +890,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 67: // contenidoSwitch2 ::= contenidoSwitch2 CASE exp DOSPUNTOS BREAK PUNTOCOMA 
+          case 64: // contenidoSwitch2 ::= contenidoSwitch2 CASE exp DOSPUNTOS BREAK PUNTOCOMA 
             {
               Object RESULT =null;
 
@@ -909,7 +899,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 68: // contenidoSwitch2 ::= CASE exp DOSPUNTOS sentenciasSwitch BREAK PUNTOCOMA 
+          case 65: // contenidoSwitch2 ::= CASE exp DOSPUNTOS sentenciasSwitch BREAK PUNTOCOMA 
             {
               Object RESULT =null;
 
@@ -918,7 +908,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 69: // contenidoSwitch2 ::= CASE exp DOSPUNTOS BREAK PUNTOCOMA 
+          case 66: // contenidoSwitch2 ::= CASE exp DOSPUNTOS BREAK PUNTOCOMA 
             {
               Object RESULT =null;
 
@@ -927,7 +917,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 70: // expBool ::= NOT expBool 
+          case 67: // expBool ::= NOT expBool 
             {
               Object RESULT =null;
 
@@ -936,7 +926,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 71: // expBool ::= tBool 
+          case 68: // expBool ::= tBool 
             {
               Object RESULT =null;
 
@@ -945,7 +935,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 72: // tBool ::= tBool MENOR_QUE fBool 
+          case 69: // tBool ::= tBool MENOR_QUE fBool 
             {
               Object RESULT =null;
 
@@ -954,7 +944,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 73: // tBool ::= tBool MAYOR_QUE fBool 
+          case 70: // tBool ::= tBool MAYOR_QUE fBool 
             {
               Object RESULT =null;
 
@@ -963,7 +953,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 74: // tBool ::= tBool MENOR_IGUAL fBool 
+          case 71: // tBool ::= tBool MENOR_IGUAL fBool 
             {
               Object RESULT =null;
 
@@ -972,7 +962,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 75: // tBool ::= tBool MAYOR_QUE fBool 
+          case 72: // tBool ::= tBool MAYOR_QUE fBool 
             {
               Object RESULT =null;
 
@@ -981,7 +971,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 76: // tBool ::= fBool 
+          case 73: // tBool ::= fBool 
             {
               Object RESULT =null;
 
@@ -990,7 +980,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 77: // fBool ::= fBool DIFERENTE eBool 
+          case 74: // fBool ::= fBool DIFERENTE eBool 
             {
               Object RESULT =null;
 
@@ -999,7 +989,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 78: // fBool ::= fBool IGUAL eBool 
+          case 75: // fBool ::= fBool IGUAL eBool 
             {
               Object RESULT =null;
 
@@ -1008,7 +998,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 79: // fBool ::= eBool 
+          case 76: // fBool ::= eBool 
             {
               Object RESULT =null;
 
@@ -1017,7 +1007,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 80: // eBool ::= eBool AND gBool 
+          case 77: // eBool ::= eBool AND gBool 
             {
               Object RESULT =null;
 
@@ -1026,7 +1016,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 81: // eBool ::= gBool 
+          case 78: // eBool ::= gBool 
             {
               Object RESULT =null;
 
@@ -1035,7 +1025,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 82: // gBool ::= gBool OR hBool 
+          case 79: // gBool ::= gBool OR hBool 
             {
               Object RESULT =null;
 
@@ -1044,7 +1034,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 83: // gBool ::= hBool 
+          case 80: // gBool ::= hBool 
             {
               Object RESULT =null;
 
@@ -1053,7 +1043,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 84: // hBool ::= TRUE 
+          case 81: // hBool ::= TRUE 
             {
               Object RESULT =null;
 
@@ -1062,7 +1052,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 85: // hBool ::= FALSE 
+          case 82: // hBool ::= FALSE 
             {
               Object RESULT =null;
 
@@ -1071,7 +1061,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 86: // hBool ::= ID 
+          case 83: // hBool ::= ID 
             {
               Object RESULT =null;
 
@@ -1080,7 +1070,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 87: // hBool ::= ENTERO 
+          case 84: // hBool ::= ENTERO 
             {
               Object RESULT =null;
 
@@ -1089,7 +1079,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 88: // hBool ::= DECIMAL 
+          case 85: // hBool ::= DECIMAL 
             {
               Object RESULT =null;
 
@@ -1098,7 +1088,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 89: // hBool ::= PA_A expBool PA_C 
+          case 86: // hBool ::= PA_A expBool PA_C 
             {
               Object RESULT =null;
 
@@ -1107,7 +1097,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 90: // agregarfor ::= SUMAR 
+          case 87: // agregarfor ::= SUMAR 
             {
               Object RESULT =null;
 
@@ -1116,7 +1106,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 91: // agregarfor ::= RESTAR 
+          case 88: // agregarfor ::= RESTAR 
             {
               Object RESULT =null;
 
@@ -1125,7 +1115,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 92: // agregarfor ::= EQUAL exp 
+          case 89: // agregarfor ::= EQUAL exp 
             {
               Object RESULT =null;
 
@@ -1134,7 +1124,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 93: // operadorRelacional ::= MAYOR_QUE 
+          case 90: // operadorRelacional ::= MAYOR_QUE 
             {
               Object RESULT =null;
 
@@ -1143,7 +1133,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 94: // operadorRelacional ::= MENOR_QUE 
+          case 91: // operadorRelacional ::= MENOR_QUE 
             {
               Object RESULT =null;
 
@@ -1152,7 +1142,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 95: // operadorRelacional ::= MENOR_IGUAL 
+          case 92: // operadorRelacional ::= MENOR_IGUAL 
             {
               Object RESULT =null;
 
@@ -1161,7 +1151,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 96: // operadorRelacional ::= MAYOR_IGUAL 
+          case 93: // operadorRelacional ::= MAYOR_IGUAL 
             {
               Object RESULT =null;
 
@@ -1170,7 +1160,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 97: // operadorRelacional ::= IGUAL 
+          case 94: // operadorRelacional ::= IGUAL 
             {
               Object RESULT =null;
 
@@ -1179,7 +1169,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 98: // operadorRelacional ::= DIFERENTE 
+          case 95: // operadorRelacional ::= DIFERENTE 
             {
               Object RESULT =null;
 
@@ -1188,7 +1178,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 99: // exp ::= exp MAS t 
+          case 96: // exp ::= exp MAS t 
             {
               Object RESULT =null;
 
@@ -1197,7 +1187,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 100: // exp ::= exp MENOS t 
+          case 97: // exp ::= exp MENOS t 
             {
               Object RESULT =null;
 
@@ -1206,7 +1196,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 101: // exp ::= t 
+          case 98: // exp ::= t 
             {
               Object RESULT =null;
 
@@ -1215,7 +1205,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 102: // t ::= t MUL f 
+          case 99: // t ::= t MUL f 
             {
               Object RESULT =null;
 
@@ -1224,7 +1214,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 103: // t ::= t DIV f 
+          case 100: // t ::= t DIV f 
             {
               Object RESULT =null;
 
@@ -1233,7 +1223,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 104: // t ::= f 
+          case 101: // t ::= f 
             {
               Object RESULT =null;
 
@@ -1242,7 +1232,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 105: // f ::= ID 
+          case 102: // f ::= ID 
             {
               Object RESULT =null;
 
@@ -1251,7 +1241,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 106: // f ::= DECIMAL 
+          case 103: // f ::= DECIMAL 
             {
               Object RESULT =null;
 
@@ -1260,7 +1250,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 107: // f ::= ENTERO 
+          case 104: // f ::= ENTERO 
             {
               Object RESULT =null;
 
@@ -1269,7 +1259,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 108: // f ::= STRING 
+          case 105: // f ::= STRING 
             {
               Object RESULT =null;
 
@@ -1278,7 +1268,7 @@ class CUP$ParserJava$actions {
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 109: // f ::= PA_A exp PA_C 
+          case 106: // f ::= PA_A exp PA_C 
             {
               Object RESULT =null;
 

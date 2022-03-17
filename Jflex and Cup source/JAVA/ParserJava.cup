@@ -149,11 +149,26 @@ non terminal                        initJava,contClass,importJava,importJavaCont
 non terminal                        t,f,exp;
 non terminal                        tBool,fBool,expBool,eBool,gBool,hBool;
 /* Inicio de las reglas gramticales*/
-initJava    ::= classJava
+initJava    ::= initJava importJava
+            |   classJava
             ;
 
 /*Gramatica de imports*/
 
+importJava  ::= IMPORT ID importJavaContenido
+            |   error PUNTO
+            |   error PUNTOCOMA
+            ;
+
+importJavaContenido ::= PUNTO ID importJavaContenido
+                    |   PUNTO ID MUL PUNTOCOMA
+                    |   PUNTOCOMA
+                    |   error PUNTO
+                    |   error PUNTOCOMA
+                    ;
+
+
+/*
 importJava  ::= importJava IMPORT importJavaContenido
             |   IMPORT importJavaContenido
             |   importJava error
@@ -173,7 +188,7 @@ importJavaContenidoD2   ::= PUNTOCOMA
                         |   PUNTOCOMA importJavaContenidoD
                         |   error PUNTOCOMA
                         ;
-
+*/
 /*Gramatica de un archivo de java*/
 
 visibilidad ::= PRIVATE
