@@ -497,12 +497,14 @@ public class ParserDef extends java_cup.runtime.lr_parser {
       }
     }
 
-    private void verificarTresId(Token id1,Token id2,Token id3){
+    private void verificarTresId(Token id1,Token id2,Token id3,AccesoVariables acc){
         if(id1.getLexema().equals("RESULT")){
             id1.setAccion(Token.IGNORE);
+            FilaTabla var = this.tablaSimbolos.buscar("RESULT");
             id2.setAccion(Token.VIEW);
         switch (id2.getLexema()) {
           case "Clases":
+            acc.setArreglo(((ReporteJson)var.getValor()).getClases());
             if(id3.getLexema().equals("Nombre")){
                 id3.setAccion(Token.VAR_CONSULT);
             }else{
@@ -510,6 +512,7 @@ public class ParserDef extends java_cup.runtime.lr_parser {
             }
             break;
           case "Variables":
+            acc.setArreglo(((ReporteJson)var.getValor()).getVariables());
             switch(id3.getLexema()){
                 case "Nombre":
                     id3.setAccion(Token.VAR_CONSULT);
@@ -526,6 +529,7 @@ public class ParserDef extends java_cup.runtime.lr_parser {
             }
             break;
           case "Metodos":
+            acc.setArreglo(((ReporteJson)var.getValor()).getMetodos());
             switch(id3.getLexema()){
                 case "Nombre":
                     id3.setAccion(Token.VAR_CONSULT);
@@ -542,6 +546,7 @@ public class ParserDef extends java_cup.runtime.lr_parser {
             }
             break;
           case "Comentarios":
+            acc.setArreglo(((ReporteJson)var.getValor()).getComentarios());
             switch(id3.getLexema()){
                 case "Texto":
                     id3.setAccion(Token.VAR_CONSULT);
@@ -1653,7 +1658,7 @@ class CUP$ParserDef$actions {
 		Token id3 = (Token)((java_cup.runtime.Symbol) CUP$ParserDef$stack.peek()).value;
 		
                                                                                 AccesoVariables acc = new AccesoVariables();
-                                                                                verificarTresId(id1,id2,id3);
+                                                                                verificarTresId(id1,id2,id3,acc);
                                                                                 acc.setIndex(index);
                                                                                 id2.setValorToken(acc);
                                                                             

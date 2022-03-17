@@ -47,6 +47,7 @@ public class RenderizarHTML {
         pila_bucle = new Pila<>();
         pila_intruccion_eje_false = new Pila<>();
         pila_var_bucle = new Pila<>();
+        pila_consulta = new Pila<>();
 
         String html = "";
 

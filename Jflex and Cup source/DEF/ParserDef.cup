@@ -199,12 +199,14 @@ parser code {:
       }
     }
 
-    private void verificarTresId(Token id1,Token id2,Token id3){
+    private void verificarTresId(Token id1,Token id2,Token id3,AccesoVariables acc){
         if(id1.getLexema().equals("RESULT")){
             id1.setAccion(Token.IGNORE);
+            FilaTabla var = this.tablaSimbolos.buscar("RESULT");
             id2.setAccion(Token.VIEW);
         switch (id2.getLexema()) {
           case "Clases":
+            acc.setArreglo(((ReporteJson)var.getValor()).getClases());
             if(id3.getLexema().equals("Nombre")){
                 id3.setAccion(Token.VAR_CONSULT);
             }else{
@@ -212,6 +214,7 @@ parser code {:
             }
             break;
           case "Variables":
+            acc.setArreglo(((ReporteJson)var.getValor()).getVariables());
             switch(id3.getLexema()){
                 case "Nombre":
                     id3.setAccion(Token.VAR_CONSULT);
@@ -228,6 +231,7 @@ parser code {:
             }
             break;
           case "Metodos":
+            acc.setArreglo(((ReporteJson)var.getValor()).getMetodos());
             switch(id3.getLexema()){
                 case "Nombre":
                     id3.setAccion(Token.VAR_CONSULT);
@@ -244,6 +248,7 @@ parser code {:
             }
             break;
           case "Comentarios":
+            acc.setArreglo(((ReporteJson)var.getValor()).getComentarios());
             switch(id3.getLexema()){
                 case "Texto":
                     id3.setAccion(Token.VAR_CONSULT);
@@ -610,7 +615,7 @@ varHTML2    ::= ID:id1  {:
                                                                 :}
             |   ID:id1 PUNTO ID:id2 CO_A varHTML4:index CO_C PUNTO ID:id3   {:
                                                                                 AccesoVariables acc = new AccesoVariables();
-                                                                                verificarTresId(id1,id2,id3);
+                                                                                verificarTresId(id1,id2,id3,acc);
                                                                                 acc.setIndex(index);
                                                                                 id2.setValorToken(acc);
                                                                             :}
