@@ -335,6 +335,7 @@ ini ::= ini asig
     |   asig
     |   dec
     |   decn
+    |   ini error
     ;
 
 /*Gramatica para declaracion de variables*/
@@ -488,6 +489,10 @@ html    ::= ME_Q HTML:tagini MA_Q contHTML ME_QB HTML:tagfin MA_Q   {:
                                                                         tagini.setValorToken("<hmtl>");
                                                                         tagfin.setValorToken("</hmtl>");
                                                                     :}
+        |   ME_Q HTML:tagini MA_Q ME_QB HTML:tagfin MA_Q    {:
+                                                                tagini.setValorToken("<hmtl>");
+                                                                tagfin.setValorToken("</hmtl>");
+                                                            :}
         ;
 
 contHTML    ::= contHTML ME_Q etiquetas
@@ -495,7 +500,12 @@ contHTML    ::= contHTML ME_Q etiquetas
                                         txt.setValorToken(txt.getLexema());
                                     :}
             |   contHTML D_PA_A varHTML2:var PA_C_D
-            |
+            |   ME_Q etiquetas
+            |   TEXT:txt    {:
+                                txt.setValorToken(txt.getLexema());
+                            :}
+            |   D_PA_A varHTML2:var PA_C_D
+            |   contHTML error
             ;
 
 etiquetas ::=   BR:tag MA_Q     {:
@@ -505,11 +515,23 @@ etiquetas ::=   BR:tag MA_Q     {:
                                                                                 tagini.setValorToken("<h1>");
                                                                                 tagfin.setValorToken("</h1>");
                                                                             :}
+            |   H1:tagini MA_Q ME_QB H1:tagfin MA_Q                         {:
+                                                                                tagini.setValorToken("<h1>");
+                                                                                tagfin.setValorToken("</h1>");
+                                                                            :}
             |   H2:tagini MA_Q contHTML ME_QB H2:tagfin MA_Q                {:
                                                                                 tagini.setValorToken("<h2>");
                                                                                 tagfin.setValorToken("</h2>");
                                                                             :}
+            |   H2:tagini MA_Q ME_QB H2:tagfin MA_Q                         {:
+                                                                                tagini.setValorToken("<h2>");
+                                                                                tagfin.setValorToken("</h2>");
+                                                                            :}
             |   TABLE:tagini MA_Q tablec ME_QB TABLE:tagfin MA_Q                {:
+                                                                                    tagini.setValorToken("<table border=\"1\">");
+                                                                                    tagfin.setValorToken("</table>");
+                                                                                :}
+            |   TABLE:tagini MA_Q ME_QB TABLE:tagfin MA_Q                       {:
                                                                                     tagini.setValorToken("<table border=\"1\">");
                                                                                     tagfin.setValorToken("</table>");
                                                                                 :}
@@ -540,9 +562,26 @@ tablec  ::= tablec ME_Q TR:tagini MA_Q trc ME_QB TR:tagfin MA_Q {:
                                                                     tagini.setValorToken("<tr>");
                                                                     tagfin.setValorToken("</tr>");
                                                                 :}
+        |   tablec ME_Q TR:tagini MA_Q ME_QB TR:tagfin MA_Q     {:
+                                                                    tagini.setValorToken("<tr>");
+                                                                    tagfin.setValorToken("</tr>");
+                                                                :}
+        |   ME_Q TR:tagini MA_Q trc ME_QB TR:tagfin MA_Q        {:
+                                                                    tagini.setValorToken("<tr>");
+                                                                    tagfin.setValorToken("</tr>");
+                                                                :}
+        |   ME_Q TR:tagini MA_Q ME_QB TR:tagfin MA_Q            {:
+                                                                    tagini.setValorToken("<tr>");
+                                                                    tagfin.setValorToken("</tr>");
+                                                                :}
+        |   tablec error
         ;
 
 trc ::= trc ME_Q TH:tagini MA_Q contHTML ME_QB TH:tagfin MA_Q   {:
+                                                                    tagini.setValorToken("<th>");
+                                                                    tagfin.setValorToken("</th>");
+                                                                :}
+    |   trc ME_Q TH:tagini MA_Q ME_QB TH:tagfin MA_Q            {:
                                                                     tagini.setValorToken("<th>");
                                                                     tagfin.setValorToken("</th>");
                                                                 :}
@@ -550,7 +589,27 @@ trc ::= trc ME_Q TH:tagini MA_Q contHTML ME_QB TH:tagfin MA_Q   {:
                                                                     tagini.setValorToken("<td>");
                                                                     tagfin.setValorToken("</td>");
                                                                 :}
-    |   
+    |   trc ME_Q TD:tagini MA_Q ME_QB TD:tagfin MA_Q            {:
+                                                                    tagini.setValorToken("<td>");
+                                                                    tagfin.setValorToken("</td>");
+                                                                :}
+    |   ME_Q TH:tagini MA_Q contHTML ME_QB TH:tagfin MA_Q       {:
+                                                                    tagini.setValorToken("<th>");
+                                                                    tagfin.setValorToken("</th>");
+                                                                :}
+    |   ME_Q TH:tagini MA_Q ME_QB TH:tagfin MA_Q                {:
+                                                                    tagini.setValorToken("<th>");
+                                                                    tagfin.setValorToken("</th>");
+                                                                :}
+    |   ME_Q TD:tagini MA_Q contHTML ME_QB TD:tagfin MA_Q       {:
+                                                                    tagini.setValorToken("<td>");
+                                                                    tagfin.setValorToken("</td>");
+                                                                :}
+    |   ME_Q TD:tagini MA_Q ME_QB TD:tagfin MA_Q                {:
+                                                                    tagini.setValorToken("<td>");
+                                                                    tagfin.setValorToken("</td>");
+                                                                :}
+    |   trc error
     ;
 
 varHTML2    ::= ID:id1  {:
@@ -576,6 +635,9 @@ varHTML2    ::= ID:id1  {:
                                                                                 acc.setIndex(index);
                                                                                 id2.setValorToken(acc);
                                                                             :}
+            |   error PA_C_D
+            |   error ME_QB
+            |   error MA_Q
             ;
 
 varHTML4    ::= ID:var  {:
@@ -590,6 +652,9 @@ varHTML4    ::= ID:var  {:
             |   ENTERO:en           {:
                                         RESULT = Integer.parseInt(((Token)en).getLexema());
                                     :}
+            |   error PA_C_D
+            |   error ME_QB
+            |   error MA_Q
             ;
 
 paramhasta ::=  ID:var  {:
@@ -603,6 +668,7 @@ paramhasta ::=  ID:var  {:
             |   ENTERO:en   {:
                                 RESULT = Integer.parseInt(((Token)en).getLexema());
                             :}
+            |   error ME_QB
             |   error MA_Q
             ;
 
