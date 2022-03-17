@@ -134,7 +134,7 @@ public class RenderizarHTML {
                             if (acc.getIndex() instanceof Integer){
                                 try{
                                     if(acc.getarreglo() instanceof ArrayList){
-                                        ((ArrayList<Object>)acc.getarreglo()).get((Integer)acc.getIndex());
+                                        html = html + ((ArrayList<Object>)acc.getarreglo()).get((Integer)acc.getIndex()) + "\n";
                                     }
                                 }catch(Exception ex){
                                     System.out.println("El indice de acceso es mayor al tamaño del arreglo");
@@ -144,7 +144,7 @@ public class RenderizarHTML {
                                 FilaTabla indexVar = (FilaTabla) acc.getIndex();
                                 try{
                                     if(acc.getarreglo() instanceof ArrayList){
-                                        ((ArrayList<Object>)acc.getarreglo()).get((Integer)indexVar.getValor());
+                                        html = html + ((ArrayList<Object>)acc.getarreglo()).get((Integer)indexVar.getValor()) + "\n";
                                     }
                                 }catch(Exception ex){
                                     System.out.println("El indice de acceso es mayor al tamaño del arreglo");
