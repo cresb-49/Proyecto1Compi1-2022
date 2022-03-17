@@ -6,6 +6,7 @@
 package com.cresb49.server;
 
 import com.cresb49.appcliente.Objetos.CompararProyectos;
+import com.cresb49.server.AnalizadorJava.AnalizarJava;
 import com.cresb49.server.Objetos.AnalizarProyectos;
 import com.cresb49.server.comunicacion.Cliente;
 import com.cresb49.server.comunicacion.Servidor;
@@ -49,7 +50,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        codigoPrueba = new javax.swing.JTextPane();
         jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -65,8 +66,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
             }
         });
 
-        jTextPane1.setText("import java.util.*; // comentario simple\nimport java.sql.base1; // Statement,\n\npublic class ejemplo_final{\n\n\tprivate String value; // \"Comentarios\"\n\tprivate boolean valid;\n\t/** * Comentariooo * multilinea*/\n\tpublic boolean parse() {\n\t\tObjeto nuevo_objeto = new Object();\n\t\tSaludar(\"hola \"+” numero: ”+ (55+55));\n\t}\n\tpublic String Saludar(String val) {\n\t\tIf(val!=\"\"){\n\t\t\treturn val; // \"Hola aqui retorno\"}\n\t\t}\n\t}\n}");
-        jScrollPane2.setViewportView(jTextPane1);
+        codigoPrueba.setText("import java.util.*; // comentario simple\nimport java.sql.base1; // Statement,\n\npublic class ejemplo_final{\n\n\tprivate String value; // \"Comentarios\"\n\tprivate boolean valid;\n\t/** * Comentariooo * multilinea*/\n\tpublic boolean parse() {\n\t\tObjeto nuevo_objeto = new Object();\n\t\tSaludar(\"hola \"+” numero: ”+ (55+55));\n\t}\n\tpublic String Saludar(String val) {\n\t\tIf(val!=\"\"){\n\t\t\treturn val; // \"Hola aqui retorno\"}\n\t\t}\n\t}\n}");
+        jScrollPane2.setViewportView(codigoPrueba);
 
         jButton2.setText("Analizar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -173,6 +174,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         //PRUEBAS  DEL ANALIS DE CODIGO JAVA
+        AnalizarJava analizarJava = new AnalizarJava();
+        analizarJava.ejecutar(this.codigoPrueba.getText());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -212,6 +215,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextPane ConsoleLog;
+    private javax.swing.JTextPane codigoPrueba;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
@@ -220,7 +224,6 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
 
     @Override
