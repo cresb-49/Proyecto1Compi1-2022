@@ -1,12 +1,12 @@
 #! /bin/bash
 
 echo "Compilado Jflex"
-jflex JAVA/lexerJava.jflex
+jflex JAVA/LexerJava.jflex
 #javac JAVA/LexerJava.java
 #rm lexerJava.java~
 #rm JAVA/lexerJava.java
 #java JAVA/LexerJava JAVA/ejemploJava.java
-mv JAVA/lexerJava.java ../Server/src/main/java/com/cresb49/server/AnalizadorJava
+mv JAVA/LexerJava.java ../Server/src/main/java/com/cresb49/server/AnalizadorJava
 echo "Compilado CUP"
 cup JAVA/ParserJava.cup
 
