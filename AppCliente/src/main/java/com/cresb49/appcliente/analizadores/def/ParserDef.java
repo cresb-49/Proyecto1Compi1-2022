@@ -425,7 +425,7 @@ public class ParserDef extends java_cup.runtime.lr_parser {
       if(id.getLexema().equals("RESULT")){
         FilaTabla var = this.tablaSimbolos.buscar("RESULT");
         id.setAccion(Token.PRINT);
-        id.setValorToken("ObjectRESULT"+((ReporteJson)var.getValor()).hashCode());
+        id.setValorToken("ObjetoRESULT"+((ReporteJson)var.getValor()).hashCode());
       }
     }
 
