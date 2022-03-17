@@ -301,15 +301,36 @@ parser code {:
         FilaTabla var = this.tablaSimbolos.buscar("RESULT");
         switch (id2.getLexema()) {
           case "Clases":
-            return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getClases().get(index));
+            try{
+                return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getClases().get(index));
+            }catch(Exception ex){
+                semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+            }
+            break;
           case "Variables":
-            return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getVariables().get(index));
+            try{
+                return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getVariables().get(index));
+            }catch(Exception ex){
+                semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+            }
+            break;
           case "Metodos":
-            return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getMetodos().get(index));
+            try{
+                return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getMetodos().get(index));
+            }catch(Exception ex){
+                semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+            }
+            break;
           case "Comentarios":
-            return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getComentarios().get(index));
+            try{
+                return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getComentarios().get(index));
+            }catch(Exception ex){
+                semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+            }
+            break;
           default:
             semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\" ,se esperaba [Clases,Variables,Metodos,Comentarios]");
+            break;
         }
       }else{
         semantic_error(id1,"No es una variable que contenga parametros internos");
@@ -324,7 +345,11 @@ parser code {:
             switch (id2.getLexema()) {
             case "Clases":
                 if(id3.getLexema().equals("Nombre")){
-                    return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getClases().get(index).getNombre());
+                    try{
+                        return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getClases().get(index).getNombre());
+                    }catch(Exception ex){
+                        semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+                    }
                 }else{
                     semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\"");
                 }
@@ -332,11 +357,26 @@ parser code {:
             case "Variables":
                 switch(id3.getLexema()){
                     case "Nombre":
-                        return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getVariables().get(index).getNombre());
+                        try{
+                            return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getVariables().get(index).getNombre());
+                        }catch(Exception ex){
+                            semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+                        }
+                        break;
                     case "Tipo":
-                         return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getVariables().get(index).getTipo());
+                        try{
+                            return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getVariables().get(index).getTipo());
+                        }catch(Exception ex){
+                            semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+                        }
+                        break;
                     case "Funcion":
-                         return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getVariables().get(index).getFuncion());
+                        try{
+                            return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getVariables().get(index).getFuncion());
+                        }catch(Exception ex){
+                            semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+                        }
+                        break;
                     default:
                         semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\" ,se esperaba [Nombre,Tipo,Funcion]");
                     break;
@@ -345,11 +385,26 @@ parser code {:
             case "Metodos":
                 switch(id3.getLexema()){
                     case "Nombre":
-                        return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getMetodos().get(index).getNombre());
+                        try{
+                            return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getMetodos().get(index).getNombre());
+                        }catch(Exception ex){
+                                semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+                        }
+                        break;
                     case "Tipo":
-                        return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getMetodos().get(index).getTipo());
+                        try{
+                            return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getMetodos().get(index).getTipo());
+                        }catch(Exception ex){
+                                semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+                        }
+                        break;
                     case "Parametros":
-                        return new Operacion(TablaSimbolos.INT,((ReporteJson)var.getValor()).getMetodos().get(index).getParametros());
+                        try{
+                            return new Operacion(TablaSimbolos.INT,((ReporteJson)var.getValor()).getMetodos().get(index).getParametros());
+                        }catch(Exception ex){
+                                semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+                        }
+                        break;
                     default:
                         semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\" ,se esperaba [Nombre,Tipo,Parametros]");
                     break;
@@ -358,7 +413,12 @@ parser code {:
             case "Comentarios":
                 switch(id3.getLexema()){
                     case "Texto":
-                         return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getComentarios().get(index).getTexto());
+                        try{
+                            return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getComentarios().get(index).getTexto());
+                        }catch(Exception ex){
+                                semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+                        }
+                        break;
                     default:
                         semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\" ,se esperaba [Texto]");
                     break;
