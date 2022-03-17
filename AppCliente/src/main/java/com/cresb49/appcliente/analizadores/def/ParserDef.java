@@ -1304,7 +1304,7 @@ class CUP$ParserDef$actions {
 		int id2right = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()).right;
 		Token id2 = (Token)((java_cup.runtime.Symbol) CUP$ParserDef$stack.peek()).value;
 		
-
+                                    RESULT = devolver_val_2Id(id1, id2);
                                 
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("f",8, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-2)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
@@ -1320,11 +1320,18 @@ class CUP$ParserDef$actions {
 		int id2left = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-3)).left;
 		int id2right = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-3)).right;
 		Token id2 = (Token)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-3)).value;
+		int refleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-2)).left;
+		int refright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-2)).right;
+		Object ref = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-2)).value;
 		int indexleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).left;
 		int indexright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).right;
 		Operacion index = (Operacion)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-1)).value;
 		
-                                                            
+                                                            if(index.getValor() instanceof Integer){
+                                                                RESULT = devolver_val_2Id_index(id1, id2, (Integer) index.getValor());
+                                                            }else{
+                                                                semantic_error((Token)ref,"El valor del indice de la lista debe ser un \""+TablaSimbolos.INT+"\"");
+                                                            }
                                                         
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("f",8, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }
@@ -1340,6 +1347,9 @@ class CUP$ParserDef$actions {
 		int id2left = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)).left;
 		int id2right = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)).right;
 		Token id2 = (Token)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-5)).value;
+		int refleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-4)).left;
+		int refright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-4)).right;
+		Object ref = (Object)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-4)).value;
 		int indexleft = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-3)).left;
 		int indexright = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-3)).right;
 		Operacion index = (Operacion)((java_cup.runtime.Symbol) CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-3)).value;
@@ -1347,7 +1357,11 @@ class CUP$ParserDef$actions {
 		int id3right = ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()).right;
 		Token id3 = (Token)((java_cup.runtime.Symbol) CUP$ParserDef$stack.peek()).value;
 		
-
+                                                                        if(index.getValor() instanceof Integer){
+                                                                            RESULT = devolver_val_3Id(id1, id2, id3, (Integer) index.getValor());
+                                                                        }else{
+                                                                            semantic_error((Token)ref,"El valor del indice de la lista debe ser un \""+TablaSimbolos.INT+"\"");
+                                                                        }
                                                                     
               CUP$ParserDef$result = parser.getSymbolFactory().newSymbol("f",8, ((java_cup.runtime.Symbol)CUP$ParserDef$stack.elementAt(CUP$ParserDef$top-7)), ((java_cup.runtime.Symbol)CUP$ParserDef$stack.peek()), RESULT);
             }

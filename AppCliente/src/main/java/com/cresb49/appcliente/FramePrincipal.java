@@ -228,7 +228,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
         jTabbedPane1.addTab("CARGA DE ARCHIVOS", jPanel1);
 
-        TextPaneDef.setText("</ iniciare a definir de alguna manera />\nInteger Max, i,j;\nMax=4;\ni=1;\nj=1;\nString texto=\"Su score fue de: \";\n</ Aqui defino el html />\n<html>\n<H1>nombre tablas</h1>\n<h1> $$( RESULT.Variables[0].Nombre)$$</h1>\n<h1> $$( RESULT)$$</h1>\n        <table>\n            <tr>\n                <th>Numero</th>\n                <th>Variable</th>\n                <th>Tipo</th>\n                <th>Función</th>\n            </tr>\n           <for iterador:i hasta:4;>\n\t<tr>\n\t         <td>$$(i)$$</td>\n                                      <td>hola2</td>\n                                      <td>hola3</td>\n\t         <td>hola4</td>\n\t</tr>\n            </for>\n        </table>\n</html>");
+        TextPaneDef.setText("</ iniciare a definir de alguna manera />\nInteger Max, i;\nMax=4;\ni=0;\nString texto=\"Su score fue de: \"+RESULT.Score\n</ Aqui defino el html />\n<html>\n<H1>$$( texto )$$<h1>\n        <table>\n            <tr>\n                <th>Numero</th>\n                <th>Variable</th>\n                <th>Tipo</th>\n                <th>Función</th>\n            </tr>\n            <for iterador:i hasta:Max;>\n                <tr>\n                    <td> $$( i )$$ </td>\n                    <td> $$( RESULT.Variables[i].Nombre )$$ </td>\n                    <td> $$( RESULT.Variables[i].Tipo )$$ </td>\n                    <td> $$( RESULT.Variables[i].Funcion )$$ </td>\n                </tr>\n            </for>\n        </table>\n</html>");
         jScrollPane3.setViewportView(TextPaneDef);
 
         ButtonEjecutar.setText("EJECUTAR");

@@ -639,13 +639,21 @@ f   ::= ID:val      {:
                         }
                     :}
     |   ID:id1 PUNTO ID:id2     {:
-
+                                    RESULT = devolver_val_2Id(id1, id2);
                                 :}
-    |   ID:id1 PUNTO ID:id2 CO_A exp:index CO_C         {:
-                                                            
+    |   ID:id1 PUNTO ID:id2 CO_A:ref exp:index CO_C     {:
+                                                            if(index.getValor() instanceof Integer){
+                                                                RESULT = devolver_val_2Id_index(id1, id2, (Integer) index.getValor());
+                                                            }else{
+                                                                semantic_error((Token)ref,"El valor del indice de la lista debe ser un \""+TablaSimbolos.INT+"\"");
+                                                            }
                                                         :}
-    |   ID:id1 PUNTO ID:id2 CO_A exp:index CO_C PUNTO ID:id3   {:
-
+    |   ID:id1 PUNTO ID:id2 CO_A:ref exp:index CO_C PUNTO ID:id3    {:
+                                                                        if(index.getValor() instanceof Integer){
+                                                                            RESULT = devolver_val_3Id(id1, id2, id3, (Integer) index.getValor());
+                                                                        }else{
+                                                                            semantic_error((Token)ref,"El valor del indice de la lista debe ser un \""+TablaSimbolos.INT+"\"");
+                                                                        }
                                                                     :}
     |   ENTERO:val  {:
                         Token token = (Token) val;
