@@ -1,4 +1,4 @@
-package com.cresb49.server.Objetos;
+package com.cresb49.appcliente.Objetos;
 
 import java.io.File;
 import java.io.Serializable;

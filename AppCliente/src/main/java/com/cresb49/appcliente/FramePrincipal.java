@@ -5,6 +5,7 @@
  */
 package com.cresb49.appcliente;
 
+import com.cresb49.appcliente.Objetos.CompararProyectos;
 import com.cresb49.appcliente.analizadores.*;
 import com.cresb49.appcliente.analizadores.def.AnalizarDef;
 import com.cresb49.appcliente.analizadores.def.obj.exceptions.NoReporteJson;
@@ -459,7 +460,6 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         if (this.proyectoCopy == null) {
             JOptionPane.showMessageDialog(this, "No hay un proyecto cargado al programa", "Sin proyecto cargado", JOptionPane.INFORMATION_MESSAGE);
         } else {
-
             if (this.proyectoCopy.getPathCarpetaProyecto().isBlank() || this.proyectoCopy.getPathCarpetaProyecto().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Para continuar genere un proyecto", "Crear Proyecto", JOptionPane.INFORMATION_MESSAGE);
                 this.crear_guardar_proyecto();
@@ -467,7 +467,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             if (!(this.proyectoCopy.getPathCarpetaProyecto().isBlank() || this.proyectoCopy.getPathCarpetaProyecto().isEmpty())) {
                 if (carpeta1 != null && carpeta2 != null) {
                     cliente = new Cliente(5000, "localhost");
-                    cliente.setMensaje("Hola desde la app cliente");
+                    //cliente.setMensaje("Hola desde la app cliente");
+                    cliente.setMensaje(new CompararProyectos(carpeta1, carpeta2));
                     Thread hilo = new Thread(cliente);
                     hilo.start();
                 }
