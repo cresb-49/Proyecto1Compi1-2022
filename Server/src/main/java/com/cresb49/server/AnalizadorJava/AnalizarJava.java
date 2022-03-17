@@ -10,7 +10,7 @@ public class AnalizarJava {
     private ArrayList<ErrorAnalisis> errores;
     private LexerJava lexerJava;
     private ParserJava parserJava;
-
+    
     public AnalizarJava() {
     }
 

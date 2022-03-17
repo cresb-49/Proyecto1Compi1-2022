@@ -77,6 +77,12 @@ Decimal = {Entero}[.]{Entero}
                         return new Symbol(ParserJavaSym.STATIC,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
+    "final"         {
+                        this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJavaSym.FINAL,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("final: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
     "default"       {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -112,12 +118,6 @@ Decimal = {Entero}[.]{Entero}
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.PROTECTED,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("protected: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
-                    }
-    "final"         {
-                        this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
-                        return new Symbol(ParserJavaSym.FINAL,yyline+1,yycolumn+1,this.actual);
-                        //System.out.println("final: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     "break"         {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
@@ -218,8 +218,8 @@ Decimal = {Entero}[.]{Entero}
     {Identifier}    {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
+                        System.out.println("Identificador: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                         return new Symbol(ParserJavaSym.ID,yyline+1,yycolumn+1,this.actual);
-                        //System.out.println("Identificador: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     {Comment}       {
                         System.out.println(yytext());   

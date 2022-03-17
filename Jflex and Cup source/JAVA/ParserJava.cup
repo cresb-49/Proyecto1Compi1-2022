@@ -141,7 +141,7 @@ terminal Token  IMPORT,PUBLIC,PRIVATE,PROTECTED,FINAL,BREAK,RETURN,INT,BOOL,STR,
 
 
 /* Non terminals */
-non terminal                        initJava,contClass,importJava,importJavaContenido,importJavaContenidoD,
+non terminal                        initJava,contClass,importJava,importJavaContenido,importJavaP,parametros,parametrosP,metodoP,
                                     importJavaContenidoD2,classJava,visibilidad,sentencias,tipo,metodo,sentencias2,
                                     agregarfor,operadorRelacional,sentenciasfor,ciclowhile,sentenciasWhile,condicionalif,constructor,
                                     cliclofor,cicloDoWhile,sentanciasif,contenidoSwitch,contenidoSwitch2,condicionalSwitch,sentenciasSwitch,
@@ -149,12 +149,20 @@ non terminal                        initJava,contClass,importJava,importJavaCont
 non terminal                        t,f,exp;
 non terminal                        tBool,fBool,expBool,eBool,gBool,hBool;
 /* Inicio de las reglas gramticales*/
-initJava    ::= importJava initJava
-            |   classJava
+initJava    ::= initJava classJava  {:
+                                        System.out.println("Ejecute class java");
+                                    :}
+            |   importJavaP         {:
+                                        System.out.println("Ejecute import");
+                                    :}
             ;
 
 /*Gramatica de imports*/
 
+importJavaP ::= importJavaP importJava
+            |   importJava
+            ;
+        
 importJava  ::= IMPORT ID importJavaContenido
             |   error PUNTO
             |   error PUNTOCOMA
@@ -166,29 +174,6 @@ importJavaContenido ::= PUNTO ID importJavaContenido
                     |   error PUNTO
                     |   error PUNTOCOMA
                     ;
-
-
-/*
-importJava  ::= importJava IMPORT importJavaContenido
-            |   IMPORT importJavaContenido
-            |   importJava error
-            ;
-
-importJavaContenido ::= importJavaContenidoD
-                    |   ID PUNTO importJavaContenidoD
-                    |   error PUNTO
-                    |   error PUNTOCOMA
-                    ;
-
-importJavaContenidoD    ::= ID importJavaContenidoD2
-                        ;
-
-importJavaContenidoD2   ::= PUNTOCOMA
-                        |   PUNTOCOMA MUL PUNTOCOMA
-                        |   PUNTOCOMA importJavaContenidoD
-                        |   error PUNTOCOMA
-                        ;
-*/
 /*Gramatica de un archivo de java*/
 
 visibilidad ::= PRIVATE
@@ -204,25 +189,47 @@ tipo        ::= INT
             |   OBJ
             ;
 
-classJava   ::= visibilidad CLASS ID LLA_A sentencias LLA_C
+classJava   ::= visibilidad CLASS ID LLA_A contClass LLA_C
             |   visibilidad CLASS ID LLA_A LLA_C
-            |   visibilidad FINAL CLASS ID LLA_A sentencias LLA_C
+            |   visibilidad FINAL CLASS ID LLA_A contClass LLA_C
             |   visibilidad FINAL CLASS ID LLA_A LLA_C
             ;
 
-metodo      ::= visibilidad tipo ID PA_A PA_C LLA_A LLA_C
-            |   visibilidad tipo ID PA_A PA_C LLA_A sentencias2 LLA_C
-            |   visibilidad tipo ID PA_A PA_C LLA_A sentencias2 RETURN exp PUNTOCOMA LLA_C
-            |   visibilidad tipo ID PA_A PA_C LLA_A RETURN exp PUNTOCOMA LLA_C
+contClass   ::= contClass declararVariables
+            |   contClass constructor
+            |   contClass metodo
+            |   declararVariables
+            |   constructor
+            |   metodo
+            ;
+
+constructor ::= PUBLIC ID PA_A parametros PA_C LLA_A LLA_C
+            |   PUBLIC ID PA_A PA_C LLA_A LLA_C
+            ;
+
+parametros  ::= tipo ID
+            |   tipo ID COMA parametrosP
+            ;
+
+parametrosP ::= tipo ID COMA parametrosP
+            |   tipo ID
+            ;
+
+metodo      ::= visibilidad tipo ID PA_A PA_C metodoP
+            |   visibilidad tipo ID PA_A parametros PA_C metodoP
+            ;
+metodoP     ::= LLA_A sentencias2 LLA_C
+            |   LLA_A LLA_C
             ;
 
 asignacionvariables ::= ID EQUAL exp PUNTOCOMA
                     ;
 
-declararVariables   ::= visibilidad tipo STATIC FINAL listaVariables PUNTOCOMA
-                    |   visibilidad tipo STATIC listaVariables PUNTOCOMA
-                    |   visibilidad tipo FINAL listaVariables PUNTOCOMA
+declararVariables   ::= visibilidad STATIC FINAL tipo listaVariables PUNTOCOMA
+                    |   visibilidad STATIC tipo listaVariables PUNTOCOMA
+                    |   visibilidad FINAL tipo listaVariables PUNTOCOMA
                     |   visibilidad tipo listaVariables PUNTOCOMA
+                    |   tipo listaVariables PUNTOCOMA
                     ;
 
 listaVariables  ::= ID
@@ -239,9 +246,6 @@ listaVariables2 ::= ID EQUAL exp COMA listaVariables2
 llamadaFuncion  ::= ID PA_A PA_C PUNTOCOMA
                 |   ID PA_A PA_C PUNTOCOMA
                 ;
-
-constructor ::= PUBLIC ID PA_A PA_C LLA_A LLA_C
-            ;
 
 cliclofor   ::= FOR PA_A PA_C INT ID EQUAL exp PUNTOCOMA ID operadorRelacional exp PUNTOCOMA ID agregarfor LLA_A LLA_C
             |   FOR PA_A PA_C INT ID EQUAL exp PUNTOCOMA ID operadorRelacional exp PUNTOCOMA ID agregarfor LLA_A sentenciasfor LLA_C
