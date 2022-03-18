@@ -247,11 +247,11 @@ metodoP     ::= LLA_A sentencias LLA_C
 asignacionvariables ::= ID EQUAL exp PUNTOCOMA
                     ;
 
-declararVariables   ::= visibilidad STATIC FINAL tipo listaVariables PUNTOCOMA
-                    |   visibilidad STATIC tipo listaVariables PUNTOCOMA
-                    |   visibilidad FINAL tipo listaVariables PUNTOCOMA
-                    |   visibilidad tipo listaVariables PUNTOCOMA
-                    |   tipo listaVariables PUNTOCOMA
+declararVariables   ::= visibilidad STATIC FINAL tipo:t listaVariables PUNTOCOMA
+                    |   visibilidad STATIC tipo:t listaVariables PUNTOCOMA
+                    |   visibilidad FINAL tipo:t listaVariables PUNTOCOMA
+                    |   visibilidad tipo:t listaVariables PUNTOCOMA
+                    |   tipo:t listaVariables PUNTOCOMA
                     ;
 
 listaVariables  ::= ID
