@@ -137,13 +137,13 @@ terminal Token  IMPORT,PUBLIC,PRIVATE,PROTECTED,FINAL,BREAK,RETURN,INT,BOOL,STR,
                 IF,ELSE,FOR,DO,WHILE,SWITCH,CASE,ID,DECIMAL,ENTERO,DIFERENTE,IGUAL,MENOR_IGUAL,
                 MAYOR_IGUAL,MENOR_QUE,MAYOR_QUE,AND,OR,NOT,SUMAR,RESTAR,MUL,DIV,MAS,MENOS,PA_A,
                 PA_C,CO_A,CO_C,LLA_A,LLA_C,PUNTO,COMA,DOSPUNTOS,PUNTOCOMA,STRING,CLASS,EQUAL,TRUE,
-                FALSE,DEFAULT,STATIC;
+                FALSE,DEFAULT,STATIC,NEW;
 
 
 /* Non terminals */
 non terminal                        initJava,contClass,importJava,importJavaContenido,importJavaP,parametros,parametrosP,metodoP,sentConstru,
                                     parametrosLlamadaP,parametrosLlamada,classJava,visibilidad,sentencias,tipo,metodo,constructorP,
-                                    agregarfor,ciclowhile,condicionalif,constructor,cliclofor,cicloDoWhile,sentanciaSalida,
+                                    agregarfor,ciclowhile,condicionalif,constructor,cliclofor,cicloDoWhile,sentanciaSalida,asignacionvariables,
                                     contenidoSwitch,contenidoSwitch2,condicionalSwitch,llamadaFuncion,declararVariables,listaVariables,listaVariables2;
 
 non terminal                        exp,t,f,g,h,i,j,k,l;
@@ -166,6 +166,7 @@ importJavaP ::= importJavaP importJava
 importJava  ::= IMPORT ID importJavaContenido
             |   error PUNTO
             |   error PUNTOCOMA
+            |   error importJava
             ;
 
 importJavaContenido ::= PUNTO ID importJavaContenido
@@ -173,6 +174,7 @@ importJavaContenido ::= PUNTO ID importJavaContenido
                     |   PUNTOCOMA
                     |   error PUNTO
                     |   error PUNTOCOMA
+                    |   error importJava
                     ;
 /*Gramatica de un archivo de java*/
 
@@ -267,12 +269,14 @@ sentConstru ::= sentConstru llamadaFuncion
             |   sentConstru cicloDoWhile
             |   sentConstru condicionalSwitch
             |   sentConstru cliclofor
+            |   sentConstru asignacionvariables
             |   llamadaFuncion
             |   condicionalif
             |   ciclowhile
             |   cicloDoWhile
             |   condicionalSwitch
             |   cliclofor
+            |   asignacionvariables
             |   sentConstru error
             ;
 
@@ -283,6 +287,7 @@ sentencias  ::= sentencias llamadaFuncion
             |   sentencias condicionalSwitch
             |   sentencias cliclofor
             |   sentencias sentanciaSalida
+            |   sentencias asignacionvariables
             |   llamadaFuncion
             |   condicionalif
             |   ciclowhile
@@ -290,6 +295,7 @@ sentencias  ::= sentencias llamadaFuncion
             |   condicionalSwitch
             |   cliclofor
             |   sentanciaSalida
+            |   asignacionvariables
             |   sentencias error
             ;
 
@@ -396,7 +402,8 @@ k   ::= l SUMAR
     |   l
     ;
 
-l   ::= ID
+l   ::= NEW OBJ PA_A PA_C
+    |   ID
     |   TRUE
     |   FALSE
     |   DECIMAL

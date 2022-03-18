@@ -71,6 +71,12 @@ Decimal = {Entero}[.]{Entero}
                         return new Symbol(ParserJavaSym.TRUE,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
+    "new"           {
+                        this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJavaSym.NEW,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
     "static"        {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;

@@ -37,6 +37,7 @@ public class ParserJavaSym {
   public static final int RETURN = 8;
   public static final int EQUAL = 52;
   public static final int TRUE = 53;
+  public static final int NEW = 57;
   public static final int error = 1;
   public static final int OBJ = 14;
   public static final int COMA = 47;
@@ -122,7 +123,8 @@ public class ParserJavaSym {
   "TRUE",
   "FALSE",
   "DEFAULT",
-  "STATIC"
+  "STATIC",
+  "NEW"
   };
 }
 

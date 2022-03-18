@@ -326,18 +326,18 @@ public class LexerJava implements java_cup.runtime.Scanner {
     "\2\0\1\1\2\2\1\3\1\4\1\5\1\1\1\6"+
     "\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16"+
     "\1\17\1\20\1\21\1\22\1\23\2\5\1\24\1\25"+
-    "\13\5\1\26\1\1\1\27\1\30\1\31\1\32\1\33"+
+    "\14\5\1\26\1\1\1\27\1\30\1\31\1\32\1\33"+
     "\1\34\1\35\1\36\1\0\1\37\1\0\1\40\1\41"+
-    "\1\42\10\5\1\43\4\5\1\44\11\5\1\45\1\46"+
+    "\1\42\10\5\1\43\4\5\1\44\12\5\1\45\1\46"+
     "\1\47\1\50\1\51\2\0\1\52\14\5\1\53\1\5"+
-    "\1\54\10\5\1\0\1\37\4\5\1\55\1\56\3\5"+
-    "\1\57\11\5\1\60\1\5\1\37\3\5\1\61\1\62"+
-    "\2\5\1\63\1\64\7\5\1\65\1\66\1\67\2\5"+
-    "\1\70\1\71\2\5\1\72\1\73\1\74\1\75\1\76"+
-    "\1\77\1\100\2\5\1\101";
+    "\1\54\1\55\10\5\1\0\1\37\4\5\1\56\1\57"+
+    "\3\5\1\60\11\5\1\61\1\5\1\37\3\5\1\62"+
+    "\1\63\2\5\1\64\1\65\7\5\1\66\1\67\1\70"+
+    "\2\5\1\71\1\72\2\5\1\73\1\74\1\75\1\76"+
+    "\1\77\1\100\1\101\2\5\1\102";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[167];
+    int [] result = new int[170];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -366,26 +366,27 @@ public class LexerJava implements java_cup.runtime.Scanner {
     "\0\u013e\0\152\0\152\0\152\0\u0173\0\152\0\u01a8\0\152"+
     "\0\u01dd\0\u0212\0\152\0\152\0\u0247\0\u027c\0\u02b1\0\u02e6"+
     "\0\u031b\0\152\0\152\0\u0350\0\u0385\0\u03ba\0\u03ef\0\u0424"+
-    "\0\u0459\0\u048e\0\u04c3\0\u04f8\0\u052d\0\u0562\0\152\0\u0597"+
-    "\0\152\0\u05cc\0\152\0\u0601\0\152\0\152\0\152\0\152"+
-    "\0\u0636\0\u066b\0\u06a0\0\152\0\152\0\152\0\u06d5\0\u070a"+
+    "\0\u0459\0\u048e\0\u04c3\0\u04f8\0\u052d\0\u0562\0\u0597\0\152"+
+    "\0\u05cc\0\152\0\u0601\0\152\0\u0636\0\152\0\152\0\152"+
+    "\0\152\0\u066b\0\u06a0\0\u06d5\0\152\0\152\0\152\0\u070a"+
     "\0\u073f\0\u0774\0\u07a9\0\u07de\0\u0813\0\u0848\0\u087d\0\u08b2"+
-    "\0\u08e7\0\u091c\0\u0951\0\u0109\0\u0986\0\u09bb\0\u09f0\0\u0a25"+
-    "\0\u0a5a\0\u0a8f\0\u0ac4\0\u0af9\0\u0b2e\0\152\0\152\0\152"+
-    "\0\152\0\152\0\u0b63\0\u0b98\0\u06a0\0\u0bcd\0\u0c02\0\u0c37"+
+    "\0\u08e7\0\u091c\0\u0951\0\u0986\0\u0109\0\u09bb\0\u09f0\0\u0a25"+
+    "\0\u0a5a\0\u0a8f\0\u0ac4\0\u0af9\0\u0b2e\0\u0b63\0\u0b98\0\152"+
+    "\0\152\0\152\0\152\0\152\0\u0bcd\0\u0c02\0\u06d5\0\u0c37"+
     "\0\u0c6c\0\u0ca1\0\u0cd6\0\u0d0b\0\u0d40\0\u0d75\0\u0daa\0\u0ddf"+
-    "\0\u0e14\0\u0109\0\u0e49\0\u0109\0\u0e7e\0\u0eb3\0\u0ee8\0\u0f1d"+
-    "\0\u0f52\0\u0f87\0\u0fbc\0\u0ff1\0\u1026\0\u0b63\0\u105b\0\u1090"+
-    "\0\u10c5\0\u10fa\0\u0109\0\u0109\0\u112f\0\u1164\0\u1199\0\u0109"+
-    "\0\u11ce\0\u1203\0\u1238\0\u126d\0\u12a2\0\u12d7\0\u130c\0\u1341"+
-    "\0\u1376\0\u0109\0\u13ab\0\152\0\u13e0\0\u1415\0\u144a\0\u0109"+
-    "\0\u0109\0\u147f\0\u14b4\0\u0109\0\u0109\0\u14e9\0\u151e\0\u1553"+
-    "\0\u1588\0\u15bd\0\u15f2\0\u1627\0\u0109\0\u0109\0\u0109\0\u165c"+
-    "\0\u1691\0\u0109\0\u0109\0\u16c6\0\u16fb\0\u0109\0\u0109\0\u0109"+
-    "\0\u0109\0\u0109\0\u0109\0\u0109\0\u1730\0\u1765\0\u0109";
+    "\0\u0e14\0\u0e49\0\u0e7e\0\u0109\0\u0eb3\0\u0109\0\u0109\0\u0ee8"+
+    "\0\u0f1d\0\u0f52\0\u0f87\0\u0fbc\0\u0ff1\0\u1026\0\u105b\0\u1090"+
+    "\0\u0bcd\0\u10c5\0\u10fa\0\u112f\0\u1164\0\u0109\0\u0109\0\u1199"+
+    "\0\u11ce\0\u1203\0\u0109\0\u1238\0\u126d\0\u12a2\0\u12d7\0\u130c"+
+    "\0\u1341\0\u1376\0\u13ab\0\u13e0\0\u0109\0\u1415\0\152\0\u144a"+
+    "\0\u147f\0\u14b4\0\u0109\0\u0109\0\u14e9\0\u151e\0\u0109\0\u0109"+
+    "\0\u1553\0\u1588\0\u15bd\0\u15f2\0\u1627\0\u165c\0\u1691\0\u0109"+
+    "\0\u0109\0\u0109\0\u16c6\0\u16fb\0\u0109\0\u0109\0\u1730\0\u1765"+
+    "\0\u0109\0\u0109\0\u0109\0\u0109\0\u0109\0\u0109\0\u0109\0\u179a"+
+    "\0\u17cf\0\u0109";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[167];
+    int [] result = new int[170];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -412,159 +413,163 @@ public class LexerJava implements java_cup.runtime.Scanner {
     "\1\12\1\13\1\14\1\15\1\16\1\17\1\20\1\21"+
     "\1\22\1\23\1\24\1\25\1\26\1\27\1\30\1\31"+
     "\1\32\1\3\1\33\1\10\1\34\1\35\1\36\1\37"+
-    "\1\40\2\10\1\41\6\10\1\42\1\43\1\44\1\45"+
-    "\2\10\1\46\1\47\1\50\1\51\2\52\1\3\1\52"+
-    "\1\3\1\52\1\53\23\52\1\54\32\52\67\0\1\4"+
-    "\107\0\1\55\37\0\1\10\6\0\1\10\11\0\1\10"+
-    "\5\0\2\10\3\0\26\10\13\0\1\56\70\0\1\57"+
-    "\66\0\1\60\61\0\1\61\4\0\1\62\63\0\1\63"+
-    "\1\0\1\22\70\0\1\64\64\0\1\65\64\0\1\66"+
-    "\37\0\1\10\6\0\1\10\11\0\1\10\5\0\2\10"+
-    "\3\0\1\10\1\67\24\10\3\0\1\10\6\0\1\10"+
-    "\11\0\1\10\5\0\2\10\3\0\22\10\1\70\3\10"+
+    "\1\40\2\10\1\41\4\10\1\42\1\10\1\43\1\44"+
+    "\1\45\1\46\2\10\1\47\1\50\1\51\1\52\2\53"+
+    "\1\3\1\53\1\3\1\53\1\54\23\53\1\55\32\53"+
+    "\67\0\1\4\107\0\1\56\37\0\1\10\6\0\1\10"+
+    "\11\0\1\10\5\0\2\10\3\0\26\10\13\0\1\57"+
+    "\70\0\1\60\66\0\1\61\61\0\1\62\4\0\1\63"+
+    "\63\0\1\64\1\0\1\22\70\0\1\65\64\0\1\66"+
+    "\64\0\1\67\37\0\1\10\6\0\1\10\11\0\1\10"+
+    "\5\0\2\10\3\0\1\10\1\70\24\10\3\0\1\10"+
+    "\6\0\1\10\11\0\1\10\5\0\2\10\3\0\22\10"+
+    "\1\71\3\10\3\0\1\10\6\0\1\10\11\0\1\10"+
+    "\5\0\2\10\3\0\16\10\1\72\1\10\1\73\5\10"+
     "\3\0\1\10\6\0\1\10\11\0\1\10\5\0\2\10"+
-    "\3\0\16\10\1\71\1\10\1\72\5\10\3\0\1\10"+
-    "\6\0\1\10\11\0\1\10\5\0\2\10\3\0\1\73"+
-    "\6\10\1\74\3\10\1\75\12\10\3\0\1\10\6\0"+
-    "\1\10\11\0\1\10\5\0\2\10\3\0\4\10\1\76"+
-    "\11\10\1\77\7\10\3\0\1\10\6\0\1\10\11\0"+
-    "\1\10\5\0\2\10\3\0\13\10\1\100\12\10\3\0"+
+    "\3\0\1\74\6\10\1\75\3\10\1\76\12\10\3\0"+
     "\1\10\6\0\1\10\11\0\1\10\5\0\2\10\3\0"+
-    "\1\101\7\10\1\102\5\10\1\103\7\10\3\0\1\10"+
-    "\6\0\1\10\11\0\1\10\5\0\2\10\3\0\5\10"+
-    "\1\104\6\10\1\105\1\106\10\10\3\0\1\10\6\0"+
-    "\1\10\11\0\1\10\5\0\2\10\3\0\20\10\1\107"+
-    "\2\10\1\110\2\10\3\0\1\10\6\0\1\10\11\0"+
-    "\1\10\5\0\2\10\3\0\4\10\1\111\21\10\3\0"+
-    "\1\10\6\0\1\10\11\0\1\10\5\0\2\10\3\0"+
-    "\22\10\1\112\2\10\1\113\3\0\1\10\6\0\1\10"+
-    "\11\0\1\10\5\0\2\10\3\0\20\10\1\114\5\10"+
+    "\4\10\1\77\11\10\1\100\7\10\3\0\1\10\6\0"+
+    "\1\10\11\0\1\10\5\0\2\10\3\0\13\10\1\101"+
+    "\12\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
+    "\2\10\3\0\1\102\7\10\1\103\5\10\1\104\7\10"+
     "\3\0\1\10\6\0\1\10\11\0\1\10\5\0\2\10"+
-    "\3\0\7\10\1\115\16\10\66\0\1\116\1\0\2\52"+
-    "\1\0\1\52\1\0\1\52\1\0\23\52\1\0\32\52"+
-    "\6\0\1\117\42\0\1\120\2\0\1\121\1\0\1\122"+
-    "\6\0\13\123\1\124\51\123\2\62\1\0\62\62\21\0"+
-    "\1\125\43\0\1\10\6\0\1\10\11\0\1\10\5\0"+
-    "\2\10\3\0\11\10\1\126\14\10\3\0\1\10\6\0"+
-    "\1\10\11\0\1\10\5\0\2\10\3\0\20\10\1\127"+
+    "\3\0\5\10\1\105\6\10\1\106\1\107\10\10\3\0"+
+    "\1\10\6\0\1\10\11\0\1\10\5\0\2\10\3\0"+
+    "\4\10\1\110\21\10\3\0\1\10\6\0\1\10\11\0"+
+    "\1\10\5\0\2\10\3\0\20\10\1\111\2\10\1\112"+
+    "\2\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
+    "\2\10\3\0\4\10\1\113\21\10\3\0\1\10\6\0"+
+    "\1\10\11\0\1\10\5\0\2\10\3\0\22\10\1\114"+
+    "\2\10\1\115\3\0\1\10\6\0\1\10\11\0\1\10"+
+    "\5\0\2\10\3\0\20\10\1\116\5\10\3\0\1\10"+
+    "\6\0\1\10\11\0\1\10\5\0\2\10\3\0\7\10"+
+    "\1\117\16\10\66\0\1\120\1\0\2\53\1\0\1\53"+
+    "\1\0\1\53\1\0\23\53\1\0\32\53\6\0\1\121"+
+    "\42\0\1\122\2\0\1\123\1\0\1\124\6\0\13\125"+
+    "\1\126\51\125\2\63\1\0\62\63\21\0\1\127\43\0"+
+    "\1\10\6\0\1\10\11\0\1\10\5\0\2\10\3\0"+
+    "\11\10\1\130\14\10\3\0\1\10\6\0\1\10\11\0"+
+    "\1\10\5\0\2\10\3\0\20\10\1\131\5\10\3\0"+
+    "\1\10\6\0\1\10\11\0\1\10\5\0\2\10\3\0"+
+    "\16\10\1\132\7\10\3\0\1\10\6\0\1\10\11\0"+
+    "\1\10\5\0\2\10\3\0\4\10\1\133\21\10\3\0"+
+    "\1\10\6\0\1\10\11\0\1\10\5\0\2\10\3\0"+
+    "\21\10\1\134\4\10\3\0\1\10\6\0\1\10\11\0"+
+    "\1\10\5\0\2\10\3\0\1\135\25\10\3\0\1\10"+
+    "\6\0\1\10\11\0\1\10\5\0\2\10\3\0\1\136"+
+    "\25\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
+    "\2\10\3\0\5\10\1\137\20\10\3\0\1\10\6\0"+
+    "\1\10\11\0\1\10\5\0\2\10\3\0\23\10\1\140"+
+    "\2\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
+    "\2\10\3\0\21\10\1\141\4\10\3\0\1\10\6\0"+
+    "\1\10\11\0\1\10\5\0\2\10\3\0\13\10\1\142"+
+    "\12\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
+    "\2\10\3\0\15\10\1\143\10\10\3\0\1\10\6\0"+
+    "\1\10\11\0\1\10\5\0\2\10\3\0\20\10\1\144"+
     "\5\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
-    "\2\10\3\0\16\10\1\130\7\10\3\0\1\10\6\0"+
-    "\1\10\11\0\1\10\5\0\2\10\3\0\4\10\1\131"+
-    "\21\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
-    "\2\10\3\0\21\10\1\132\4\10\3\0\1\10\6\0"+
-    "\1\10\11\0\1\10\5\0\2\10\3\0\1\133\25\10"+
-    "\3\0\1\10\6\0\1\10\11\0\1\10\5\0\2\10"+
-    "\3\0\1\134\25\10\3\0\1\10\6\0\1\10\11\0"+
-    "\1\10\5\0\2\10\3\0\5\10\1\135\20\10\3\0"+
-    "\1\10\6\0\1\10\11\0\1\10\5\0\2\10\3\0"+
-    "\23\10\1\136\2\10\3\0\1\10\6\0\1\10\11\0"+
-    "\1\10\5\0\2\10\3\0\21\10\1\137\4\10\3\0"+
-    "\1\10\6\0\1\10\11\0\1\10\5\0\2\10\3\0"+
-    "\13\10\1\140\12\10\3\0\1\10\6\0\1\10\11\0"+
-    "\1\10\5\0\2\10\3\0\15\10\1\141\10\10\3\0"+
-    "\1\10\6\0\1\10\11\0\1\10\5\0\2\10\3\0"+
-    "\20\10\1\142\5\10\3\0\1\10\6\0\1\10\11\0"+
-    "\1\10\5\0\2\10\3\0\17\10\1\143\6\10\3\0"+
-    "\1\10\6\0\1\10\11\0\1\10\5\0\2\10\3\0"+
-    "\22\10\1\144\3\10\3\0\1\10\6\0\1\10\11\0"+
-    "\1\10\5\0\2\10\3\0\10\10\1\145\5\10\1\146"+
-    "\7\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
-    "\2\10\3\0\1\10\1\147\24\10\3\0\1\10\6\0"+
-    "\1\10\11\0\1\10\5\0\2\10\3\0\22\10\1\150"+
+    "\2\10\3\0\17\10\1\145\6\10\3\0\1\10\6\0"+
+    "\1\10\11\0\1\10\5\0\2\10\3\0\22\10\1\146"+
     "\3\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
-    "\2\10\3\0\1\151\25\10\3\0\1\10\6\0\1\10"+
-    "\11\0\1\10\5\0\2\10\3\0\10\10\1\152\15\10"+
+    "\2\10\3\0\25\10\1\147\3\0\1\10\6\0\1\10"+
+    "\11\0\1\10\5\0\2\10\3\0\10\10\1\150\5\10"+
+    "\1\151\7\10\3\0\1\10\6\0\1\10\11\0\1\10"+
+    "\5\0\2\10\3\0\1\10\1\152\24\10\3\0\1\10"+
+    "\6\0\1\10\11\0\1\10\5\0\2\10\3\0\22\10"+
+    "\1\153\3\10\3\0\1\10\6\0\1\10\11\0\1\10"+
+    "\5\0\2\10\3\0\1\154\25\10\3\0\1\10\6\0"+
+    "\1\10\11\0\1\10\5\0\2\10\3\0\10\10\1\155"+
+    "\15\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
+    "\2\10\3\0\23\10\1\156\2\10\3\0\1\10\6\0"+
+    "\1\10\11\0\1\10\5\0\2\10\3\0\10\10\1\157"+
+    "\15\10\3\0\13\125\1\160\64\125\1\160\4\125\1\161"+
+    "\44\125\1\10\6\0\1\10\11\0\1\10\5\0\2\10"+
+    "\3\0\4\10\1\162\21\10\3\0\1\10\6\0\1\10"+
+    "\11\0\1\10\5\0\2\10\3\0\10\10\1\163\15\10"+
     "\3\0\1\10\6\0\1\10\11\0\1\10\5\0\2\10"+
-    "\3\0\23\10\1\153\2\10\3\0\1\10\6\0\1\10"+
-    "\11\0\1\10\5\0\2\10\3\0\10\10\1\154\15\10"+
-    "\3\0\13\123\1\155\64\123\1\155\4\123\1\156\44\123"+
+    "\3\0\13\10\1\164\12\10\3\0\1\10\6\0\1\10"+
+    "\11\0\1\10\5\0\2\10\3\0\1\165\25\10\3\0"+
     "\1\10\6\0\1\10\11\0\1\10\5\0\2\10\3\0"+
-    "\4\10\1\157\21\10\3\0\1\10\6\0\1\10\11\0"+
-    "\1\10\5\0\2\10\3\0\10\10\1\160\15\10\3\0"+
+    "\4\10\1\166\21\10\3\0\1\10\6\0\1\10\11\0"+
+    "\1\10\5\0\2\10\3\0\20\10\1\167\5\10\3\0"+
     "\1\10\6\0\1\10\11\0\1\10\5\0\2\10\3\0"+
-    "\13\10\1\161\12\10\3\0\1\10\6\0\1\10\11\0"+
-    "\1\10\5\0\2\10\3\0\1\162\25\10\3\0\1\10"+
-    "\6\0\1\10\11\0\1\10\5\0\2\10\3\0\4\10"+
-    "\1\163\21\10\3\0\1\10\6\0\1\10\11\0\1\10"+
-    "\5\0\2\10\3\0\20\10\1\164\5\10\3\0\1\10"+
+    "\21\10\1\170\4\10\3\0\1\10\6\0\1\10\11\0"+
+    "\1\10\5\0\2\10\3\0\1\171\25\10\3\0\1\10"+
+    "\6\0\1\10\11\0\1\10\5\0\2\10\3\0\1\10"+
+    "\1\172\24\10\3\0\1\10\6\0\1\10\11\0\1\10"+
+    "\5\0\2\10\3\0\4\10\1\173\21\10\3\0\1\10"+
     "\6\0\1\10\11\0\1\10\5\0\2\10\3\0\21\10"+
-    "\1\165\4\10\3\0\1\10\6\0\1\10\11\0\1\10"+
-    "\5\0\2\10\3\0\1\166\25\10\3\0\1\10\6\0"+
-    "\1\10\11\0\1\10\5\0\2\10\3\0\1\10\1\167"+
-    "\24\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
-    "\2\10\3\0\4\10\1\170\21\10\3\0\1\10\6\0"+
-    "\1\10\11\0\1\10\5\0\2\10\3\0\21\10\1\171"+
-    "\4\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
-    "\2\10\3\0\1\172\25\10\3\0\1\10\6\0\1\10"+
-    "\11\0\1\10\5\0\2\10\3\0\16\10\1\173\7\10"+
-    "\3\0\1\10\6\0\1\10\11\0\1\10\5\0\2\10"+
-    "\3\0\24\10\1\174\1\10\3\0\1\10\6\0\1\10"+
-    "\11\0\1\10\5\0\2\10\3\0\22\10\1\175\3\10"+
-    "\3\0\1\10\6\0\1\10\11\0\1\10\5\0\2\10"+
-    "\3\0\13\10\1\176\12\10\3\0\1\10\6\0\1\10"+
-    "\11\0\1\10\5\0\2\10\3\0\23\10\1\177\2\10"+
-    "\3\0\1\10\6\0\1\10\11\0\1\10\5\0\2\10"+
-    "\3\0\22\10\1\200\3\10\3\0\1\10\6\0\1\10"+
-    "\11\0\1\10\5\0\2\10\3\0\22\10\1\201\3\10"+
-    "\3\0\1\10\6\0\1\10\11\0\1\10\5\0\2\10"+
-    "\3\0\4\10\1\202\21\10\3\0\1\10\6\0\1\10"+
-    "\11\0\1\10\5\0\2\10\3\0\13\10\1\203\12\10"+
-    "\3\0\13\123\1\155\4\123\1\204\44\123\1\10\6\0"+
-    "\1\10\11\0\1\10\5\0\2\10\3\0\2\10\1\205"+
-    "\23\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
-    "\2\10\3\0\15\10\1\206\10\10\3\0\1\10\6\0"+
-    "\1\10\11\0\1\10\5\0\2\10\3\0\4\10\1\207"+
+    "\1\174\4\10\3\0\1\10\6\0\1\10\11\0\1\10"+
+    "\5\0\2\10\3\0\1\175\25\10\3\0\1\10\6\0"+
+    "\1\10\11\0\1\10\5\0\2\10\3\0\16\10\1\176"+
+    "\7\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
+    "\2\10\3\0\24\10\1\177\1\10\3\0\1\10\6\0"+
+    "\1\10\11\0\1\10\5\0\2\10\3\0\22\10\1\200"+
+    "\3\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
+    "\2\10\3\0\13\10\1\201\12\10\3\0\1\10\6\0"+
+    "\1\10\11\0\1\10\5\0\2\10\3\0\23\10\1\202"+
+    "\2\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
+    "\2\10\3\0\22\10\1\203\3\10\3\0\1\10\6\0"+
+    "\1\10\11\0\1\10\5\0\2\10\3\0\22\10\1\204"+
+    "\3\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
+    "\2\10\3\0\4\10\1\205\21\10\3\0\1\10\6\0"+
+    "\1\10\11\0\1\10\5\0\2\10\3\0\13\10\1\206"+
+    "\12\10\3\0\13\125\1\160\4\125\1\207\44\125\1\10"+
+    "\6\0\1\10\11\0\1\10\5\0\2\10\3\0\2\10"+
+    "\1\210\23\10\3\0\1\10\6\0\1\10\11\0\1\10"+
+    "\5\0\2\10\3\0\15\10\1\211\10\10\3\0\1\10"+
+    "\6\0\1\10\11\0\1\10\5\0\2\10\3\0\4\10"+
+    "\1\212\21\10\3\0\1\10\6\0\1\10\11\0\1\10"+
+    "\5\0\2\10\3\0\12\10\1\213\13\10\3\0\1\10"+
+    "\6\0\1\10\11\0\1\10\5\0\2\10\3\0\21\10"+
+    "\1\214\4\10\3\0\1\10\6\0\1\10\11\0\1\10"+
+    "\5\0\2\10\3\0\23\10\1\215\2\10\3\0\1\10"+
+    "\6\0\1\10\11\0\1\10\5\0\2\10\3\0\13\10"+
+    "\1\216\12\10\3\0\1\10\6\0\1\10\11\0\1\10"+
+    "\5\0\2\10\3\0\4\10\1\217\21\10\3\0\1\10"+
+    "\6\0\1\10\11\0\1\10\5\0\2\10\3\0\13\10"+
+    "\1\220\12\10\3\0\1\10\6\0\1\10\11\0\1\10"+
+    "\5\0\2\10\3\0\20\10\1\221\5\10\3\0\1\10"+
+    "\6\0\1\10\11\0\1\10\5\0\2\10\3\0\1\222"+
+    "\25\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
+    "\2\10\3\0\4\10\1\223\21\10\3\0\1\10\6\0"+
+    "\1\10\11\0\1\10\5\0\2\10\3\0\10\10\1\224"+
+    "\15\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
+    "\2\10\3\0\20\10\1\225\5\10\3\0\1\10\6\0"+
+    "\1\10\11\0\1\10\5\0\2\10\3\0\10\10\1\226"+
+    "\15\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
+    "\2\10\3\0\2\10\1\227\23\10\3\0\1\10\6\0"+
+    "\1\10\11\0\1\10\5\0\2\10\3\0\4\10\1\230"+
     "\21\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
-    "\2\10\3\0\12\10\1\210\13\10\3\0\1\10\6\0"+
-    "\1\10\11\0\1\10\5\0\2\10\3\0\21\10\1\211"+
-    "\4\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
-    "\2\10\3\0\23\10\1\212\2\10\3\0\1\10\6\0"+
-    "\1\10\11\0\1\10\5\0\2\10\3\0\13\10\1\213"+
-    "\12\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
-    "\2\10\3\0\4\10\1\214\21\10\3\0\1\10\6\0"+
-    "\1\10\11\0\1\10\5\0\2\10\3\0\13\10\1\215"+
-    "\12\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
-    "\2\10\3\0\20\10\1\216\5\10\3\0\1\10\6\0"+
-    "\1\10\11\0\1\10\5\0\2\10\3\0\1\217\25\10"+
+    "\2\10\3\0\22\10\1\231\3\10\3\0\1\10\6\0"+
+    "\1\10\11\0\1\10\5\0\2\10\3\0\6\10\1\232"+
+    "\17\10\3\0\1\10\6\0\1\10\11\0\1\10\5\0"+
+    "\2\10\3\0\1\233\25\10\3\0\1\10\6\0\1\10"+
+    "\11\0\1\10\5\0\2\10\3\0\13\10\1\234\12\10"+
     "\3\0\1\10\6\0\1\10\11\0\1\10\5\0\2\10"+
-    "\3\0\4\10\1\220\21\10\3\0\1\10\6\0\1\10"+
-    "\11\0\1\10\5\0\2\10\3\0\10\10\1\221\15\10"+
+    "\3\0\4\10\1\235\21\10\3\0\1\10\6\0\1\10"+
+    "\11\0\1\10\5\0\2\10\3\0\22\10\1\236\3\10"+
     "\3\0\1\10\6\0\1\10\11\0\1\10\5\0\2\10"+
-    "\3\0\20\10\1\222\5\10\3\0\1\10\6\0\1\10"+
-    "\11\0\1\10\5\0\2\10\3\0\10\10\1\223\15\10"+
+    "\3\0\22\10\1\237\3\10\3\0\1\10\6\0\1\10"+
+    "\11\0\1\10\5\0\2\10\3\0\2\10\1\240\23\10"+
     "\3\0\1\10\6\0\1\10\11\0\1\10\5\0\2\10"+
-    "\3\0\2\10\1\224\23\10\3\0\1\10\6\0\1\10"+
-    "\11\0\1\10\5\0\2\10\3\0\4\10\1\225\21\10"+
+    "\3\0\2\10\1\241\23\10\3\0\1\10\6\0\1\10"+
+    "\11\0\1\10\5\0\2\10\3\0\15\10\1\242\10\10"+
     "\3\0\1\10\6\0\1\10\11\0\1\10\5\0\2\10"+
-    "\3\0\22\10\1\226\3\10\3\0\1\10\6\0\1\10"+
-    "\11\0\1\10\5\0\2\10\3\0\6\10\1\227\17\10"+
+    "\3\0\2\10\1\243\23\10\3\0\1\10\6\0\1\10"+
+    "\11\0\1\10\5\0\2\10\3\0\7\10\1\244\16\10"+
     "\3\0\1\10\6\0\1\10\11\0\1\10\5\0\2\10"+
-    "\3\0\1\230\25\10\3\0\1\10\6\0\1\10\11\0"+
-    "\1\10\5\0\2\10\3\0\13\10\1\231\12\10\3\0"+
-    "\1\10\6\0\1\10\11\0\1\10\5\0\2\10\3\0"+
-    "\4\10\1\232\21\10\3\0\1\10\6\0\1\10\11\0"+
-    "\1\10\5\0\2\10\3\0\22\10\1\233\3\10\3\0"+
-    "\1\10\6\0\1\10\11\0\1\10\5\0\2\10\3\0"+
-    "\22\10\1\234\3\10\3\0\1\10\6\0\1\10\11\0"+
-    "\1\10\5\0\2\10\3\0\2\10\1\235\23\10\3\0"+
-    "\1\10\6\0\1\10\11\0\1\10\5\0\2\10\3\0"+
-    "\2\10\1\236\23\10\3\0\1\10\6\0\1\10\11\0"+
-    "\1\10\5\0\2\10\3\0\15\10\1\237\10\10\3\0"+
-    "\1\10\6\0\1\10\11\0\1\10\5\0\2\10\3\0"+
-    "\2\10\1\240\23\10\3\0\1\10\6\0\1\10\11\0"+
-    "\1\10\5\0\2\10\3\0\7\10\1\241\16\10\3\0"+
-    "\1\10\6\0\1\10\11\0\1\10\5\0\2\10\3\0"+
-    "\15\10\1\242\10\10\3\0\1\10\6\0\1\10\11\0"+
-    "\1\10\5\0\2\10\3\0\22\10\1\243\3\10\3\0"+
-    "\1\10\6\0\1\10\11\0\1\10\5\0\2\10\3\0"+
-    "\4\10\1\244\21\10\3\0\1\10\6\0\1\10\11\0"+
-    "\1\10\5\0\2\10\3\0\22\10\1\245\3\10\3\0"+
-    "\1\10\6\0\1\10\11\0\1\10\5\0\2\10\3\0"+
-    "\4\10\1\246\21\10\3\0\1\10\6\0\1\10\11\0"+
-    "\1\10\5\0\2\10\3\0\3\10\1\247\22\10\3\0";
+    "\3\0\15\10\1\245\10\10\3\0\1\10\6\0\1\10"+
+    "\11\0\1\10\5\0\2\10\3\0\22\10\1\246\3\10"+
+    "\3\0\1\10\6\0\1\10\11\0\1\10\5\0\2\10"+
+    "\3\0\4\10\1\247\21\10\3\0\1\10\6\0\1\10"+
+    "\11\0\1\10\5\0\2\10\3\0\22\10\1\250\3\10"+
+    "\3\0\1\10\6\0\1\10\11\0\1\10\5\0\2\10"+
+    "\3\0\4\10\1\251\21\10\3\0\1\10\6\0\1\10"+
+    "\11\0\1\10\5\0\2\10\3\0\3\10\1\252\22\10"+
+    "\3\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[6042];
+    int [] result = new int[6148];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -608,13 +613,13 @@ public class LexerJava implements java_cup.runtime.Scanner {
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
     "\2\0\2\11\2\1\1\11\2\1\3\11\1\1\1\11"+
-    "\1\1\1\11\2\1\2\11\5\1\2\11\13\1\1\11"+
+    "\1\1\1\11\2\1\2\11\5\1\2\11\14\1\1\11"+
     "\1\1\1\11\1\1\1\11\1\1\4\11\1\0\1\1"+
-    "\1\0\3\11\27\1\5\11\2\0\30\1\1\0\26\1"+
+    "\1\0\3\11\30\1\5\11\2\0\31\1\1\0\26\1"+
     "\1\11\43\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[167];
+    int [] result = new int[170];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -1127,12 +1132,12 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("Simbolo Ilegal: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 66: break;
+          case 67: break;
           case 2:
             { /* ignore */
             }
             // fall through
-          case 67: break;
+          case 68: break;
           case 3:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1140,14 +1145,14 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("! : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 68: break;
+          case 69: break;
           case 4:
             { this.stringColumnInit = (yycolumn+1);
                         this.string.setLength(0); 
                         yybegin(STRING);
             }
             // fall through
-          case 69: break;
+          case 70: break;
           case 5:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1155,7 +1160,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         return new Symbol(ParserJavaSym.ID,yyline+1,yycolumn+1,this.actual);
             }
             // fall through
-          case 70: break;
+          case 71: break;
           case 6:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1163,7 +1168,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("(: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 71: break;
+          case 72: break;
           case 7:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1171,7 +1176,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("): "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 72: break;
+          case 73: break;
           case 8:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1179,7 +1184,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("*: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 73: break;
+          case 74: break;
           case 9:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1187,7 +1192,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("+: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 74: break;
+          case 75: break;
           case 10:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1195,7 +1200,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println(",: "+yytext()+" , Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 75: break;
+          case 76: break;
           case 11:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1203,7 +1208,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("-: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 76: break;
+          case 77: break;
           case 12:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1211,7 +1216,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println(".: "+yytext()+" , Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 77: break;
+          case 78: break;
           case 13:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1219,7 +1224,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("/: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 78: break;
+          case 79: break;
           case 14:
             { this.actual = new Token(yytext(),new Integer(yytext()),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1227,7 +1232,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("Numero: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 79: break;
+          case 80: break;
           case 15:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1235,7 +1240,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println(":-> "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 80: break;
+          case 81: break;
           case 16:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1243,7 +1248,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println(";-> "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 81: break;
+          case 82: break;
           case 17:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1251,7 +1256,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("< : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 82: break;
+          case 83: break;
           case 18:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1259,7 +1264,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("== : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 83: break;
+          case 84: break;
           case 19:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1267,7 +1272,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("> : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 84: break;
+          case 85: break;
           case 20:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1275,7 +1280,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("[: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 85: break;
+          case 86: break;
           case 21:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1283,7 +1288,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("]: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 86: break;
+          case 87: break;
           case 22:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1291,7 +1296,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("{: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 87: break;
+          case 88: break;
           case 23:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1299,12 +1304,12 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("}: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 88: break;
+          case 89: break;
           case 24:
             { string.append( yytext());
             }
             // fall through
-          case 89: break;
+          case 90: break;
           case 25:
             { yybegin(YYINITIAL);
                                         this.actual = new Token(string.toString(),string.toString(),yyline+1,yycolumn+1,null,this.anterior);
@@ -1312,12 +1317,12 @@ public class LexerJava implements java_cup.runtime.Scanner {
                                         return new Symbol(ParserJavaSym.STRING,yyline+1,yycolumn+1,this.actual);
             }
             // fall through
-          case 90: break;
+          case 91: break;
           case 26:
             { string.append('\\');
             }
             // fall through
-          case 91: break;
+          case 92: break;
           case 27:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1325,7 +1330,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("!= : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 92: break;
+          case 93: break;
           case 28:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1333,7 +1338,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("&& : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 93: break;
+          case 94: break;
           case 29:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1341,7 +1346,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("++ : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 94: break;
+          case 95: break;
           case 30:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1349,12 +1354,12 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("-- : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 95: break;
+          case 96: break;
           case 31:
             { //System.out.println(yytext());
             }
             // fall through
-          case 96: break;
+          case 97: break;
           case 32:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1362,7 +1367,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("<= : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 97: break;
+          case 98: break;
           case 33:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1370,7 +1375,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("== : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 98: break;
+          case 99: break;
           case 34:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1378,7 +1383,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println(">= : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 99: break;
+          case 100: break;
           case 35:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1386,7 +1391,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("do: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 100: break;
+          case 101: break;
           case 36:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1394,7 +1399,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("if: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 101: break;
+          case 102: break;
           case 37:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1402,27 +1407,27 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("|| : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 102: break;
+          case 103: break;
           case 38:
             { string.append('\"');
             }
             // fall through
-          case 103: break;
+          case 104: break;
           case 39:
             { string.append('\n');
             }
             // fall through
-          case 104: break;
+          case 105: break;
           case 40:
             { string.append('\r');
             }
             // fall through
-          case 105: break;
+          case 106: break;
           case 41:
             { string.append('\t');
             }
             // fall through
-          case 106: break;
+          case 107: break;
           case 42:
             { this.actual = new Token(yytext(),new Double(yytext()),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1430,7 +1435,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         ////System.out.println("Decimal: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 107: break;
+          case 108: break;
           case 43:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1438,7 +1443,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("for: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 108: break;
+          case 109: break;
           case 44:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
@@ -1446,175 +1451,183 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("int: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 109: break;
+          case 110: break;
           case 45:
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJavaSym.NEW,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            }
+            // fall through
+          case 111: break;
+          case 46:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.CASE,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("case: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 110: break;
-          case 46:
+          case 112: break;
+          case 47:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.CHAR,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("char: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 111: break;
-          case 47:
+          case 113: break;
+          case 48:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.ELSE,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("else: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 112: break;
-          case 48:
+          case 114: break;
+          case 49:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.TRUE,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 113: break;
-          case 49:
+          case 115: break;
+          case 50:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.BREAK,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("break: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 114: break;
-          case 50:
+          case 116: break;
+          case 51:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.CLASS,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("case: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 115: break;
-          case 51:
+          case 117: break;
+          case 52:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.FALSE,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 116: break;
-          case 52:
+          case 118: break;
+          case 53:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.FINAL,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("final: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 117: break;
-          case 53:
+          case 119: break;
+          case 54:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.WHILE,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("while: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 118: break;
-          case 54:
+          case 120: break;
+          case 55:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.OBJ,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("Object: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 119: break;
-          case 55:
+          case 121: break;
+          case 56:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.STR,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("String: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 120: break;
-          case 56:
+          case 122: break;
+          case 57:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.DOUBLE,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("double: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 121: break;
-          case 57:
+          case 123: break;
+          case 58:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.IMPORT,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 122: break;
-          case 58:
+          case 124: break;
+          case 59:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.PUBLIC,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("public: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 123: break;
-          case 59:
+          case 125: break;
+          case 60:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.RETURN,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("return: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 124: break;
-          case 60:
+          case 126: break;
+          case 61:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.STATIC,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 125: break;
-          case 61:
+          case 127: break;
+          case 62:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.SWITCH,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("switch: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 126: break;
-          case 62:
+          case 128: break;
+          case 63:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.BOOL,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("boolean: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 127: break;
-          case 63:
+          case 129: break;
+          case 64:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.DEFAULT,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 128: break;
-          case 64:
+          case 130: break;
+          case 65:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.PRIVATE,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("private: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 129: break;
-          case 65:
+          case 131: break;
+          case 66:
             { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.PROTECTED,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("protected: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 130: break;
+          case 132: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
