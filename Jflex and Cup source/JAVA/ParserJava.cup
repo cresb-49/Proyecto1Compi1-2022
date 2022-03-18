@@ -297,24 +297,24 @@ sentConstru ::= sentConstru:vars llamadaFuncion:vars1 {:RESULT = vars; if(RESULT
             |   error
             ;
 
-sentencias  ::= sentencias llamadaFuncion
-            |   sentencias condicionalif
-            |   sentencias ciclowhile
-            |   sentencias cicloDoWhile
-            |   sentencias condicionalSwitch
-            |   sentencias cliclofor
-            |   sentencias sentanciaSalida
-            |   sentencias asignacionvariables
-            |   sentencias declararVariables2
-            |   llamadaFuncion
-            |   condicionalif
-            |   ciclowhile
-            |   cicloDoWhile
-            |   condicionalSwitch
-            |   cliclofor
-            |   sentanciaSalida
-            |   asignacionvariables
-            |   declararVariables2
+sentencias  ::= sentencias:vars llamadaFuncion:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
+            |   sentencias:vars condicionalif:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
+            |   sentencias:vars ciclowhile:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
+            |   sentencias:vars cicloDoWhile:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
+            |   sentencias:vars condicionalSwitch:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
+            |   sentencias:vars cliclofor:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
+            |   sentencias:vars sentanciaSalida:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
+            |   sentencias:vars asignacionvariables:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
+            |   sentencias:vars declararVariables2:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
+            |   llamadaFuncion:vars {:RESULT = vars;:}
+            |   condicionalif:vars {:RESULT = vars;:}
+            |   ciclowhile:vars {:RESULT = vars;:}
+            |   cicloDoWhile:vars {:RESULT = vars;:}
+            |   condicionalSwitch:vars {:RESULT = vars;:}
+            |   cliclofor:vars {:RESULT = vars;:}
+            |   sentanciaSalida:vars {:RESULT = vars;:}
+            |   asignacionvariables:vars {:RESULT = vars;:}
+            |   declararVariables2:vars {:RESULT = vars;:}
             |   sentencias error
             |   error
             ;

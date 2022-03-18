@@ -1774,7 +1774,10 @@ class CUP$ParserJava$actions {
           case 60: // asignacionvariables ::= ID EQUAL exp PUNTOCOMA 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int tleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).left;
+		int tright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).right;
+		Token t = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).value;
+		RESULT = new ArrayList<>();RESULT.add(new FilaTablaSymbolos(t.getLexema()));
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("asignacionvariables",19, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2338,7 +2341,13 @@ class CUP$ParserJava$actions {
           case 102: // sentencias ::= sentencias llamadaFuncion 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		int vars1left = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int vars1right = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars1 = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("sentencias",9, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2347,7 +2356,13 @@ class CUP$ParserJava$actions {
           case 103: // sentencias ::= sentencias condicionalif 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		int vars1left = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int vars1right = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars1 = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("sentencias",9, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2356,7 +2371,13 @@ class CUP$ParserJava$actions {
           case 104: // sentencias ::= sentencias ciclowhile 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		int vars1left = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int vars1right = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars1 = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("sentencias",9, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2365,7 +2386,13 @@ class CUP$ParserJava$actions {
           case 105: // sentencias ::= sentencias cicloDoWhile 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		int vars1left = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int vars1right = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars1 = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("sentencias",9, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2374,7 +2401,13 @@ class CUP$ParserJava$actions {
           case 106: // sentencias ::= sentencias condicionalSwitch 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		int vars1left = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int vars1right = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars1 = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("sentencias",9, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2383,7 +2416,13 @@ class CUP$ParserJava$actions {
           case 107: // sentencias ::= sentencias cliclofor 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		int vars1left = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int vars1right = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars1 = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("sentencias",9, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2392,7 +2431,13 @@ class CUP$ParserJava$actions {
           case 108: // sentencias ::= sentencias sentanciaSalida 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		int vars1left = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int vars1right = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars1 = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("sentencias",9, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2401,7 +2446,13 @@ class CUP$ParserJava$actions {
           case 109: // sentencias ::= sentencias asignacionvariables 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		int vars1left = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int vars1right = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars1 = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("sentencias",9, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2410,7 +2461,13 @@ class CUP$ParserJava$actions {
           case 110: // sentencias ::= sentencias declararVariables2 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		int vars1left = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int vars1right = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars1 = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("sentencias",9, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2419,7 +2476,10 @@ class CUP$ParserJava$actions {
           case 111: // sentencias ::= llamadaFuncion 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("sentencias",9, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2428,7 +2488,10 @@ class CUP$ParserJava$actions {
           case 112: // sentencias ::= condicionalif 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("sentencias",9, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2437,7 +2500,10 @@ class CUP$ParserJava$actions {
           case 113: // sentencias ::= ciclowhile 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("sentencias",9, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2446,7 +2512,10 @@ class CUP$ParserJava$actions {
           case 114: // sentencias ::= cicloDoWhile 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("sentencias",9, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2455,7 +2524,10 @@ class CUP$ParserJava$actions {
           case 115: // sentencias ::= condicionalSwitch 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("sentencias",9, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2464,7 +2536,10 @@ class CUP$ParserJava$actions {
           case 116: // sentencias ::= cliclofor 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("sentencias",9, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2473,7 +2548,10 @@ class CUP$ParserJava$actions {
           case 117: // sentencias ::= sentanciaSalida 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("sentencias",9, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2482,7 +2560,10 @@ class CUP$ParserJava$actions {
           case 118: // sentencias ::= asignacionvariables 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("sentencias",9, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2491,7 +2572,10 @@ class CUP$ParserJava$actions {
           case 119: // sentencias ::= declararVariables2 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("sentencias",9, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
