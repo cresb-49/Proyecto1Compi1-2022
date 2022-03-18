@@ -1,4 +1,5 @@
 package com.cresb49.server.AnalizadorJava;
+import com.cresb49.server.AnalizadorJava.obj.resultados.Comentario;
 import java.util.ArrayList;
 import java_cup.runtime.*;
 
@@ -20,6 +21,7 @@ import java_cup.runtime.*;
     private StringBuffer coment_simple = new StringBuffer();
     private StringBuffer coment_multi = new StringBuffer();
     private ArrayList<ErrorAnalisis> errors;
+    private ArrayList<Comentario> comentarios;
 
     public void setErrors(ArrayList<ErrorAnalisis> errors) {
         this.errors = errors;
@@ -33,6 +35,13 @@ import java_cup.runtime.*;
         this.errors.add(error);
     }
 
+    public ArrayList<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(ArrayList<Comentario> comentarios) {
+        this.comentarios = comentarios;
+    }
 %}
 %eofval{
     this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,this.anterior);
@@ -436,7 +445,8 @@ Decimal = {Entero}[.]{Entero}
 <COMENTARIO>    {
     [\n]                            { 
                                         yybegin(YYINITIAL);
-                                        System.out.println("Comentario: "+coment_simple.toString());
+                                        //System.out.println("Comentario: "+coment_simple.toString());
+                                        this.getComentarios().add(new Comentario(coment_simple.toString()));
                                     }   
     [^\n\"]+                        { coment_simple.append(yytext());}
     \"                              { coment_simple.append("”"); }    
@@ -445,7 +455,8 @@ Decimal = {Entero}[.]{Entero}
 <COMENT_MULTI>  {
     "*/"                            { 
                                         yybegin(YYINITIAL);
-                                        System.out.println("Comentario: "+coment_multi.toString());   
+                                        //System.out.println("Comentario: "+coment_multi.toString());
+                                        this.getComentarios().add(new Comentario(coment_multi.toString()));   
                                     }
     [^*\"]+                         { coment_multi.append(yytext());}
     \"                              { coment_multi.append("”"); }    

@@ -3,6 +3,7 @@
 // source: JAVA/LexerJava.jflex
 
 package com.cresb49.server.AnalizadorJava;
+import com.cresb49.server.AnalizadorJava.obj.resultados.Comentario;
 import java.util.ArrayList;
 import java_cup.runtime.*;
 
@@ -706,6 +707,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
     private StringBuffer coment_simple = new StringBuffer();
     private StringBuffer coment_multi = new StringBuffer();
     private ArrayList<ErrorAnalisis> errors;
+    private ArrayList<Comentario> comentarios;
 
     public void setErrors(ArrayList<ErrorAnalisis> errors) {
         this.errors = errors;
@@ -719,6 +721,13 @@ public class LexerJava implements java_cup.runtime.Scanner {
         this.errors.add(error);
     }
 
+    public ArrayList<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(ArrayList<Comentario> comentarios) {
+        this.comentarios = comentarios;
+    }
 
 
   /**
@@ -1334,7 +1343,8 @@ public class LexerJava implements java_cup.runtime.Scanner {
           case 100: break;
           case 28:
             { yybegin(YYINITIAL);
-                                        System.out.println("Comentario: "+coment_simple.toString());
+                                        //System.out.println("Comentario: "+coment_simple.toString());
+                                        this.getComentarios().add(new Comentario(coment_simple.toString()));
             }
             // fall through
           case 101: break;
@@ -1467,7 +1477,8 @@ public class LexerJava implements java_cup.runtime.Scanner {
           case 120: break;
           case 48:
             { yybegin(YYINITIAL);
-                                        System.out.println("Comentario: "+coment_multi.toString());
+                                        //System.out.println("Comentario: "+coment_multi.toString());
+                                        this.getComentarios().add(new Comentario(coment_multi.toString()));
             }
             // fall through
           case 121: break;
