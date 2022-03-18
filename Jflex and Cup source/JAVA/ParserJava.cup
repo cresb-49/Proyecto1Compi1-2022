@@ -133,11 +133,11 @@ terminal Token  IMPORT,PUBLIC,PRIVATE,PROTECTED,FINAL,BREAK,RETURN,INT,BOOL,STR,
 
 
 /* Non terminals */
-non terminal                                initJava,importJava,importJavaContenido,importJavaP,parametros,parametrosP,metodoP,sentConstru,
+non terminal                                initJava,importJava,importJavaContenido,importJavaP,metodoP,sentConstru,
                                             parametrosLlamadaP,parametrosLlamada,classJava,sentencias,metodo,constructorP,declararVariables2,listaVariables3,
                                             agregarfor,ciclowhile,condicionalif,constructor,cliclofor,cicloDoWhile,sentanciaSalida,asignacionvariables,
                                             contenidoSwitch,contenidoSwitch2,condicionalSwitch,llamadaFuncion,listaVariables4;
-non terminal ArrayList<FilaTablaSymbolos>   listaVariables,listaVariables2,declararVariables,contClass;
+non terminal ArrayList<FilaTablaSymbolos>   listaVariables,listaVariables2,declararVariables,contClass,parametros,parametrosP;
 non terminal Token                          visibilidad,tipo;
 
 non terminal                        exp,t,f,g,h,i,j,k,l;
@@ -185,9 +185,9 @@ tipo        ::= INT:t     {:RESULT = t;:}
             |   OBJ:t     {:RESULT = t;:}
             ;
 
-classJava   ::= visibilidad CLASS ID:clase LLA_A contClass:vars LLA_C {:agregarVariablesTabla(clase.getLexema(),vars);:}
+classJava   ::= visibilidad CLASS ID:clase LLA_A contClass:vars LLA_C {:agregarVariablesTabla("Clase "+clase.getLexema(),vars);:}
             |   visibilidad CLASS ID:clase LLA_A LLA_C
-            |   visibilidad FINAL CLASS ID:clase LLA_A contClass:vars LLA_C {:agregarVariablesTabla(clase.getLexema(),vars);:}
+            |   visibilidad FINAL CLASS ID:clase LLA_A contClass:vars LLA_C {:agregarVariablesTabla("Clase "+clase.getLexema(),vars);:}
             |   visibilidad FINAL CLASS ID:clase LLA_A LLA_C
             ;
 
@@ -201,8 +201,8 @@ contClass   ::= contClass:vars declararVariables:vars1 {:RESULT = vars; if(RESUL
             |   error
             ;
 
-constructor ::= PUBLIC ID:constructor PA_A parametros PA_C constructorP {:System.out.println("Constructor: "+constructor.getLexema());:}
-            |   PUBLIC ID:constructor PA_A PA_C constructorP            {:System.out.println("Constructor: "+constructor.getLexema());:}
+constructor ::= PUBLIC ID:constructor PA_A parametros:vars PA_C constructorP {:agregarVariablesTabla("Constructor "+constructor.getLexema(),vars);:}
+            |   PUBLIC ID:constructor PA_A PA_C constructorP {:System.out.println("Constructor: "+constructor.getLexema());:}
             ;
 
 constructorP    ::= LLA_A LLA_C
@@ -212,22 +212,22 @@ constructorP    ::= LLA_A LLA_C
                 |   error constructor
                 ;
 
-parametros  ::= tipo:t ID:var
-            |   tipo:t ID:var COMA parametrosP
+parametros  ::= tipo:t ID:var {:RESULT = new ArrayList<>();RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));:}
+            |   tipo:t ID:var COMA parametrosP:vars {:RESULT = vars;if(RESULT!=null){RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));}:}
             |   error PA_C
             |   error LLA_A
             |   error LLA_C
             ;
 
-parametrosP ::= tipo:t ID:var COMA parametrosP
-            |   tipo:t ID:var
+parametrosP ::= tipo:t ID:var COMA parametrosP:vars {:RESULT = vars;if(RESULT!=null){RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));}:}
+            |   tipo:t ID:var {:RESULT = new ArrayList<>();RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));:}
             |   error PA_C
             |   error LLA_A
             |   error LLA_C
             ;
 
-metodo      ::= visibilidad tipo:t ID:metodo PA_A PA_C metodoP               {:System.out.println("Metodo: "+metodo.getLexema()+" ,Tipo: "+t.getLexema());:}
-            |   visibilidad tipo:t ID:metodo PA_A parametros PA_C metodoP    {:System.out.println("Metodo: "+metodo.getLexema()+" ,Tipo: "+t.getLexema());:}
+metodo      ::= visibilidad tipo:t ID:metodo PA_A PA_C metodoP  {:System.out.println("Metodo: "+metodo.getLexema()+" ,Tipo: "+t.getLexema());:}
+            |   visibilidad tipo:t ID:metodo PA_A parametros:vars PA_C metodoP {:agregarVariablesTabla("Metodo "+metodo.getLexema(),vars);:}
             ;
 
 metodoP     ::= LLA_A sentencias LLA_C

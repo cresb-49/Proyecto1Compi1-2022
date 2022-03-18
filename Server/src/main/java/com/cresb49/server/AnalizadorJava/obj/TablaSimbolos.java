@@ -21,14 +21,27 @@ public class TablaSimbolos {
         this.filas = new ArrayList<>();
     }
 
-    public FilaTablaSymbolos buscar(String nombre) {
+    public ArrayList<FilaTablaSymbolos> buscarNombre(String nombre) {
+        ArrayList<FilaTablaSymbolos> result = new ArrayList<>();
         for (FilaTablaSymbolos fila : filas) {
             if (fila.getNombre().equals(nombre)) {
-                return fila;
+                result.add(fila);
+            }
+        }
+        return result;
+    }
+
+    public FilaTablaSymbolos buscarNombreTipo(String nombre,String tipo) {
+        for (FilaTablaSymbolos fila : filas) {
+            if (fila.getNombre().equals(nombre)) {
+                if(fila.getTipo().equals(tipo)){
+                    return fila;
+                }
             }
         }
         return null;
     }
+
 
     public ArrayList<FilaTablaSymbolos> getFilas() {
         return filas;
