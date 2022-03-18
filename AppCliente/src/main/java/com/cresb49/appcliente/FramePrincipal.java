@@ -440,9 +440,9 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             String texto = TextPaneDef.getText();
             analizarDef.ejecutar(texto, this.reportePrueba());
             this.mostrarErroresConsola(analizarDef.getErrores());
-            if(analizarDef.getErrores().isEmpty()){
+            if (analizarDef.getErrores().isEmpty()) {
                 VentanaHTML.setText(analizarDef.getHTML());
-            }else{
+            } else {
                 VentanaHTML.setText("");
             }
         } catch (NoReporteJson ex) {
@@ -479,43 +479,12 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (this.proyectoCopy == null) {
-            this.crearProyecto();
-        }
-        ArrayList<String> errores = VerificarProyectoCopy.verificarArchivos(this.seleccionarDirectorio(NombreCarpeta1, this.proyectoCopy, 1));
-        String mensaje = "";
-        for (String error : errores) {
-            mensaje = mensaje + error + "\n";
-        }
-        if (!errores.isEmpty()) {
-            JOptionPane.showMessageDialog(this, mensaje);
-            this.proyectoCopy.setPathCarpeta1("");
-            this.carpeta1 = null;
-            this.estadoCarpeta1(false);
-        } else {
-            this.estadoCarpeta1(true);
-        }
+        this.cargarCarpeta1();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if (this.proyectoCopy == null) {
-            this.crearProyecto();
-        }
-        ArrayList<String> errores = VerificarProyectoCopy.verificarArchivos(this.seleccionarDirectorio(NombreCarpeta2, this.proyectoCopy, 2));
-        String mensaje = "";
-        for (String error : errores) {
-            mensaje = mensaje + error;
-        }
-        if (!errores.isEmpty()) {
-            JOptionPane.showMessageDialog(this, mensaje);
-            NombreCarpeta2.setText("no seleccionado");
-            this.proyectoCopy.setPathCarpeta2("");
-            this.carpeta2 = null;
-            this.estadoCarpeta2(false);
-        } else {
-            this.estadoCarpeta2(true);
-        }
+        this.cargarCarpeta2();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void AbrirProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirProyectoActionPerformed
@@ -705,6 +674,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             System.out.println(this.proyectoCopy.toString());
             this.generalPath = archivoElegido.getParentFile().getParent();
             System.out.println("path general: " + this.generalPath);
+            this.cargarProyecto();
             JOptionPane.showMessageDialog(this, "Carga exitosa!", "Carga exitosa!", JOptionPane.INFORMATION_MESSAGE);
         } catch (ClassNotFoundException e) {
             JOptionPane.showMessageDialog(this, "El archivo que desea cargar esta dañado" + e.getMessage(), "Error al cargar el archivo!", JOptionPane.ERROR_MESSAGE);
@@ -741,5 +711,81 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
     private void guardar_proyecto() {
 
+    }
+
+    private void cargarCarpeta1() {
+        if (this.proyectoCopy == null) {
+            this.crearProyecto();
+        }
+        ArrayList<String> errores = VerificarProyectoCopy.verificarArchivos(this.seleccionarDirectorio(NombreCarpeta1, this.proyectoCopy, 1));
+        String mensaje = "";
+        for (String error : errores) {
+            mensaje = mensaje + error + "\n";
+        }
+        if (!errores.isEmpty()) {
+            JOptionPane.showMessageDialog(this, mensaje);
+            NombreCarpeta1.setText("no seleccionado");
+            this.proyectoCopy.setPathCarpeta1("");
+            this.carpeta1 = null;
+            this.estadoCarpeta1(false);
+        } else {
+            this.estadoCarpeta1(true);
+        }
+    }
+
+    private void cargarCarpeta2() {
+        if (this.proyectoCopy == null) {
+            this.crearProyecto();
+        }
+        ArrayList<String> errores = VerificarProyectoCopy.verificarArchivos(this.seleccionarDirectorio(NombreCarpeta2, this.proyectoCopy, 2));
+        String mensaje = "";
+        for (String error : errores) {
+            mensaje = mensaje + error;
+        }
+        if (!errores.isEmpty()) {
+            JOptionPane.showMessageDialog(this, mensaje);
+            NombreCarpeta2.setText("no seleccionado");
+            this.proyectoCopy.setPathCarpeta2("");
+            this.carpeta2 = null;
+            this.estadoCarpeta2(false);
+        } else {
+            this.estadoCarpeta2(true);
+        }
+    }
+
+    private void cargarProyecto() {
+        File cp1 = new File(this.proyectoCopy.getPathCarpeta1());
+        ArrayList<String> errores = VerificarProyectoCopy.verificarArchivos(cp1);
+        String mensaje = "";
+        for (String error : errores) {
+            mensaje = mensaje + error + "\n";
+        }
+        if (!errores.isEmpty()) {
+            JOptionPane.showMessageDialog(this, mensaje);
+            NombreCarpeta1.setText("no seleccionado");
+            this.proyectoCopy.setPathCarpeta1("");
+            this.carpeta1 = null;
+            this.estadoCarpeta1(false);
+        } else {
+            NombreCarpeta1.setText(cp1.getName());
+            this.estadoCarpeta1(true);
+        }
+
+        File cp2 = new File(this.proyectoCopy.getPathCarpeta2());
+        ArrayList<String> errores2 = VerificarProyectoCopy.verificarArchivos(cp2);
+        String mensaje2 = "";
+        for (String error : errores2) {
+            mensaje2 = mensaje2 + error;
+        }
+        if (!errores.isEmpty()) {
+            JOptionPane.showMessageDialog(this, mensaje);
+            NombreCarpeta2.setText("no seleccionado");
+            this.proyectoCopy.setPathCarpeta2("");
+            this.carpeta2 = null;
+            this.estadoCarpeta2(false);
+        } else {
+            NombreCarpeta2.setText(cp2.getName());
+            this.estadoCarpeta2(true);
+        }
     }
 }
