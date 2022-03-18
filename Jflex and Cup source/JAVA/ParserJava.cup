@@ -116,6 +116,10 @@ parser code {:
         }
     }
 
+    private ArrayList<FilaTablaSymbolos> retornarDosFuentes(ArrayList<FilaTablaSymbolos> vars, ArrayList<FilaTablaSymbolos> vars1) {
+        
+    }
+
     protected int error_sync_size() {
 		return 1;
 	}
@@ -297,7 +301,7 @@ sentConstru ::= sentConstru:vars llamadaFuncion:vars1 {:RESULT = vars; if(RESULT
             |   error
             ;
 
-sentencias  ::= sentencias:vars llamadaFuncion:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
+sentencias  ::= sentencias:vars llamadaFuncion:vars1 {:RESULT =retornarDosFuentes(vars,vars1);:}
             |   sentencias:vars condicionalif:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
             |   sentencias:vars ciclowhile:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
             |   sentencias:vars cicloDoWhile:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}

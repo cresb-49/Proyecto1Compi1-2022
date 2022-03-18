@@ -1069,6 +1069,10 @@ public class ParserJava extends java_cup.runtime.lr_parser {
         }
     }
 
+    private ArrayList<FilaTablaSymbolos> retornarDosFuentes(ArrayList<FilaTablaSymbolos> vars, ArrayList<FilaTablaSymbolos> vars1) {
+        
+    }
+
     protected int error_sync_size() {
 		return 1;
 	}
@@ -2356,7 +2360,7 @@ class CUP$ParserJava$actions {
 		int vars1left = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
 		int vars1right = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
 		ArrayList<FilaTablaSymbolos> vars1 = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
-		RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}
+		RESULT =retornarDosFuentes(vars,vars1);
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("sentencias",9, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
