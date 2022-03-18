@@ -142,9 +142,10 @@ terminal Token  IMPORT,PUBLIC,PRIVATE,PROTECTED,FINAL,BREAK,RETURN,INT,BOOL,STR,
 
 /* Non terminals */
 non terminal                        initJava,contClass,importJava,importJavaContenido,importJavaP,parametros,parametrosP,metodoP,sentConstru,
-                                    parametrosLlamadaP,parametrosLlamada,classJava,visibilidad,sentencias,tipo,metodo,constructorP,
+                                    parametrosLlamadaP,parametrosLlamada,classJava,sentencias,metodo,constructorP,
                                     agregarfor,ciclowhile,condicionalif,constructor,cliclofor,cicloDoWhile,sentanciaSalida,asignacionvariables,
                                     contenidoSwitch,contenidoSwitch2,condicionalSwitch,llamadaFuncion,declararVariables,listaVariables,listaVariables2;
+non terminal Token                  visibilidad,tipo;
 
 non terminal                        exp,t,f,g,h,i,j,k,l;
 
@@ -178,17 +179,17 @@ importJavaContenido ::= PUNTO ID importJavaContenido
                     ;
 /*Gramatica de un archivo de java*/
 
-visibilidad ::= PRIVATE
-            |   PUBLIC
-            |   PROTECTED
+visibilidad ::= PRIVATE:t       {:RESULT = t;:}
+            |   PUBLIC:t        {:RESULT = t;:}
+            |   PROTECTED:t     {:RESULT = t;:}
             ;
 
-tipo        ::= INT
-            |   BOOL
-            |   STR
-            |   CHAR
-            |   DOUBLE
-            |   OBJ
+tipo        ::= INT:t     {:RESULT = t;:}
+            |   BOOL:t    {:RESULT = t;:}
+            |   STR:t     {:RESULT = t;:}
+            |   CHAR:t    {:RESULT = t;:}
+            |   DOUBLE:t  {:RESULT = t;:}
+            |   OBJ:t     {:RESULT = t;:}
             ;
 
 classJava   ::= visibilidad CLASS ID:clase LLA_A contClass LLA_C        {:System.out.println(clase.getLexema());:}
@@ -232,8 +233,8 @@ parametrosP ::= tipo ID COMA parametrosP
             |   error LLA_C
             ;
 
-metodo      ::= visibilidad tipo ID:metodo PA_A PA_C metodoP               {:System.out.println("Metodo: "+metodo.getLexema());:}
-            |   visibilidad tipo ID:metodo PA_A parametros PA_C metodoP    {:System.out.println("Metodo: "+metodo.getLexema());:}
+metodo      ::= visibilidad tipo:t ID:metodo PA_A PA_C metodoP               {:System.out.println("Metodo: "+metodo.getLexema()+" ,Tipo: "+t.getLexema());:}
+            |   visibilidad tipo:t ID:metodo PA_A parametros PA_C metodoP    {:System.out.println("Metodo: "+metodo.getLexema()+" ,Tipo: "+t.getLexema());:}
             ;
 
 metodoP     ::= LLA_A sentencias LLA_C
@@ -356,12 +357,14 @@ contenidoSwitch ::= CASE exp DOSPUNTOS BREAK PUNTOCOMA
                 |   contenidoSwitch2 DEFAULT DOSPUNTOS 
                 |   contenidoSwitch2 CASE exp DOSPUNTOS sentencias BREAK PUNTOCOMA
                 |   contenidoSwitch2 CASE exp DOSPUNTOS  BREAK PUNTOCOMA
+                |   error CASE
                 ;
 
 contenidoSwitch2    ::= contenidoSwitch2 CASE exp DOSPUNTOS sentencias BREAK PUNTOCOMA
                     |   contenidoSwitch2 CASE exp DOSPUNTOS BREAK PUNTOCOMA
                     |   CASE exp DOSPUNTOS sentencias BREAK PUNTOCOMA
                     |   CASE exp DOSPUNTOS BREAK PUNTOCOMA
+                    |   error CASE
                     ;
 
 exp ::= exp OR t
