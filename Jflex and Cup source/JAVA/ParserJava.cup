@@ -145,6 +145,7 @@ non terminal                        initJava,contClass,importJava,importJavaCont
                                     parametrosLlamadaP,parametrosLlamada,classJava,visibilidad,sentencias,tipo,metodo,constructorP,
                                     agregarfor,ciclowhile,condicionalif,constructor,cliclofor,cicloDoWhile,sentanciaSalida,
                                     contenidoSwitch,contenidoSwitch2,condicionalSwitch,llamadaFuncion,declararVariables,listaVariables,listaVariables2;
+
 non terminal                        exp,t,f,g,h,i,j,k,l;
 
 /* Inicio de las reglas gramticales*/
@@ -188,10 +189,10 @@ tipo        ::= INT
             |   OBJ
             ;
 
-classJava   ::= visibilidad CLASS ID LLA_A contClass LLA_C
-            |   visibilidad CLASS ID LLA_A LLA_C
-            |   visibilidad FINAL CLASS ID LLA_A contClass LLA_C
-            |   visibilidad FINAL CLASS ID LLA_A LLA_C
+classJava   ::= visibilidad CLASS:clase ID LLA_A contClass LLA_C        {:System.out.println(clase.getLexema()):}
+            |   visibilidad CLASS:clase ID LLA_A LLA_C                  {:System.out.println(clase.getLexema()):}
+            |   visibilidad FINAL CLASS:clase ID LLA_A contClass LLA_C  {:System.out.println(clase.getLexema()):}
+            |   visibilidad FINAL CLASS:clase ID LLA_A LLA_C            {:System.out.println(clase.getLexema()):}
             ;
 
 contClass   ::= contClass declararVariables
@@ -206,6 +207,7 @@ contClass   ::= contClass declararVariables
 constructor ::= PUBLIC ID PA_A parametros PA_C constructorP
             |   PUBLIC ID PA_A PA_C constructorP
             ;
+
 constructorP    ::= LLA_A LLA_C
                 |   LLA_A sentConstru LLA_C
                 |   error declararVariables
