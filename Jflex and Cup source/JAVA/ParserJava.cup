@@ -234,11 +234,11 @@ metodoP     ::= LLA_A sentencias LLA_C
 asignacionvariables ::= ID EQUAL exp PUNTOCOMA
                     ;
 
-declararVariables   ::= visibilidad STATIC FINAL tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);:}
-                    |   visibilidad STATIC tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);:}
-                    |   visibilidad FINAL tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);:}
-                    |   visibilidad tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);:}
-                    |   tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);:}
+declararVariables   ::= visibilidad STATIC FINAL tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);RESULT = vars;:}
+                    |   visibilidad STATIC tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);RESULT = vars;:}
+                    |   visibilidad FINAL tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);RESULT = vars;:}
+                    |   visibilidad tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);RESULT = vars;:}
+                    |   tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);RESULT = vars;:}
                     ;
 
 listaVariables  ::= ID:var {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}
