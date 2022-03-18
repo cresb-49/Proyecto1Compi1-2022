@@ -209,7 +209,7 @@ classJava   ::= visibilidad CLASS ID:clase LLA_A contClass:vars LLA_C {:agregarV
             |   visibilidad FINAL CLASS ID:clase LLA_A LLA_C
             ;
 
-contClass   ::= contClass:vars declararVariables:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
+contClass   ::= contClass:vars declararVariables:vars1 {:RESULT = retornarDosFuentes(vars,vars1);:}
             |   contClass:vars constructor {:RESULT = vars;:}
             |   contClass:vars metodo {:RESULT = vars;:}
             |   declararVariables:vars {:RESULT = vars;:}
@@ -219,7 +219,7 @@ contClass   ::= contClass:vars declararVariables:vars1 {:RESULT = vars; if(RESUL
             |   error
             ;
 
-constructor ::= PUBLIC ID:constructor PA_A parametros:vars PA_C constructorP:vars1 {:if(vars!=null){if(vars1!=null){vars.addAll(vars1);}} agregarVariablesTabla("Constructor "+constructor.getLexema(),vars);:}
+constructor ::= PUBLIC ID:constructor PA_A parametros:vars PA_C constructorP:vars1 {:agregarVariablesTabla("Constructor "+constructor.getLexema(),retornarDosFuentes(vars,vars1));:}
             |   PUBLIC ID:constructor PA_A PA_C constructorP:vars1 {:agregarVariablesTabla("Constructor "+constructor.getLexema(),vars1);:}
             ;
 
@@ -245,7 +245,7 @@ parametrosP ::= tipo:t ID:var COMA parametrosP:vars {:RESULT = vars;if(RESULT!=n
             ;
 
 metodo      ::= visibilidad tipo:t ID:metodo PA_A PA_C metodoP:vars  {:agregarVariablesTabla("Metodo "+metodo.getLexema(),vars);:}
-            |   visibilidad tipo:t ID:metodo PA_A parametros:vars PA_C metodoP:vars1 {:if(vars!=null){if(vars1!=null){vars.addAll(vars1);}} agregarVariablesTabla("Metodo "+metodo.getLexema(),vars);:}
+            |   visibilidad tipo:t ID:metodo PA_A parametros:vars PA_C metodoP:vars1 {:agregarVariablesTabla("Metodo "+metodo.getLexema(),retornarDosFuentes(vars,vars1));:}
             ;
 
 metodoP     ::= LLA_A sentencias:vars LLA_C {:RESULT = vars;:}
@@ -294,14 +294,14 @@ listaVariables4 ::= ID:var EQUAL exp COMA listaVariables4:vars {:RESULT = vars; 
 
 
 
-sentConstru ::= sentConstru:vars llamadaFuncion:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
-            |   sentConstru:vars condicionalif:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
-            |   sentConstru:vars ciclowhile:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
-            |   sentConstru:vars cicloDoWhile:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
-            |   sentConstru:vars condicionalSwitch:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
-            |   sentConstru:vars cliclofor:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
-            |   sentConstru:vars asignacionvariables:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
-            |   sentConstru:vars declararVariables2:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
+sentConstru ::= sentConstru:vars llamadaFuncion:vars1 {:RESULT = retornarDosFuentes(vars,vars1);:}
+            |   sentConstru:vars condicionalif:vars1 {:RESULT = retornarDosFuentes(vars,vars1);:}
+            |   sentConstru:vars ciclowhile:vars1 {:RESULT = retornarDosFuentes(vars,vars1);:}
+            |   sentConstru:vars cicloDoWhile:vars1 {:RESULT = retornarDosFuentes(vars,vars1);:}
+            |   sentConstru:vars condicionalSwitch:vars1 {:RESULT = retornarDosFuentes(vars,vars1);:}
+            |   sentConstru:vars cliclofor:vars1 {:RESULT = retornarDosFuentes(vars,vars1);:}
+            |   sentConstru:vars asignacionvariables:vars1 {:RESULT = retornarDosFuentes(vars,vars1);:}
+            |   sentConstru:vars declararVariables2:vars1 {:RESULT = retornarDosFuentes(vars,vars1);:}
             |   llamadaFuncion:vars {:RESULT = vars;:}
             |   condicionalif:vars {:RESULT = vars;:}
             |   ciclowhile:vars {:RESULT = vars;:}
@@ -314,15 +314,15 @@ sentConstru ::= sentConstru:vars llamadaFuncion:vars1 {:RESULT = vars; if(RESULT
             |   error
             ;
 
-sentencias  ::= sentencias:vars llamadaFuncion:vars1 {:RESULT =retornarDosFuentes(vars,vars1);:}
-            |   sentencias:vars condicionalif:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
-            |   sentencias:vars ciclowhile:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
-            |   sentencias:vars cicloDoWhile:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
-            |   sentencias:vars condicionalSwitch:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
-            |   sentencias:vars cliclofor:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
-            |   sentencias:vars sentanciaSalida:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
-            |   sentencias:vars asignacionvariables:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
-            |   sentencias:vars declararVariables2:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
+sentencias  ::= sentencias:vars llamadaFuncion:vars1 {:RESULT = retornarDosFuentes(vars,vars1);:}
+            |   sentencias:vars condicionalif:vars1 {:RESULT = retornarDosFuentes(vars,vars1);:}
+            |   sentencias:vars ciclowhile:vars1 {:RESULT = retornarDosFuentes(vars,vars1);:}
+            |   sentencias:vars cicloDoWhile:vars1 {:RESULT = retornarDosFuentes(vars,vars1);:}
+            |   sentencias:vars condicionalSwitch:vars1 {:RESULT = retornarDosFuentes(vars,vars1);:}
+            |   sentencias:vars cliclofor:vars1 {:RESULT = retornarDosFuentes(vars,vars1);:}
+            |   sentencias:vars sentanciaSalida:vars1 {:RESULT = retornarDosFuentes(vars,vars1);:}
+            |   sentencias:vars asignacionvariables:vars1 {:RESULT = retornarDosFuentes(vars,vars1);:}
+            |   sentencias:vars declararVariables2:vars1 {:RESULT = retornarDosFuentes(vars,vars1);:}
             |   llamadaFuncion:vars {:RESULT = vars;:}
             |   condicionalif:vars {:RESULT = vars;:}
             |   ciclowhile:vars {:RESULT = vars;:}
@@ -355,7 +355,7 @@ parametrosLlamadaP  ::= exp COMA parametrosLlamadaP
                     ;
 
 cliclofor   ::= FOR PA_A INT:t ID:var EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A LLA_C  {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));:}
-            |   FOR PA_A INT:t ID:var EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A sentencias:vars LLA_C {:RESULT = vars; if(RESULT!=null){RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));}else{RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));}:}
+            |   FOR PA_A INT:t ID:var EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A sentencias:vars LLA_C {:ArrayList<FilaTablaSymbolos> tmp = new ArrayList<>(); tmp.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));  RESULT = retornarDosFuentes(vars,tmp);:}
             |   FOR PA_A ID EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A LLA_C
             |   FOR PA_A ID EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A sentencias:vars LLA_C {:RESULT = vars;:}
             ;
@@ -376,7 +376,7 @@ cicloDoWhile    ::= DO LLA_A LLA_C WHILE PA_A exp PA_C PUNTOCOMA
 condicionalif   ::= IF PA_A exp PA_C LLA_A sentencias:vars LLA_C {:RESULT = vars;:}
                 |   IF PA_A exp PA_C LLA_A LLA_C
                 |   IF PA_A exp PA_C LLA_A sentencias:vars LLA_C ELSE LLA_A LLA_C {:RESULT = vars;:}
-                |   IF PA_A exp PA_C LLA_A sentencias:vars LLA_C ELSE LLA_A sentencias:vars1 LLA_C {:RESULT = vars; if(RESULT!=null){RESULT.addAll(vars1);}:}
+                |   IF PA_A exp PA_C LLA_A sentencias:vars LLA_C ELSE LLA_A sentencias:vars1 LLA_C {:RESULT = retornarDosFuentes(vars,vars1);:}
                 |   IF PA_A exp PA_C LLA_A LLA_C ELSE LLA_A LLA_C
                 |   IF PA_A exp PA_C LLA_A LLA_C ELSE LLA_A sentencias:vars LLA_C {:RESULT = vars;:}
                 ;
@@ -387,14 +387,14 @@ condicionalSwitch   ::= SWITCH PA_A exp PA_C LLA_A contenidoSwitch:vars LLA_C {:
 
 contenidoSwitch ::= CASE exp DOSPUNTOS BREAK PUNTOCOMA
                 |   CASE exp DOSPUNTOS sentencias:vars BREAK PUNTOCOMA {:RESULT = vars;:}
-                |   contenidoSwitch2:vars1 DEFAULT DOSPUNTOS sentencias:vars {:RESULT = vars; if(RESULT!=null){RESULT.addAll(vars1);}:}
+                |   contenidoSwitch2:vars1 DEFAULT DOSPUNTOS sentencias:vars {:RESULT = retornarDosFuentes(vars,vars1);:}
                 |   contenidoSwitch2:vars DEFAULT DOSPUNTOS {:RESULT = vars;:}
-                |   contenidoSwitch2:vars1 CASE exp DOSPUNTOS sentencias:vars BREAK PUNTOCOMA {:RESULT = vars; if(RESULT!=null){RESULT.addAll(vars1);}:}
+                |   contenidoSwitch2:vars1 CASE exp DOSPUNTOS sentencias:vars BREAK PUNTOCOMA {:RESULT = retornarDosFuentes(vars,vars1);:}
                 |   contenidoSwitch2:vars CASE exp DOSPUNTOS  BREAK PUNTOCOMA {:RESULT = vars;:}
                 |   error CASE
                 ;
 
-contenidoSwitch2    ::= contenidoSwitch2:vars1 CASE exp DOSPUNTOS sentencias:vars BREAK PUNTOCOMA {:RESULT = vars; if(RESULT!=null){RESULT.addAll(vars1);}:}
+contenidoSwitch2    ::= contenidoSwitch2:vars1 CASE exp DOSPUNTOS sentencias:vars BREAK PUNTOCOMA {:RESULT = retornarDosFuentes(vars,vars1);:}
                     |   contenidoSwitch2:vars CASE exp DOSPUNTOS BREAK PUNTOCOMA {:RESULT = vars;:}
                     |   CASE exp DOSPUNTOS sentencias:vars BREAK PUNTOCOMA  {:RESULT = vars;:}
                     |   CASE exp DOSPUNTOS BREAK PUNTOCOMA
