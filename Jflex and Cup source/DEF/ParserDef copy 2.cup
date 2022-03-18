@@ -1,0 +1,911 @@
+package com.cresb49.appcliente.analizadores.def;
+
+import java.util.ArrayList;
+
+import com.cresb49.appcliente.analizadores.ErrorAnalisis;
+import com.cresb49.appcliente.analizadores.json.obj.*;
+import com.cresb49.appcliente.analizadores.Token;
+import com.cresb49.appcliente.ED.Pila;
+import com.cresb49.appcliente.analizadores.def.obj.*;
+
+
+import java_cup.runtime.*;
+
+class ParserDef;
+
+parser code {:
+    // Connect this parser to a scanner!
+
+    private static final String ERROR_TYPE_SIN = "Sintactico";
+    private static final String ERROR_TYPE_SEM = "Semantico";
+
+    private LexerDef lexerDef;
+    private ArrayList<ErrorAnalisis> errorAnalisisesTmp;
+    private SimbolosTerminalesDef simbolosTerminalesDef;
+    private TablaSimbolos tablaSimbolos;
+    private ReporteJson reporteJson;
+    
+    public ParserDef (LexerDef lexerDef){ 
+        super(lexerDef);
+        this.lexerDef=lexerDef;
+        this.simbolosTerminalesDef = new SimbolosTerminalesDef();
+    }
+
+    public void setTablasimbolos(TablaSimbolos tablaSimbolos){
+        this.tablaSimbolos = tablaSimbolos;
+    }
+
+    public void report_error(String message, Object info) {
+        System.out.println("public void report_error");
+    }
+    
+    public void report_fatal_error(String message, Object info) {
+        System.out.println("public void report_fatal_error");
+    }
+
+    public void syntax_error(Symbol cur_token) {
+        Token tok = (Token) cur_token.value;
+        if(tok!=null){
+            if (cur_token.sym == ParserDefSym.EOF) {
+                String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesDef.obtenerSimbolos(expected_token_ids()).toString();
+                //System.out.println("FIN ARCHIVO"+" "+er);
+                this.lexerDef.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er));
+                //System.out.println(er);
+            } else {
+                String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesDef.obtenerSimbolos(expected_token_ids()).toString();
+                //System.out.println(tok.getLexema()+" "+er);
+                this.lexerDef.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN,tok.getLexema(), tok.getLinea(), tok.getColumna(), er));
+                //System.out.println(er);
+            }
+        }else{
+            String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesDef.obtenerSimbolos(expected_token_ids()).toString();
+            //System.out.println("FIN ARCHIVO"+" "+er);
+            this.lexerDef.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er));
+            //System.out.println(er);
+        }
+    }
+
+    public void unrecovered_syntax_error(Symbol cur_token) {
+        if (cur_token.sym == ParserDefSym.EOF) {
+            String er = "Error irrecuperable se llego al final del archivo";
+            //System.out.println("FIN ARCHIVO"+" "+er);
+            this.lexerDef.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er));
+            //System.out.println(er);
+        } else {
+            Token tok = (Token) cur_token.value;
+            //String er = "Error irrecuperable, un posible simbolo esperado: "+ simbolosTerminalesDef.obtenerSimbolos(expected_token_ids()).toString();
+            String er = "Error irrecuperable resuelva el error anterior";
+            //System.out.println(tok.getLexema()+" "+er);
+            this.lexerDef.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN, tok.getLexema(), tok.getLinea(), tok.getColumna(), er));
+            //System.out.println(er);
+        }
+    }
+
+
+    private void verificar_def_var(Token token,String tipo) {
+       FilaTabla fila = tablaSimbolos.buscar(token.getLexema());
+        if(fila==null){
+            tablaSimbolos.getFilas().add(new FilaTabla(token.getLexema(),tipo,null));
+        }else{
+            semantic_error(token,"La variable ya a sido definida con anterioridad");
+        }
+    }
+
+    private void verificar_tipo_var_for(Token identificador,String tipo){
+        FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
+        if(fila!=null){
+            if(!(fila.getTipo().equals(tipo))){
+                semantic_error(identificador,"Debe utilizar una variable de tipo "+tipo);
+            }
+        }else{
+            semantic_error(identificador,"La variable que sea utilizar no existe en el programa");
+        }
+    }
+    private void varificar_no_null(Token identificador){
+        FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
+        if(fila!=null){
+            if(fila.getValor()==null){
+                semantic_error(identificador,"La variable no esta inicializada");
+            }
+        }
+    }
+
+    private void asig_val_var(Token identificador,String tipo,Object value) {
+       FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
+        if(fila==null){
+            semantic_error(identificador,"La variable a la que le quiere asignar valor no esta definida");
+        }else{
+            if(fila.getTipo().equals(tipo)){
+              fila.setValor(value);
+            }else{
+                semantic_error(identificador,"La variable es de tipo: \""+fila.getTipo()+"\", no puede asignar un \""+tipo+"\"");
+            }
+        }
+    }
+
+    private void verificarUnId(Token id){
+      if(id.getLexema().equals("RESULT")){
+        FilaTabla var = this.tablaSimbolos.buscar("RESULT");
+        id.setAccion(Token.PRINT);
+        id.setValorToken("ObjetoRESULT"+((ReporteJson)var.getValor()).hashCode());
+      }
+    }
+
+    private void verificarDosId(Token id1,Token id2){
+      if(id1.getLexema().equals("RESULT")){
+        FilaTabla var = this.tablaSimbolos.buscar("RESULT");
+        id1.setAccion(Token.IGNORE);
+        switch (id2.getLexema()) {
+          case "Score":
+            id2.setAccion(Token.PRINT);
+            id2.setValorToken(((ReporteJson)var.getValor()).getScore());
+            break;
+          case "Clases":
+            id2.setAccion(Token.PRINT);
+            id2.setValorToken("ObjectClases"+((ReporteJson)var.getValor()).hashCode());
+            break;
+          case "Variables":
+            id2.setAccion(Token.PRINT);
+            id2.setValorToken("ObjectVariables"+((ReporteJson)var.getValor()).hashCode());
+            break;
+          case "Metodos":
+            id2.setAccion(Token.PRINT);
+            id2.setValorToken("ObjectMetodos"+((ReporteJson)var.getValor()).hashCode());
+            break;
+          case "Comentarios":
+            id2.setAccion(Token.PRINT);
+            id2.setValorToken("ObjectComentarios"+((ReporteJson)var.getValor()).hashCode());
+            break;
+          default:
+            semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\" ,se esperaba [Score,Clases,Variables,Metodos,Comentarios]");
+            break;
+        }
+      }else{
+        semantic_error(id1,"No es una variable que contenga parametros internos");
+        semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\"");
+      }
+    }
+
+    private void verificarDosId_id2Index(Token id1,Token id2,AccesoVariables acc){
+      if(id1.getLexema().equals("RESULT")){
+        id1.setAccion(Token.IGNORE);
+        FilaTabla var = this.tablaSimbolos.buscar("RESULT");
+        switch (id2.getLexema()) {
+          case "Clases":
+            id2.setAccion(Token.CAMBIAR);
+            acc.setArreglo(((ReporteJson)var.getValor()).getClases());
+            break;
+          case "Variables":
+            id2.setAccion(Token.CAMBIAR);
+            acc.setArreglo(((ReporteJson)var.getValor()).getVariables());
+            break;
+          case "Metodos":
+            id2.setAccion(Token.CAMBIAR);
+            acc.setArreglo(((ReporteJson)var.getValor()).getMetodos());
+            break;
+          case "Comentarios":
+            id2.setAccion(Token.CAMBIAR);
+            acc.setArreglo(((ReporteJson)var.getValor()).getComentarios());
+            break;
+          default:
+            semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\",se esperaba [Clases,Variables,Metodos,Comentarios]");
+            semantic_error(id2,"No es un parametro vectorial: \""+id1.getLexema()+"\"");
+            break;
+        }
+      }else{
+        semantic_error(id1,"No es una variable que contenga parametros internos");
+        semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\"");
+        semantic_error(id2,"No es un parametro vectorial: \""+id1.getLexema()+"\"");
+      }
+    }
+
+    private void verificarTresId(Token id1,Token id2,Token id3,AccesoVariables acc){
+        if(id1.getLexema().equals("RESULT")){
+            id1.setAccion(Token.IGNORE);
+            FilaTabla var = this.tablaSimbolos.buscar("RESULT");
+            id2.setAccion(Token.VIEW);
+            switch (id2.getLexema()) {
+            case "Clases":
+                acc.setArreglo(((ReporteJson)var.getValor()).getClases());
+                if(id3.getLexema().equals("Nombre")){
+                    id3.setAccion(Token.VAR_CONSULT);
+                }else{
+                    semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\"");
+                }
+                break;
+            case "Variables":
+                acc.setArreglo(((ReporteJson)var.getValor()).getVariables());
+                switch(id3.getLexema()){
+                    case "Nombre":
+                        id3.setAccion(Token.VAR_CONSULT);
+                    break;
+                    case "Tipo":
+                        id3.setAccion(Token.VAR_CONSULT);
+                    break;
+                    case "Funcion":
+                        id3.setAccion(Token.VAR_CONSULT);
+                    break;
+                    default:
+                        semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\" ,se esperaba [Nombre,Tipo,Funcion]");
+                    break;
+                }
+                break;
+            case "Metodos":
+                acc.setArreglo(((ReporteJson)var.getValor()).getMetodos());
+                switch(id3.getLexema()){
+                    case "Nombre":
+                        id3.setAccion(Token.VAR_CONSULT);
+                    break;
+                    case "Tipo":
+                        id3.setAccion(Token.VAR_CONSULT);
+                    break;
+                    case "Parametros":
+                        id3.setAccion(Token.VAR_CONSULT);
+                    break;
+                    default:
+                        semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\" ,se esperaba [Nombre,Tipo,Parametros]");
+                    break;
+                }
+                break;
+            case "Comentarios":
+                acc.setArreglo(((ReporteJson)var.getValor()).getComentarios());
+                switch(id3.getLexema()){
+                    case "Texto":
+                        id3.setAccion(Token.VAR_CONSULT);
+                    break;
+                    default:
+                        semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\" ,se esperaba [Texto]");
+                    break;
+                }
+                break;
+            default:
+                semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\",se esperaba [Clases,Variables,Metodos,Comentarios]");
+                semantic_error(id2,"No es un parametro vectorial: \""+id1.getLexema()+"\"");
+                semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\"");
+                break;
+            }
+      }else{
+        semantic_error(id1,"No es una variable que contenga parametros internos");
+        semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\"");
+        semantic_error(id2,"No es un parametro vectorial: \""+id1.getLexema()+"\"");
+        semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\"");
+      }
+    }
+
+    private Operacion devolver_val_2Id(Token id1,Token id2){
+      if(id1.getLexema().equals("RESULT")){
+        FilaTabla var = this.tablaSimbolos.buscar("RESULT");
+        switch (id2.getLexema()) {
+          case "Score":
+            return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getScore());
+          case "Clases":
+            return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getClases());
+          case "Variables":
+            return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getVariables());
+          case "Metodos":
+            return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getMetodos());
+          case "Comentarios":
+            return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getComentarios());
+          default:
+            semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\" ,se esperaba [Score,Clases,Variables,Metodos,Comentarios]");
+        }
+      }else{
+        semantic_error(id1,"No es una variable que contenga parametros internos");
+        semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\"");
+      }
+      return new Operacion(TablaSimbolos.OBJECT,null);
+    }
+
+    private Operacion devolver_val_2Id_index(Token id1,Token id2,Integer index){
+        if(id1.getLexema().equals("RESULT")){
+        FilaTabla var = this.tablaSimbolos.buscar("RESULT");
+        switch (id2.getLexema()) {
+          case "Clases":
+            try{
+                return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getClases().get(index));
+            }catch(Exception ex){
+                semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+            }
+            break;
+          case "Variables":
+            try{
+                return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getVariables().get(index));
+            }catch(Exception ex){
+                semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+            }
+            break;
+          case "Metodos":
+            try{
+                return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getMetodos().get(index));
+            }catch(Exception ex){
+                semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+            }
+            break;
+          case "Comentarios":
+            try{
+                return new Operacion(TablaSimbolos.OBJECT,((ReporteJson)var.getValor()).getComentarios().get(index));
+            }catch(Exception ex){
+                semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+            }
+            break;
+          default:
+            semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\" ,se esperaba [Clases,Variables,Metodos,Comentarios]");
+            break;
+        }
+      }else{
+        semantic_error(id1,"No es una variable que contenga parametros internos");
+        semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\"");
+      }
+      return new Operacion(TablaSimbolos.OBJECT,null);
+    }
+
+    private Operacion devolver_val_3Id(Token id1,Token id2,Token id3,Integer index){
+        if(id1.getLexema().equals("RESULT")){
+            FilaTabla var = this.tablaSimbolos.buscar("RESULT");
+            switch (id2.getLexema()) {
+            case "Clases":
+                if(id3.getLexema().equals("Nombre")){
+                    try{
+                        return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getClases().get(index).getNombre());
+                    }catch(Exception ex){
+                        semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+                    }
+                }else{
+                    semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\"");
+                }
+                break;
+            case "Variables":
+                switch(id3.getLexema()){
+                    case "Nombre":
+                        try{
+                            return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getVariables().get(index).getNombre());
+                        }catch(Exception ex){
+                            semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+                        }
+                        break;
+                    case "Tipo":
+                        try{
+                            return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getVariables().get(index).getTipo());
+                        }catch(Exception ex){
+                            semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+                        }
+                        break;
+                    case "Funcion":
+                        try{
+                            return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getVariables().get(index).getFuncion());
+                        }catch(Exception ex){
+                            semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+                        }
+                        break;
+                    default:
+                        semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\" ,se esperaba [Nombre,Tipo,Funcion]");
+                    break;
+                }
+                break;
+            case "Metodos":
+                switch(id3.getLexema()){
+                    case "Nombre":
+                        try{
+                            return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getMetodos().get(index).getNombre());
+                        }catch(Exception ex){
+                                semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+                        }
+                        break;
+                    case "Tipo":
+                        try{
+                            return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getMetodos().get(index).getTipo());
+                        }catch(Exception ex){
+                                semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+                        }
+                        break;
+                    case "Parametros":
+                        try{
+                            return new Operacion(TablaSimbolos.INT,((ReporteJson)var.getValor()).getMetodos().get(index).getParametros());
+                        }catch(Exception ex){
+                                semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+                        }
+                        break;
+                    default:
+                        semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\" ,se esperaba [Nombre,Tipo,Parametros]");
+                    break;
+                }
+                break;
+            case "Comentarios":
+                switch(id3.getLexema()){
+                    case "Texto":
+                        try{
+                            return new Operacion(TablaSimbolos.STRING,((ReporteJson)var.getValor()).getComentarios().get(index).getTexto());
+                        }catch(Exception ex){
+                                semantic_error(id2,"El index ingresado es mayor al tamaño de la lista");
+                        }
+                        break;
+                    default:
+                        semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\" ,se esperaba [Texto]");
+                    break;
+                }
+                break;
+            default:
+                semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\",se esperaba [Clases,Variables,Metodos,Comentarios]");
+                semantic_error(id2,"No es un parametro vectorial: \""+id1.getLexema()+"\"");
+                semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\"");
+                break;
+            }
+      }else{
+        semantic_error(id1,"No es una variable que contenga parametros internos");
+        semantic_error(id2,"No es un parametro de la variable: \""+id1.getLexema()+"\"");
+        semantic_error(id2,"No es un parametro vectorial: \""+id1.getLexema()+"\"");
+        semantic_error(id3,"No es un parametro de la variable \""+id2.getLexema()+"\"");
+      }
+      return new Operacion(TablaSimbolos.OBJECT,null);
+    }
+
+    private void create_var_asig_val(Token identificador,String tipo_id,String tipo_value,Object value) {
+       FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
+        if(fila==null){
+            if(tipo_id.equals(tipo_value)){
+                tablaSimbolos.getFilas().add(new FilaTabla(identificador.getLexema(),tipo_id,value));
+            }else{
+                semantic_error(identificador,"La variable es de tipo: \""+tipo_id+"\", no puede asignar un \""+tipo_value+"\"");
+            }
+        }else{
+            semantic_error(identificador,"La variable ya a sido definida con anterioridad");
+            //semantic_error(identificador,"El valor que se desea dar a la variable de de tipo \"\" y la variable es de tipo \"\"");
+        }
+    }
+
+    private void error_cast(Token operador,String tipo1,String tipo2){
+        semantic_error(operador,"No se puede operar un valor: \""+tipo1+"\" con un valor:\""+tipo2+"\"");
+    }
+
+    private void semantic_error(Token token,String contexto) {
+        this.lexerDef.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,token.getLexema(), token.getLinea(), token.getColumna(), contexto));
+    }
+
+    public TablaSimbolos getTablaSimbolos() {
+        return tablaSimbolos;
+    }
+
+    protected int error_sync_size() {
+		return 1;
+	}
+:}
+
+/* define how to connect to the scanner! */
+scan with {: return this.lexerDef.next_token(); :};
+
+/* Terminals (tokens returned by the scanner). */
+terminal        CO_A,CO_C,LLA_A,LLA_C,PA_A,PA_C,COMA,PUNTO,DOSPUNTOS,PUNTOCOMA,STRING,ENTERO,
+                INT,STR,ITERATOR,HASTA,D_PA_A,PA_C_D,EQUAL,ME_Q,MA_Q,ME_QB,MAS,
+                MENOS,DIV,MUL;
+
+terminal Token  HTML,H1,H2,TABLE,FOR,TR,TH,TD,BR,TEXT,ID;
+
+
+/* Non terminals */
+non terminal                        ini,asig,dec,decn,def;
+non terminal Pila<Token>            decp;
+non terminal Operacion              exp,t,f;
+
+non terminal                        html,contHTML,tablec,tablectag,trc,paramhasta,etiquetas;
+non terminal                        varHTML2,varHTML4;
+
+
+/* Inicio de las reglas gramticales*/
+
+def ::= def html
+    |   ini
+    ;
+
+ini ::= ini asig
+    |   ini dec
+    |   ini decn
+    |   asig
+    |   dec
+    |   decn
+    |   ini error
+    ;
+
+/*Gramatica para declaracion de variables*/
+
+
+decn   ::=  INT ID:var EQUAL exp:val PUNTOCOMA  {:
+                                                    Token identificador = (Token)var;
+                                                    if(val!=null){
+                                                        create_var_asig_val((Token)var,TablaSimbolos.INT,val.getTipo(),val.getValor());
+                                                    }else{
+                                                        verificar_def_var(identificador,TablaSimbolos.INT);
+                                                    }
+                                                :}
+        |   STR ID:var EQUAL exp:val PUNTOCOMA  {:
+                                                    Token identificador = (Token)var;
+                                                    if(val!=null){
+                                                        create_var_asig_val((Token)var,TablaSimbolos.STRING,val.getTipo(),val.getValor());
+                                                    }else{
+                                                        verificar_def_var(identificador,TablaSimbolos.STRING);
+                                                    }
+                                                :}
+        ;
+
+dec    ::=  INT decp:vars   {:
+                                if(vars!=null){
+                                    ArrayList<Token> array =  vars.toArrayList();
+                                    if(array!=null){
+                                        for (Token token : array) {
+                                            verificar_def_var(token, TablaSimbolos.INT);
+                                        }
+                                    }
+                                }
+                            :}
+        |   STR decp:vars   {:
+                                if(vars!=null){
+                                    ArrayList<Token> array =  vars.toArrayList();
+                                    if(array!=null){
+                                        for (Token token : array) {
+                                            verificar_def_var(token, TablaSimbolos.STRING);
+                                        }
+                                    }
+                                }
+                            :}
+        ;
+    
+decp    ::= ID:id COMA decp:vars {:
+                                    RESULT = vars;
+                                    if(RESULT!=null){
+                                        RESULT.push((Token)id);
+                                    }else{
+                                        RESULT = new Pila<>();
+                                    }
+                                :}
+        |   ID:id PUNTOCOMA {:
+                                RESULT = new Pila<>();
+                                RESULT.push((Token)id);
+                            :}
+        ;
+
+asig    ::= ID:var EQUAL exp:val PUNTOCOMA  {:
+                                                Token identificador = (Token)var;
+                                                if(val!=null){
+                                                    asig_val_var(identificador,val.getTipo(),val.getValor());
+                                                }
+                                            :}
+        ;
+
+
+exp ::= exp:val1 MAS:s t:val2   {:  
+                                    try {
+                                        String tipo = Operacion.autoCast(val1.getTipo(),TablaSimbolos.MAS,val2.getTipo());
+                                        Object result = Operacion.sumaTerminos(val1, val2);
+                                        RESULT = new Operacion(tipo,result);
+                                    } catch (NotCastException e) {
+                                        error_cast((Token)s,val1.getTipo(),val2.getTipo());
+                                        //System.out.println("No se pudo castear el resultado");
+                                        RESULT = val1;
+                                    }
+                                :}
+    |   exp:val1 MENOS:s t:val2 {:
+                                    try {
+                                        String tipo = Operacion.autoCast(val1.getTipo(),TablaSimbolos.MENOS,val2.getTipo());
+                                        Integer result = ((Integer)val1.getValor())-((Integer)val2.getValor());
+                                        RESULT = new Operacion(tipo,result);
+                                    } catch (NotCastException e) {
+                                        error_cast((Token)s,val1.getTipo(),val2.getTipo());
+                                        //System.out.println("No se pudo castear el resultado");
+                                        RESULT = val1;
+                                    }
+                                :}
+    |   t:val   {:
+                    RESULT = val;
+                :}
+    ;
+
+t   ::= t:val1 MUL:s f:val2 {:
+                                try {
+                                    String tipo = Operacion.autoCast(val1.getTipo(),TablaSimbolos.MUL,val2.getTipo());
+                                    Integer result = ((Integer)val1.getValor())*((Integer)val2.getValor());
+                                    RESULT = new Operacion(tipo,result);
+                                } catch (NotCastException e) {
+                                    error_cast((Token)s,val1.getTipo(),val2.getTipo());
+                                    //System.out.println("No se pudo castear el resultado");
+                                    RESULT = val1;
+                                }
+                            :}
+    |   t:val1 DIV:s f:val2 {:
+                                try {
+                                    String tipo = Operacion.autoCast(val1.getTipo(),TablaSimbolos.DIV,val2.getTipo());
+                                    Integer result = ((Integer)val1.getValor())/((Integer)val2.getValor());
+                                    RESULT = new Operacion(tipo,result);
+                                } catch (NotCastException e) {
+                                    error_cast((Token)s,val1.getTipo(),val2.getTipo());
+                                    //System.out.println("No se pudo castear el resultado");
+                                    RESULT = val1;
+                                }
+                            :}
+    |   f:val   {:
+                    RESULT = val;
+                :}
+    ;
+
+f   ::= ID:val      {:
+                        Token token = (Token) val;
+                        FilaTabla simbolo = tablaSimbolos.buscar(token.getLexema());
+                        if(simbolo!=null){
+                            if(simbolo.getValor()!=null){
+                                RESULT = new Operacion(simbolo.getTipo(),simbolo.getValor());
+                            }else{
+                                semantic_error(token, "La variable no esta inicializada");
+                            }
+                        }else{
+                            semantic_error(token, "La variable no esta definida");
+                        }
+                    :}
+    |   ID:id1 PUNTO ID:id2     {:
+                                    RESULT = devolver_val_2Id(id1, id2);
+                                :}
+    |   ID:id1 PUNTO ID:id2 CO_A:ref exp:index CO_C     {:
+                                                            if(index.getValor() instanceof Integer){
+                                                                RESULT = devolver_val_2Id_index(id1, id2, (Integer) index.getValor());
+                                                            }else{
+                                                                semantic_error((Token)ref,"El valor del indice de la lista debe ser un \""+TablaSimbolos.INT+"\"");
+                                                            }
+                                                        :}
+    |   ID:id1 PUNTO ID:id2 CO_A:ref exp:index CO_C PUNTO ID:id3    {:
+                                                                        if(index.getValor() instanceof Integer){
+                                                                            RESULT = devolver_val_3Id(id1, id2, id3, (Integer) index.getValor());
+                                                                        }else{
+                                                                            semantic_error((Token)ref,"El valor del indice de la lista debe ser un \""+TablaSimbolos.INT+"\"");
+                                                                        }
+                                                                    :}
+    |   ENTERO:val  {:
+                        Token token = (Token) val;
+                        RESULT = new Operacion(TablaSimbolos.INT,Integer.parseInt(token.getLexema()));
+                    :}
+    |   STRING:val  {:
+                        Token token = (Token) val;
+                        RESULT = new Operacion(TablaSimbolos.STRING,token.getLexema());
+                    :}
+    |   PA_A exp:val PA_C   {:
+                                RESULT = val;
+                            :}
+    ;
+/*Gramatica para lenguaje HTML*/
+
+html    ::= ME_Q HTML:tagini MA_Q contHTML ME_QB HTML:tagfin MA_Q   {:
+                                                                        tagini.setValorToken("<hmtl>");
+                                                                        tagfin.setValorToken("</hmtl>");
+                                                                    :}
+        |   ME_Q HTML:tagini MA_Q ME_QB HTML:tagfin MA_Q    {:
+                                                                tagini.setValorToken("<hmtl>");
+                                                                tagfin.setValorToken("</hmtl>");
+                                                            :}
+        ;
+
+contHTML    ::= contHTML ME_Q etiquetas
+            |   contHTML TEXT:txt   {:
+                                        txt.setValorToken(txt.getLexema());
+                                    :}
+            |   contHTML D_PA_A varHTML2:var PA_C_D
+            |   ME_Q etiquetas
+            |   TEXT:txt    {:
+                                txt.setValorToken(txt.getLexema());
+                            :}
+            |   D_PA_A varHTML2:var PA_C_D
+            |   contHTML error
+            ;
+
+etiquetas ::=   BR:tag MA_Q     {:
+                                    tag.setValorToken("<br>");
+                                :}
+            |   H1:tagini MA_Q contHTML ME_QB H1:tagfin MA_Q                {:
+                                                                                tagini.setValorToken("<h1>");
+                                                                                tagfin.setValorToken("</h1>");
+                                                                            :}
+            |   H1:tagini MA_Q ME_QB H1:tagfin MA_Q                         {:
+                                                                                tagini.setValorToken("<h1>");
+                                                                                tagfin.setValorToken("</h1>");
+                                                                            :}
+            |   H2:tagini MA_Q contHTML ME_QB H2:tagfin MA_Q                {:
+                                                                                tagini.setValorToken("<h2>");
+                                                                                tagfin.setValorToken("</h2>");
+                                                                            :}
+            |   H2:tagini MA_Q ME_QB H2:tagfin MA_Q                         {:
+                                                                                tagini.setValorToken("<h2>");
+                                                                                tagfin.setValorToken("</h2>");
+                                                                            :}
+            |   TABLE:tagini MA_Q tablec ME_QB TABLE:tagfin MA_Q                {:
+                                                                                    tagini.setValorToken("<table border=\"1\">");
+                                                                                    tagfin.setValorToken("</table>");
+                                                                                :}
+            |   TABLE:tagini MA_Q ME_QB TABLE:tagfin MA_Q                       {:
+                                                                                    tagini.setValorToken("<table border=\"1\">");
+                                                                                    tagfin.setValorToken("</table>");
+                                                                                :}
+            |   FOR:tagini ITERATOR:it DOSPUNTOS ID:var_ite HASTA:has DOSPUNTOS paramhasta:max PUNTOCOMA MA_Q contHTML ME_QB FOR:tagfin MA_Q   {:
+                                                                                                                                                            verificar_tipo_var_for((Token)var_ite,TablaSimbolos.INT);
+                                                                                                                                                            varificar_no_null((Token)var_ite);
+                                                                                                                                                            tagini.setAccion(Token.BUCLE_INI);
+                                                                                                                                                            tagfin.setAccion(Token.BUCLE_FIN);
+                                                                                                                                                            if(max!=null){
+                                                                                                                                                                Token limite = (Token)has;
+                                                                                                                                                                if(max instanceof Integer){
+                                                                                                                                                                    limite.setValorToken(max);
+                                                                                                                                                                }else if(max instanceof FilaTabla){
+                                                                                                                                                                    limite.setValorToken(max);
+                                                                                                                                                                }else{
+                                                                                                                                                                  System.out.println("Analizador sintactico: error al recupera valor maximo de ciclo");
+                                                                                                                                                                }
+                                                                                                                                                            }
+
+                                                                                                                                                        :}
+            |   error MA_Q
+            |   error ME_QB
+            |   error ME_Q
+            ;
+
+tablec  ::= tablec ME_Q tablectag
+        |   ME_Q tablectag
+        |   tablec TEXT:txt         {:
+                                        txt.setValorToken(txt.getLexema());
+                                    :}
+        |   tablec D_PA_A varHTML2:var PA_C_D
+        |   TEXT:txt        {:
+                                txt.setValorToken(txt.getLexema());
+                            :}
+        |   D_PA_A varHTML2:var PA_C_D
+        |   tablec error
+        ;
+
+tablectag   ::= TR:tagini MA_Q trc ME_QB TR:tagfin MA_Q         {:
+                                                                    tagini.setValorToken("<tr>");
+                                                                    tagfin.setValorToken("</tr>");
+                                                                :}
+            |   TR:tagini MA_Q ME_QB TR:tagfin MA_Q             {:
+                                                                    tagini.setValorToken("<tr>");
+                                                                    tagfin.setValorToken("</tr>");
+                                                                :}
+            |   BR:tag MA_Q     {:
+                                    tag.setValorToken("<br>");
+                                :}
+            |   H1:tagini MA_Q contHTML ME_QB H1:tagfin MA_Q                {:
+                                                                                tagini.setValorToken("<h1>");
+                                                                                tagfin.setValorToken("</h1>");
+                                                                            :}
+            |   H1:tagini MA_Q ME_QB H1:tagfin MA_Q                         {:
+                                                                                tagini.setValorToken("<h1>");
+                                                                                tagfin.setValorToken("</h1>");
+                                                                            :}
+            |   H2:tagini MA_Q contHTML ME_QB H2:tagfin MA_Q                {:
+                                                                                tagini.setValorToken("<h2>");
+                                                                                tagfin.setValorToken("</h2>");
+                                                                            :}
+            |   H2:tagini MA_Q ME_QB H2:tagfin MA_Q                         {:
+                                                                                tagini.setValorToken("<h2>");
+                                                                                tagfin.setValorToken("</h2>");
+                                                                            :}
+            |   TABLE:tagini MA_Q tablec ME_QB TABLE:tagfin MA_Q                {:
+                                                                                    tagini.setValorToken("<table border=\"1\">");
+                                                                                    tagfin.setValorToken("</table>");
+                                                                                :}
+            |   TABLE:tagini MA_Q ME_QB TABLE:tagfin MA_Q                       {:
+                                                                                    tagini.setValorToken("<table border=\"1\">");
+                                                                                    tagfin.setValorToken("</table>");
+                                                                                :}
+            |   FOR:tagini ITERATOR:it DOSPUNTOS ID:var_ite HASTA:has DOSPUNTOS paramhasta:max PUNTOCOMA MA_Q tablec ME_QB FOR:tagfin MA_Q   {:
+                                                                                                                                                            verificar_tipo_var_for((Token)var_ite,TablaSimbolos.INT);
+                                                                                                                                                            varificar_no_null((Token)var_ite);
+                                                                                                                                                            tagini.setAccion(Token.BUCLE_INI);
+                                                                                                                                                            tagfin.setAccion(Token.BUCLE_FIN);
+                                                                                                                                                            if(max!=null){
+                                                                                                                                                                Token limite = (Token)has;
+                                                                                                                                                                if(max instanceof Integer){
+                                                                                                                                                                    limite.setValorToken(max);
+                                                                                                                                                                }else if(max instanceof FilaTabla){
+                                                                                                                                                                    limite.setValorToken(max);
+                                                                                                                                                                }else{
+                                                                                                                                                                  System.out.println("Analizador sintactico: error al recupera valor maximo de ciclo");
+                                                                                                                                                                }
+                                                                                                                                                            }
+
+                                                                                                                                                        :}
+            |   error MA_Q
+            |   error ME_QB
+            |   error ME_Q
+            ;
+
+
+
+
+trc ::= trc ME_Q TH:tagini MA_Q contHTML ME_QB TH:tagfin MA_Q   {:
+                                                                    tagini.setValorToken("<th>");
+                                                                    tagfin.setValorToken("</th>");
+                                                                :}
+    |   trc ME_Q TH:tagini MA_Q ME_QB TH:tagfin MA_Q            {:
+                                                                    tagini.setValorToken("<th>");
+                                                                    tagfin.setValorToken("</th>");
+                                                                :}
+    |   trc ME_Q TD:tagini MA_Q contHTML ME_QB TD:tagfin MA_Q   {:
+                                                                    tagini.setValorToken("<td>");
+                                                                    tagfin.setValorToken("</td>");
+                                                                :}
+    |   trc ME_Q TD:tagini MA_Q ME_QB TD:tagfin MA_Q            {:
+                                                                    tagini.setValorToken("<td>");
+                                                                    tagfin.setValorToken("</td>");
+                                                                :}
+    |   ME_Q TH:tagini MA_Q contHTML ME_QB TH:tagfin MA_Q       {:
+                                                                    tagini.setValorToken("<th>");
+                                                                    tagfin.setValorToken("</th>");
+                                                                :}
+    |   ME_Q TH:tagini MA_Q ME_QB TH:tagfin MA_Q                {:
+                                                                    tagini.setValorToken("<th>");
+                                                                    tagfin.setValorToken("</th>");
+                                                                :}
+    |   ME_Q TD:tagini MA_Q contHTML ME_QB TD:tagfin MA_Q       {:
+                                                                    tagini.setValorToken("<td>");
+                                                                    tagfin.setValorToken("</td>");
+                                                                :}
+    |   ME_Q TD:tagini MA_Q ME_QB TD:tagfin MA_Q                {:
+                                                                    tagini.setValorToken("<td>");
+                                                                    tagfin.setValorToken("</td>");
+                                                                :}
+    |   trc error
+    ;
+
+varHTML2    ::= ID:id1  {:
+                            FilaTabla variable = tablaSimbolos.buscar(id1.getLexema());
+                            if(variable==null){
+                              semantic_error(id1,"La variable que desea utilizar no esta definida en el programa");
+                            }
+                            id1.setAccion(Token.CONSULTAR);
+                            verificarUnId(id1);
+                        :}
+            |   ID:id1 PUNTO ID:id2 {:
+                                        verificarDosId(id1,id2);
+                                    :}
+            |   ID:id1 PUNTO ID:id2 CO_A varHTML4:index CO_C    {:
+                                                                    AccesoVariables acc = new AccesoVariables();
+                                                                    verificarDosId_id2Index(id1,id2,acc);
+                                                                    acc.setIndex(index);
+                                                                    id2.setValorToken(acc);    
+                                                                :}
+            |   ID:id1 PUNTO ID:id2 CO_A varHTML4:index CO_C PUNTO ID:id3   {:
+                                                                                AccesoVariables acc = new AccesoVariables();
+                                                                                verificarTresId(id1,id2,id3,acc);
+                                                                                acc.setIndex(index);
+                                                                                id2.setValorToken(acc);
+                                                                            :}
+            |   error PA_C_D
+            |   error ME_QB
+            |   error MA_Q
+            ;
+
+varHTML4    ::= ID:var  {:
+                            verificar_tipo_var_for((Token)var,TablaSimbolos.INT);
+                            varificar_no_null((Token)var);
+                            var.setAccion(Token.IGNORE);
+                            FilaTabla variable = tablaSimbolos.buscar(((Token)var).getLexema());
+                            if(variable!=null){
+                                RESULT = variable;
+                            }
+                        :}
+            |   ENTERO:en           {:
+                                        RESULT = Integer.parseInt(((Token)en).getLexema());
+                                    :}
+            |   error PA_C_D
+            |   error ME_QB
+            |   error MA_Q
+            ;
+
+paramhasta ::=  ID:var  {:
+                            verificar_tipo_var_for((Token)var,TablaSimbolos.INT);
+                            varificar_no_null((Token)var);
+                            FilaTabla variable = tablaSimbolos.buscar(((Token)var).getLexema());
+                            if(variable!=null){
+                              RESULT = variable;
+                            }
+                        :}
+            |   ENTERO:en   {:
+                                RESULT = Integer.parseInt(((Token)en).getLexema());
+                            :}
+            |   error ME_QB
+            |   error MA_Q
+            ;
+
