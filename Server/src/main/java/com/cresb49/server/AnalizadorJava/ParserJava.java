@@ -990,11 +990,19 @@ public class ParserJava extends java_cup.runtime.lr_parser {
     }
 
     public ArrayList<Clase> getClases() {
-        return clases;
+        return this.clases;
     }
 
     public void setClases(ArrayList<Clase> clases) {
         this.clases = clases;
+    }
+
+    public ArrayList<Metodo> getMetodos() {
+        return this.metodos;
+    }
+
+    public void setMetodos(ArrayList<Metodo> metodos) {
+        this.metodos = metodos;
     }
 
     public void report_error(String message, Object info) {
@@ -1100,8 +1108,10 @@ public class ParserJava extends java_cup.runtime.lr_parser {
     private void archivarMetodo(String metodo_constructor,String tipo,ArrayList<FilaTablaSymbolos> parametros,int aux){
         if(parametros!=null){
             System.out.println("Metodo: "+metodo_constructor+" ,Tipo: "+tipo+" ,Parametros: "+parametros.size());
+            this.getMetodos().add(new Metodo(metodo_constructor, tipo, parametros.size()));
         }else{
             System.out.println("Metodo: "+metodo_constructor+" ,Tipo: "+tipo+" ,Parametros: "+aux);
+            this.getMetodos().add(new Metodo(metodo_constructor, tipo,aux));
         }
     }
 
