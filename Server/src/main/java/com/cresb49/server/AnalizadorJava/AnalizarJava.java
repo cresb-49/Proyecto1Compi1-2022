@@ -23,6 +23,7 @@ public class AnalizarJava {
         errores = new ArrayList<>();
         lexerJava = new LexerJava(reader);
         lexerJava.setErrors(errores);
+        lexerJava.setComentarios(comentarios);
         parserJava = new ParserJava(lexerJava);
         parserJava.setClases(clases);
         parserJava.setMetodos(metodos);
