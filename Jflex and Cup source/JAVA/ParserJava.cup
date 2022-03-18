@@ -133,11 +133,12 @@ terminal Token  IMPORT,PUBLIC,PRIVATE,PROTECTED,FINAL,BREAK,RETURN,INT,BOOL,STR,
 
 
 /* Non terminals */
-non terminal                                initJava,importJava,importJavaContenido,importJavaP,metodoP,sentConstru,
-                                            parametrosLlamadaP,parametrosLlamada,classJava,sentencias,metodo,constructorP,declararVariables2,listaVariables3,
+non terminal ArrayList<FilaTablaSymbolos>   initJava,importJava,importJavaContenido,importJavaP,metodoP,sentConstru,
+                                            parametrosLlamadaP,parametrosLlamada,classJava,sentencias,metodo,constructorP,
                                             agregarfor,ciclowhile,condicionalif,constructor,cliclofor,cicloDoWhile,sentanciaSalida,asignacionvariables,
-                                            contenidoSwitch,contenidoSwitch2,condicionalSwitch,llamadaFuncion,listaVariables4;
-non terminal ArrayList<FilaTablaSymbolos>   listaVariables,listaVariables2,declararVariables,contClass,parametros,parametrosP;
+                                            contenidoSwitch,contenidoSwitch2,condicionalSwitch,llamadaFuncion;
+non terminal ArrayList<FilaTablaSymbolos>   listaVariables,listaVariables2,declararVariables,contClass,parametros,parametrosP,declararVariables2,listaVariables3,
+                                            listaVariables4;
 non terminal Token                          visibilidad,tipo;
 
 non terminal                        exp,t,f,g,h,i,j,k,l;
@@ -201,12 +202,12 @@ contClass   ::= contClass:vars declararVariables:vars1 {:RESULT = vars; if(RESUL
             |   error
             ;
 
-constructor ::= PUBLIC ID:constructor PA_A parametros:vars PA_C constructorP {:agregarVariablesTabla("Constructor "+constructor.getLexema(),vars);:}
-            |   PUBLIC ID:constructor PA_A PA_C constructorP {:System.out.println("Constructor: "+constructor.getLexema());:}
+constructor ::= PUBLIC ID:constructor PA_A parametros:vars PA_C constructorP:vars1 {:if(vars!=null){if(vars1!=null){vars.addAll(vars1);}} agregarVariablesTabla("Constructor "+constructor.getLexema(),vars);:}
+            |   PUBLIC ID:constructor PA_A PA_C constructorP:vars1 {:agregarVariablesTabla("Constructor "+constructor.getLexema(),vars1);:}
             ;
 
 constructorP    ::= LLA_A LLA_C
-                |   LLA_A sentConstru LLA_C
+                |   LLA_A sentConstru:vars LLA_C {:RESULT = vars;:}
                 |   error declararVariables
                 |   error metodo
                 |   error constructor
@@ -237,7 +238,7 @@ metodoP     ::= LLA_A sentencias LLA_C
             |   error metodo
             ;
 
-asignacionvariables ::= ID EQUAL exp PUNTOCOMA
+asignacionvariables ::= ID:t EQUAL exp PUNTOCOMA  {:RESULT = new ArrayList<>();RESULT.add(new FilaTablaSymbolos(t.getLexema()));:}
                     ;
 
 declararVariables   ::= visibilidad STATIC FINAL tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);RESULT = vars;:}
@@ -259,39 +260,39 @@ listaVariables2 ::= ID:var EQUAL exp COMA listaVariables2:vars {:RESULT = vars; 
                 ;
 
 
-declararVariables2  ::= FINAL tipo:t listaVariables3 PUNTOCOMA
-                    |   tipo:t listaVariables3 PUNTOCOMA
+declararVariables2  ::= FINAL tipo:t listaVariables3:vars PUNTOCOMA {:asignarTipoVariable(t,vars);RESULT = vars;:}
+                    |   tipo:t listaVariables3:vars PUNTOCOMA {:asignarTipoVariable(t,vars);RESULT = vars;:}
                     ;
 
-listaVariables3 ::= ID:var  {::}
-                |   ID:var EQUAL exp    {::}
-                |   ID:var COMA listaVariables4
-                |   ID:var EQUAL exp COMA listaVariables4
+listaVariables3 ::= ID:var {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}
+                |   ID:var EQUAL exp {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}
+                |   ID:var COMA listaVariables4:vars {:RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}:}
+                |   ID:var EQUAL exp COMA listaVariables4:vars {:RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}:}
                 ;
-listaVariables4 ::= ID:var EQUAL exp COMA listaVariables4
-                |   ID:var COMA listaVariables4
-                |   ID:var EQUAL exp    {::}
-                |   ID:var {::}
+listaVariables4 ::= ID:var EQUAL exp COMA listaVariables4:vars {:RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}:}
+                |   ID:var COMA listaVariables4:vars {:RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}:}
+                |   ID:var EQUAL exp {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}
+                |   ID:var {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}
                 ;
 
 
 
-sentConstru ::= sentConstru llamadaFuncion
-            |   sentConstru condicionalif
-            |   sentConstru ciclowhile
-            |   sentConstru cicloDoWhile
-            |   sentConstru condicionalSwitch
-            |   sentConstru cliclofor
-            |   sentConstru asignacionvariables
-            |   sentConstru declararVariables2
-            |   llamadaFuncion
-            |   condicionalif
-            |   ciclowhile
-            |   cicloDoWhile
-            |   condicionalSwitch
-            |   cliclofor
-            |   asignacionvariables
-            |   declararVariables2
+sentConstru ::= sentConstru:vars llamadaFuncion:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
+            |   sentConstru:vars condicionalif:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
+            |   sentConstru:vars ciclowhile:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
+            |   sentConstru:vars cicloDoWhile:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
+            |   sentConstru:vars condicionalSwitch:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
+            |   sentConstru:vars cliclofor:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
+            |   sentConstru:vars asignacionvariables:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
+            |   sentConstru:vars declararVariables2:vars1 {:RESULT = vars; if(RESULT!=null){if(vars1!=null){RESULT.addAll(vars1);}}:}
+            |   llamadaFuncion:vars {:RESULT = vars;:}
+            |   condicionalif:vars {:RESULT = vars;:}
+            |   ciclowhile:vars {:RESULT = vars;:}
+            |   cicloDoWhile:vars {:RESULT = vars;:}
+            |   condicionalSwitch:vars {:RESULT = vars;:}
+            |   cliclofor:vars {:RESULT = vars;:}
+            |   asignacionvariables:vars {:RESULT = vars;:}
+            |   declararVariables2:vars {:RESULT = vars;:}
             |   sentConstru error
             |   error
             ;
