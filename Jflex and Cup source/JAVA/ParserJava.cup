@@ -233,7 +233,7 @@ metodo      ::= visibilidad tipo ID PA_A PA_C metodoP
             |   visibilidad tipo ID PA_A parametros PA_C metodoP
             ;
 
-metodoP     ::= LLA_A sentencias2 LLA_C
+metodoP     ::= LLA_A sentencias LLA_C
             |   LLA_A LLA_C
             |   error declararVariables
             |   error constructor
