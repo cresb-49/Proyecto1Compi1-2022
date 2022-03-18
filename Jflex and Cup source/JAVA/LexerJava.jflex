@@ -17,6 +17,8 @@ import java_cup.runtime.*;
 
     private int stringColumnInit = 0; 
     private StringBuffer string = new StringBuffer();
+    private StringBuffer coment_simple = new StringBuffer();
+    private StringBuffer coment_multi = new StringBuffer();
     private ArrayList<ErrorAnalisis> errors;
 
     public void setErrors(ArrayList<ErrorAnalisis> errors) {
@@ -60,6 +62,8 @@ Decimal = {Entero}[.]{Entero}
 
 
 %state STRING
+%state COMENTARIO
+%state COMENT_MULTI
 
 %%
 
@@ -227,8 +231,13 @@ Decimal = {Entero}[.]{Entero}
                         //System.out.println("Identificador: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                         return new Symbol(ParserJavaSym.ID,yyline+1,yycolumn+1,this.actual);
                     }
-    {Comment}       {
-                        //System.out.println(yytext());   
+    "/*"            {
+                        yybegin(COMENT_MULTI);
+                        this.coment_multi.setLength(0); 
+                    }
+    "//"            {
+                        yybegin(COMENTARIO);
+                        this.coment_simple.setLength(0); 
                     }
     {Decimal}       {
                         this.actual = new Token(yytext(),new Double(yytext()),yyline+1,yycolumn+1,null,this.anterior);
@@ -413,6 +422,7 @@ Decimal = {Entero}[.]{Entero}
                                         yybegin(YYINITIAL);
                                         this.actual = new Token(string.toString(),string.toString(),yyline+1,yycolumn+1,null,this.anterior);
                                         this.anterior = this.actual;
+                                        //System.out.println(string.toString());
                                         return new Symbol(ParserJavaSym.STRING,yyline+1,yycolumn+1,this.actual); 
                                     }
       [^\n\r\"\\]+                   { string.append( yytext()); }
@@ -424,19 +434,24 @@ Decimal = {Entero}[.]{Entero}
       \\                             { string.append('\\'); }
 }
 
-/*
-<STRING>{
-    [\"]            {
-                        yybegin(YYINITIAL);
-                        this.actual = new Token(string.toString(),string.toString(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
-                        return new Symbol(ParserJavaSym.STRING,yyline+1,yycolumn+1,this.actual);
-                        //System.out.println("String: "+string.toString()+", Linea: "+(yyline+1)+", Columna: "+stringColumnInit);
-                    }
-    [^\n\r\"]+      {
-                        string.append(yytext());
-                    }
-}*/
+<COMENTARIO>    {
+    [\n]                            { 
+                                        yybegin(YYINITIAL);
+                                        System.out.println("Comentario: "+coment_simple.toString());
+                                    }   
+    [^\n\"]+                        { coment_simple.append(yytext());}
+    \"                              { coment_simple.append("”"); }    
+}
+
+<COMENT_MULTI>  {
+    "*/"                            { 
+                                        yybegin(YYINITIAL);
+                                        System.out.println("Comentario: "+coment_multi.toString());   
+                                    }
+    [^*\"]+                         { coment_multi.append(yytext());}
+    \"                              { coment_multi.append("”"); }    
+    [*]                             { coment_multi.append(yytext()); }    
+}
 
 [^]                 { 
                         String des ="El simbolo/cadena no existe en el lenguaje";
