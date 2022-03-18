@@ -92,7 +92,7 @@ parser code {:
             FilaTablaSymbolos fila;
             for (FilaTablaSymbolos var : vars) {
                 var.agregarFuncion(metodo_clase);
-                fila = tablaSimbolos.buscar(var.getNombre());
+                fila = tablaSimbolos.buscarNombreTipo(var.getNombre(),var.getTipo());
                 if(fila == null){
                     tablaSimbolos.getFilas().add(var);
                 }else{

@@ -1042,10 +1042,11 @@ public class ParserJava extends java_cup.runtime.lr_parser {
 
     private void agregarVariablesTabla(String metodo_clase, ArrayList<FilaTablaSymbolos> vars) {
         if(metodo_clase!=null && vars != null){
+            Collections.reverse(vars);
             FilaTablaSymbolos fila;
             for (FilaTablaSymbolos var : vars) {
                 var.agregarFuncion(metodo_clase);
-                fila = tablaSimbolos.buscar(var.getNombre());
+                fila = tablaSimbolos.buscarNombreTipo(var.getNombre(),var.getTipo());
                 if(fila == null){
                     tablaSimbolos.getFilas().add(var);
                 }else{
