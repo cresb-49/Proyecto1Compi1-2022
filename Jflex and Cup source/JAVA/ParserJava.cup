@@ -162,6 +162,10 @@ parser code {:
         }
     }
 
+    private void agregarClase(String lexema) {
+        this.getClases().add(new Clase(lexema));
+    }
+
     protected int error_sync_size() {
 		return 1;
 	}
@@ -232,9 +236,14 @@ tipo        ::= INT:t     {:RESULT = t;:}
             |   OBJ:t     {:RESULT = t;:}
             ;
 
-classJava   ::= visibilidad CLASS ID:clase LLA_A contClass:vars LLA_C {:agregarVariablesTabla("Clase "+clase.getLexema(),vars);:}
+classJava   ::= visibilidad CLASS ID:clase LLA_A contClass:vars LLA_C   {:
+                                                                            agregarClase(clase.getLexema());
+                                                                            agregarVariablesTabla("Clase "+clase.getLexema(),vars);
+                                                                        :}
             |   visibilidad CLASS ID:clase LLA_A LLA_C
-            |   visibilidad FINAL CLASS ID:clase LLA_A contClass:vars LLA_C {:agregarVariablesTabla("Clase "+clase.getLexema(),vars);:}
+            |   visibilidad FINAL CLASS ID:clase LLA_A contClass:vars LLA_C {:
+                                                                                agregarVariablesTabla("Clase "+clase.getLexema(),vars);
+                                                                            :}
             |   visibilidad FINAL CLASS ID:clase LLA_A LLA_C
             ;
 
