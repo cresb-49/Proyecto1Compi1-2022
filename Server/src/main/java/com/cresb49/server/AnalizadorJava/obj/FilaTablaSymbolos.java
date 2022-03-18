@@ -51,11 +51,11 @@ public class FilaTablaSymbolos {
         this.tipo = tipo;
     }
 
-    public ArrayList<String> getValor() {
+    public ArrayList<String> getFunciones() {
         return funciones;
     }
 
-    public void setValor(ArrayList<String> funciones) {
+    public void setFunciones(ArrayList<String> funciones) {
         this.funciones = funciones;
     }
 
@@ -72,6 +72,27 @@ public class FilaTablaSymbolos {
         }
         if(!found){
             this.funciones.add(nombreFuncion);
+        }
+    }
+
+    public void mergueFuncions(ArrayList<String> nuevasFunciones){
+        if(this.funciones == null){
+            this.funciones = new ArrayList<>();
+        }
+        boolean found = false;
+        for (String newfuncion : nuevasFunciones) {
+            found = false;
+            for (String string : this.funciones) {
+                if(newfuncion!=null && string!=null){
+                    if(newfuncion.equals(string)){
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            if(found == false){
+                this.agregarFuncion(newfuncion);
+            }
         }
     }
 
