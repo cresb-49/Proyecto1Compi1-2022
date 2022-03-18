@@ -1070,7 +1070,17 @@ public class ParserJava extends java_cup.runtime.lr_parser {
     }
 
     private ArrayList<FilaTablaSymbolos> retornarDosFuentes(ArrayList<FilaTablaSymbolos> vars, ArrayList<FilaTablaSymbolos> vars1) {
-        
+        if(vars!=null){
+            if(vars1!=null){
+                vars1.addAll(vars);
+                return vars1;
+            }else{
+                return vars;
+            }
+        }else{
+            
+        }
+        return new ArrayList<>();
     }
 
     protected int error_sync_size() {
