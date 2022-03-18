@@ -304,6 +304,7 @@ sentencias  ::= sentencias llamadaFuncion
             ;
 
 sentanciaSalida ::= RETURN exp PUNTOCOMA
+                |   RETURN PUNTOCOMA
                 |   BREAK PUNTOCOMA
                 ;
 
