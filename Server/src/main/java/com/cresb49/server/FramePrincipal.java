@@ -66,7 +66,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
             }
         });
 
-        codigoPrueba.setText("import java.util.*; // comentario simple\nimport java.sql.base1; // Statement,\n\npublic class ejemplo_final{\n\n\tprivate String value; // \"Comentarios\"\n\tprivate boolean valid;\n\t/** * Comentariooo * multilinea*/\n\tpublic boolean parse() {\n\t\tObjeto nuevo_objeto = new Object();\n\t\tSaludar(\"hola \"+” numero: ”+ (55+55));\n\t}\n\tpublic String Saludar(String val) {\n\t\tIf(val!=\"\"){\n\t\t\treturn val; // \"Hola aqui retorno\"}\n\t\t}\n\t}\n}");
+        codigoPrueba.setText("import java.util.*; // comentario simple\nimport java.sql.base1; // Statement,\n\npublic class ejemplo_final{\n\n\tprivate String value; // \"Comentarios\"\n\tprivate boolean valid;\n\t/** * Comentariooo * multilinea*/\n\tpublic boolean parse() {\n\t\tObjeto nuevo_objeto = new Object();\n\t\tSaludar(\"hola \"+\" numero: \"+ (55+55));\n\t}\n\tpublic String Saludar(String val) {\n\t\tIf(val!=\"\"){\n\t\t\treturn val; // \"Hola aqui retorno\"}\n\t\t}\n      \t\twhile(i != 0) {\n\n  \t  \t}\n\t\tdo {\n    \t\t} while(i != 0);\n\t}\n}");
         jScrollPane2.setViewportView(codigoPrueba);
 
         jButton2.setText("Analizar");

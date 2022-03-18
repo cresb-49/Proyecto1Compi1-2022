@@ -141,12 +141,10 @@ terminal Token  IMPORT,PUBLIC,PRIVATE,PROTECTED,FINAL,BREAK,RETURN,INT,BOOL,STR,
 
 
 /* Non terminals */
-non terminal                        initJava,contClass,importJava,importJavaContenido,importJavaP,parametros,parametrosP,metodoP,
-                                    parametrosLlamadaP,parametrosLlamada,
-                                    importJavaContenidoD2,classJava,visibilidad,sentencias,tipo,metodo,sentencias2,constructorP,
-                                    agregarfor,operadorRelacional,sentenciasfor,ciclowhile,sentenciasWhile,condicionalif,constructor,
-                                    cliclofor,cicloDoWhile,sentanciasif,contenidoSwitch,contenidoSwitch2,condicionalSwitch,sentenciasSwitch,
-                                    llamadaFuncion,declararVariables,listaVariables,listaVariables2;
+non terminal                        initJava,contClass,importJava,importJavaContenido,importJavaP,parametros,parametrosP,metodoP,sentConstru,
+                                    parametrosLlamadaP,parametrosLlamada,classJava,visibilidad,sentencias,tipo,metodo,constructorP,
+                                    agregarfor,ciclowhile,condicionalif,constructor,cliclofor,cicloDoWhile,sentanciaSalida,
+                                    contenidoSwitch,contenidoSwitch2,condicionalSwitch,llamadaFuncion,declararVariables,listaVariables,listaVariables2;
 non terminal                        exp,t,f,g,h,i,j,k,l;
 
 /* Inicio de las reglas gramticales*/
@@ -209,7 +207,7 @@ constructor ::= PUBLIC ID PA_A parametros PA_C constructorP
             |   PUBLIC ID PA_A PA_C constructorP
             ;
 constructorP    ::= LLA_A LLA_C
-                |   LLA_A sentencias LLA_C
+                |   LLA_A sentConstru LLA_C
                 |   error declararVariables
                 |   error metodo
                 |   error constructor
@@ -261,12 +259,41 @@ listaVariables2 ::= ID EQUAL exp COMA listaVariables2
                 |   ID 
                 ;
 
-sentencias  ::= sentencias llamadaFuncion
-            |   sentencias condicionalif
+sentConstru ::= sentConstru llamadaFuncion
+            |   sentConstru condicionalif
+            |   sentConstru ciclowhile
+            |   sentConstru cicloDoWhile
+            |   sentConstru condicionalSwitch
+            |   sentConstru cliclofor
             |   llamadaFuncion
             |   condicionalif
+            |   ciclowhile
+            |   cicloDoWhile
+            |   condicionalSwitch
+            |   cliclofor
+            |   sentConstru error
             ;
 
+sentencias  ::= sentencias llamadaFuncion
+            |   sentencias condicionalif
+            |   sentencias ciclowhile
+            |   sentencias cicloDoWhile
+            |   sentencias condicionalSwitch
+            |   sentencias cliclofor
+            |   sentencias sentanciaSalida
+            |   llamadaFuncion
+            |   condicionalif
+            |   ciclowhile
+            |   cicloDoWhile
+            |   condicionalSwitch
+            |   cliclofor
+            |   sentanciaSalida
+            |   sentencias error
+            ;
+
+sentanciaSalida ::= RETURN exp PUNTOCOMA
+                |   BREAK PUNTOCOMA
+                ;
 
 
 llamadaFuncion  ::= ID PA_A PA_C PUNTOCOMA
@@ -281,24 +308,31 @@ parametrosLlamadaP  ::= exp COMA parametrosLlamadaP
                     |   exp
                     ;
 
-cliclofor   ::= FOR PA_A PA_C INT ID EQUAL exp PUNTOCOMA ID operadorRelacional exp PUNTOCOMA ID agregarfor LLA_A LLA_C
-            |   FOR PA_A PA_C INT ID EQUAL exp PUNTOCOMA ID operadorRelacional exp PUNTOCOMA ID agregarfor LLA_A sentenciasfor LLA_C
+cliclofor   ::= FOR PA_A INT ID EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A LLA_C
+            |   FOR PA_A INT ID EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A sentencias LLA_C
+            |   FOR PA_A ID EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A LLA_C
+            |   FOR PA_A ID EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A sentencias LLA_C
+            ;
+
+agregarfor  ::= SUMAR
+            |   RESTAR
+            |   EQUAL exp
             ;
 
 ciclowhile  ::= WHILE PA_A exp PA_C LLA_A LLA_C
-            |   WHILE PA_A exp PA_C LLA_A sentenciasWhile LLA_C
+            |   WHILE PA_A exp PA_C LLA_A sentencias LLA_C
             ;
 
 cicloDoWhile    ::= DO LLA_A LLA_C WHILE PA_A exp PA_C PUNTOCOMA
-                |   DO LLA_A sentenciasWhile LLA_C WHILE PA_A exp PA_C PUNTOCOMA
+                |   DO LLA_A sentencias LLA_C WHILE PA_A exp PA_C PUNTOCOMA
                 ;
 
-condicionalif   ::= IF PA_A exp PA_C LLA_A sentanciasif LLA_C
+condicionalif   ::= IF PA_A exp PA_C LLA_A sentencias LLA_C
                 |   IF PA_A exp PA_C LLA_A LLA_C
-                |   IF PA_A exp PA_C LLA_A sentanciasif LLA_C ELSE LLA_A LLA_C
-                |   IF PA_A exp PA_C LLA_A sentanciasif LLA_C ELSE LLA_A sentanciasif LLA_C
+                |   IF PA_A exp PA_C LLA_A sentencias LLA_C ELSE LLA_A LLA_C
+                |   IF PA_A exp PA_C LLA_A sentencias LLA_C ELSE LLA_A sentencias LLA_C
                 |   IF PA_A exp PA_C LLA_A LLA_C ELSE LLA_A LLA_C
-                |   IF PA_A exp PA_C LLA_A LLA_C ELSE LLA_A sentanciasif LLA_C
+                |   IF PA_A exp PA_C LLA_A LLA_C ELSE LLA_A sentencias LLA_C
                 ;
 
 condicionalSwitch   ::= SWITCH PA_A exp PA_C LLA_A contenidoSwitch LLA_C
@@ -306,35 +340,18 @@ condicionalSwitch   ::= SWITCH PA_A exp PA_C LLA_A contenidoSwitch LLA_C
                     ;
 
 contenidoSwitch ::= CASE exp DOSPUNTOS BREAK PUNTOCOMA
-                |   CASE exp DOSPUNTOS sentenciasSwitch BREAK PUNTOCOMA
-                |   contenidoSwitch2 DEFAULT DOSPUNTOS sentenciasSwitch
+                |   CASE exp DOSPUNTOS sentencias BREAK PUNTOCOMA
+                |   contenidoSwitch2 DEFAULT DOSPUNTOS sentencias
                 |   contenidoSwitch2 DEFAULT DOSPUNTOS 
-                |   contenidoSwitch2 CASE exp DOSPUNTOS sentenciasSwitch BREAK PUNTOCOMA
+                |   contenidoSwitch2 CASE exp DOSPUNTOS sentencias BREAK PUNTOCOMA
                 |   contenidoSwitch2 CASE exp DOSPUNTOS  BREAK PUNTOCOMA
                 ;
 
-contenidoSwitch2    ::= contenidoSwitch2 CASE exp DOSPUNTOS sentenciasSwitch BREAK PUNTOCOMA
+contenidoSwitch2    ::= contenidoSwitch2 CASE exp DOSPUNTOS sentencias BREAK PUNTOCOMA
                     |   contenidoSwitch2 CASE exp DOSPUNTOS BREAK PUNTOCOMA
-                    |   CASE exp DOSPUNTOS sentenciasSwitch BREAK PUNTOCOMA
+                    |   CASE exp DOSPUNTOS sentencias BREAK PUNTOCOMA
                     |   CASE exp DOSPUNTOS BREAK PUNTOCOMA
                     ;
-
-
-
-
-operadorRelacional  ::= MAYOR_QUE
-                    |   MENOR_QUE
-                    |   MENOR_IGUAL
-                    |   MAYOR_IGUAL
-                    |   IGUAL
-                    |   DIFERENTE
-                    ;
-
-
-agregarfor  ::= SUMAR
-            |   RESTAR
-            |   EQUAL exp
-            ;
 
 exp ::= exp OR t
     |   t

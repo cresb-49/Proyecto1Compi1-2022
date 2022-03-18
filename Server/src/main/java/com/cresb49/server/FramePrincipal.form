@@ -104,7 +104,7 @@
               <SubComponents>
                 <Component class="javax.swing.JTextPane" name="codigoPrueba">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="import java.util.*; // comentario simple&#xa;import java.sql.base1; // Statement,&#xa;&#xa;public class ejemplo_final{&#xa;&#xa;&#x9;private String value; // &quot;Comentarios&quot;&#xa;&#x9;private boolean valid;&#xa;&#x9;/** * Comentariooo * multilinea*/&#xa;&#x9;public boolean parse() {&#xa;&#x9;&#x9;Objeto nuevo_objeto = new Object();&#xa;&#x9;&#x9;Saludar(&quot;hola &quot;+&#x201d; numero: &#x201d;+ (55+55));&#xa;&#x9;}&#xa;&#x9;public String Saludar(String val) {&#xa;&#x9;&#x9;If(val!=&quot;&quot;){&#xa;&#x9;&#x9;&#x9;return val; // &quot;Hola aqui retorno&quot;}&#xa;&#x9;&#x9;}&#xa;&#x9;}&#xa;}"/>
+                    <Property name="text" type="java.lang.String" value="import java.util.*; // comentario simple&#xa;import java.sql.base1; // Statement,&#xa;&#xa;public class ejemplo_final{&#xa;&#xa;&#x9;private String value; // &quot;Comentarios&quot;&#xa;&#x9;private boolean valid;&#xa;&#x9;/** * Comentariooo * multilinea*/&#xa;&#x9;public boolean parse() {&#xa;&#x9;&#x9;Objeto nuevo_objeto = new Object();&#xa;&#x9;&#x9;Saludar(&quot;hola &quot;+&quot; numero: &quot;+ (55+55));&#xa;&#x9;}&#xa;&#x9;public String Saludar(String val) {&#xa;&#x9;&#x9;If(val!=&quot;&quot;){&#xa;&#x9;&#x9;&#x9;return val; // &quot;Hola aqui retorno&quot;}&#xa;&#x9;&#x9;}&#xa;      &#x9;&#x9;while(i != 0) {&#xa;&#xa;  &#x9;  &#x9;}&#xa;&#x9;&#x9;do {&#xa;    &#x9;&#x9;} while(i != 0);&#xa;&#x9;}&#xa;}"/>
                   </Properties>
                 </Component>
               </SubComponents>
