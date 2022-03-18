@@ -2698,7 +2698,7 @@ class CUP$ParserJava$actions {
 		int varleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-10)).left;
 		int varright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-10)).right;
 		Token var = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-10)).value;
-
+		RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("cliclofor",16, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-13)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2713,7 +2713,10 @@ class CUP$ParserJava$actions {
 		int varleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-11)).left;
 		int varright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-11)).right;
 		Token var = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-11)).value;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		RESULT = vars; if(RESULT!=null){RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));}else{RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("cliclofor",16, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-14)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2731,7 +2734,10 @@ class CUP$ParserJava$actions {
           case 134: // cliclofor ::= FOR PA_A ID EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A sentencias LLA_C 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("cliclofor",16, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-13)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2776,7 +2782,10 @@ class CUP$ParserJava$actions {
           case 139: // ciclowhile ::= WHILE PA_A exp PA_C LLA_A sentencias LLA_C 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("ciclowhile",13, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-6)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2794,7 +2803,10 @@ class CUP$ParserJava$actions {
           case 141: // cicloDoWhile ::= DO LLA_A sentencias LLA_C WHILE PA_A exp PA_C PUNTOCOMA 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-6)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-6)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-6)).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("cicloDoWhile",17, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-8)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2803,7 +2815,10 @@ class CUP$ParserJava$actions {
           case 142: // condicionalif ::= IF PA_A exp PA_C LLA_A sentencias LLA_C 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("condicionalif",14, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-6)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2821,7 +2836,10 @@ class CUP$ParserJava$actions {
           case 144: // condicionalif ::= IF PA_A exp PA_C LLA_A sentencias LLA_C ELSE LLA_A LLA_C 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("condicionalif",14, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-9)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2830,7 +2848,13 @@ class CUP$ParserJava$actions {
           case 145: // condicionalif ::= IF PA_A exp PA_C LLA_A sentencias LLA_C ELSE LLA_A sentencias LLA_C 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)).value;
+		int vars1left = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int vars1right = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars1 = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		RESULT = vars; if(RESULT!=null){RESULT.addAll(vars1);}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("condicionalif",14, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2848,7 +2872,10 @@ class CUP$ParserJava$actions {
           case 147: // condicionalif ::= IF PA_A exp PA_C LLA_A LLA_C ELSE LLA_A sentencias LLA_C 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("condicionalif",14, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-9)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2857,7 +2884,10 @@ class CUP$ParserJava$actions {
           case 148: // condicionalSwitch ::= SWITCH PA_A exp PA_C LLA_A contenidoSwitch LLA_C 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("condicionalSwitch",22, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-6)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2884,7 +2914,10 @@ class CUP$ParserJava$actions {
           case 151: // contenidoSwitch ::= CASE exp DOSPUNTOS sentencias BREAK PUNTOCOMA 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("contenidoSwitch",20, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2893,7 +2926,13 @@ class CUP$ParserJava$actions {
           case 152: // contenidoSwitch ::= contenidoSwitch2 DEFAULT DOSPUNTOS sentencias 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int vars1left = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).left;
+		int vars1right = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).right;
+		ArrayList<FilaTablaSymbolos> vars1 = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).value;
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars; if(RESULT!=null){RESULT.addAll(vars1);}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("contenidoSwitch",20, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2902,7 +2941,10 @@ class CUP$ParserJava$actions {
           case 153: // contenidoSwitch ::= contenidoSwitch2 DEFAULT DOSPUNTOS 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("contenidoSwitch",20, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2911,7 +2953,13 @@ class CUP$ParserJava$actions {
           case 154: // contenidoSwitch ::= contenidoSwitch2 CASE exp DOSPUNTOS sentencias BREAK PUNTOCOMA 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int vars1left = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-6)).left;
+		int vars1right = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-6)).right;
+		ArrayList<FilaTablaSymbolos> vars1 = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-6)).value;
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).value;
+		RESULT = vars; if(RESULT!=null){RESULT.addAll(vars1);}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("contenidoSwitch",20, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-6)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2920,7 +2968,10 @@ class CUP$ParserJava$actions {
           case 155: // contenidoSwitch ::= contenidoSwitch2 CASE exp DOSPUNTOS BREAK PUNTOCOMA 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("contenidoSwitch",20, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2938,7 +2989,13 @@ class CUP$ParserJava$actions {
           case 157: // contenidoSwitch2 ::= contenidoSwitch2 CASE exp DOSPUNTOS sentencias BREAK PUNTOCOMA 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int vars1left = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-6)).left;
+		int vars1right = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-6)).right;
+		ArrayList<FilaTablaSymbolos> vars1 = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-6)).value;
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).value;
+		RESULT = vars; if(RESULT!=null){RESULT.addAll(vars1);}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("contenidoSwitch2",21, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-6)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2947,7 +3004,10 @@ class CUP$ParserJava$actions {
           case 158: // contenidoSwitch2 ::= contenidoSwitch2 CASE exp DOSPUNTOS BREAK PUNTOCOMA 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("contenidoSwitch2",21, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2956,7 +3016,10 @@ class CUP$ParserJava$actions {
           case 159: // contenidoSwitch2 ::= CASE exp DOSPUNTOS sentencias BREAK PUNTOCOMA 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("contenidoSwitch2",21, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;

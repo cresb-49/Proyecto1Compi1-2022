@@ -337,10 +337,10 @@ parametrosLlamadaP  ::= exp COMA parametrosLlamadaP
                     |   exp
                     ;
 
-cliclofor   ::= FOR PA_A INT:t ID:var EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A LLA_C
-            |   FOR PA_A INT:t ID:var EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A sentencias LLA_C
+cliclofor   ::= FOR PA_A INT:t ID:var EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A LLA_C  {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));:}
+            |   FOR PA_A INT:t ID:var EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A sentencias:vars LLA_C {:RESULT = vars; if(RESULT!=null){RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));}else{RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));}:}
             |   FOR PA_A ID EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A LLA_C
-            |   FOR PA_A ID EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A sentencias LLA_C
+            |   FOR PA_A ID EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A sentencias:vars LLA_C {:RESULT = vars;:}
             ;
 
 agregarfor  ::= SUMAR
@@ -349,37 +349,37 @@ agregarfor  ::= SUMAR
             ;
 
 ciclowhile  ::= WHILE PA_A exp PA_C LLA_A LLA_C
-            |   WHILE PA_A exp PA_C LLA_A sentencias LLA_C
+            |   WHILE PA_A exp PA_C LLA_A sentencias:vars LLA_C {:RESULT = vars;:}
             ;
 
 cicloDoWhile    ::= DO LLA_A LLA_C WHILE PA_A exp PA_C PUNTOCOMA
-                |   DO LLA_A sentencias LLA_C WHILE PA_A exp PA_C PUNTOCOMA
+                |   DO LLA_A sentencias:vars LLA_C WHILE PA_A exp PA_C PUNTOCOMA {:RESULT = vars;:}
                 ;
 
-condicionalif   ::= IF PA_A exp PA_C LLA_A sentencias LLA_C
+condicionalif   ::= IF PA_A exp PA_C LLA_A sentencias:vars LLA_C {:RESULT = vars;:}
                 |   IF PA_A exp PA_C LLA_A LLA_C
-                |   IF PA_A exp PA_C LLA_A sentencias LLA_C ELSE LLA_A LLA_C
-                |   IF PA_A exp PA_C LLA_A sentencias LLA_C ELSE LLA_A sentencias LLA_C
+                |   IF PA_A exp PA_C LLA_A sentencias:vars LLA_C ELSE LLA_A LLA_C {:RESULT = vars;:}
+                |   IF PA_A exp PA_C LLA_A sentencias:vars LLA_C ELSE LLA_A sentencias:vars1 LLA_C {:RESULT = vars; if(RESULT!=null){RESULT.addAll(vars1);}:}
                 |   IF PA_A exp PA_C LLA_A LLA_C ELSE LLA_A LLA_C
-                |   IF PA_A exp PA_C LLA_A LLA_C ELSE LLA_A sentencias LLA_C
+                |   IF PA_A exp PA_C LLA_A LLA_C ELSE LLA_A sentencias:vars LLA_C {:RESULT = vars;:}
                 ;
 
-condicionalSwitch   ::= SWITCH PA_A exp PA_C LLA_A contenidoSwitch LLA_C
+condicionalSwitch   ::= SWITCH PA_A exp PA_C LLA_A contenidoSwitch:vars LLA_C {:RESULT = vars;:}
                     |   SWITCH PA_A exp PA_C LLA_A LLA_C
                     ;
 
 contenidoSwitch ::= CASE exp DOSPUNTOS BREAK PUNTOCOMA
-                |   CASE exp DOSPUNTOS sentencias BREAK PUNTOCOMA
-                |   contenidoSwitch2 DEFAULT DOSPUNTOS sentencias
-                |   contenidoSwitch2 DEFAULT DOSPUNTOS 
-                |   contenidoSwitch2 CASE exp DOSPUNTOS sentencias BREAK PUNTOCOMA
-                |   contenidoSwitch2 CASE exp DOSPUNTOS  BREAK PUNTOCOMA
+                |   CASE exp DOSPUNTOS sentencias:vars BREAK PUNTOCOMA {:RESULT = vars;:}
+                |   contenidoSwitch2:vars1 DEFAULT DOSPUNTOS sentencias:vars {:RESULT = vars; if(RESULT!=null){RESULT.addAll(vars1);}:}
+                |   contenidoSwitch2:vars DEFAULT DOSPUNTOS {:RESULT = vars;:}
+                |   contenidoSwitch2:vars1 CASE exp DOSPUNTOS sentencias:vars BREAK PUNTOCOMA {:RESULT = vars; if(RESULT!=null){RESULT.addAll(vars1);}:}
+                |   contenidoSwitch2:vars CASE exp DOSPUNTOS  BREAK PUNTOCOMA {:RESULT = vars;:}
                 |   error CASE
                 ;
 
-contenidoSwitch2    ::= contenidoSwitch2 CASE exp DOSPUNTOS sentencias BREAK PUNTOCOMA
-                    |   contenidoSwitch2 CASE exp DOSPUNTOS BREAK PUNTOCOMA
-                    |   CASE exp DOSPUNTOS sentencias BREAK PUNTOCOMA
+contenidoSwitch2    ::= contenidoSwitch2:vars1 CASE exp DOSPUNTOS sentencias:vars BREAK PUNTOCOMA {:RESULT = vars; if(RESULT!=null){RESULT.addAll(vars1);}:}
+                    |   contenidoSwitch2:vars CASE exp DOSPUNTOS BREAK PUNTOCOMA {:RESULT = vars;:}
+                    |   CASE exp DOSPUNTOS sentencias:vars BREAK PUNTOCOMA  {:RESULT = vars;:}
                     |   CASE exp DOSPUNTOS BREAK PUNTOCOMA
                     |   error CASE
                     ;
