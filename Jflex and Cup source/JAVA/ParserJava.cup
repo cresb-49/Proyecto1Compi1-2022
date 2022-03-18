@@ -189,10 +189,10 @@ tipo        ::= INT
             |   OBJ
             ;
 
-classJava   ::= visibilidad CLASS:clase ID LLA_A contClass LLA_C        {:System.out.println(clase.getLexema()):}
-            |   visibilidad CLASS:clase ID LLA_A LLA_C                  {:System.out.println(clase.getLexema()):}
-            |   visibilidad FINAL CLASS:clase ID LLA_A contClass LLA_C  {:System.out.println(clase.getLexema()):}
-            |   visibilidad FINAL CLASS:clase ID LLA_A LLA_C            {:System.out.println(clase.getLexema()):}
+classJava   ::= visibilidad CLASS ID:clase LLA_A contClass LLA_C        {:System.out.println(clase.getLexema());:}
+            |   visibilidad CLASS ID:clase LLA_A LLA_C                  {:System.out.println(clase.getLexema());:}
+            |   visibilidad FINAL CLASS ID:clase LLA_A contClass LLA_C  {:System.out.println(clase.getLexema());:}
+            |   visibilidad FINAL CLASS ID:clase LLA_A LLA_C            {:System.out.println(clase.getLexema());:}
             ;
 
 contClass   ::= contClass declararVariables
@@ -204,8 +204,8 @@ contClass   ::= contClass declararVariables
             |   contClass error 
             ;
 
-constructor ::= PUBLIC ID PA_A parametros PA_C constructorP
-            |   PUBLIC ID PA_A PA_C constructorP
+constructor ::= PUBLIC ID:constructor PA_A parametros PA_C constructorP {:System.out.println("Constructor: "+constructor.getLexema());:}
+            |   PUBLIC ID:constructor PA_A PA_C constructorP            {:System.out.println("Constructor: "+constructor.getLexema());:}
             ;
 
 constructorP    ::= LLA_A LLA_C
@@ -229,8 +229,8 @@ parametrosP ::= tipo ID COMA parametrosP
             |   error LLA_C
             ;
 
-metodo      ::= visibilidad tipo ID PA_A PA_C metodoP
-            |   visibilidad tipo ID PA_A parametros PA_C metodoP
+metodo      ::= visibilidad tipo ID:metodo PA_A PA_C metodoP               {:System.out.println("Metodo: "+metodo.getLexema());:}
+            |   visibilidad tipo ID:metodo PA_A parametros PA_C metodoP    {:System.out.println("Metodo: "+metodo.getLexema());:}
             ;
 
 metodoP     ::= LLA_A sentencias LLA_C

@@ -1122,7 +1122,10 @@ class CUP$ParserJava$actions {
           case 22: // classJava ::= visibilidad CLASS ID LLA_A contClass LLA_C 
             {
               Object RESULT =null;
-
+		int claseleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).left;
+		int claseright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).right;
+		Token clase = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).value;
+		System.out.println(clase.getLexema());
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("classJava",11, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -1131,7 +1134,10 @@ class CUP$ParserJava$actions {
           case 23: // classJava ::= visibilidad CLASS ID LLA_A LLA_C 
             {
               Object RESULT =null;
-
+		int claseleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).left;
+		int claseright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).right;
+		Token clase = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).value;
+		System.out.println(clase.getLexema());
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("classJava",11, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -1140,7 +1146,10 @@ class CUP$ParserJava$actions {
           case 24: // classJava ::= visibilidad FINAL CLASS ID LLA_A contClass LLA_C 
             {
               Object RESULT =null;
-
+		int claseleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).left;
+		int claseright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).right;
+		Token clase = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).value;
+		System.out.println(clase.getLexema());
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("classJava",11, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-6)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -1149,7 +1158,10 @@ class CUP$ParserJava$actions {
           case 25: // classJava ::= visibilidad FINAL CLASS ID LLA_A LLA_C 
             {
               Object RESULT =null;
-
+		int claseleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).left;
+		int claseright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).right;
+		Token clase = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).value;
+		System.out.println(clase.getLexema());
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("classJava",11, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -1221,7 +1233,10 @@ class CUP$ParserJava$actions {
           case 33: // constructor ::= PUBLIC ID PA_A parametros PA_C constructorP 
             {
               Object RESULT =null;
-
+		int constructorleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)).left;
+		int constructorright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)).right;
+		Token constructor = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)).value;
+		System.out.println("Constructor: "+constructor.getLexema());
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("constructor",20, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -1230,7 +1245,10 @@ class CUP$ParserJava$actions {
           case 34: // constructor ::= PUBLIC ID PA_A PA_C constructorP 
             {
               Object RESULT =null;
-
+		int constructorleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).left;
+		int constructorright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).right;
+		Token constructor = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).value;
+		System.out.println("Constructor: "+constructor.getLexema());
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("constructor",20, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -1374,7 +1392,10 @@ class CUP$ParserJava$actions {
           case 50: // metodo ::= visibilidad tipo ID PA_A PA_C metodoP 
             {
               Object RESULT =null;
-
+		int metodoleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).left;
+		int metodoright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).right;
+		Token metodo = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).value;
+		System.out.println("Metodo: "+metodo.getLexema());
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("metodo",15, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -1383,7 +1404,10 @@ class CUP$ParserJava$actions {
           case 51: // metodo ::= visibilidad tipo ID PA_A parametros PA_C metodoP 
             {
               Object RESULT =null;
-
+		int metodoleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)).left;
+		int metodoright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)).right;
+		Token metodo = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)).value;
+		System.out.println("Metodo: "+metodo.getLexema());
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("metodo",15, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-6)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
