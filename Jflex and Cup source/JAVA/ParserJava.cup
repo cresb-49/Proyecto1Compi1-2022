@@ -133,6 +133,14 @@ parser code {:
         }
     }
 
+    private void archivarMetodo(String metodo_constructor,String tipo,ArrayList<FilaTablaSymbolos> parametros,int aux){
+        if(parametros!=null){
+            System.out.println("Metodo: "+metodo_constructor+" ,Tipo: "+tipo+" ,Parametros: "+parametros.size());
+        }else{
+            System.out.println("Metodo: "+metodo_constructor+" ,Tipo: "+tipo+" ,Parametros: "+aux);
+        }
+    }
+
     protected int error_sync_size() {
 		return 1;
 	}
@@ -219,8 +227,14 @@ contClass   ::= contClass:vars declararVariables:vars1 {:RESULT = retornarDosFue
             |   error
             ;
 
-constructor ::= PUBLIC ID:constructor PA_A parametros:vars PA_C constructorP:vars1 {:agregarVariablesTabla("Constructor "+constructor.getLexema(),retornarDosFuentes(vars,vars1));:}
-            |   PUBLIC ID:constructor PA_A PA_C constructorP:vars1 {:agregarVariablesTabla("Constructor "+constructor.getLexema(),vars1);:}
+constructor ::= PUBLIC ID:constructor PA_A parametros:vars PA_C constructorP:vars1  {:
+                                                                                        archivarMetodo(constructor.getLexema(),"Constructor",vars,0);
+                                                                                        agregarVariablesTabla("Constructor "+constructor.getLexema(),retornarDosFuentes(vars,vars1));
+                                                                                    :}
+            |   PUBLIC ID:constructor PA_A PA_C constructorP:vars1                  {:
+                                                                                        archivarMetodo(constructor.getLexema(),"Constructor",null,0);
+                                                                                        agregarVariablesTabla("Constructor "+constructor.getLexema(),vars1);
+                                                                                    :}
             ;
 
 constructorP    ::= LLA_A LLA_C
@@ -244,8 +258,14 @@ parametrosP ::= tipo:t ID:var COMA parametrosP:vars {:RESULT = vars;if(RESULT!=n
             |   error LLA_C
             ;
 
-metodo      ::= visibilidad tipo:t ID:metodo PA_A PA_C metodoP:vars  {:agregarVariablesTabla("Metodo "+metodo.getLexema(),vars);:}
-            |   visibilidad tipo:t ID:metodo PA_A parametros:vars PA_C metodoP:vars1 {:agregarVariablesTabla("Metodo "+metodo.getLexema(),retornarDosFuentes(vars,vars1));:}
+metodo      ::= visibilidad tipo:t ID:metodo PA_A PA_C metodoP:vars     {:
+                                                                            archivarMetodo(metodo.getLexema(),t.getLexema(),null,0);
+                                                                            agregarVariablesTabla("Metodo "+metodo.getLexema(),vars);
+                                                                        :}
+            |   visibilidad tipo:t ID:metodo PA_A parametros:vars PA_C metodoP:vars1    {:
+                                                                                            archivarMetodo(metodo.getLexema(),t.getLexema(),vars,0);
+                                                                                            agregarVariablesTabla("Metodo "+metodo.getLexema(),retornarDosFuentes(vars,vars1));
+                                                                                        :}
             ;
 
 metodoP     ::= LLA_A sentencias:vars LLA_C {:RESULT = vars;:}

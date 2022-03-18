@@ -7,6 +7,7 @@ package com.cresb49.server;
 
 import com.cresb49.appcliente.Objetos.CompararProyectos;
 import com.cresb49.server.AnalizadorJava.AnalizarJava;
+import com.cresb49.server.AnalizadorJava.obj.TablaSimbolos;
 import com.cresb49.server.Objetos.AnalizarProyectos;
 import com.cresb49.server.comunicacion.Cliente;
 import com.cresb49.server.comunicacion.Servidor;
@@ -176,7 +177,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
         // TODO add your handling code here:
         //PRUEBAS  DEL ANALIS DE CODIGO JAVA
         AnalizarJava analizarJava = new AnalizarJava();
-        analizarJava.ejecutar(this.codigoPrueba.getText());
+        analizarJava.ejecutar(this.codigoPrueba.getText(),new TablaSimbolos());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

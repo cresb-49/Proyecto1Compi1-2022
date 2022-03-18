@@ -15,13 +15,12 @@ public class AnalizarJava {
     public AnalizarJava() {
     }
 
-    public void ejecutar(String texto){
+    public void ejecutar(String texto,TablaSimbolos tablaSimbolos){
         Reader reader = new StringReader(texto);    
         errores = new ArrayList<>();
         lexerJava = new LexerJava(reader);
         lexerJava.setErrors(errores);
         parserJava = new ParserJava(lexerJava);
-        TablaSimbolos tablaSimbolos = new TablaSimbolos();
         parserJava.setTablasimbolos(tablaSimbolos);
         try {
             parserJava.parse();
@@ -33,8 +32,7 @@ public class AnalizarJava {
         for (ErrorAnalisis errore : errores) {
             System.out.println(errore.toString());
         }
-        //System.err.println("----------------VALORES RECUPERADOS-------------------");
-        parserJava.getTablaSimbolos().imprimirTabla();
+        tablaSimbolos.imprimirTabla();
     }
     
     public ArrayList<ErrorAnalisis> getErrores() {
