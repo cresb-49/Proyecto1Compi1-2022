@@ -142,12 +142,13 @@ terminal Token  IMPORT,PUBLIC,PRIVATE,PROTECTED,FINAL,BREAK,RETURN,INT,BOOL,STR,
 
 /* Non terminals */
 non terminal                        initJava,contClass,importJava,importJavaContenido,importJavaP,parametros,parametrosP,metodoP,
+                                    parametrosLlamadaP,parametrosLlamada,
                                     importJavaContenidoD2,classJava,visibilidad,sentencias,tipo,metodo,sentencias2,constructorP,
                                     agregarfor,operadorRelacional,sentenciasfor,ciclowhile,sentenciasWhile,condicionalif,constructor,
                                     cliclofor,cicloDoWhile,sentanciasif,contenidoSwitch,contenidoSwitch2,condicionalSwitch,sentenciasSwitch,
                                     llamadaFuncion,declararVariables,listaVariables,listaVariables2;
-non terminal                        t,f,exp;
-non terminal                        tBool,fBool,expBool,eBool,gBool,hBool;
+non terminal                        exp,t,f,g,h,i,j,k,l;
+
 /* Inicio de las reglas gramticales*/
 initJava    ::= initJava classJava  {:
                                         System.out.println("Ejecute class java");
@@ -260,34 +261,44 @@ listaVariables2 ::= ID EQUAL exp COMA listaVariables2
                 |   ID 
                 ;
 
-sentencias  ::= sentencias
-            |   
+sentencias  ::= sentencias llamadaFuncion
+            |   sentencias condicionalif
+            |   llamadaFuncion
+            |   condicionalif
             ;
 
 
 
 llamadaFuncion  ::= ID PA_A PA_C PUNTOCOMA
-                |   ID PA_A PA_C PUNTOCOMA
+                |   ID PA_A parametrosLlamada PA_C PUNTOCOMA
                 ;
+
+parametrosLlamada   ::= exp
+                    |   exp COMA parametrosLlamadaP
+                    ;
+
+parametrosLlamadaP  ::= exp COMA parametrosLlamadaP
+                    |   exp
+                    ;
 
 cliclofor   ::= FOR PA_A PA_C INT ID EQUAL exp PUNTOCOMA ID operadorRelacional exp PUNTOCOMA ID agregarfor LLA_A LLA_C
             |   FOR PA_A PA_C INT ID EQUAL exp PUNTOCOMA ID operadorRelacional exp PUNTOCOMA ID agregarfor LLA_A sentenciasfor LLA_C
             ;
 
-ciclowhile  ::= WHILE PA_A expBool PA_C LLA_A LLA_C
-            |   WHILE PA_A expBool PA_C LLA_A sentenciasWhile LLA_C
+ciclowhile  ::= WHILE PA_A exp PA_C LLA_A LLA_C
+            |   WHILE PA_A exp PA_C LLA_A sentenciasWhile LLA_C
             ;
 
-cicloDoWhile    ::= DO LLA_A LLA_C WHILE PA_A expBool PA_C PUNTOCOMA
-                |   DO LLA_A sentenciasWhile LLA_C WHILE PA_A expBool PA_C PUNTOCOMA
+cicloDoWhile    ::= DO LLA_A LLA_C WHILE PA_A exp PA_C PUNTOCOMA
+                |   DO LLA_A sentenciasWhile LLA_C WHILE PA_A exp PA_C PUNTOCOMA
                 ;
 
-condicionalif   ::= IF PA_A expBool PA_C LLA_A sentanciasif LLA_C
-                |   IF PA_A expBool PA_C LLA_A LLA_C
-                |   IF PA_A expBool PA_C LLA_A sentanciasif LLA_C ELSE LLA_A LLA_C
-                |   IF PA_A expBool PA_C LLA_A sentanciasif LLA_C ELSE LLA_A sentanciasif LLA_C
-                |   IF PA_A expBool PA_C LLA_A LLA_C ELSE LLA_A LLA_C
-                |   IF PA_A expBool PA_C LLA_A LLA_C ELSE LLA_A sentanciasif LLA_C
+condicionalif   ::= IF PA_A exp PA_C LLA_A sentanciasif LLA_C
+                |   IF PA_A exp PA_C LLA_A LLA_C
+                |   IF PA_A exp PA_C LLA_A sentanciasif LLA_C ELSE LLA_A LLA_C
+                |   IF PA_A exp PA_C LLA_A sentanciasif LLA_C ELSE LLA_A sentanciasif LLA_C
+                |   IF PA_A exp PA_C LLA_A LLA_C ELSE LLA_A LLA_C
+                |   IF PA_A exp PA_C LLA_A LLA_C ELSE LLA_A sentanciasif LLA_C
                 ;
 
 condicionalSwitch   ::= SWITCH PA_A exp PA_C LLA_A contenidoSwitch LLA_C
@@ -309,41 +320,7 @@ contenidoSwitch2    ::= contenidoSwitch2 CASE exp DOSPUNTOS sentenciasSwitch BRE
                     ;
 
 
-expBool ::= NOT expBool
-        |   tBool
-        ;
 
-tBool   ::= tBool MENOR_QUE fBool
-        |   tBool MAYOR_QUE fBool
-        |   tBool MENOR_IGUAL fBool
-        |   tBool MAYOR_QUE fBool
-        |   fBool 
-        ;
-
-fBool   ::= fBool DIFERENTE eBool
-        |   fBool IGUAL eBool
-        |   eBool
-        ;
-
-eBool   ::= eBool AND gBool
-        |   gBool
-        ;
-
-gBool   ::= gBool OR hBool
-        |   hBool
-        ;
-hBool   ::= TRUE
-        |   FALSE
-        |   ID
-        |   ENTERO
-        |   DECIMAL
-        |   PA_A expBool PA_C
-        ;
-
-agregarfor  ::= SUMAR
-            |   RESTAR
-            |   EQUAL exp
-            ;
 
 operadorRelacional  ::= MAYOR_QUE
                     |   MENOR_QUE
@@ -353,17 +330,56 @@ operadorRelacional  ::= MAYOR_QUE
                     |   DIFERENTE
                     ;
 
-exp ::= exp MAS t
-    |   exp MENOS t
+
+agregarfor  ::= SUMAR
+            |   RESTAR
+            |   EQUAL exp
+            ;
+
+exp ::= exp OR t
     |   t
     ;
 
-t   ::= t MUL f
-    |   t DIV f
+t   ::= t AND f
     |   f
     ;
 
-f   ::= ID
+f   ::= f IGUAL g
+    |   f DIFERENTE g
+    |   g
+    ;
+
+g   ::= g MENOR_QUE h
+    |   g MAYOR_QUE h
+    |   g MAYOR_IGUAL h
+    |   g MENOR_IGUAL h
+    |   h
+    ;
+
+h   ::= h MAS i
+    |   h MENOS i
+    |   i
+    ;
+
+i   ::= i MUL j
+    |   i DIV j
+    |   j
+    ;
+
+j   ::= NOT k
+    |   MENOS k
+    |   MAS k
+    |   k
+    ;
+
+k   ::= l SUMAR
+    |   l RESTAR
+    |   l
+    ;
+
+l   ::= ID
+    |   TRUE
+    |   FALSE
     |   DECIMAL
     |   ENTERO
     |   STRING
