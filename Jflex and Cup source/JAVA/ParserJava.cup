@@ -1,9 +1,9 @@
 package com.cresb49.server.AnalizadorJava;
 
-import com.cresb49.server.AnalizadorJava.obj.FilaTabla;
-import com.cresb49.server.AnalizadorJava.obj.TablaSimbolos;
+import com.cresb49.server.AnalizadorJava.obj.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java_cup.runtime.*;
 
 class ParserJava;
@@ -79,49 +79,35 @@ parser code {:
         }
     }
 
-
-    private void verificar_def_var(Token token,String tipo) {
-       FilaTabla fila = tablaSimbolos.buscar(token.getLexema());
-        if(fila==null){
-            tablaSimbolos.getFilas().add(new FilaTabla(token.getLexema(),tipo,null));
-        }else{
-            semantic_error(token,"La variable ya a sido definida con anterioridad");
-        }
-    }
-
-    private void asig_val_var(Token identificador,String tipo,Object value) {
-       FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
-        if(fila==null){
-            semantic_error(identificador,"La variable a la que le quiere asignar valor no esta definida");
-        }else{
-            if(fila.getTipo().equals(tipo)){
-              fila.setValor(value);
-            }else{
-                semantic_error(identificador,"La variable es de tipo: \""+fila.getTipo()+"\", no puede asignar un \""+tipo+"\"");
-            }
-        }
-    }
-
-    private void create_var_asig_val(Token identificador,String tipo_id,String tipo_value,Object value) {
-       FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
-        if(fila==null){
-            if(tipo_id.equals(tipo_value)){
-                tablaSimbolos.getFilas().add(new FilaTabla(identificador.getLexema(),tipo_id,value));
-            }else{
-                semantic_error(identificador,"La variable es de tipo: \""+tipo_id+"\", no puede asignar un \""+tipo_value+"\"");
-            }
-        }else{
-            semantic_error(identificador,"La variable ya a sido definida con anterioridad");
-            //semantic_error(identificador,"El valor que se desea dar a la variable de de tipo \"\" y la variable es de tipo \"\"");
-        }
-    }
-
     private void error_cast(Token operador,String tipo1,String tipo2){
         semantic_error(operador,"No se puede operar un valor: \""+tipo1+"\" con un valor:\""+tipo2+"\"");
     }
 
     private void semantic_error(Token token,String contexto) {
         this.lexerJava.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,token.getLexema(), token.getLinea(), token.getColumna(), contexto));
+    }
+
+    private void agregarVariablesTabla(Token t, ArrayList<String> vars) {
+        if(t !=null && vars!=null){
+            Collections.reverse(vars);
+            FilaTablaSymbolos fila;
+            for (String var : vars) {
+                  fila = this.tablaSimbolos.buscar(var);
+                  if(fila==null){
+                      this.tablaSimbolos.getFilas().add(new FilaTablaSymbolos(var, t.getLexema(), null));
+                  }
+            }
+        }
+    }
+
+    private void asignarTipoVariable(Token t, ArrayList<FilaTablaSymbolos> vars) {
+        if(t!=null && vars!=null){
+            for (FilaTablaSymbolos var : vars) {
+                if(var!=null){
+                    var.setTipo(t.getLexema());
+                }
+            }
+        }
     }
 
     protected int error_sync_size() {
@@ -141,12 +127,12 @@ terminal Token  IMPORT,PUBLIC,PRIVATE,PROTECTED,FINAL,BREAK,RETURN,INT,BOOL,STR,
 
 
 /* Non terminals */
-non terminal                        initJava,contClass,importJava,importJavaContenido,importJavaP,parametros,parametrosP,metodoP,sentConstru,
-                                    parametrosLlamadaP,parametrosLlamada,classJava,sentencias,metodo,constructorP,declararVariables2,listaVariables3,
-                                    agregarfor,ciclowhile,condicionalif,constructor,cliclofor,cicloDoWhile,sentanciaSalida,asignacionvariables,
-                                    contenidoSwitch,contenidoSwitch2,condicionalSwitch,llamadaFuncion,declararVariables,listaVariables,listaVariables2,
-                                    listaVariables4;
-non terminal Token                  visibilidad,tipo;
+non terminal                                initJava,contClass,importJava,importJavaContenido,importJavaP,parametros,parametrosP,metodoP,sentConstru,
+                                            parametrosLlamadaP,parametrosLlamada,classJava,sentencias,metodo,constructorP,declararVariables2,listaVariables3,
+                                            agregarfor,ciclowhile,condicionalif,constructor,cliclofor,cicloDoWhile,sentanciaSalida,asignacionvariables,
+                                            contenidoSwitch,contenidoSwitch2,condicionalSwitch,llamadaFuncion,listaVariables4;
+non terminal ArrayList<FilaTablaSymbolos>   listaVariables,listaVariables2,declararVariables;
+non terminal Token                          visibilidad,tipo;
 
 non terminal                        exp,t,f,g,h,i,j,k,l;
 
@@ -220,15 +206,15 @@ constructorP    ::= LLA_A LLA_C
                 |   error constructor
                 ;
 
-parametros  ::= tipo ID
-            |   tipo ID COMA parametrosP
+parametros  ::= tipo:t ID:var
+            |   tipo:t ID:var COMA parametrosP
             |   error PA_C
             |   error LLA_A
             |   error LLA_C
             ;
 
-parametrosP ::= tipo ID COMA parametrosP
-            |   tipo ID
+parametrosP ::= tipo:t ID:var COMA parametrosP
+            |   tipo:t ID:var
             |   error PA_C
             |   error LLA_A
             |   error LLA_C
@@ -248,22 +234,22 @@ metodoP     ::= LLA_A sentencias LLA_C
 asignacionvariables ::= ID EQUAL exp PUNTOCOMA
                     ;
 
-declararVariables   ::= visibilidad STATIC FINAL tipo:t listaVariables PUNTOCOMA
-                    |   visibilidad STATIC tipo:t listaVariables PUNTOCOMA
-                    |   visibilidad FINAL tipo:t listaVariables PUNTOCOMA
-                    |   visibilidad tipo:t listaVariables PUNTOCOMA
-                    |   tipo:t listaVariables PUNTOCOMA
+declararVariables   ::= visibilidad STATIC FINAL tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);:}
+                    |   visibilidad STATIC tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);:}
+                    |   visibilidad FINAL tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);:}
+                    |   visibilidad tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);:}
+                    |   tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);:}
                     ;
 
-listaVariables  ::= ID:var
-                |   ID:var EQUAL exp
-                |   ID:var COMA listaVariables2
-                |   ID:var EQUAL exp COMA listaVariables2
+listaVariables  ::= ID:var {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}
+                |   ID:var EQUAL exp {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}
+                |   ID:var COMA listaVariables2:vars {:RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}:}
+                |   ID:var EQUAL exp COMA listaVariables2:vars {:RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}:}
                 ;
-listaVariables2 ::= ID:var EQUAL exp COMA listaVariables2
-                |   ID:var COMA listaVariables2
-                |   ID:var EQUAL exp    {::}
-                |   ID:var {::}
+listaVariables2 ::= ID:var EQUAL exp COMA listaVariables2:vars {:RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}:}
+                |   ID:var COMA listaVariables2:vars {:RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}:}
+                |   ID:var EQUAL exp {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}
+                |   ID:var {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}
                 ;
 
 

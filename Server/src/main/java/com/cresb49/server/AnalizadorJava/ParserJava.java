@@ -5,9 +5,9 @@
 
 package com.cresb49.server.AnalizadorJava;
 
-import com.cresb49.server.AnalizadorJava.obj.FilaTabla;
-import com.cresb49.server.AnalizadorJava.obj.TablaSimbolos;
+import com.cresb49.server.AnalizadorJava.obj.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java_cup.runtime.*;
 import java_cup.runtime.XMLElement;
 
@@ -53,13 +53,13 @@ public class ParserJava extends java_cup.runtime.lr_parser {
     "\010\004\000\002\010\004\000\002\017\010\000\002\017" +
     "\011\000\002\011\005\000\002\011\004\000\002\011\004" +
     "\000\002\011\004\000\002\011\004\000\002\032\006\000" +
-    "\002\037\010\000\002\037\007\000\002\037\007\000\002" +
-    "\037\006\000\002\037\005\000\002\040\003\000\002\040" +
+    "\002\042\010\000\002\042\007\000\002\042\007\000\002" +
+    "\042\006\000\002\042\005\000\002\040\003\000\002\040" +
     "\005\000\002\040\005\000\002\040\007\000\002\041\007" +
     "\000\002\041\005\000\002\041\005\000\002\041\003\000" +
     "\002\021\006\000\002\021\005\000\002\022\003\000\002" +
-    "\022\005\000\002\022\005\000\002\022\007\000\002\042" +
-    "\007\000\002\042\005\000\002\042\005\000\002\042\003" +
+    "\022\005\000\002\022\005\000\002\022\007\000\002\037" +
+    "\007\000\002\037\005\000\002\037\005\000\002\037\003" +
     "\000\002\012\004\000\002\012\004\000\002\012\004\000" +
     "\002\012\004\000\002\012\004\000\002\012\004\000\002" +
     "\012\004\000\002\012\004\000\002\012\003\000\002\012" +
@@ -716,9 +716,9 @@ public class ParserJava extends java_cup.runtime.lr_parser {
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\016\003\025\017\037\026\027\037\033\043" +
+    "\001\001\000\016\003\025\017\037\026\027\042\033\043" +
     "\031\044\036\001\001\000\002\001\001\000\002\001\001" +
-    "\000\014\017\u0161\026\u015d\037\u015e\043\031\044\036\001" +
+    "\000\014\017\u0161\026\u015d\042\u015e\043\031\044\036\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\004\044\150\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\004\040\042" +
@@ -765,7 +765,7 @@ public class ParserJava extends java_cup.runtime.lr_parser {
     "\001\001\000\002\001\001\000\006\007\163\044\162\001" +
     "\001\000\004\011\u0133\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\004\011\167\001\001\000" +
-    "\014\017\u0124\026\u0122\037\u0123\043\031\044\036\001\001" +
+    "\014\017\u0124\026\u0122\042\u0123\043\031\044\036\001\001" +
     "\000\030\016\173\021\213\024\207\025\170\027\177\030" +
     "\212\031\203\032\200\035\215\036\175\044\172\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
@@ -806,13 +806,13 @@ public class ParserJava extends java_cup.runtime.lr_parser {
     "\252\024\247\025\241\027\244\030\251\031\246\032\245" +
     "\035\253\036\243\044\172\001\001\000\002\001\001\000" +
     "\004\022\272\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\004\042\310\001\001\000\024\045" +
+    "\000\002\001\001\000\004\037\310\001\001\000\024\045" +
     "\276\046\055\047\066\050\065\051\063\052\062\053\061" +
-    "\054\060\055\057\001\001\000\002\001\001\000\004\042" +
+    "\054\060\055\057\001\001\000\002\001\001\000\004\037" +
     "\301\001\001\000\002\001\001\000\002\001\001\000\004" +
-    "\042\307\001\001\000\024\045\304\046\055\047\066\050" +
+    "\037\307\001\001\000\024\045\304\046\055\047\066\050" +
     "\065\051\063\052\062\053\061\054\060\055\057\001\001" +
-    "\000\002\001\001\000\004\042\306\001\001\000\002\001" +
+    "\000\002\001\001\000\004\037\306\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\030\016\314\021\213\024\207\025\170\027\177\030" +
     "\212\031\203\032\200\035\215\036\175\044\172\001\001" +
@@ -894,7 +894,7 @@ public class ParserJava extends java_cup.runtime.lr_parser {
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\006\007\u013f\044\162\001\001\000" +
     "\004\020\u015c\001\001\000\002\001\001\000\004\020\u0141" +
-    "\001\001\000\002\001\001\000\014\017\u015b\026\u0159\037" +
+    "\001\001\000\002\001\001\000\014\017\u015b\026\u0159\042" +
     "\u015a\043\031\044\036\001\001\000\026\012\u0149\021\u014d" +
     "\024\u014a\025\u0144\027\u0148\030\u014b\032\u0147\035\u014e\036" +
     "\u0146\044\172\001\001\000\002\001\001\000\002\001\001" +
@@ -908,9 +908,9 @@ public class ParserJava extends java_cup.runtime.lr_parser {
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\016\003\u0164\017\037\026\027\037" +
+    "\000\002\001\001\000\016\003\u0164\017\037\026\027\042" +
     "\033\043\031\044\036\001\001\000\014\017\u0161\026\u015d" +
-    "\037\u015e\043\031\044\036\001\001\000\002\001\001\000" +
+    "\042\u015e\043\031\044\036\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\004\005\u016c\001\001\000" +
     "\002\001\001\000\002\001\001\000\004\004\u0171\001\001" +
@@ -1032,49 +1032,35 @@ public class ParserJava extends java_cup.runtime.lr_parser {
         }
     }
 
-
-    private void verificar_def_var(Token token,String tipo) {
-       FilaTabla fila = tablaSimbolos.buscar(token.getLexema());
-        if(fila==null){
-            tablaSimbolos.getFilas().add(new FilaTabla(token.getLexema(),tipo,null));
-        }else{
-            semantic_error(token,"La variable ya a sido definida con anterioridad");
-        }
-    }
-
-    private void asig_val_var(Token identificador,String tipo,Object value) {
-       FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
-        if(fila==null){
-            semantic_error(identificador,"La variable a la que le quiere asignar valor no esta definida");
-        }else{
-            if(fila.getTipo().equals(tipo)){
-              fila.setValor(value);
-            }else{
-                semantic_error(identificador,"La variable es de tipo: \""+fila.getTipo()+"\", no puede asignar un \""+tipo+"\"");
-            }
-        }
-    }
-
-    private void create_var_asig_val(Token identificador,String tipo_id,String tipo_value,Object value) {
-       FilaTabla fila = tablaSimbolos.buscar(identificador.getLexema());
-        if(fila==null){
-            if(tipo_id.equals(tipo_value)){
-                tablaSimbolos.getFilas().add(new FilaTabla(identificador.getLexema(),tipo_id,value));
-            }else{
-                semantic_error(identificador,"La variable es de tipo: \""+tipo_id+"\", no puede asignar un \""+tipo_value+"\"");
-            }
-        }else{
-            semantic_error(identificador,"La variable ya a sido definida con anterioridad");
-            //semantic_error(identificador,"El valor que se desea dar a la variable de de tipo \"\" y la variable es de tipo \"\"");
-        }
-    }
-
     private void error_cast(Token operador,String tipo1,String tipo2){
         semantic_error(operador,"No se puede operar un valor: \""+tipo1+"\" con un valor:\""+tipo2+"\"");
     }
 
     private void semantic_error(Token token,String contexto) {
         this.lexerJava.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,token.getLexema(), token.getLinea(), token.getColumna(), contexto));
+    }
+
+    private void agregarVariablesTabla(Token t, ArrayList<String> vars) {
+        if(t !=null && vars!=null){
+            Collections.reverse(vars);
+            FilaTablaSymbolos fila;
+            for (String var : vars) {
+                  fila = this.tablaSimbolos.buscar(var);
+                  if(fila==null){
+                      this.tablaSimbolos.getFilas().add(new FilaTablaSymbolos(var, t.getLexema(), null));
+                  }
+            }
+        }
+    }
+
+    private void asignarTipoVariable(Token t, ArrayList<FilaTablaSymbolos> vars) {
+        if(t!=null && vars!=null){
+            for (FilaTablaSymbolos var : vars) {
+                if(var!=null){
+                    var.setTipo(t.getLexema());
+                }
+            }
+        }
     }
 
     protected int error_sync_size() {
@@ -1551,6 +1537,12 @@ class CUP$ParserJava$actions {
           case 43: // parametros ::= tipo ID 
             {
               Object RESULT =null;
+		int tleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int tright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		Token t = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		int varleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int varright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		Token var = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
 
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("parametros",5, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
@@ -1560,6 +1552,12 @@ class CUP$ParserJava$actions {
           case 44: // parametros ::= tipo ID COMA parametrosP 
             {
               Object RESULT =null;
+		int tleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).left;
+		int tright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).right;
+		Token t = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).value;
+		int varleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).left;
+		int varright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).right;
+		Token var = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).value;
 
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("parametros",5, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
@@ -1596,6 +1594,12 @@ class CUP$ParserJava$actions {
           case 48: // parametrosP ::= tipo ID COMA parametrosP 
             {
               Object RESULT =null;
+		int tleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).left;
+		int tright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).right;
+		Token t = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)).value;
+		int varleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).left;
+		int varright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).right;
+		Token var = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).value;
 
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("parametrosP",6, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
@@ -1605,6 +1609,12 @@ class CUP$ParserJava$actions {
           case 49: // parametrosP ::= tipo ID 
             {
               Object RESULT =null;
+		int tleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int tright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		Token t = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		int varleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int varright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		Token var = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
 
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("parametrosP",6, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
@@ -1724,71 +1734,86 @@ class CUP$ParserJava$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 61: // declararVariables ::= visibilidad STATIC FINAL tipo listaVariables PUNTOCOMA 
             {
-              Object RESULT =null;
+              ArrayList<FilaTablaSymbolos> RESULT =null;
 		int tleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).left;
 		int tright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).right;
 		Token t = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).value;
-
-              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("declararVariables",29, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		asignarTipoVariable(t,vars);
+              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("declararVariables",32, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 62: // declararVariables ::= visibilidad STATIC tipo listaVariables PUNTOCOMA 
             {
-              Object RESULT =null;
+              ArrayList<FilaTablaSymbolos> RESULT =null;
 		int tleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).left;
 		int tright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).right;
 		Token t = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).value;
-
-              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("declararVariables",29, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		asignarTipoVariable(t,vars);
+              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("declararVariables",32, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 63: // declararVariables ::= visibilidad FINAL tipo listaVariables PUNTOCOMA 
             {
-              Object RESULT =null;
+              ArrayList<FilaTablaSymbolos> RESULT =null;
 		int tleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).left;
 		int tright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).right;
 		Token t = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).value;
-
-              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("declararVariables",29, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		asignarTipoVariable(t,vars);
+              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("declararVariables",32, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 64: // declararVariables ::= visibilidad tipo listaVariables PUNTOCOMA 
             {
-              Object RESULT =null;
+              ArrayList<FilaTablaSymbolos> RESULT =null;
 		int tleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).left;
 		int tright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).right;
 		Token t = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).value;
-
-              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("declararVariables",29, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		asignarTipoVariable(t,vars);
+              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("declararVariables",32, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 65: // declararVariables ::= tipo listaVariables PUNTOCOMA 
             {
-              Object RESULT =null;
+              ArrayList<FilaTablaSymbolos> RESULT =null;
 		int tleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).left;
 		int tright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).right;
 		Token t = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).value;
-
-              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("declararVariables",29, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		asignarTipoVariable(t,vars);
+              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("declararVariables",32, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 66: // listaVariables ::= ID 
             {
-              Object RESULT =null;
+              ArrayList<FilaTablaSymbolos> RESULT =null;
 		int varleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
 		int varright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
 		Token var = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
-
+		RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("listaVariables",30, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -1796,11 +1821,11 @@ class CUP$ParserJava$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 67: // listaVariables ::= ID EQUAL exp 
             {
-              Object RESULT =null;
+              ArrayList<FilaTablaSymbolos> RESULT =null;
 		int varleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).left;
 		int varright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).right;
 		Token var = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).value;
-
+		RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("listaVariables",30, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -1808,11 +1833,14 @@ class CUP$ParserJava$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 68: // listaVariables ::= ID COMA listaVariables2 
             {
-              Object RESULT =null;
+              ArrayList<FilaTablaSymbolos> RESULT =null;
 		int varleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).left;
 		int varright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).right;
 		Token var = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).value;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("listaVariables",30, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -1820,11 +1848,14 @@ class CUP$ParserJava$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 69: // listaVariables ::= ID EQUAL exp COMA listaVariables2 
             {
-              Object RESULT =null;
+              ArrayList<FilaTablaSymbolos> RESULT =null;
 		int varleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)).left;
 		int varright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)).right;
 		Token var = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)).value;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("listaVariables",30, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -1832,11 +1863,14 @@ class CUP$ParserJava$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 70: // listaVariables2 ::= ID EQUAL exp COMA listaVariables2 
             {
-              Object RESULT =null;
+              ArrayList<FilaTablaSymbolos> RESULT =null;
 		int varleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)).left;
 		int varright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)).right;
 		Token var = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)).value;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("listaVariables2",31, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -1844,11 +1878,14 @@ class CUP$ParserJava$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 71: // listaVariables2 ::= ID COMA listaVariables2 
             {
-              Object RESULT =null;
+              ArrayList<FilaTablaSymbolos> RESULT =null;
 		int varleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).left;
 		int varright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).right;
 		Token var = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).value;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
+		RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("listaVariables2",31, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -1856,11 +1893,11 @@ class CUP$ParserJava$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 72: // listaVariables2 ::= ID EQUAL exp 
             {
-              Object RESULT =null;
+              ArrayList<FilaTablaSymbolos> RESULT =null;
 		int varleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).left;
 		int varright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).right;
 		Token var = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).value;
-		
+		RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("listaVariables2",31, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -1868,11 +1905,11 @@ class CUP$ParserJava$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 73: // listaVariables2 ::= ID 
             {
-              Object RESULT =null;
+              ArrayList<FilaTablaSymbolos> RESULT =null;
 		int varleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
 		int varright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
 		Token var = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
-		
+		RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("listaVariables2",31, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -1957,7 +1994,7 @@ class CUP$ParserJava$actions {
 		int varright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)).right;
 		Token var = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)).value;
 
-              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("listaVariables4",32, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
+              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("listaVariables4",29, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
 
@@ -1969,7 +2006,7 @@ class CUP$ParserJava$actions {
 		int varright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).right;
 		Token var = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).value;
 
-              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("listaVariables4",32, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
+              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("listaVariables4",29, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
 
@@ -1981,7 +2018,7 @@ class CUP$ParserJava$actions {
 		int varright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).right;
 		Token var = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)).value;
 		
-              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("listaVariables4",32, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
+              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("listaVariables4",29, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
 
@@ -1993,7 +2030,7 @@ class CUP$ParserJava$actions {
 		int varright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
 		Token var = (Token)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
 		
-              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("listaVariables4",32, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
+              CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("listaVariables4",29, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
 

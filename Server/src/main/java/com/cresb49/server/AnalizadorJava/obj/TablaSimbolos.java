@@ -8,22 +8,21 @@ import java.util.ArrayList;
  */
 public class TablaSimbolos {
 
-    public static final String INT = "Integer";
+    public static final String INT = "int";
+    public static final String DOUBLE = "double";
+    public static final String CHAR = "char";
     public static final String STRING = "String";
+    public static final String BOOLEAN = "boolean";
     public static final String OBJECT = "Object";
-    public static final String MAS = "+";
-    public static final String MENOS = "-";
-    public static final String MUL = "*";
-    public static final String DIV = "/";
     
-    private ArrayList<FilaTabla> filas;
+    private ArrayList<FilaTablaSymbolos> filas;
 
     public TablaSimbolos() {
         this.filas = new ArrayList<>();
     }
 
-    public FilaTabla buscar(String nombre) {
-        for (FilaTabla fila : filas) {
+    public FilaTablaSymbolos buscar(String nombre) {
+        for (FilaTablaSymbolos fila : filas) {
             if (fila.getNombre().equals(nombre)) {
                 return fila;
             }
@@ -31,7 +30,7 @@ public class TablaSimbolos {
         return null;
     }
 
-    public ArrayList<FilaTabla> getFilas() {
+    public ArrayList<FilaTablaSymbolos> getFilas() {
         return filas;
     }
     
@@ -41,8 +40,7 @@ public class TablaSimbolos {
     
     public void imprimirTabla(){
         System.out.println("---------------TABLA DE SIMBOLOS----------------");
-        for (FilaTabla fila : filas) {
-
+        for (FilaTablaSymbolos fila : filas) {
             System.out.println(fila.toString());
         }
         

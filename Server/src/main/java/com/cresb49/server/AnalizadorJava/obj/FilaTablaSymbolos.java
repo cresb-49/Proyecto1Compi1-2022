@@ -12,18 +12,27 @@ import java.util.Objects;
  *
  * @author Benjamin
  */
-public class FilaTabla {
+public class FilaTablaSymbolos {
     private String nombre;
     private String tipo;
-    private Object valor;
+    private ArrayList<String> funciones;
 
-    public FilaTabla() {
+    public FilaTablaSymbolos() {
     }
 
-    public FilaTabla(String nombre, String tipo,Object valor) {
+    public FilaTablaSymbolos(String nombre, String tipo,ArrayList<String> funciones) {
         this.nombre = nombre;
         this.tipo = tipo;
-        this.valor = valor;
+        this.funciones = funciones;
+    }
+
+    public FilaTablaSymbolos(String nombre, String tipo) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+    }
+    
+    public FilaTablaSymbolos(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getNombre() {
@@ -42,17 +51,33 @@ public class FilaTabla {
         this.tipo = tipo;
     }
 
-    public Object getValor() {
-        return valor;
+    public ArrayList<String> getValor() {
+        return funciones;
     }
 
-    public void setValor(Object valor) {
-        this.valor = valor;
+    public void setValor(ArrayList<String> funciones) {
+        this.funciones = funciones;
+    }
+
+    public void agregarFuncion(String nombreFuncion){
+        if(this.funciones == null){
+            this.funciones = new ArrayList<>();
+        }
+        boolean found = false;
+        for (String nombre : this.funciones) {
+            if(nombre.equals(nombreFuncion)){
+                found = true;
+                break;
+            }
+        }
+        if(!found){
+            this.funciones.add(nombreFuncion);
+        }
     }
 
     @Override
     public String toString() {
-        return "FilaTabla{" + "nombre=" + nombre + ", tipo=" + tipo + ", valor=" + valor + '}';
+        return "FilaTabla{" + "nombre=" + nombre + ", tipo=" + tipo + ", funciones=" + funciones + '}';
     }
 
     @Override
@@ -60,7 +85,7 @@ public class FilaTabla {
         int hash = 7;
         hash = 61 * hash + Objects.hashCode(this.nombre);
         hash = 61 * hash + Objects.hashCode(this.tipo);
-        hash = 61 * hash + Objects.hashCode(this.valor);
+        hash = 61 * hash + Objects.hashCode(this.funciones);
         return hash;
     }
 
@@ -75,14 +100,14 @@ public class FilaTabla {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final FilaTabla other = (FilaTabla) obj;
+        final FilaTablaSymbolos other = (FilaTablaSymbolos) obj;
         if (!Objects.equals(this.nombre, other.nombre)) {
             return false;
         }
         if (!Objects.equals(this.tipo, other.tipo)) {
             return false;
         }
-        if (!Objects.equals(this.valor, other.valor)) {
+        if (!Objects.equals(this.funciones, other.funciones)) {
             return false;
         }
         return true;
