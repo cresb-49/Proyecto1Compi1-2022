@@ -6,6 +6,7 @@
 package com.cresb49.server.AnalizadorJava;
 
 import com.cresb49.server.AnalizadorJava.obj.*;
+import com.cresb49.server.AnalizadorJava.obj.resultados.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java_cup.runtime.*;
@@ -971,6 +972,8 @@ public class ParserJava extends java_cup.runtime.lr_parser {
     private ArrayList<ErrorAnalisis> errorAnalisisesTmp;
     private SimbolosTerminalesJava simbolosTerminalesJava;
     private TablaSimbolos tablaSimbolos;
+    private ArrayList<Clase> clases;
+    private ArrayList<Metodo> metodos;
     
     public ParserJava (LexerJava lexerJava){ 
         super(lexerJava);
@@ -984,6 +987,14 @@ public class ParserJava extends java_cup.runtime.lr_parser {
 
     public TablaSimbolos getTablaSimbolos(){
         return this.tablaSimbolos;
+    }
+
+    public ArrayList<Clase> getClases() {
+        return clases;
+    }
+
+    public void setClases(ArrayList<Clase> clases) {
+        this.clases = clases;
     }
 
     public void report_error(String message, Object info) {
