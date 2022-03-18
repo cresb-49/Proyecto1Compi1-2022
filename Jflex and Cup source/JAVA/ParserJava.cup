@@ -142,9 +142,10 @@ terminal Token  IMPORT,PUBLIC,PRIVATE,PROTECTED,FINAL,BREAK,RETURN,INT,BOOL,STR,
 
 /* Non terminals */
 non terminal                        initJava,contClass,importJava,importJavaContenido,importJavaP,parametros,parametrosP,metodoP,sentConstru,
-                                    parametrosLlamadaP,parametrosLlamada,classJava,sentencias,metodo,constructorP,
+                                    parametrosLlamadaP,parametrosLlamada,classJava,sentencias,metodo,constructorP,declararVariables2,listaVariables3,
                                     agregarfor,ciclowhile,condicionalif,constructor,cliclofor,cicloDoWhile,sentanciaSalida,asignacionvariables,
-                                    contenidoSwitch,contenidoSwitch2,condicionalSwitch,llamadaFuncion,declararVariables,listaVariables,listaVariables2;
+                                    contenidoSwitch,contenidoSwitch2,condicionalSwitch,llamadaFuncion,declararVariables,listaVariables,listaVariables2,
+                                    listaVariables4;
 non terminal Token                  visibilidad,tipo;
 
 non terminal                        exp,t,f,g,h,i,j,k,l;
@@ -254,16 +255,34 @@ declararVariables   ::= visibilidad STATIC FINAL tipo:t listaVariables PUNTOCOMA
                     |   tipo:t listaVariables PUNTOCOMA
                     ;
 
-listaVariables  ::= ID
-                |   ID EQUAL exp
-                |   ID COMA listaVariables2
-                |   ID EQUAL exp COMA listaVariables2
+listaVariables  ::= ID:var
+                |   ID:var EQUAL exp
+                |   ID:var COMA listaVariables2
+                |   ID:var EQUAL exp COMA listaVariables2
                 ;
-listaVariables2 ::= ID EQUAL exp COMA listaVariables2
-                |   ID COMA listaVariables2
-                |   ID EQUAL exp
-                |   ID 
+listaVariables2 ::= ID:var EQUAL exp COMA listaVariables2
+                |   ID:var COMA listaVariables2
+                |   ID:var EQUAL exp    {::}
+                |   ID:var {::}
                 ;
+
+
+declararVariables2  ::= FINAL tipo:t listaVariables3 PUNTOCOMA
+                    |   tipo:t listaVariables3 PUNTOCOMA
+                    ;
+
+listaVariables3 ::= ID:var  {::}
+                |   ID:var EQUAL exp    {::}
+                |   ID:var COMA listaVariables4
+                |   ID:var EQUAL exp COMA listaVariables4
+                ;
+listaVariables4 ::= ID:var EQUAL exp COMA listaVariables4
+                |   ID:var COMA listaVariables4
+                |   ID:var EQUAL exp    {::}
+                |   ID:var {::}
+                ;
+
+
 
 sentConstru ::= sentConstru llamadaFuncion
             |   sentConstru condicionalif
@@ -272,6 +291,7 @@ sentConstru ::= sentConstru llamadaFuncion
             |   sentConstru condicionalSwitch
             |   sentConstru cliclofor
             |   sentConstru asignacionvariables
+            |   sentConstru declararVariables2
             |   llamadaFuncion
             |   condicionalif
             |   ciclowhile
@@ -279,6 +299,7 @@ sentConstru ::= sentConstru llamadaFuncion
             |   condicionalSwitch
             |   cliclofor
             |   asignacionvariables
+            |   declararVariables2
             |   sentConstru error
             |   error
             ;
@@ -291,6 +312,7 @@ sentencias  ::= sentencias llamadaFuncion
             |   sentencias cliclofor
             |   sentencias sentanciaSalida
             |   sentencias asignacionvariables
+            |   sentencias declararVariables2
             |   llamadaFuncion
             |   condicionalif
             |   ciclowhile
@@ -299,6 +321,7 @@ sentencias  ::= sentencias llamadaFuncion
             |   cliclofor
             |   sentanciaSalida
             |   asignacionvariables
+            |   declararVariables2
             |   sentencias error
             |   error
             ;
@@ -321,8 +344,8 @@ parametrosLlamadaP  ::= exp COMA parametrosLlamadaP
                     |   exp
                     ;
 
-cliclofor   ::= FOR PA_A INT ID EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A LLA_C
-            |   FOR PA_A INT ID EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A sentencias LLA_C
+cliclofor   ::= FOR PA_A INT:t ID:var EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A LLA_C
+            |   FOR PA_A INT:t ID:var EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A sentencias LLA_C
             |   FOR PA_A ID EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A LLA_C
             |   FOR PA_A ID EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A sentencias LLA_C
             ;
