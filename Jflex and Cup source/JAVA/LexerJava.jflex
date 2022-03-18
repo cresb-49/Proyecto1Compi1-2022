@@ -45,14 +45,13 @@ InputCharacter = [^\r\n]
 WhiteSpace     = {LineTerminator} | [ \t\f]
 
 /* comments */
-Comment = {TraditionalComment} | {EndOfLineComment} | {DocumentationComment}
-
-TraditionalComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
+//Comment = {TraditionalComment} | {EndOfLineComment} | {DocumentationComment}
+//TraditionalComment   = "/*" [^*] ~"*/" | "/*" "*"+ "/"
 // Comment can be the last line of the file, without line terminator.
 //EndOfLineComment     = "//" {InputCharacter}* {LineTerminator}?
-EndOfLineComment     = "//" [^\n]*
-DocumentationComment = "/**" {CommentContent} "*"+ "/"
-CommentContent       = ( [^*] | \*+ [^/*] )*
+//EndOfLineComment     = "//" [^\n]*
+//DocumentationComment = "/**" {CommentContent} "*"+ "/"
+//CommentContent       = ( [^*] | \*+ [^/*] )*
 
 Identifier = [:jletter:] [:jletterdigit:]*
 
