@@ -227,11 +227,11 @@ parametrosP ::= tipo:t ID:var COMA parametrosP:vars {:RESULT = vars;if(RESULT!=n
             |   error LLA_C
             ;
 
-metodo      ::= visibilidad tipo:t ID:metodo PA_A PA_C metodoP  {:System.out.println("Metodo: "+metodo.getLexema()+" ,Tipo: "+t.getLexema());:}
-            |   visibilidad tipo:t ID:metodo PA_A parametros:vars PA_C metodoP {:agregarVariablesTabla("Metodo "+metodo.getLexema(),vars);:}
+metodo      ::= visibilidad tipo:t ID:metodo PA_A PA_C metodoP:vars  {:agregarVariablesTabla("Metodo "+metodo.getLexema(),vars);:}
+            |   visibilidad tipo:t ID:metodo PA_A parametros:vars PA_C metodoP:vars1 {:if(vars!=null){if(vars1!=null){vars.addAll(vars1);}} agregarVariablesTabla("Metodo "+metodo.getLexema(),vars);:}
             ;
 
-metodoP     ::= LLA_A sentencias LLA_C
+metodoP     ::= LLA_A sentencias:vars LLA_C {:RESULT = vars;:}
             |   LLA_A LLA_C
             |   error declararVariables
             |   error constructor
