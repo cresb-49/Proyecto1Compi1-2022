@@ -142,7 +142,7 @@ terminal Token  IMPORT,PUBLIC,PRIVATE,PROTECTED,FINAL,BREAK,RETURN,INT,BOOL,STR,
 
 /* Non terminals */
 non terminal                        initJava,contClass,importJava,importJavaContenido,importJavaP,parametros,parametrosP,metodoP,
-                                    importJavaContenidoD2,classJava,visibilidad,sentencias,tipo,metodo,sentencias2,
+                                    importJavaContenidoD2,classJava,visibilidad,sentencias,tipo,metodo,sentencias2,constructorP,
                                     agregarfor,operadorRelacional,sentenciasfor,ciclowhile,sentenciasWhile,condicionalif,constructor,
                                     cliclofor,cicloDoWhile,sentanciasif,contenidoSwitch,contenidoSwitch2,condicionalSwitch,sentenciasSwitch,
                                     llamadaFuncion,declararVariables,listaVariables,listaVariables2;
@@ -201,25 +201,35 @@ contClass   ::= contClass declararVariables
             |   declararVariables
             |   constructor
             |   metodo
+            |   contClass error 
             ;
 
-constructor ::= PUBLIC ID PA_A parametros PA_C LLA_A LLA_C
-            |   PUBLIC ID PA_A PA_C LLA_A LLA_C
+constructor ::= PUBLIC ID PA_A parametros PA_C constructorP
+            |   PUBLIC ID PA_A PA_C constructorP
             ;
+constructorP    ::= LLA_A LLA_C
+                |   LLA_A sentencias LLA_C
+                |   error declararVariables
+                |   error metodo
+                |   error constructor
+                ;
 
 parametros  ::= tipo ID
             |   tipo ID COMA parametrosP
+            |   error PA_C
+            |   error LLA_A
+            |   error LLA_C
             ;
 
 parametrosP ::= tipo ID COMA parametrosP
             |   tipo ID
+            |   error PA_C
+            |   error LLA_A
+            |   error LLA_C
             ;
 
 metodo      ::= visibilidad tipo ID PA_A PA_C metodoP
             |   visibilidad tipo ID PA_A parametros PA_C metodoP
-            |   error declararVariables
-            |   error constructor
-            |   error metodo
             ;
 
 metodoP     ::= LLA_A sentencias2 LLA_C
@@ -249,6 +259,12 @@ listaVariables2 ::= ID EQUAL exp COMA listaVariables2
                 |   ID EQUAL exp
                 |   ID 
                 ;
+
+sentencias  ::= sentencias
+            |   
+            ;
+
+
 
 llamadaFuncion  ::= ID PA_A PA_C PUNTOCOMA
                 |   ID PA_A PA_C PUNTOCOMA
