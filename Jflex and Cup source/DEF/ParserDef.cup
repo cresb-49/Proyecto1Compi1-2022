@@ -503,6 +503,7 @@ ini ::= ini asig
     |   dec
     |   decn
     |   ini error
+    |   error
     ;
 
 /*Gramatica para declaracion de variables*/
@@ -684,12 +685,15 @@ contHTML    ::= contHTML ME_Q etiquetas
                                         txt.setValorToken(txt.getLexema());
                                     :}
             |   contHTML D_PA_A varHTML2:var PA_C_D
+            |   contHTML D_PA_A PA_C_D
             |   ME_Q etiquetas
             |   TEXT:txt    {:
                                 txt.setValorToken(txt.getLexema());
                             :}
             |   D_PA_A varHTML2:var PA_C_D
+            |   D_PA_A PA_C_D
             |   contHTML error
+            |   error
             ;
 
 etiquetas ::=   BR:tag MA_Q     {:
@@ -747,11 +751,14 @@ tablec  ::= tablec ME_Q tablectag
                                         txt.setValorToken(txt.getLexema());
                                     :}
         |   tablec D_PA_A varHTML2:var PA_C_D
+        |   tablec D_PA_A PA_C_D
         |   TEXT:txt        {:
                                 txt.setValorToken(txt.getLexema());
                             :}
         |   D_PA_A varHTML2:var PA_C_D
+        |   D_PA_A PA_C_D
         |   tablec error
+        |   error
         ;
 
 tablectag   ::= TR:tagini MA_Q trc ME_QB TR:tagfin MA_Q         {:
@@ -847,6 +854,7 @@ trc ::= trc ME_Q TH:tagini MA_Q contHTML ME_QB TH:tagfin MA_Q   {:
                                                                     tagfin.setValorToken("</td>");
                                                                 :}
     |   trc error
+    |   error
     ;
 
 varHTML2    ::= ID:id1  {:
