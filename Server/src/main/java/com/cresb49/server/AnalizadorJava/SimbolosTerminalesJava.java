@@ -62,7 +62,8 @@ public class SimbolosTerminalesJava {
         "TRUE",
         "FALSE",
         "DEFAULT",
-        "STATIC"
+        "STATIC",
+        "NEW"
     };
 
     public SimbolosTerminalesJava() {

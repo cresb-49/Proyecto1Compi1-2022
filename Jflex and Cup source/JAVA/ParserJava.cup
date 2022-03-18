@@ -203,7 +203,8 @@ contClass   ::= contClass declararVariables
             |   declararVariables
             |   constructor
             |   metodo
-            |   contClass error 
+            |   contClass error
+            |   error
             ;
 
 constructor ::= PUBLIC ID:constructor PA_A parametros PA_C constructorP {:System.out.println("Constructor: "+constructor.getLexema());:}
@@ -278,6 +279,7 @@ sentConstru ::= sentConstru llamadaFuncion
             |   cliclofor
             |   asignacionvariables
             |   sentConstru error
+            |   error
             ;
 
 sentencias  ::= sentencias llamadaFuncion
@@ -297,6 +299,7 @@ sentencias  ::= sentencias llamadaFuncion
             |   sentanciaSalida
             |   asignacionvariables
             |   sentencias error
+            |   error
             ;
 
 sentanciaSalida ::= RETURN exp PUNTOCOMA
