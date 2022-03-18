@@ -271,6 +271,11 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         );
 
         jButton5.setText("GUARDAR MODIFICACIONES");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -528,6 +533,15 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         analizarJson.ejecutar(texto);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        try {    
+            this.sobreEscribirDef();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "No se puede guardar el archivo .def:\n" + ex.getMessage(), "Error al guardar el archivo!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     private ReporteJson reportePrueba() {
         String score = "0.75";
         ArrayList<Clase> clases = new ArrayList<>();
@@ -712,9 +726,10 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
     private void guardar_proyecto() {
         try {
-            SobreEscribirArchivos.sobreEscribirArchivoTexto(this.generalPath+this.proyectoCopy.getPathArchivDef(), TextPaneDef.getText());
-            SobreEscribirArchivos.sobreEscribirArchivoTexto(this.generalPath+this.proyectoCopy.getPathArchivoJson(), TextPaneJson.getText());
+            this.sobreEscribirJson();
+            this.sobreEscribirDef();
             this.sobreEscribirFileCopy();
+            JOptionPane.showMessageDialog(this, "Guardado exitoso!","Guardado exitoso!", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -796,7 +811,18 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         }
     }
 
-    private void sobreEscribirFileCopy() {
-        
+    private void sobreEscribirFileCopy() throws FileNotFoundException, IOException {
+            String path = this.generalPath+this.proyectoCopy.getPathCarpetaProyecto()+this.proyectoCopy.getPathCarpetaProyecto()+".copy";
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path));
+            oos.writeObject(this.proyectoCopy);
+            oos.close();
+    }
+
+    private void sobreEscribirDef() throws IOException {
+        SobreEscribirArchivos.sobreEscribirArchivoTexto(this.generalPath+this.proyectoCopy.getPathArchivDef(), TextPaneDef.getText());
+    }
+
+    private void sobreEscribirJson() throws IOException {
+        SobreEscribirArchivos.sobreEscribirArchivoTexto(this.generalPath+this.proyectoCopy.getPathArchivoJson(), TextPaneJson.getText());
     }
 }
