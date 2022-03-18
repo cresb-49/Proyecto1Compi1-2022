@@ -218,11 +218,11 @@ Decimal = {Entero}[.]{Entero}
     {Identifier}    {
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
-                        System.out.println("Identificador: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                        //System.out.println("Identificador: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                         return new Symbol(ParserJavaSym.ID,yyline+1,yycolumn+1,this.actual);
                     }
     {Comment}       {
-                        System.out.println(yytext());   
+                        //System.out.println(yytext());   
                     }
     {Decimal}       {
                         this.actual = new Token(yytext(),new Double(yytext()),yyline+1,yycolumn+1,null,this.anterior);
