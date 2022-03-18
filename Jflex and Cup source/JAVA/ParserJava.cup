@@ -217,9 +217,16 @@ parametrosP ::= tipo ID COMA parametrosP
 
 metodo      ::= visibilidad tipo ID PA_A PA_C metodoP
             |   visibilidad tipo ID PA_A parametros PA_C metodoP
+            |   error declararVariables
+            |   error constructor
+            |   error metodo
             ;
+
 metodoP     ::= LLA_A sentencias2 LLA_C
             |   LLA_A LLA_C
+            |   error declararVariables
+            |   error constructor
+            |   error metodo
             ;
 
 asignacionvariables ::= ID EQUAL exp PUNTOCOMA
