@@ -25,6 +25,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -502,7 +504,6 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     private void GuardarProyectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarProyectoActionPerformed
         // TODO add your handling code here:
         if (proyectoCopy == null) {
-
             if (carpeta1 != null && carpeta2 != null) {
                 this.proyectoCopy = new ProyectoCopy();
                 this.crear_guardar_proyecto();
@@ -710,7 +711,13 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     }
 
     private void guardar_proyecto() {
-
+        try {
+            SobreEscribirArchivos.sobreEscribirArchivoTexto(this.generalPath+this.proyectoCopy.getPathArchivDef(), TextPaneDef.getText());
+            SobreEscribirArchivos.sobreEscribirArchivoTexto(this.generalPath+this.proyectoCopy.getPathArchivoJson(), TextPaneJson.getText());
+            this.sobreEscribirFileCopy();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void cargarCarpeta1() {
@@ -787,5 +794,9 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             NombreCarpeta2.setText(cp2.getName());
             this.estadoCarpeta2(true);
         }
+    }
+
+    private void sobreEscribirFileCopy() {
+        
     }
 }
