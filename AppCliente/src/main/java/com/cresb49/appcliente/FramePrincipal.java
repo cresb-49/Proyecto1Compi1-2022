@@ -324,6 +324,11 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         jScrollPane2.setViewportView(jTextPane2);
 
         jButton6.setText("GUARDAR MODIFICACIONES");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -542,6 +547,15 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        try {
+            // TODO add your handling code here:
+            this.sobreEscribirJson();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "No se puede guardar el archivo .json:\n" + ex.getMessage(), "Error al guardar el archivo!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     private ReporteJson reportePrueba() {
         String score = "0.75";
         ArrayList<Clase> clases = new ArrayList<>();
@@ -694,7 +708,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         } catch (ClassNotFoundException e) {
             JOptionPane.showMessageDialog(this, "El archivo que desea cargar esta dañado" + e.getMessage(), "Error al cargar el archivo!", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "No se puede abrir el archivo:\n" + ex.getMessage() + ex.getMessage(), "Error al cargar el archivo!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se puede abrir el archivo:\n" + ex.getMessage() , "Error al cargar el archivo!", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -709,14 +723,14 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
                 this.generalPath = JFC.getParent();
                 JOptionPane.showMessageDialog(this, "Guardado exitoso!", "Guardado exitoso!", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "No guardo el proyecto!", "No guardo el proyecto!", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No guardo el proyecto!", "No guardo el proyecto!", JOptionPane.ERROR_MESSAGE);
             }
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(this, "Oops! Error\n" + e.getMessage(), "Error al guardar el archivo!", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Problemas con la escritura:\n" + ex.getMessage(), "Error al crear proyecto!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Problemas con la escritura:\n" + ex.getMessage(), "Error al crear proyecto!", JOptionPane.ERROR_MESSAGE);
         } catch (NotDirectoryCreate ex) {
-            JOptionPane.showMessageDialog(this, "Conflicto con directorios!\n" + "Escriba otro nombre, para el proyecto", "Error al crear proyecto!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Conflicto con directorios!\n" + "Escriba otro nombre, para el proyecto", "Error al crear proyecto!", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -808,6 +822,16 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         } else {
             NombreCarpeta2.setText(cp2.getName());
             this.estadoCarpeta2(true);
+        }
+        try {
+            TextPaneDef.setText(LeerArchivoTexto.leerArchivo(this.generalPath+this.proyectoCopy.getPathArchivDef()));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "No se puedo cargar el archivo .def", "Error al cargar proyecto!", JOptionPane.ERROR_MESSAGE);
+        }
+        try {
+            TextPaneJson.setText(LeerArchivoTexto.leerArchivo(this.generalPath+this.proyectoCopy.getPathArchivoJson()));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "No se puedo cargar el archivo .json", "Error al cargar proyecto!", JOptionPane.ERROR_MESSAGE);
         }
     }
 

@@ -20,7 +20,7 @@ public class LeerArchivoTexto {
     public LeerArchivoTexto() {
     }
 
-    public String leerArchivo(String path) throws FileNotFoundException, IOException {
+    public static String leerArchivo(String path) throws FileNotFoundException, IOException {
         String lec = "";
         File file = new File(path);
         BufferedReader obj = new BufferedReader(new FileReader(file));
