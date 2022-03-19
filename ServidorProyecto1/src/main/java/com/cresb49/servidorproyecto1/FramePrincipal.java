@@ -8,7 +8,6 @@ package com.cresb49.servidorproyecto1;
 
 
 import com.cresb49.appcliente.Objetos.*;
-import com.cresb49.server.Objetos.AnalizarProyectos;
 import com.cresb49.servidorproyecto1.analizardorjava.AnalizarJava;
 import com.cresb49.servidorproyecto1.analizardorjava.objetos.TablaSimbolos;
 import com.cresb49.servidorproyecto1.analizardorjava.objetos.resultados.*;

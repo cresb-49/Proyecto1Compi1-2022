@@ -6,10 +6,6 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
 
-
-
-import jdk.nashorn.api.tree.BreakTree;
-
 public class AnalizarJava {
     private ArrayList<ErrorAnalisis> errores;
     private LexerJava lexerJava;
