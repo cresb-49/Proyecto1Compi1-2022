@@ -124,11 +124,11 @@ parser code {:
         }
     }
 
-    private void asignarTipoVariable(Token t, ArrayList<FilaTablaSymbolos> vars) {
+    private void asignarTipoVariable(Asignacion t, ArrayList<FilaTablaSymbolos> vars) {
         if(t!=null && vars!=null){
             for (FilaTablaSymbolos var : vars) {
                 if(var!=null){
-                    var.setTipo(t.getLexema());
+                    var.setTipo(t.getTipo());
                 }
             }
         }
@@ -188,9 +188,9 @@ non terminal ArrayList<FilaTablaSymbolos>   initJava,importJava,importJavaConten
                                             contenidoSwitch,contenidoSwitch2,condicionalSwitch,llamadaFuncion;
 non terminal ArrayList<FilaTablaSymbolos>   listaVariables,listaVariables2,declararVariables,contClass,parametros,parametrosP,declararVariables2,listaVariables3,
                                             listaVariables4;
-non terminal Token                          visibilidad,tipo;
-
-non terminal                        exp,t,f,g,h,i,j,k,l;
+non terminal Token                          visibilidad;
+non terminal Asignacion             tipo,asig;
+non terminal Asignacion             exp,t,f,g,h,i,j,k,l;
 
 /* Inicio de las reglas gramticales*/
 initJava    ::= initJava classJava  {:
@@ -227,12 +227,12 @@ visibilidad ::= PRIVATE:t       {:RESULT = t;:}
             |   PROTECTED:t     {:RESULT = t;:}
             ;
 
-tipo        ::= INT:t     {:RESULT = t;:}
-            |   BOOL:t    {:RESULT = t;:}
-            |   STR:t     {:RESULT = t;:}
-            |   CHAR:t    {:RESULT = t;:}
-            |   DOUBLE:t  {:RESULT = t;:}
-            |   OBJ:t     {:RESULT = t;:}
+tipo        ::= INT:t     {:RESULT = new Asignacion(TablaSimbolos.INT,t.getLexema());:}
+            |   BOOL:t    {:RESULT = new Asignacion(TablaSimbolos.BOOLEAN,t.getLexema());:}
+            |   STR:t     {:RESULT = new Asignacion(TablaSimbolos.STRING,t.getLexema());:}
+            |   CHAR:t    {:RESULT = new Asignacion(TablaSimbolos.CHAR,t.getLexema());:}
+            |   DOUBLE:t  {:RESULT = new Asignacion(TablaSimbolos.DOUBLE,t.getLexema());:}
+            |   OBJ:t     {:RESULT = new Asignacion(TablaSimbolos.OBJECT,t.getLexema());:}
             ;
 
 classJava   ::= visibilidad CLASS ID:clase LLA_A contClass:vars LLA_C   {:
@@ -273,26 +273,26 @@ constructorP    ::= LLA_A LLA_C
                 |   error constructor
                 ;
 
-parametros  ::= tipo:t ID:var {:RESULT = new ArrayList<>();RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));:}
-            |   tipo:t ID:var COMA parametrosP:vars {:RESULT = vars;if(RESULT!=null){RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));}:}
+parametros  ::= tipo:t ID:var {:RESULT = new ArrayList<>();RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getTipo()));:}
+            |   tipo:t ID:var COMA parametrosP:vars {:RESULT = vars;if(RESULT!=null){RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getTipo()));}:}
             |   error PA_C
             |   error LLA_A
             |   error LLA_C
             ;
 
-parametrosP ::= tipo:t ID:var COMA parametrosP:vars {:RESULT = vars;if(RESULT!=null){RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));}:}
-            |   tipo:t ID:var {:RESULT = new ArrayList<>();RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));:}
+parametrosP ::= tipo:t ID:var COMA parametrosP:vars {:RESULT = vars;if(RESULT!=null){RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getTipo()));}:}
+            |   tipo:t ID:var {:RESULT = new ArrayList<>();RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getTipo()));:}
             |   error PA_C
             |   error LLA_A
             |   error LLA_C
             ;
 
 metodo      ::= visibilidad tipo:t ID:metodo PA_A PA_C metodoP:vars     {:
-                                                                            archivarMetodo(metodo.getLexema(),t.getLexema(),null,0);
+                                                                            archivarMetodo(metodo.getLexema(),t.getTipo(),null,0);
                                                                             agregarVariablesTabla("Metodo "+metodo.getLexema(),vars);
                                                                         :}
             |   visibilidad tipo:t ID:metodo PA_A parametros:vars PA_C metodoP:vars1    {:
-                                                                                            archivarMetodo(metodo.getLexema(),t.getLexema(),vars,0);
+                                                                                            archivarMetodo(metodo.getLexema(),t.getTipo(),vars,0);
                                                                                             agregarVariablesTabla("Metodo "+metodo.getLexema(),retornarDosFuentes(vars,vars1));
                                                                                         :}
             ;
@@ -304,7 +304,8 @@ metodoP     ::= LLA_A sentencias:vars LLA_C {:RESULT = vars;:}
             |   error metodo
             ;
 
-asignacionvariables ::= ID:t EQUAL exp PUNTOCOMA  {:RESULT = new ArrayList<>();RESULT.add(new FilaTablaSymbolos(t.getLexema()));:}
+asignacionvariables ::= ID:t EQUAL asig PUNTOCOMA  //{:RESULT = new ArrayList<>();RESULT.add(new FilaTablaSymbolos(t.getLexema()));:}
+                    |   THIS PUNTO ID:t EQUAL asig PUNTOCOMA
                     ;
 
 declararVariables   ::= visibilidad STATIC FINAL tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);RESULT = vars;:}
@@ -315,13 +316,13 @@ declararVariables   ::= visibilidad STATIC FINAL tipo:t listaVariables:vars PUNT
                     ;
 
 listaVariables  ::= ID:var {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}
-                |   ID:var EQUAL exp {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}
+                |   ID:var EQUAL asig {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}
                 |   ID:var COMA listaVariables2:vars {:RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}:}
-                |   ID:var EQUAL exp COMA listaVariables2:vars {:RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}:}
+                |   ID:var EQUAL asig COMA listaVariables2:vars {:RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}:}
                 ;
-listaVariables2 ::= ID:var EQUAL exp COMA listaVariables2:vars {:RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}:}
+listaVariables2 ::= ID:var EQUAL asig COMA listaVariables2:vars {:RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}:}
                 |   ID:var COMA listaVariables2:vars {:RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}:}
-                |   ID:var EQUAL exp {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}
+                |   ID:var EQUAL asig {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}
                 |   ID:var {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}
                 ;
 
@@ -331,13 +332,13 @@ declararVariables2  ::= FINAL tipo:t listaVariables3:vars PUNTOCOMA {:asignarTip
                     ;
 
 listaVariables3 ::= ID:var {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}
-                |   ID:var EQUAL exp {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}
+                |   ID:var EQUAL asig {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}
                 |   ID:var COMA listaVariables4:vars {:RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}:}
-                |   ID:var EQUAL exp COMA listaVariables4:vars {:RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}:}
+                |   ID:var EQUAL asig COMA listaVariables4:vars {:RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}:}
                 ;
-listaVariables4 ::= ID:var EQUAL exp COMA listaVariables4:vars {:RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}:}
+listaVariables4 ::= ID:var EQUAL asig COMA listaVariables4:vars {:RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}:}
                 |   ID:var COMA listaVariables4:vars {:RESULT = vars; if(RESULT != null){RESULT.add(new FilaTablaSymbolos(var.getLexema()));}:}
-                |   ID:var EQUAL exp {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}
+                |   ID:var EQUAL asig {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}
                 |   ID:var {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}
                 ;
 
@@ -450,6 +451,11 @@ contenidoSwitch2    ::= contenidoSwitch2:vars1 CASE exp DOSPUNTOS sentencias:var
                     |   error CASE
                     ;
 
+asig    ::= exp
+        |   NEW OBJ PA_A PA_C
+        |   NEW ID PA_A PA_C
+        ;
+
 exp ::= exp OR t
     |   t
     ;
@@ -491,8 +497,7 @@ k   ::= l SUMAR
     |   l
     ;
 
-l   ::= NEW OBJ PA_A PA_C
-    |   ID
+l   ::= ID
     |   TRUE
     |   FALSE
     |   DECIMAL
