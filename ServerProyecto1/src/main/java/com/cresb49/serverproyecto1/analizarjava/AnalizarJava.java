@@ -35,6 +35,19 @@ public class AnalizarJava {
             System.out.println(errore.toString());
         }
         tablaSimbolos.imprimirTabla();
+        System.err.println("----------------IMPRECION CLASE-------------------");
+        for (Clase clase : clases) {
+            System.out.println(clase.toString());
+        }
+        System.err.println("----------------IMPRECION METODO-------------------");
+        for (Metodo metodo : metodos) {
+            System.out.println(metodo.toString());
+            
+        }
+        System.err.println("----------------IMPRECION COMENTARIOS-------------------");
+        for (Comentario comentario : comentarios) {
+            System.out.println(comentario.toString());
+        }
     }
     
     public ArrayList<ErrorAnalisis> getErrores() {
