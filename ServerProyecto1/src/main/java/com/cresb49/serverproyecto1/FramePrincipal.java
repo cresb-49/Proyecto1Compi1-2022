@@ -59,7 +59,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
             }
         });
 
-        codigoPrueba.setText("import java.util.*; // comentario simple\nimport java.sql.base1; // Statement,\n\npublic class ejemplo_final{\n\n\tprivate String value; // \"Comentarios\"\n\tprivate boolean valid;\n\t/** * Comentariooo * multilinea*/\n\tpublic ejemplo_final(){}\n\tpublic boolean parse() {\n\t\tObject nuevo_objeto = new Object();\n\t\tSaludar(\"hola \"+\" numero: \"+ (55+55));\n\t}\n\tpublic String Saludar(String val) {\n\t\tif(val!=\"\"){\n\t\t\treturn val; // \"Hola aqui retorno\"}\n\t\t}\n      \t\twhile(i != 0) {\n\n  \t  \t}\n\t\tdo {\n    \t\t} while(i != 0);\n\t}\n}");
+        codigoPrueba.setText("import java.util.*; // comentario simple\nimport java.sql.base1; // Statement,\n\npublic class ejemplo_final{\n\n\tprivate String value; // \"Comentarios\"\n\tprivate boolean valid;\n\t/** * Comentariooo * multilinea*/\n\tprotected ejemplo_final(){}\n\tpublic boolean parse() {\n\t\tTabla tabla = new Objeto();\n\t\tSaludar(\"hola \"+\" numero: \"+ (55+55));\n\t}\n\tpublic String Saludar(String val) {\n\t\tif(val!=\"\"){\n\t\t\tthis.variablethis = 34;\n\t\t\tif(nuevo){\n\t\t\t\tint hola = 45;\n\t\t\t\tchar var_char = 'r';\n\t\t\t}\n\t\t\treturn val; // \"Hola aqui retorno\"}\n\t\t}\n      \t\twhile(i != 0) {\n\n  \t  \t}\n\t\tdo {\n    \t\t} while(i != 0);\n\t}\n}");
         jScrollPane2.setViewportView(codigoPrueba);
 
         jButton2.setText("Analizar");
@@ -94,7 +94,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
 
         jTabbedPane1.addTab("tab1", jPanel2);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONSOLA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "CONSOLA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
         ConsoleLog.setEditable(false);
         ConsoleLog.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -143,7 +143,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 913, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane1)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -151,7 +151,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addGap(7, 7, 7))

@@ -305,8 +305,10 @@ metodoP     ::= LLA_A sentencias:vars LLA_C {:RESULT = vars;:}
             |   error metodo
             ;
 
-asignacionvariables ::= ID:t EQUAL asig PUNTOCOMA  //{:RESULT = new ArrayList<>();RESULT.add(new FilaTablaSymbolos(t.getLexema()));:}
-                    |   THIS PUNTO ID:t EQUAL asig PUNTOCOMA
+asignacionvariables ::= ID EQUAL asig PUNTOCOMA  //{:RESULT = new ArrayList<>();RESULT.add(new FilaTablaSymbolos(t.getLexema()));:}
+                    |   THIS PUNTO ID EQUAL asig PUNTOCOMA
+                    |   ID SUMAR PUNTOCOMA
+                    |   ID RESTAR PUNTOCOMA
                     ;
 
 declararVariables   ::= visibilidad STATIC FINAL tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);RESULT = vars;:}
