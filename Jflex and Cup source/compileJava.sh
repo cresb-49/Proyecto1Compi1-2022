@@ -6,12 +6,13 @@ jflex JAVA/LexerJava.jflex
 #rm lexerJava.java~
 #rm JAVA/lexerJava.java
 #java JAVA/LexerJava JAVA/ejemploJava.java
-mv JAVA/LexerJava.java ../Server/src/main/java/com/cresb49/server/AnalizadorJava
+mv JAVA/LexerJava.java ../ServidorProyecto1/src/main/java/com/cresb49/servidorproyecto1/analizardorjava
+
 echo "Compilado CUP"
 cup JAVA/ParserJava.cup
 
-mv ParserJava.java ../Server/src/main/java/com/cresb49/server/AnalizadorJava
-mv ParserJavaSym.java ../Server/src/main/java/com/cresb49/server/AnalizadorJava
+mv ParserJava.java ../ServidorProyecto1/src/main/java/com/cresb49/servidorproyecto1/analizardorjava
+mv ParserJavaSym.java ../ServidorProyecto1/src/main/java/com/cresb49/servidorproyecto1/analizardorjava
 
 
 

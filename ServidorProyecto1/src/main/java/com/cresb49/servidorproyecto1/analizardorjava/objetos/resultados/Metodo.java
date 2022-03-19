@@ -1,25 +1,27 @@
-package com.cresb49.server.AnalizadorJava.obj.resultados;
+package com.cresb49.servidorproyecto1.analizardorjava.objetos.resultados;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
  *
  * @author Benjamin
  */
-public class Variable implements Serializable{
+public class Metodo implements Serializable{
+    
     
     private String nombre;
     private String tipo;
-    private String funcion;
+    private Integer parametros;
 
-    public Variable() {
+    public Metodo() {
     }
 
-    public Variable(String nombre, String tipo, String funcion) {
+    public Metodo(String nombre, String tipo, Integer parametros) {
         this.nombre = nombre;
         this.tipo = tipo;
-        this.funcion = funcion;
+        this.parametros = parametros;
     }
 
     public String getNombre() {
@@ -38,25 +40,25 @@ public class Variable implements Serializable{
         this.tipo = tipo;
     }
 
-    public String getFuncion() {
-        return funcion;
+    public Integer getParametros() {
+        return parametros;
     }
 
-    public void setFuncion(String funcion) {
-        this.funcion = funcion;
+    public void setParametros(Integer parametros) {
+        this.parametros = parametros;
     }
 
     @Override
     public String toString() {
-        return "Variable{" + "nombre=" + nombre + ", tipo=" + tipo + ", funcion=" + funcion + '}';
+        return "Metodo{" + "nombre=" + nombre + ", tipo=" + tipo + ", parametros=" + parametros + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 13 * hash + Objects.hashCode(this.nombre);
-        hash = 13 * hash + Objects.hashCode(this.tipo);
-        hash = 13 * hash + Objects.hashCode(this.funcion);
+        hash = 89 * hash + Objects.hashCode(this.nombre);
+        hash = 89 * hash + Objects.hashCode(this.tipo);
+        hash = 89 * hash + Objects.hashCode(this.parametros);
         return hash;
     }
 
@@ -71,14 +73,14 @@ public class Variable implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Variable other = (Variable) obj;
+        final Metodo other = (Metodo) obj;
         if (!Objects.equals(this.nombre, other.nombre)) {
             return false;
         }
         if (!Objects.equals(this.tipo, other.tipo)) {
             return false;
         }
-        if (!Objects.equals(this.funcion, other.funcion)) {
+        if (!Objects.equals(this.parametros, other.parametros)) {
             return false;
         }
         return true;

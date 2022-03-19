@@ -1,4 +1,4 @@
-package com.cresb49.server.comunicacion;
+package com.cresb49.servidorproyecto1.comunicacion;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

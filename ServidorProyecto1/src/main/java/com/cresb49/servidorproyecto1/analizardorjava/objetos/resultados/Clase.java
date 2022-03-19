@@ -3,41 +3,44 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.cresb49.server.AnalizadorJava.obj.resultados;
+package com.cresb49.servidorproyecto1.analizardorjava.objetos.resultados;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author Benjamin
  */
-public class Comentario {
-    private String texto;
-
-    public Comentario() {
+public class Clase implements Serializable{
+    
+    private String nombre;
+    
+    public Clase() {
+        
     }
 
-    public Comentario(String texto) {
-        this.texto = texto;
+    public Clase(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getTexto() {
-        return texto;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setTexto(String texto) {
-        this.texto = texto;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     @Override
     public String toString() {
-        return "Comentarios{" + "texto=" + texto + '}';
+        return "Clase{" + "nombre=" + nombre + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 73 * hash + Objects.hashCode(this.texto);
+        int hash = 3;
+        hash = 89 * hash + Objects.hashCode(this.nombre);
         return hash;
     }
 
@@ -52,8 +55,8 @@ public class Comentario {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Comentario other = (Comentario) obj;
-        if (!Objects.equals(this.texto, other.texto)) {
+        final Clase other = (Clase) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
             return false;
         }
         return true;

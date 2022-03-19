@@ -1,8 +1,9 @@
-package com.cresb49.server.Objetos;
+package com.cresb49.servidorproyecto1.analizardorjava.objetos;
 
+import com.cresb49.servidorproyecto1.analizardorjava.objetos.resultados.*;
 import java.io.Serializable;
 
-import com.cresb49.server.AnalizadorJava.obj.resultados.*;
+
 
 public class ConvertirJson implements Serializable{
     public ConvertirJson(){

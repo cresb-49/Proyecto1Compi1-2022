@@ -1,4 +1,4 @@
-package com.cresb49.server.AnalizadorJava.obj.resultados;
+package com.cresb49.servidorproyecto1.analizardorjava.objetos.resultados;
 
 import java.io.Serializable;
 import java.util.ArrayList;

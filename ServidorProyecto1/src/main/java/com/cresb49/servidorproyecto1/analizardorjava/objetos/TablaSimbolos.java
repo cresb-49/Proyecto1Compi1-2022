@@ -1,4 +1,4 @@
-package com.cresb49.server.AnalizadorJava.obj;
+package com.cresb49.servidorproyecto1.analizardorjava.objetos;
 
 import java.util.ArrayList;
 

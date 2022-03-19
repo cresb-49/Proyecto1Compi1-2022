@@ -1,4 +1,4 @@
-package com.cresb49.server.AnalizadorJava;
+package com.cresb49.servidorproyecto1.analizardorjava;
 
 public class Token {
 

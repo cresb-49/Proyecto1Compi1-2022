@@ -1,13 +1,13 @@
-package com.cresb49.server.AnalizadorJava;
+package com.cresb49.servidorproyecto1.analizardorjava;
 
+import com.cresb49.servidorproyecto1.analizardorjava.objetos.TablaSimbolos;
+import com.cresb49.servidorproyecto1.analizardorjava.objetos.resultados.*;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
 
-import com.cresb49.server.AnalizadorJava.obj.TablaSimbolos;
-import com.cresb49.server.AnalizadorJava.obj.resultados.Clase;
-import com.cresb49.server.AnalizadorJava.obj.resultados.Comentario;
-import com.cresb49.server.AnalizadorJava.obj.resultados.Metodo;
+
+
 import jdk.nashorn.api.tree.BreakTree;
 
 public class AnalizarJava {

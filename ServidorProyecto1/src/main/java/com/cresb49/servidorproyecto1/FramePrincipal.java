@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.cresb49.server;
+package com.cresb49.servidorproyecto1;
 
-import com.cresb49.appcliente.Objetos.CompararProyectos;
-import com.cresb49.server.AnalizadorJava.AnalizarJava;
-import com.cresb49.server.AnalizadorJava.obj.TablaSimbolos;
-import com.cresb49.server.AnalizadorJava.obj.resultados.*;
+
+
+import com.cresb49.appcliente.Objetos.*;
 import com.cresb49.server.Objetos.AnalizarProyectos;
-import com.cresb49.server.comunicacion.Cliente;
-import com.cresb49.server.comunicacion.Servidor;
+import com.cresb49.servidorproyecto1.analizardorjava.AnalizarJava;
+import com.cresb49.servidorproyecto1.analizardorjava.objetos.TablaSimbolos;
+import com.cresb49.servidorproyecto1.analizardorjava.objetos.resultados.*;
+import com.cresb49.servidorproyecto1.comunicacion.*;
 import java.util.ArrayList;
 
 import java.util.Observable;
