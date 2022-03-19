@@ -23,6 +23,7 @@ import java_cup.runtime.*;
     private StringBuffer string = new StringBuffer();
     private StringBuffer coment_simple = new StringBuffer();
     private StringBuffer coment_multi = new StringBuffer();
+    private StringBuffer char_val = new StringBuffer();
     private ArrayList<ErrorAnalisis> errors;
     private ArrayList<Comentario> comentarios;
 
@@ -75,6 +76,7 @@ Decimal = {Entero}[.]{Entero}
 %state STRING
 %state COMENTARIO
 %state COMENT_MULTI
+%state CHAR
 
 %%
 
@@ -90,6 +92,12 @@ Decimal = {Entero}[.]{Entero}
                         this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
                         this.anterior = this.actual;
                         return new Symbol(ParserJavaSym.NEW,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+                    }
+    "this"           {
+                        this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
+                        this.anterior = this.actual;
+                        return new Symbol(ParserJavaSym.THIS,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
     "static"        {
@@ -423,6 +431,9 @@ Decimal = {Entero}[.]{Entero}
                         this.string.setLength(0); 
                         yybegin(STRING); 
                     }
+    "'"             {
+                        yybegin(CHAR); 
+                    }
     /* whitespace */
     {WhiteSpace}                   { /* ignore */ }
 }
@@ -443,6 +454,72 @@ Decimal = {Entero}[.]{Entero}
       \\r                            { string.append('\r'); }
       \\\"                           { string.append('\"'); }
       \\                             { string.append('\\'); }
+}
+
+<CHAR>    {
+    "'"                             { 
+                                        yybegin(YYINITIAL);
+                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
+                                        this.anterior = this.actual;
+                                        System.out.println(char_val.toString());
+                                        return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual); 
+                                    }
+    [^'\n\r\"\\]("'")              { 
+                                        yybegin(YYINITIAL);
+                                        char_val.append( yytext().charAt(0));
+                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
+                                        this.anterior = this.actual;
+                                        System.out.println(char_val.toString());
+                                        return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual); 
+                                    }
+    \\t("'")                        { 
+                                        yybegin(YYINITIAL);
+                                        char_val.append('\t');
+                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
+                                        this.anterior = this.actual;
+                                        System.out.println(char_val.toString());
+                                        return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual); 
+                                    }
+    \\n("'")                        { 
+                                        yybegin(YYINITIAL);
+                                        char_val.append('\n');
+                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
+                                        this.anterior = this.actual;
+                                        System.out.println(char_val.toString());
+                                        return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual); 
+                                    }
+    \\r("'")                        { 
+                                        yybegin(YYINITIAL);
+                                        char_val.append('\r');
+                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
+                                        this.anterior = this.actual;
+                                        System.out.println(char_val.toString());
+                                        return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual); 
+                                    }
+    \\\"("'")                       { 
+                                        yybegin(YYINITIAL);
+                                        char_val.append('\"');
+                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
+                                        this.anterior = this.actual;
+                                        System.out.println(char_val.toString());
+                                        return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual); 
+                                    }
+    \\\'("'")                       { 
+                                        yybegin(YYINITIAL);
+                                        char_val.append('\'');
+                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
+                                        this.anterior = this.actual;
+                                        System.out.println(char_val.toString());
+                                        return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual); 
+                                    }
+    \\("'")                         { 
+                                        yybegin(YYINITIAL);
+                                        char_val.append('\\');
+                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
+                                        this.anterior = this.actual;
+                                        System.out.println(char_val.toString());
+                                        return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual); 
+                                    }
 }
 
 <COMENTARIO>    {
