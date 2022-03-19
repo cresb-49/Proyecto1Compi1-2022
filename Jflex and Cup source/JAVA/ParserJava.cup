@@ -233,6 +233,7 @@ tipo        ::= INT:t     {:RESULT = new Asignacion(TablaSimbolos.INT,t.getLexem
             |   CHAR:t    {:RESULT = new Asignacion(TablaSimbolos.CHAR,t.getLexema());:}
             |   DOUBLE:t  {:RESULT = new Asignacion(TablaSimbolos.DOUBLE,t.getLexema());:}
             |   OBJ:t     {:RESULT = new Asignacion(TablaSimbolos.OBJECT,t.getLexema());:}
+            |   ID:t     {:RESULT = new Asignacion(TablaSimbolos.OBJECT,t.getLexema());:}
             ;
 
 classJava   ::= visibilidad CLASS ID:clase LLA_A contClass:vars LLA_C   {:
@@ -256,14 +257,14 @@ contClass   ::= contClass:vars declararVariables:vars1 {:RESULT = retornarDosFue
             |   error
             ;
 
-constructor ::= PUBLIC ID:constructor PA_A parametros:vars PA_C constructorP:vars1  {:
-                                                                                        archivarMetodo(constructor.getLexema(),"Constructor",vars,0);
-                                                                                        agregarVariablesTabla("Constructor "+constructor.getLexema(),retornarDosFuentes(vars,vars1));
-                                                                                    :}
-            |   PUBLIC ID:constructor PA_A PA_C constructorP:vars1                  {:
-                                                                                        archivarMetodo(constructor.getLexema(),"Constructor",null,0);
-                                                                                        agregarVariablesTabla("Constructor "+constructor.getLexema(),vars1);
-                                                                                    :}
+constructor ::= visibilidad ID:constructor PA_A parametros:vars PA_C constructorP:vars1 {:
+                                                                                            archivarMetodo(constructor.getLexema(),"Constructor",vars,0);
+                                                                                            agregarVariablesTabla("Constructor "+constructor.getLexema(),retornarDosFuentes(vars,vars1));
+                                                                                        :}
+            |   visibilidad ID:constructor PA_A PA_C constructorP:vars1                 {:
+                                                                                            archivarMetodo(constructor.getLexema(),"Constructor",null,0);
+                                                                                            agregarVariablesTabla("Constructor "+constructor.getLexema(),vars1);
+                                                                                        :}
             ;
 
 constructorP    ::= LLA_A LLA_C
