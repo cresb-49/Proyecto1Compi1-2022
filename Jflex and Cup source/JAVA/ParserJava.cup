@@ -1,10 +1,9 @@
-package com.cresb49.servidorproyecto1.analizardorjava;
+package com.cresb49.serverproyecto1.analizarjava;
+
+import com.cresb49.serverproyecto1.analizarjava.objetos.*;
 
 
-import com.cresb49.servidorproyecto1.analizardorjava.objetos.*;
-import com.cresb49.servidorproyecto1.analizardorjava.objetos.resultados.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java_cup.runtime.*;
 
 class ParserJava;

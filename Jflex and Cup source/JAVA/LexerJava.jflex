@@ -1,6 +1,8 @@
-package com.cresb49.servidorproyecto1.analizardorjava;
+package com.cresb49.serverproyecto1.analizarjava;
 
-import com.cresb49.servidorproyecto1.analizardorjava.objetos.resultados.Comentario;
+import com.cresb49.serverproyecto1.analizarjava.objetos.*;
+
+
 import java.util.ArrayList;
 import java_cup.runtime.*;
 
