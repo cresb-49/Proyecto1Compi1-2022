@@ -25,9 +25,9 @@ public class CrearArchivos {
         File archivoJson = new File();
         File archivoDef = new File();
         
-        proyectoCopy.setPathCarpetaProyecto();
-        proyectoCopy.setPathArchivDef();
-        proyectoCopy.setPathArchivoJson();
+        this.setPathCarpetaProyecto();
+        this.setPathArchivDef();
+        this.setPathArchivoJson();
         
         if (carpetaFile) {
             FileWriter fw = new FileWriter();

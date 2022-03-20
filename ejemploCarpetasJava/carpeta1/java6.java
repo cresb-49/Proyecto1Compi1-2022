@@ -32,13 +32,10 @@ public class Servidor{
         Socket socket = null;
         ObjectInputStream in;
 
-        serverSocket = new ServerSocket(puerto);
-        System.out.println("Servidor Iniciado");
+        serverSocket = new ServerSocket();
         while (true) {
             socket = serverSocket;
-
             in = new ObjectInputStream();
-
             Object mensaje = "hola mensaje nuevo";
         }
     }
