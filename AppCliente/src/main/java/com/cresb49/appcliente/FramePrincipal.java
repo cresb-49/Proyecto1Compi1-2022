@@ -747,7 +747,11 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         System.out.println("Se recibio una respuesta del servidor");
-        System.out.println(arg.toString());
+        if(arg instanceof String){
+            System.out.println((String)arg);
+            this.jTextAreaJson.setText((String)arg);
+            //this.sobreEscribirJson();
+        }
     }
 
     private void inicializarServidor() {

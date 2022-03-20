@@ -164,17 +164,17 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
         consola.addLog("Proyecto recibido Archivos a procesar:");
         AnalizarProyectos analizarProyectos = new AnalizarProyectos(consola);
         if(arg instanceof Proyecto){
-            analizarProyectos.realizarAnalisis((Proyecto)arg);
+            String res = analizarProyectos.realizarAnalisis((Proyecto)arg);
+            if(res!=null){
+                System.out.println("Voy a responder al cliente");
+                this.responderCliente(res);
+            }
         }
-        //System.out.println("Mensaje Recivido");
-        //System.out.println(arg.toString());
-        //System.out.println("Voy a responder al cliente");
-        //this.responderCliente();
     }
     
-    public void responderCliente(){
+    public void responderCliente(String json){
         cliente = new Cliente(6000, "localhost",this.consola);
-        cliente.setMensaje("Hola desde el servidor");
+        cliente.setMensaje(json);
         Thread hilo = new Thread(cliente);
         hilo.start();
     }

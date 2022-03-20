@@ -7,6 +7,7 @@ public class ResultadoAnalisis {
     private ArrayList<Metodo> metodos;
     private ArrayList<Comentario> comentarios;
     private TablaSimbolos tablaSimbolos;
+
     /**
      * @param clases
      * @param metodos

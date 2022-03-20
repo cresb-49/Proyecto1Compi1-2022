@@ -11,7 +11,7 @@ public class AnalizarProyectos {
     public AnalizarProyectos(ConsoleControl consola){
         this.consola = consola;
     }
-    public void realizarAnalisis(Proyecto proyecto){
+    public String realizarAnalisis(Proyecto proyecto){
         //OBJETOS PERTENECIENTES AL ANALISIS DE LOS ARCHIVOS DE LA CARPETA 1
         AnalizarJava analizarJava1 = new AnalizarJava(consola);
         TablaSimbolos tablaSimbolos1 = new TablaSimbolos();
@@ -71,7 +71,12 @@ public class AnalizarProyectos {
         System.out.println("Numero Metodos: "+numeroMetodos2);
         System.out.println("Numero Comentarios: "+numeroComentarios2);
         
-
-
+        //PROCESADO DE LOS DATOS OBTNEIDOS EN EL ANALISIS
+        ResultadoAnalisis analisis1 = new ResultadoAnalisis(clases1, metodos1, comentarios1, tablaSimbolos1);
+        ResultadoAnalisis analisis2 = new ResultadoAnalisis(clases2, metodos2, comentarios2, tablaSimbolos2);
+        CompararProyectos comparar = new CompararProyectos(analisis1, analisis2);
+        String res = comparar.resultadosJson();
+        System.out.println(res);
+        return res;
     }
 }
