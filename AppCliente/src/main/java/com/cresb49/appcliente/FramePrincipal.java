@@ -478,10 +478,14 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
                 this.crear_guardar_proyecto();
             }
             if (!(this.proyectoCopy.getPathCarpetaProyecto().isBlank() || this.proyectoCopy.getPathCarpetaProyecto().isEmpty())) {
+                System.out.println("carpeta1: "+carpeta1);
+                System.out.println("carpeta2: "+carpeta2);
                 if (carpeta1 != null && carpeta2 != null) {
                     EmpaquetarInformacion empquetado = new EmpaquetarInformacion();
+                    System.out.println("debuj");
                     cliente = new Cliente(5000, "localhost");
                     try {
+                        System.out.println("debuj2");
                         Proyecto proyecto = empquetado.empaquetar(carpeta1, carpeta2);
                         cliente.setMensaje(proyecto);
                         Thread hilo = new Thread(cliente);
@@ -809,6 +813,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             this.carpeta1 = null;
             this.estadoCarpeta1(false);
         } else {
+            this.carpeta1=cp1;
             NombreCarpeta1.setText(cp1.getName());
             this.estadoCarpeta1(true);
         }
@@ -826,6 +831,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             this.carpeta2 = null;
             this.estadoCarpeta2(false);
         } else {
+            this.carpeta2=cp2;
             NombreCarpeta2.setText(cp2.getName());
             this.estadoCarpeta2(true);
         }

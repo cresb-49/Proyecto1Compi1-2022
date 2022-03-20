@@ -19,6 +19,7 @@ public class EmpaquetarInformacion {
         proyecto.setCarpeta1(new ArrayList<>());
         proyecto.setCarpeta2(new ArrayList<>());
         
+        proyecto.setNombreCarpeta1(carpeta1.getName());
         String tmpcode;
         for (File filejava : carpeta1.listFiles()) {    
             tmpcode = this.getCode(filejava);
@@ -26,7 +27,7 @@ public class EmpaquetarInformacion {
                 proyecto.getCarpeta1().add(new FileJava(tmpcode, filejava.getName(), ".java"));
             }
         }
-
+        proyecto.setNombreCarpeta2(carpeta2.getName());
         for (File filejava : carpeta2.listFiles()) {    
             tmpcode = this.getCode(filejava);
             if(tmpcode!=null){
