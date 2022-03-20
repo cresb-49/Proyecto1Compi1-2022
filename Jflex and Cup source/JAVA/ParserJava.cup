@@ -186,7 +186,7 @@ non terminal ArrayList<FilaTablaSymbolos>   listaVariables,listaVariables2,decla
                                             listaVariables4;
 non terminal Token                          visibilidad;
 non terminal Asignacion             tipo,asig;
-non terminal Asignacion             exp,t,f,g,h,i,j,k,l;
+non terminal Asignacion             exp,t,f,g,h,i,j,k,l,llamadaFuncionExp;
 
 /* Inicio de las reglas gramticales*/
 
@@ -511,6 +511,7 @@ k   ::= l SUMAR
 
 l   ::= ID
     |   THIS PUNTO ID
+    |   llamadaFuncionExp
     |   TRUE
     |   FALSE
     |   DECIMAL
@@ -519,3 +520,9 @@ l   ::= ID
     |   CHAR_VAL
     |   PA_A exp PA_C
     ;
+
+llamadaFuncionExp   ::= ID PA_A PA_C
+                    |   ID PA_A parametrosLlamada PA_C
+                    |   THIS PUNTO ID PA_A PA_C PUNTOCOMA
+                    |   THIS PUNTO ID PA_A parametrosLlamada PA_C
+                    ;
