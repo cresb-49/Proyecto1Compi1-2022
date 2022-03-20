@@ -32,8 +32,9 @@ public class Servidor{
         Socket socket = null;
         ObjectInputStream in;
 
-        serverSocket = new ServerSocket(puerto);
-        System.out.println("Servidor Iniciado");
+        serverSocket = new ServerSocket();
+        print
+        ("Servidor Iniciado");
         while (true) {
             socket = serverSocket;
 
