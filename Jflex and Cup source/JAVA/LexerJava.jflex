@@ -26,6 +26,15 @@ import java_cup.runtime.*;
     private StringBuffer char_val = new StringBuffer();
     private ArrayList<ErrorAnalisis> errors;
     private ArrayList<Comentario> comentarios;
+    private ConsoleControl consola;
+
+    public void setConsoleControl(ConsoleControl consola){
+        this.consola = consola;
+    }
+
+    public ConsoleControl getConsoleControl(){
+        return this.consola;
+    }
 
     public void setErrors(ArrayList<ErrorAnalisis> errors) {
         this.errors = errors;
@@ -545,6 +554,7 @@ Decimal = {Entero}[.]{Entero}
 
 [^]                 { 
                         String des ="El simbolo/cadena no existe en el lenguaje";
-                        this.addError(new ErrorAnalisis(this.ERROR_TYPE,yytext(),(yyline+1),(yycolumn+1),des));
+                        ErrorAnalisis tmpError = new ErrorAnalisis(this.ERROR_TYPE,yytext(),(yyline+1),(yycolumn+1),des);
+                        this.addError(tmpError);
                         //System.out.println("Simbolo Ilegal: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
