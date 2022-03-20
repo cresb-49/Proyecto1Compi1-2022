@@ -9,7 +9,9 @@ import com.cresb49.serverproyecto1.analizarjava.AnalizarJava;
 import com.cresb49.serverproyecto1.analizarjava.objetos.*;
 import com.cresb49.serverproyecto1.comunicacion.Cliente;
 import com.cresb49.serverproyecto1.comunicacion.Servidor;
+import com.cresb49.serverproyecto1.consolecontrol.ConsoleControl;
 import com.cresb49.appcliente.Objetos.*;
+import java.awt.ComponentOrientation;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -21,12 +23,14 @@ import java.util.Observer;
  */
 public class FramePrincipal extends javax.swing.JFrame implements Observer{
 
+    private ConsoleControl consola;
     /**
      * Creates new form FramePrincipal
      */
     public FramePrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.consola = new ConsoleControl(ConsoleLog);
         this.inicializarServidor();
     }
 
@@ -47,8 +51,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
         jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        ConsoleLog = new javax.swing.JTextPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        ConsoleLog = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,11 +98,11 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
 
         jTabbedPane1.addTab("tab1", jPanel2);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "CONSOLA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONSOLA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
-        ConsoleLog.setEditable(false);
-        ConsoleLog.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jScrollPane1.setViewportView(ConsoleLog);
+        ConsoleLog.setColumns(20);
+        ConsoleLog.setRows(5);
+        jScrollPane3.setViewportView(ConsoleLog);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -106,14 +110,14 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -211,15 +215,15 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextPane ConsoleLog;
+    private javax.swing.JTextArea ConsoleLog;
     private javax.swing.JTextPane codigoPrueba;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
     private Cliente cliente;
@@ -233,8 +237,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
 
     @Override
     public void update(Observable o, Object arg) {
-        ConsoleLog.setText(ConsoleLog.getText()+ "Nueva informacion recibida\n");
-        AnalizarProyectos analizarProyectos = new AnalizarProyectos();
+        ConsoleLog.append("Nueva informacion recibida\n");
+        AnalizarProyectos analizarProyectos = new AnalizarProyectos(consola);
         if(arg instanceof Proyecto){
             analizarProyectos.realizarAnalisis((Proyecto)arg);
         }
