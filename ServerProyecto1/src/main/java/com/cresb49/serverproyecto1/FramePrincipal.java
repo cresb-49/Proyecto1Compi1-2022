@@ -44,12 +44,6 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        codigoPrueba = new javax.swing.JTextPane();
-        jButton2 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         ConsoleLog = new javax.swing.JTextArea();
@@ -63,41 +57,6 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
             }
         });
 
-        codigoPrueba.setText("import java.util.*; // comentario simple\nimport java.sql.base1; // Statement,\n\npublic class ejemplo_final{\n\n\tprivate String value; // \"Comentarios\"\n\tprivate boolean valid;\n\t/** * Comentariooo * multilinea*/\n\tprotected ejemplo_final(){}\n\tpublic boolean parse() {\n\t\tTabla tabla = new Objeto();\n\t\tSaludar(\"hola \"+\" numero: \"+ (55+55));\n\t}\n\tpublic String Saludar(String val) {\n\t\tif(val!=\"\"){\n\t\t\tthis.variablethis = 34;\n\t\t\tif(nuevo){\n\t\t\t\tint hola = 45;\n\t\t\t\tchar var_char = 'r';\n\t\t\t}\n\t\t\treturn val; // \"Hola aqui retorno\"}\n\t\t}\n      \t\twhile(i != 0) {\n\n  \t  \t}\n\t\tdo {\n    \t\t} while(i != 0);\n\t}\n}");
-        jScrollPane2.setViewportView(codigoPrueba);
-
-        jButton2.setText("Analizar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2)
-                .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(399, 399, 399)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(413, 413, 413))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(64, 64, 64))
-        );
-
-        jTabbedPane1.addTab("tab1", jPanel2);
-
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONSOLA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
         ConsoleLog.setColumns(20);
@@ -110,35 +69,15 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)
+                .addComponent(jScrollPane3)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jTabbedPane1.addTab("tab2", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,15 +86,15 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTabbedPane1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 913, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addGap(7, 7, 7))
@@ -167,17 +106,6 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.ConsoleLog.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        //PRUEBAS  DEL ANALIS DE CODIGO JAVA
-        AnalizarJava analizarJava = new AnalizarJava();
-        TablaSimbolos tablaSimbolos = new TablaSimbolos();
-        ArrayList<Clase> clases = new ArrayList<>();
-        ArrayList<Metodo> metodos = new ArrayList<>();
-        ArrayList<Comentario> comentarios = new ArrayList<>();
-        analizarJava.ejecutar(this.codigoPrueba.getText(),tablaSimbolos,clases,metodos,comentarios);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,15 +144,9 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea ConsoleLog;
-    private javax.swing.JTextPane codigoPrueba;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
     private Cliente cliente;
 

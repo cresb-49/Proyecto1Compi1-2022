@@ -9,7 +9,7 @@ public class ejemplo_final{
 	protected ejemplo_final(){}
 	public boolean parse() {
 		Tabla tabla = new Objeto();
-		Saludar("hola "+" numero: "+ (55+55));
+		this.Saludar("hola "+" numero: "+ (55+55));
 	}
 	public String Saludar(String val) {
 		if(val!=""){
@@ -18,7 +18,7 @@ public class ejemplo_final{
 				int hola = 45;
 				char var_char = 'r';
 			}
-			return val; // "Hola aqui retorno"}
+			return this.val; // "Hola aqui retorno"}
 		}
       		while(i != 0) {
 
