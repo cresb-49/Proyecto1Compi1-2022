@@ -64,6 +64,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         this.cargarImagenes();
         this.inicializarServidor();
         this.cargarEstadoCarpetas();
+        this.mostrarNombreProyecto("Sin proyecto abierto");
     }
 
     private void cargarImagenes() {
@@ -254,9 +255,10 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             }
         });
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONSOLA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 18))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONSOLA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
 
         ConsolaDef.setColumns(20);
+        ConsolaDef.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         ConsolaDef.setRows(5);
         jScrollPane6.setViewportView(ConsolaDef);
 
@@ -272,7 +274,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -285,7 +287,6 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
         jTextAreaDef.setColumns(20);
         jTextAreaDef.setRows(5);
-        jTextAreaDef.setText("</ iniciare a definir de alguna manera />\nInteger Max, i;\nMax=4;\ni=0;\nString texto=\"Su score fue de: \"+RESULT.Score\n</ Aqui defino el html />\n<html>\n<H1>$$( texto )$$<h1>\n        <table>\n            <tr>\n                <th>Numero</th>\n                <th>Variable</th>\n                <th>Tipo</th>\n                <th>Función</th>\n            </tr>\n            <for iterador:i hasta:Max;>\n                <tr>\n                    <td> $$( i )$$ </td>\n                    <td> $$( RESULT.Variables[i].Nombre )$$ </td>\n                    <td> $$( RESULT.Variables[i].Tipo )$$ </td>\n                    <td> $$( RESULT.Variables[i].Funcion )$$ </td>\n                </tr>\n            </for>\n        </table>\n</html>");
         jScrollPane1.setViewportView(jTextAreaDef);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -298,24 +299,24 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
                     .addComponent(jScrollPane1)
                     .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(ButtonEjecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ButtonEjecutar, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 377, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(368, 368, 368)
+                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
                     .addComponent(ButtonEjecutar)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -339,6 +340,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("CONSOLA"));
 
         ConsolaJson.setColumns(20);
+        ConsolaJson.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         ConsolaJson.setRows(5);
         jScrollPane2.setViewportView(ConsolaJson);
 
@@ -369,7 +371,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         jTextAreaJson.setColumns(20);
         jTextAreaJson.setRows(5);
         jTextAreaJson.setTabSize(5);
-        jTextAreaJson.setText("{\n    Score: \"0.75\",\n    Clases: [\n        { Nombre: \"clase1\"},\n        {Nombre: \"clase2\"}\n    ],\n    Variables: [\n        {Nombre: \"var1\", Tipo: \"int\", Funcion: \"funcion1, funcion2\"},\n        {Nombre: \"var2\", Tipo: \"int\", Funcion: \"funcion2, Clase hola\"}\n    ],\n    Metodos: [\n        {Nombre: \"metodo1\",Tipo: \"void\", Parametros: 2},\n        {Nombre: \"metodo2\",Tipo: \"String\", Parametros: 0}\n    ],\n    Comentarios: [\n        { Texto: \"hola es un comentario\"},\n        { Texto: \"otro coment\"}\n    ]\n}");
+        jTextAreaJson.setText("{\n    Score: \"0\",\n    Clases: [],\n    Variables: [],\n    Metodos: [],\n    Comentarios: []\n}");
         jScrollPane4.setViewportView(jTextAreaJson);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -384,8 +386,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jButton3)
+                        .addGap(380, 380, 380)
                         .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -782,6 +784,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             this.generalPath = archivoElegido.getParentFile().getParent();
             System.out.println("path general: " + this.generalPath);
             this.cargarProyecto();
+            this.mostrarNombreProyecto(archivoElegido.getName());
             JOptionPane.showMessageDialog(this, "Carga exitosa!", "Carga exitosa!", JOptionPane.INFORMATION_MESSAGE);
         } catch (ClassNotFoundException e) {
             JOptionPane.showMessageDialog(this, "El archivo que desea cargar esta dañado" + e.getMessage(), "Error al cargar el archivo!", JOptionPane.ERROR_MESSAGE);
@@ -799,6 +802,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
                 File JFC = fileChooser.getSelectedFile();
                 CrearArchivos.crear_guardar(JFC, proyectoCopy);
                 this.generalPath = JFC.getParent();
+                this.mostrarNombreProyecto(JFC.getName());
                 JOptionPane.showMessageDialog(this, "Guardado exitoso!", "Guardado exitoso!", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "No guardo el proyecto!", "No guardo el proyecto!", JOptionPane.ERROR_MESSAGE);
@@ -937,5 +941,9 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             JOptionPane.showMessageDialog(this, "No trabaja en ningun proyecto, no puede guardar el archivo", "Error al guardar!", JOptionPane.ERROR_MESSAGE);
         }
 
+    }
+    
+    private void mostrarNombreProyecto(String nombre){
+        this.setTitle(nombre);
     }
 }
