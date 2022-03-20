@@ -23,17 +23,16 @@ parser code {:
     private String carpetaFuente;
     private String archivoAnalizado;
     
-    public ParserJava (LexerJava lexerJava){ 
+    public ParserJava (LexerJava lexerJava,TablaSimbolos tablaSimbolos,ArrayList<Clase> clases,ArrayList<Metodo> metodos){ 
         super(lexerJava);
         this.lexerJava=lexerJava;
+        this.tablaSimbolos = tablaSimbolos;
+        this.metodos = metodos;
+        this.clases = clases;
         this.carpetaFuente=this.lexerJava.getCarpetaFunete();
         this.archivoAnalizado=this.lexerJava.getArchivoAnalizado();
         this.consola=this.lexerJava.getConsoleControl();
         this.simbolosTerminalesJava = new SimbolosTerminalesJava();
-    }
-
-    public void setTablasimbolos(TablaSimbolos tablaSimbolos){
-        this.tablaSimbolos = tablaSimbolos;
     }
 
     public TablaSimbolos getTablaSimbolos(){
@@ -44,16 +43,8 @@ parser code {:
         return this.clases;
     }
 
-    public void setClases(ArrayList<Clase> clases) {
-        this.clases = clases;
-    }
-
     public ArrayList<Metodo> getMetodos() {
         return this.metodos;
-    }
-
-    public void setMetodos(ArrayList<Metodo> metodos) {
-        this.metodos = metodos;
     }
 
     public void report_error(String message, Object info) {
