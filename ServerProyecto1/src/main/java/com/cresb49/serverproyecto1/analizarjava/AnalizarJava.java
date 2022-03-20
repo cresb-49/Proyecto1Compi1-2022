@@ -5,25 +5,23 @@ import java.io.StringReader;
 import java.util.ArrayList;
 
 import com.cresb49.serverproyecto1.analizarjava.objetos.*;
+import com.cresb49.serverproyecto1.consolecontrol.ConsoleControl;
 
 public class AnalizarJava {
     private ArrayList<ErrorAnalisis> errores;
     private LexerJava lexerJava;
     private ParserJava parserJava;
+    private ConsoleControl consola;
     
-    public AnalizarJava() {
+    public AnalizarJava(ConsoleControl consola) {
+        this.consola = consola;
     }
 
-    public void ejecutar(String texto,TablaSimbolos tablaSimbolos,ArrayList<Clase> clases,ArrayList<Metodo> metodos,ArrayList<Comentario>comentarios ){
+    public void ejecutar(String texto,TablaSimbolos tablaSimbolos,ArrayList<Clase> clases,ArrayList<Metodo> metodos,ArrayList<Comentario>comentarios,String carpetaFuente,String archivoAnalizado){
         Reader reader = new StringReader(texto);    
         errores = new ArrayList<>();
-        lexerJava = new LexerJava(reader);
-        lexerJava.setErrors(errores);
-        lexerJava.setComentarios(comentarios);
-        parserJava = new ParserJava(lexerJava);
-        parserJava.setClases(clases);
-        parserJava.setMetodos(metodos);
-        parserJava.setTablasimbolos(tablaSimbolos);
+        lexerJava = new LexerJava(reader,consola, comentarios, errores,carpetaFuente,archivoAnalizado);
+        parserJava = new ParserJava(lexerJava,tablaSimbolos, clases, metodos);
         try {
             parserJava.parse();
         } catch (Exception e) {
