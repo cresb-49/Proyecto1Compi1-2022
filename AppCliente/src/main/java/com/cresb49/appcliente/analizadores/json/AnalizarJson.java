@@ -1,6 +1,7 @@
 package com.cresb49.appcliente.analizadores.json;
 
 import com.cresb49.appcliente.analizadores.ErrorAnalisis;
+import com.cresb49.appcliente.analizadores.json.obj.ReporteJson;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -42,7 +43,6 @@ public class AnalizarJson {
         }else{
             System.out.println("Recuperacion null");
         }
-
     }
     
     /**
@@ -51,4 +51,9 @@ public class AnalizarJson {
     public ArrayList<ErrorAnalisis> getReporteFinalErrores() {
         return reporteFinalErrores;
     }
+    
+    public ReporteJson getReporteJson(){
+        return this.parserJson.getReporteJson();
+    }
+    
 }

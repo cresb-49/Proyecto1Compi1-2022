@@ -1,4 +1,4 @@
-package com.cresb49.serverproyecto1.consolecontrol;
+package com.cresb49.appcliente.Objetos;
 
 import javax.swing.JTextArea;
 

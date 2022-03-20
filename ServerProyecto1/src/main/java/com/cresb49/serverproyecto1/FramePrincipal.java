@@ -237,7 +237,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
 
     @Override
     public void update(Observable o, Object arg) {
-        ConsoleLog.append("Nueva informacion recibida\n");
+        consola.addLog("Proyecto recibido Archivos a procesar:");
         AnalizarProyectos analizarProyectos = new AnalizarProyectos(consola);
         if(arg instanceof Proyecto){
             analizarProyectos.realizarAnalisis((Proyecto)arg);
