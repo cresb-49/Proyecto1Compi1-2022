@@ -24,7 +24,7 @@ public class ConsoleControl {
 
     public ErrorAnalisis addLog(ErrorAnalisis errorAnalisis,String carpeta,String archivo){
         String text="Carpeta: "+carpeta+" Archivo: "+archivo+"\n";
-        text = text + "↳ Error " + errorAnalisis.getTipo() + " \"" + errorAnalisis.getLexema() + "\"" + ", Linea: " + errorAnalisis.getLinea() + ", Columna: " + errorAnalisis.getColumna() + " -> " + errorAnalisis.getDescipcion();
+        text = text + "\t↳ Error " + errorAnalisis.getTipo() + " \"" + errorAnalisis.getLexema() + "\"" + ", Linea: " + errorAnalisis.getLinea() + ", Columna: " + errorAnalisis.getColumna() + " -> " + errorAnalisis.getDescipcion();
         this.consola.append(text+"\n");
         return errorAnalisis;
     }
