@@ -9,7 +9,7 @@ import com.cresb49.serverproyecto1.analizarjava.AnalizarJava;
 import com.cresb49.serverproyecto1.analizarjava.objetos.*;
 import com.cresb49.serverproyecto1.comunicacion.Cliente;
 import com.cresb49.serverproyecto1.comunicacion.Servidor;
-import com.cresb49.appcliente.Objetos.CompararProyectos;
+import com.cresb49.appcliente.Objetos.*;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -236,7 +236,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
         ConsoleLog.setText(ConsoleLog.getText()+ "Nueva informacion recibida\n");
         AnalizarProyectos analizarProyectos = new AnalizarProyectos();
         if(arg instanceof CompararProyectos){
-            analizarProyectos.realizarAnalisis((CompararProyectos)arg);
+            analizarProyectos.realizarAnalisis((Proyecto)arg);
         }
         //System.out.println("Mensaje Recivido");
         //System.out.println(arg.toString());
