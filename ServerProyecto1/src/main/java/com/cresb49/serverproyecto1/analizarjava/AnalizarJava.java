@@ -26,6 +26,8 @@ public class AnalizarJava {
             parserJava.parse();
         } catch (Exception e) {
             System.out.println("ERROR EN LA EJECUCION DEL ANALISIS DE ARCHIVO JAVA");
+            consola.addLog("ERROR EN LA EJECUCION DEL ANALISIS DE ARCHIVO JAVA");
+            consola.addLog(e.getMessage());
             e.printStackTrace();
         }
     }
