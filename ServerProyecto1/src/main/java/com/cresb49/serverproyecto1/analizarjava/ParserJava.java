@@ -1016,7 +1016,6 @@ public class ParserJava extends java_cup.runtime.lr_parser {
     private static final String ERROR_TYPE_SEM = "Semantico";
 
     private LexerJava lexerJava;
-    private ArrayList<ErrorAnalisis> errorAnalisisesTmp;
     private SimbolosTerminalesJava simbolosTerminalesJava;
     private TablaSimbolos tablaSimbolos;
     private ArrayList<Clase> clases;
@@ -1077,13 +1076,13 @@ public class ParserJava extends java_cup.runtime.lr_parser {
             } else {
                 String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesJava.obtenerSimbolos(expected_token_ids()).toString();
                 //System.out.println(tok.getLexema()+" "+er);
-                this.lexerJava.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN,tok.getLexema(), tok.getLinea(), tok.getColumna(), er));
+                this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SIN,tok.getLexema(), tok.getLinea(), tok.getColumna(), er),carpetaFuente,archivoAnalizado));
                 //System.out.println(er);
             }
         }else{
             String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesJava.obtenerSimbolos(expected_token_ids()).toString();
             //System.out.println("FIN ARCHIVO"+" "+er);
-            this.lexerJava.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er));
+            this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er),carpetaFuente,archivoAnalizado));
             //System.out.println(er);
         }
     }
@@ -1092,14 +1091,14 @@ public class ParserJava extends java_cup.runtime.lr_parser {
         if (cur_token.sym == ParserJavaSym.EOF) {
             String er = "Error irrecuperable se llego al final del archivo";
             //System.out.println("FIN ARCHIVO"+" "+er);
-            this.lexerJava.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er));
+            this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er),carpetaFuente,archivoAnalizado));
             //System.out.println(er);
         } else {
             Token tok = (Token) cur_token.value;
             //String er = "Error irrecuperable, un posible simbolo esperado: "+ simbolosTerminalesJava.obtenerSimbolos(expected_token_ids()).toString();
             String er = "Error irrecuperable resuelva el error anterior";
             //System.out.println(tok.getLexema()+" "+er);
-            this.lexerJava.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN, tok.getLexema(), tok.getLinea(), tok.getColumna(), er));
+            this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SIN, tok.getLexema(), tok.getLinea(), tok.getColumna(), er),carpetaFuente,archivoAnalizado));
             //System.out.println(er);
         }
     }
@@ -1109,7 +1108,7 @@ public class ParserJava extends java_cup.runtime.lr_parser {
     }
 
     private void semantic_error(Token token,String contexto) {
-        this.lexerJava.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,token.getLexema(), token.getLinea(), token.getColumna(), contexto));
+        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,token.getLexema(), token.getLinea(), token.getColumna(), contexto),carpetaFuente,archivoAnalizado));
     }
 
     private void agregarVariablesTabla(String metodo_clase, ArrayList<FilaTablaSymbolos> vars) {
