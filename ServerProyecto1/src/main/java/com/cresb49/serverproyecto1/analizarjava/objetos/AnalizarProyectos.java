@@ -39,22 +39,39 @@ public class AnalizarProyectos {
         //CICLO PARA EL ANALISIS DE LOS ARCHIVOS DE LA CARPETA 1
         for (FileJava archivo : proyecto.getCarpeta1()) {
             consola.addLog("INICIO DE ANALISIS: "+proyecto.getNombreCarpeta1()+"/"+archivo.getName());
-            analizarJava1.ejecutar(archivo.getText(), tablaSimbolos1, clases1, metodos1, comentarios1, proyecto.getNombreCarpeta1(), archivo.getName());
+            analizarJava2.ejecutar(archivo.getText(), tablaSimbolos1, clases1, metodos1, comentarios1, proyecto.getNombreCarpeta1(), archivo.getName());
             //System.out.println(archivo.getText());
         }
 
-        tablaSimbolos1.imprimirTabla();
-        System.err.println("----------------IMPRECION CLASE-------------------");
-        for (Clase clase : clases1) {
-            System.out.println(clase.toString());
+        //CICLO PARA EL ANALISIS DE LOS ARCHIVOS DE LA CARPETA 2
+        for (FileJava archivo : proyecto.getCarpeta2()) {
+            consola.addLog("INICIO DE ANALISIS: "+proyecto.getNombreCarpeta2()+"/"+archivo.getName());
+            analizarJava1.ejecutar(archivo.getText(), tablaSimbolos2, clases2, metodos2, comentarios2, proyecto.getNombreCarpeta2(), archivo.getName());
+            //System.out.println(archivo.getText());
         }
-        System.err.println("----------------IMPRECION METODO-------------------");
-        for (Metodo metodo : metodos1) {
-            System.out.println(metodo.toString());
-        }
-        System.err.println("----------------IMPRECION COMENTARIOS-------------------");
-        for (Comentario comentario : comentarios1) {
-            System.out.println(comentario.toString());
-        }        
+        
+        //CONTROL INTERNO DE LA RECUPERACION DE INFORMACION CARPETA 1
+        int numeroVariables1 = tablaSimbolos1.numeroVariables();
+        int numeroClases1 = clases1.size();
+        int numeroMetodos1 = metodos1.size();
+        int numeroComentarios1 = comentarios1.size();
+        System.out.println("RESULTADO CARPETA 1");
+        System.out.println("Numero Variables: "+numeroVariables1);
+        System.out.println("Numero Clases: "+numeroClases1);
+        System.out.println("Numero Metodos: "+numeroMetodos1);
+        System.out.println("Numero Comentarios: "+numeroComentarios1);
+        //CONTROL INTERNO DE LA RECUPERACION DE INFORMACION CARPETA 2
+        int numeroVariables2 = tablaSimbolos2.numeroVariables();
+        int numeroClases2 = clases2.size();
+        int numeroMetodos2 = metodos2.size();
+        int numeroComentarios2 = comentarios2.size();
+        System.out.println("RESULTADO CARPETA 2");
+        System.out.println("Numero Variables: "+numeroVariables2);
+        System.out.println("Numero Clases: "+numeroClases2);
+        System.out.println("Numero Metodos: "+numeroMetodos2);
+        System.out.println("Numero Comentarios: "+numeroComentarios2);
+        
+
+
     }
 }

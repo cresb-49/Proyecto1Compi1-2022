@@ -58,4 +58,8 @@ public class TablaSimbolos {
         }
         
     }
+
+    public int numeroVariables(){
+        return this.filas.size();
+    }
 }
