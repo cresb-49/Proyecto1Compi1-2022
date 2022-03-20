@@ -497,6 +497,7 @@ k   ::= l SUMAR
     ;
 
 l   ::= ID
+    |   THIS PUNTO ID
     |   TRUE
     |   FALSE
     |   DECIMAL
