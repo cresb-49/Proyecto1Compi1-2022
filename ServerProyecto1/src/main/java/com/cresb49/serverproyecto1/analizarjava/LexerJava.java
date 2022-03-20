@@ -5,7 +5,7 @@
 package com.cresb49.serverproyecto1.analizarjava;
 
 import com.cresb49.serverproyecto1.analizarjava.objetos.*;
-
+import com.cresb49.serverproyecto1.consolecontrol.ConsoleControl;
 
 import java.util.ArrayList;
 import java_cup.runtime.*;
@@ -727,6 +727,22 @@ public class LexerJava implements java_cup.runtime.Scanner {
     private StringBuffer char_val = new StringBuffer();
     private ArrayList<ErrorAnalisis> errors;
     private ArrayList<Comentario> comentarios;
+    private ConsoleControl consola;
+
+    public LexerJava(java.io.Reader in,ConsoleControl consola,ArrayList<Comentario> comentarios,ArrayList<ErrorAnalisis> errors) {
+        this.zzReader = in;
+        this.consola = consola;
+        this.comentarios = comentarios;
+        this.errors = errors;
+    }
+
+    public void setConsoleControl(ConsoleControl consola){
+        this.consola = consola;
+    }
+
+    public ConsoleControl getConsoleControl(){
+        return this.consola;
+    }
 
     public void setErrors(ArrayList<ErrorAnalisis> errors) {
         this.errors = errors;
@@ -1159,7 +1175,8 @@ public class LexerJava implements java_cup.runtime.Scanner {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
             { String des ="El simbolo/cadena no existe en el lenguaje";
-                        this.addError(new ErrorAnalisis(this.ERROR_TYPE,yytext(),(yyline+1),(yycolumn+1),des));
+                        ErrorAnalisis tmpError = new ErrorAnalisis(this.ERROR_TYPE,yytext(),(yyline+1),(yycolumn+1),des);
+                        this.addError(tmpError);
                         //System.out.println("Simbolo Ilegal: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through

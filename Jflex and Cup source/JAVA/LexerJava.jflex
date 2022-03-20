@@ -1,7 +1,7 @@
 package com.cresb49.serverproyecto1.analizarjava;
 
 import com.cresb49.serverproyecto1.analizarjava.objetos.*;
-
+import com.cresb49.serverproyecto1.consolecontrol.ConsoleControl;
 
 import java.util.ArrayList;
 import java_cup.runtime.*;
@@ -27,6 +27,13 @@ import java_cup.runtime.*;
     private ArrayList<ErrorAnalisis> errors;
     private ArrayList<Comentario> comentarios;
     private ConsoleControl consola;
+
+    public LexerJava(java.io.Reader in,ConsoleControl consola,ArrayList<Comentario> comentarios,ArrayList<ErrorAnalisis> errors) {
+        this.zzReader = in;
+        this.consola = consola;
+        this.comentarios = comentarios;
+        this.errors = errors;
+    }
 
     public void setConsoleControl(ConsoleControl consola){
         this.consola = consola;
