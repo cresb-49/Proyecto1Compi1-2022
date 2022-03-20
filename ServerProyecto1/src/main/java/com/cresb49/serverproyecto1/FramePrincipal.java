@@ -59,7 +59,9 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONSOLA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
+        ConsoleLog.setEditable(false);
         ConsoleLog.setColumns(20);
+        ConsoleLog.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         ConsoleLog.setRows(5);
         jScrollPane3.setViewportView(ConsoleLog);
 
@@ -151,7 +153,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
     private Cliente cliente;
 
     private void inicializarServidor() {
-        Servidor servidor = new Servidor(5000);
+        Servidor servidor = new Servidor(5000,this.consola);
         servidor.addObserver(this);
         Thread hilo = new Thread(servidor);
         hilo.start();
@@ -171,7 +173,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
     }
     
     public void responderCliente(){
-        cliente = new Cliente(6000, "localhost");
+        cliente = new Cliente(6000, "localhost",this.consola);
         cliente.setMensaje("Hola desde el servidor");
         Thread hilo = new Thread(cliente);
         hilo.start();

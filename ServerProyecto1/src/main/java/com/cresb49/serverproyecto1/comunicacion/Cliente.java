@@ -8,19 +8,23 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.cresb49.serverproyecto1.consolecontrol.ConsoleControl;
+
 public class Cliente implements Runnable {
 
     private int puerto = 6000;
     private String host = "localhost";
     private Object mensaje;
+    private ConsoleControl consola;
 
     public Cliente() {
         
     }
     
-    public Cliente(int puerto,String host){
+    public Cliente(int puerto,String host,ConsoleControl consola){
         this.puerto= puerto;
         this.host = host;
+        this.consola = consola;
     }
 
     public int getPuerto() {
@@ -54,6 +58,7 @@ public class Cliente implements Runnable {
 
         try {
             socket = new Socket(host, puerto);
+            consola.addLog("Servidor Iniciado");
             System.out.println("Servidor Iniciado");
             
             out = new ObjectOutputStream(socket.getOutputStream());
@@ -62,6 +67,7 @@ public class Cliente implements Runnable {
             this.enviar(out,mensaje);
 
             socket.close();
+            consola.addLog("Se desconecto del servidor");
             System.out.println("Se desconecto del servidor");
 
         } catch (IOException ex) {
