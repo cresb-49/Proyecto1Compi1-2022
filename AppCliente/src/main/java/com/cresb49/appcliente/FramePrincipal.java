@@ -5,7 +5,6 @@
  */
 package com.cresb49.appcliente;
 
-import com.cresb49.appcliente.Objetos.CompararProyectos;
 import com.cresb49.appcliente.analizadores.*;
 import com.cresb49.appcliente.analizadores.def.AnalizarDef;
 import com.cresb49.appcliente.analizadores.def.obj.exceptions.NoReporteJson;
@@ -480,7 +479,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
                 if (carpeta1 != null && carpeta2 != null) {
                     cliente = new Cliente(5000, "localhost");
                     //cliente.setMensaje("Hola desde la app cliente");
-                    cliente.setMensaje(new CompararProyectos(carpeta1, carpeta2));
+                    cliente.setMensaje("Proyectos");
                     Thread hilo = new Thread(cliente);
                     hilo.start();
                 }
