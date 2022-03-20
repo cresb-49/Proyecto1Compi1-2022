@@ -13,4 +13,7 @@ public class ConsoleControl {
     public void addLog(String log){
         this.consola.append(log+"\n");
     }
+    public void clearLog(){
+        this.consola.setText("");
+    }
 }

@@ -42,7 +42,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
     private ConsoleControl consolaJson;
     private ConsoleControl consolaDef;
-    
+
     private Cliente cliente = null;
     private Image imagenCarpeta = null;
     private Image imagenNoCarga = null;
@@ -494,6 +494,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         // TODO add your handling code here:
         try {
             ////ANALISIS DEL ARCHIVO JSON
+            consolaDef.clearLog();
             ReporteJson reporteJson;
             AnalizarJson analizarJson = new AnalizarJson();
             analizarJson.ejecutar(this.jTextAreaJson.getText());
@@ -501,8 +502,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             ////ANALISIS DEL ARCHIVO DEF
             AnalizarDef analizarDef = new AnalizarDef();
             String texto = jTextAreaDef.getText();
-            analizarDef.ejecutar(texto,reporteJson);
-            this.mostrarErroresConsola(analizarDef.getErrores());
+            analizarDef.ejecutar(texto, reporteJson);
+            this.mostrarErroresConsolaDef(analizarDef.getErrores());
             if (analizarDef.getErrores().isEmpty()) {
                 VentanaHTML.setText(analizarDef.getHTML());
             } else {
@@ -515,7 +516,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        this.limpiarConsolaDef();
+        this.ConsolaDef.setText("");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void EnviarCarpetasJavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarCarpetasJavaActionPerformed
@@ -528,8 +529,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
                 this.crear_guardar_proyecto();
             }
             if (!(this.proyectoCopy.getPathCarpetaProyecto().isBlank() || this.proyectoCopy.getPathCarpetaProyecto().isEmpty())) {
-                System.out.println("carpeta1: "+carpeta1);
-                System.out.println("carpeta2: "+carpeta2);
+                System.out.println("carpeta1: " + carpeta1);
+                System.out.println("carpeta2: " + carpeta2);
                 if (carpeta1 != null && carpeta2 != null) {
                     EmpaquetarInformacion empquetado = new EmpaquetarInformacion();
                     System.out.println("debuj");
@@ -541,7 +542,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
                         Thread hilo = new Thread(cliente);
                         hilo.start();
                     } catch (IOException ex) {
-                        JOptionPane.showMessageDialog(this, "Error al enviar el codigo al servidor:\n"+ex.getMessage(), "Error al enviar!!!!", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Error al enviar el codigo al servidor:\n" + ex.getMessage(), "Error al enviar!!!!", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -595,6 +596,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         AnalizarJson analizarJson = new AnalizarJson();
         String texto = jTextAreaJson.getText();
         analizarJson.ejecutar(texto);
+        this.mostrarErroresConsolaJson(analizarJson.getErrores());
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -713,21 +715,31 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     private javax.swing.JTextArea jTextAreaJson;
     // End of variables declaration//GEN-END:variables
 
-    private void mostrarErroresConsola(ArrayList<ErrorAnalisis> errores) {
+    private void mostrarErroresConsolaDef(ArrayList<ErrorAnalisis> errores) {
         if (!errores.isEmpty()) {
-            this.limpiarConsolaDef();
-            String text = ConsolaDef.getText();
+            this.ConsolaDef.setText("");
+            String text;
             for (ErrorAnalisis errore : errores) {
-                text = text + "Error " + errore.getTipo() + " \"" + errore.getLexema() + "\"" + ", Linea: " + errore.getLinea() + ", Columna: " + errore.getColumna() + " -> " + errore.getDescipcion() + "\n";
+                text = "Error " + errore.getTipo() + " \"" + errore.getLexema() + "\"" + ", Linea: " + errore.getLinea() + ", Columna: " + errore.getColumna() + " -> " + errore.getDescipcion();
+                consolaDef.addLog(text);
             }
-            ConsolaDef.setText(text);
+
         } else {
-            this.limpiarConsolaDef();
+            consolaDef.addLog("Archivo def coorecto!!!! puede visualizarlo en Pestaña Reportes");
         }
     }
 
-    private void limpiarConsolaDef() {
-        this.ConsolaDef.setText("");
+    private void mostrarErroresConsolaJson(ArrayList<ErrorAnalisis> errores) {
+        if (!errores.isEmpty()) {
+            this.ConsolaJson.setText("");
+            String text;
+            for (ErrorAnalisis errore : errores) {
+                text = "Error " + errore.getTipo() + " \"" + errore.getLexema() + "\"" + ", Linea: " + errore.getLinea() + ", Columna: " + errore.getColumna() + " -> " + errore.getDescipcion();
+                consolaJson.addLog(text);
+            }
+        } else {
+            this.ConsolaJson.setText("Archivo Json correcto puede utilizarlo");
+        }
     }
 
     @Override
@@ -869,7 +881,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             this.carpeta1 = null;
             this.estadoCarpeta1(false);
         } else {
-            this.carpeta1=cp1;
+            this.carpeta1 = cp1;
             NombreCarpeta1.setText(cp1.getName());
             this.estadoCarpeta1(true);
         }
@@ -887,7 +899,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             this.carpeta2 = null;
             this.estadoCarpeta2(false);
         } else {
-            this.carpeta2=cp2;
+            this.carpeta2 = cp2;
             NombreCarpeta2.setText(cp2.getName());
             this.estadoCarpeta2(true);
         }
@@ -911,10 +923,19 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     }
 
     private void sobreEscribirDef() throws IOException {
-        SobreEscribirArchivos.sobreEscribirArchivoTexto(this.generalPath + this.proyectoCopy.getPathArchivDef(), jTextAreaDef.getText());
+        if (proyectoCopy != null && generalPath != null) {
+            SobreEscribirArchivos.sobreEscribirArchivoTexto(this.generalPath + this.proyectoCopy.getPathArchivDef(), jTextAreaDef.getText());
+        } else {
+            JOptionPane.showMessageDialog(this, "No trabaja en ningun proyecto, no puede guardar el archivo", "Error al guardar!", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void sobreEscribirJson() throws IOException {
-        SobreEscribirArchivos.sobreEscribirArchivoTexto(this.generalPath + this.proyectoCopy.getPathArchivoJson(), jTextAreaJson.getText());
+        if (proyectoCopy != null && generalPath != null) {
+            SobreEscribirArchivos.sobreEscribirArchivoTexto(this.generalPath + this.proyectoCopy.getPathArchivoJson(), jTextAreaJson.getText());
+        } else {
+            JOptionPane.showMessageDialog(this, "No trabaja en ningun proyecto, no puede guardar el archivo", "Error al guardar!", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 }

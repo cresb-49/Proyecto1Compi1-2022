@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class AnalizarJson {
 
     private ArrayList<ErrorAnalisis> errores;
-    private ArrayList<ErrorAnalisis> reporteFinalErrores;
     private LexerJson lexerJson;
     private ParserJson parserJson;
 
@@ -21,7 +20,6 @@ public class AnalizarJson {
     }
 
     public void ejecutar(String texto) {
-        reporteFinalErrores = null;
         Reader reader = new StringReader(texto);
         errores = new ArrayList<>();
         lexerJson = new LexerJson(reader);
@@ -48,8 +46,8 @@ public class AnalizarJson {
     /**
      * @return the reporteFinalErrores
      */
-    public ArrayList<ErrorAnalisis> getReporteFinalErrores() {
-        return reporteFinalErrores;
+    public ArrayList<ErrorAnalisis> getErrores() {
+        return this.errores;
     }
     
     public ReporteJson getReporteJson(){
