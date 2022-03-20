@@ -740,8 +740,12 @@ public class LexerJava implements java_cup.runtime.Scanner {
         this.archivoAnalizado = archivoAnalizado;
     }
 
-    public void setConsoleControl(ConsoleControl consola){
-        this.consola = consola;
+    public String getCarpetaFunete(){
+        return this.carpetaFunete;
+    }
+
+    public String getArchivoAnalizado(){
+        return this.archivoAnalizado;
     }
 
     public ConsoleControl getConsoleControl(){

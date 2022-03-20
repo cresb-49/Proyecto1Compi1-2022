@@ -6,6 +6,7 @@
 package com.cresb49.serverproyecto1.analizarjava;
 
 import com.cresb49.serverproyecto1.analizarjava.objetos.*;
+import com.cresb49.serverproyecto1.consolecontrol.ConsoleControl;
 import java.util.ArrayList;
 import java_cup.runtime.*;
 import java_cup.runtime.XMLElement;
@@ -1020,10 +1021,16 @@ public class ParserJava extends java_cup.runtime.lr_parser {
     private TablaSimbolos tablaSimbolos;
     private ArrayList<Clase> clases;
     private ArrayList<Metodo> metodos;
+    private ConsoleControl consola;
+    private String carpetaFuente;
+    private String archivoAnalizado;
     
     public ParserJava (LexerJava lexerJava){ 
         super(lexerJava);
         this.lexerJava=lexerJava;
+        this.carpetaFuente=this.lexerJava.getCarpetaFunete();
+        this.archivoAnalizado=this.lexerJava.getArchivoAnalizado();
+        this.consola=this.lexerJava.getConsoleControl();
         this.simbolosTerminalesJava = new SimbolosTerminalesJava();
     }
 
@@ -1065,7 +1072,7 @@ public class ParserJava extends java_cup.runtime.lr_parser {
             if (cur_token.sym == ParserJavaSym.EOF) {
                 String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesJava.obtenerSimbolos(expected_token_ids()).toString();
                 //System.out.println("FIN ARCHIVO"+" "+er);
-                this.lexerJava.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er));
+                this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SIN,"FIN ARCHIVO", cur_token.left, cur_token.right, er),carpetaFuente,archivoAnalizado));
                 //System.out.println(er);
             } else {
                 String er = "Simbolo inesperado, se esperaba: "+ simbolosTerminalesJava.obtenerSimbolos(expected_token_ids()).toString();
