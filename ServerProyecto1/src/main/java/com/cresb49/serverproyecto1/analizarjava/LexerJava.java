@@ -1415,7 +1415,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
             { yybegin(YYINITIAL);
                                         this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
                                         this.anterior = this.actual;
-                                        System.out.println(char_val.toString());
+                                        //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual);
             }
             // fall through
@@ -1544,7 +1544,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                                         char_val.append( yytext().charAt(0));
                                         this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
                                         this.anterior = this.actual;
-                                        System.out.println(char_val.toString());
+                                        //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual);
             }
             // fall through
@@ -1554,7 +1554,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                                         char_val.append('\\');
                                         this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
                                         this.anterior = this.actual;
-                                        System.out.println(char_val.toString());
+                                        //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual);
             }
             // fall through
@@ -1596,7 +1596,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                                         char_val.append('\"');
                                         this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
                                         this.anterior = this.actual;
-                                        System.out.println(char_val.toString());
+                                        //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual);
             }
             // fall through
@@ -1606,7 +1606,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                                         char_val.append('\'');
                                         this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
                                         this.anterior = this.actual;
-                                        System.out.println(char_val.toString());
+                                        //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual);
             }
             // fall through
@@ -1616,7 +1616,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                                         char_val.append('\n');
                                         this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
                                         this.anterior = this.actual;
-                                        System.out.println(char_val.toString());
+                                        //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual);
             }
             // fall through
@@ -1626,7 +1626,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                                         char_val.append('\r');
                                         this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
                                         this.anterior = this.actual;
-                                        System.out.println(char_val.toString());
+                                        //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual);
             }
             // fall through
@@ -1636,7 +1636,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
                                         char_val.append('\t');
                                         this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
                                         this.anterior = this.actual;
-                                        System.out.println(char_val.toString());
+                                        //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual);
             }
             // fall through

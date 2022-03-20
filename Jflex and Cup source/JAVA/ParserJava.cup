@@ -178,7 +178,7 @@ terminal Token  IMPORT,PUBLIC,PRIVATE,PROTECTED,FINAL,BREAK,RETURN,INT,BOOL,STR,
 
 
 /* Non terminals */
-non terminal ArrayList<FilaTablaSymbolos>   initJava,importJava,importJavaContenido,importJavaP,metodoP,sentConstru,
+non terminal ArrayList<FilaTablaSymbolos>   initJava,initJavaP,importJava,importJavaContenido,importJavaP,metodoP,sentConstru,
                                             parametrosLlamadaP,parametrosLlamada,classJava,sentencias,metodo,constructorP,
                                             agregarfor,ciclowhile,condicionalif,constructor,cliclofor,cicloDoWhile,sentanciaSalida,asignacionvariables,
                                             contenidoSwitch,contenidoSwitch2,condicionalSwitch,llamadaFuncion;
@@ -189,32 +189,34 @@ non terminal Asignacion             tipo,asig;
 non terminal Asignacion             exp,t,f,g,h,i,j,k,l;
 
 /* Inicio de las reglas gramticales*/
-initJava    ::= initJava classJava  {:
+
+initJava    ::= initJavaP classJava  {:
                                         System.out.println("Ejecute class java");
                                     :}
-            |   importJavaP         {:
-                                        System.out.println("Ejecute import");
+            |   classJava           {:
+                                        System.out.println("Ejecute class java");
                                     :}
             ;
+initJavaP   ::= importJavaP   {:
+                                            System.out.println("Ejecute import");
+                                        :}
+            ;
+
 
 /*Gramatica de imports*/
 
 importJavaP ::= importJavaP importJava
             |   importJava
+            |   importJavaP error
+            |   error
             ;
         
 importJava  ::= IMPORT ID importJavaContenido
-            |   error PUNTO
-            |   error PUNTOCOMA
-            |   error importJava
             ;
 
 importJavaContenido ::= PUNTO ID importJavaContenido
                     |   PUNTO MUL PUNTOCOMA
                     |   PUNTOCOMA
-                    |   error PUNTO
-                    |   error PUNTOCOMA
-                    |   error importJava
                     ;
 /*Gramatica de un archivo de java*/
 
@@ -288,7 +290,15 @@ metodo      ::= visibilidad tipo:t ID:metodo PA_A PA_C metodoP:vars     {:
                                                                             archivarMetodo(metodo.getLexema(),t.getTipo(),null,0);
                                                                             agregarVariablesTabla("Metodo "+metodo.getLexema(),vars);
                                                                         :}
+            |   visibilidad STATIC tipo:t ID:metodo PA_A PA_C metodoP:vars     {:
+                                                                            archivarMetodo(metodo.getLexema(),t.getTipo(),null,0);
+                                                                            agregarVariablesTabla("Metodo "+metodo.getLexema(),vars);
+                                                                        :}
             |   visibilidad tipo:t ID:metodo PA_A parametros:vars PA_C metodoP:vars1    {:
+                                                                                            archivarMetodo(metodo.getLexema(),t.getTipo(),vars,0);
+                                                                                            agregarVariablesTabla("Metodo "+metodo.getLexema(),retornarDosFuentes(vars,vars1));
+                                                                                        :}
+            |   visibilidad STATIC tipo:t ID:metodo PA_A parametros:vars PA_C metodoP:vars1    {:
                                                                                             archivarMetodo(metodo.getLexema(),t.getTipo(),vars,0);
                                                                                             agregarVariablesTabla("Metodo "+metodo.getLexema(),retornarDosFuentes(vars,vars1));
                                                                                         :}
@@ -308,6 +318,7 @@ asignacionvariables ::= ID EQUAL asig PUNTOCOMA  //{:RESULT = new ArrayList<>();
                     ;
 
 declararVariables   ::= visibilidad STATIC FINAL tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);RESULT = vars;:}
+                    |   visibilidad FINAL STATIC tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);RESULT = vars;:}
                     |   visibilidad STATIC tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);RESULT = vars;:}
                     |   visibilidad FINAL tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);RESULT = vars;:}
                     |   visibilidad tipo:t listaVariables:vars PUNTOCOMA {:asignarTipoVariable(t,vars);RESULT = vars;:}
@@ -393,6 +404,8 @@ sentanciaSalida ::= RETURN exp PUNTOCOMA
 
 llamadaFuncion  ::= ID PA_A PA_C PUNTOCOMA
                 |   ID PA_A parametrosLlamada PA_C PUNTOCOMA
+                |   THIS PUNTO ID PA_A PA_C PUNTOCOMA
+                |   THIS PUNTO ID PA_A parametrosLlamada PA_C PUNTOCOMA
                 ;
 
 parametrosLlamada   ::= exp

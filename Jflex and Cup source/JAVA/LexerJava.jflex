@@ -485,7 +485,7 @@ Decimal = {Entero}[.]{Entero}
                                         yybegin(YYINITIAL);
                                         this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
                                         this.anterior = this.actual;
-                                        System.out.println(char_val.toString());
+                                        //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual); 
                                     }
     [^'\n\r\"\\]("'")              { 
@@ -493,7 +493,7 @@ Decimal = {Entero}[.]{Entero}
                                         char_val.append( yytext().charAt(0));
                                         this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
                                         this.anterior = this.actual;
-                                        System.out.println(char_val.toString());
+                                        //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual); 
                                     }
     \\t("'")                        { 
@@ -501,7 +501,7 @@ Decimal = {Entero}[.]{Entero}
                                         char_val.append('\t');
                                         this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
                                         this.anterior = this.actual;
-                                        System.out.println(char_val.toString());
+                                        //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual); 
                                     }
     \\n("'")                        { 
@@ -509,7 +509,7 @@ Decimal = {Entero}[.]{Entero}
                                         char_val.append('\n');
                                         this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
                                         this.anterior = this.actual;
-                                        System.out.println(char_val.toString());
+                                        //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual); 
                                     }
     \\r("'")                        { 
@@ -517,7 +517,7 @@ Decimal = {Entero}[.]{Entero}
                                         char_val.append('\r');
                                         this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
                                         this.anterior = this.actual;
-                                        System.out.println(char_val.toString());
+                                        //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual); 
                                     }
     \\\"("'")                       { 
@@ -525,7 +525,7 @@ Decimal = {Entero}[.]{Entero}
                                         char_val.append('\"');
                                         this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
                                         this.anterior = this.actual;
-                                        System.out.println(char_val.toString());
+                                        //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual); 
                                     }
     \\\'("'")                       { 
@@ -533,7 +533,7 @@ Decimal = {Entero}[.]{Entero}
                                         char_val.append('\'');
                                         this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
                                         this.anterior = this.actual;
-                                        System.out.println(char_val.toString());
+                                        //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual); 
                                     }
     \\("'")                         { 
@@ -541,7 +541,7 @@ Decimal = {Entero}[.]{Entero}
                                         char_val.append('\\');
                                         this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
                                         this.anterior = this.actual;
-                                        System.out.println(char_val.toString());
+                                        //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual); 
                                     }
 }
