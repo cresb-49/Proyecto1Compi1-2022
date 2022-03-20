@@ -27,12 +27,16 @@ import java_cup.runtime.*;
     private ArrayList<ErrorAnalisis> errors;
     private ArrayList<Comentario> comentarios;
     private ConsoleControl consola;
+    private String carpetaFunete;
+    private String archivoAnalizado;
 
-    public LexerJava(java.io.Reader in,ConsoleControl consola,ArrayList<Comentario> comentarios,ArrayList<ErrorAnalisis> errors) {
+    public LexerJava(java.io.Reader in,ConsoleControl consola,ArrayList<Comentario> comentarios,ArrayList<ErrorAnalisis> errors,String carpetaFunete,String archivoAnalizado) {
         this.zzReader = in;
         this.consola = consola;
         this.comentarios = comentarios;
         this.errors = errors;
+        this.carpetaFunete = carpetaFunete;
+        this.archivoAnalizado = archivoAnalizado;
     }
 
     public void setConsoleControl(ConsoleControl consola){
@@ -561,7 +565,6 @@ Decimal = {Entero}[.]{Entero}
 
 [^]                 { 
                         String des ="El simbolo/cadena no existe en el lenguaje";
-                        ErrorAnalisis tmpError = new ErrorAnalisis(this.ERROR_TYPE,yytext(),(yyline+1),(yycolumn+1),des);
-                        this.addError(tmpError);
+                        this.addError(consola.addLog(new ErrorAnalisis(this.ERROR_TYPE,yytext(),(yyline+1),(yycolumn+1),des),this.carpetaFunete, this.archivoAnalizado));
                         //System.out.println("Simbolo Ilegal: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                     }
