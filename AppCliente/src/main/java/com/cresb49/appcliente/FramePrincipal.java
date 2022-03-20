@@ -5,6 +5,8 @@
  */
 package com.cresb49.appcliente;
 
+import com.cresb49.appcliente.Objetos.EmpaquetarInformacion;
+import com.cresb49.appcliente.Objetos.Proyecto;
 import com.cresb49.appcliente.analizadores.*;
 import com.cresb49.appcliente.analizadores.def.AnalizarDef;
 import com.cresb49.appcliente.analizadores.def.obj.exceptions.NoReporteJson;
@@ -477,11 +479,16 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             }
             if (!(this.proyectoCopy.getPathCarpetaProyecto().isBlank() || this.proyectoCopy.getPathCarpetaProyecto().isEmpty())) {
                 if (carpeta1 != null && carpeta2 != null) {
+                    EmpaquetarInformacion empquetado = new EmpaquetarInformacion();
                     cliente = new Cliente(5000, "localhost");
-                    //cliente.setMensaje("Hola desde la app cliente");
-                    cliente.setMensaje("Proyectos");
-                    Thread hilo = new Thread(cliente);
-                    hilo.start();
+                    try {
+                        Proyecto proyecto = empquetado.empaquetar(carpeta1, carpeta2);
+                        cliente.setMensaje(proyecto);
+                        Thread hilo = new Thread(cliente);
+                        hilo.start();
+                    } catch (IOException ex) {
+                        JOptionPane.showMessageDialog(this, "Error al enviar el codigo al servidor:\n"+ex.getMessage(), "Error al enviar!!!!", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         }
@@ -539,7 +546,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        try {    
+        try {
             this.sobreEscribirDef();
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "No se puede guardar el archivo .def:\n" + ex.getMessage(), "Error al guardar el archivo!", JOptionPane.ERROR_MESSAGE);
@@ -707,7 +714,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         } catch (ClassNotFoundException e) {
             JOptionPane.showMessageDialog(this, "El archivo que desea cargar esta dañado" + e.getMessage(), "Error al cargar el archivo!", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "No se puede abrir el archivo:\n" + ex.getMessage() , "Error al cargar el archivo!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se puede abrir el archivo:\n" + ex.getMessage(), "Error al cargar el archivo!", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -742,7 +749,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             this.sobreEscribirJson();
             this.sobreEscribirDef();
             this.sobreEscribirFileCopy();
-            JOptionPane.showMessageDialog(this, "Guardado exitoso!","Guardado exitoso!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Guardado exitoso!", "Guardado exitoso!", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -823,29 +830,29 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             this.estadoCarpeta2(true);
         }
         try {
-            TextPaneDef.setText(LeerArchivoTexto.leerArchivo(this.generalPath+this.proyectoCopy.getPathArchivDef()));
+            TextPaneDef.setText(LeerArchivoTexto.leerArchivo(this.generalPath + this.proyectoCopy.getPathArchivDef()));
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "No se puedo cargar el archivo .def", "Error al cargar proyecto!", JOptionPane.ERROR_MESSAGE);
         }
         try {
-            TextPaneJson.setText(LeerArchivoTexto.leerArchivo(this.generalPath+this.proyectoCopy.getPathArchivoJson()));
+            TextPaneJson.setText(LeerArchivoTexto.leerArchivo(this.generalPath + this.proyectoCopy.getPathArchivoJson()));
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "No se puedo cargar el archivo .json", "Error al cargar proyecto!", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void sobreEscribirFileCopy() throws FileNotFoundException, IOException {
-            String path = this.generalPath+this.proyectoCopy.getPathCarpetaProyecto()+this.proyectoCopy.getPathCarpetaProyecto()+".copy";
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path));
-            oos.writeObject(this.proyectoCopy);
-            oos.close();
+        String path = this.generalPath + this.proyectoCopy.getPathCarpetaProyecto() + this.proyectoCopy.getPathCarpetaProyecto() + ".copy";
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path));
+        oos.writeObject(this.proyectoCopy);
+        oos.close();
     }
 
     private void sobreEscribirDef() throws IOException {
-        SobreEscribirArchivos.sobreEscribirArchivoTexto(this.generalPath+this.proyectoCopy.getPathArchivDef(), TextPaneDef.getText());
+        SobreEscribirArchivos.sobreEscribirArchivoTexto(this.generalPath + this.proyectoCopy.getPathArchivDef(), TextPaneDef.getText());
     }
 
     private void sobreEscribirJson() throws IOException {
-        SobreEscribirArchivos.sobreEscribirArchivoTexto(this.generalPath+this.proyectoCopy.getPathArchivoJson(), TextPaneJson.getText());
+        SobreEscribirArchivos.sobreEscribirArchivoTexto(this.generalPath + this.proyectoCopy.getPathArchivoJson(), TextPaneJson.getText());
     }
 }
