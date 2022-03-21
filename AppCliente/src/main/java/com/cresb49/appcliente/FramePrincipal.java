@@ -58,6 +58,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
      */
     public FramePrincipal() {
         initComponents();
+        this.cargarNumeroLineaDef();
+        this.cargarNumeroLineaJson();
         this.setLocationRelativeTo(null);
         this.consolaJson = new ConsoleControl(ConsolaJson);
         this.consolaDef = new ConsoleControl(ConsolaDef);
@@ -287,6 +289,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
         jTextAreaDef.setColumns(20);
         jTextAreaDef.setRows(5);
+        jTextAreaDef.setTabSize(2);
         jScrollPane1.setViewportView(jTextAreaDef);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -370,7 +373,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
         jTextAreaJson.setColumns(20);
         jTextAreaJson.setRows(5);
-        jTextAreaJson.setTabSize(5);
+        jTextAreaJson.setTabSize(2);
         jTextAreaJson.setText("{\n    Score: \"0\",\n    Clases: [],\n    Variables: [],\n    Metodos: [],\n    Comentarios: []\n}");
         jScrollPane4.setViewportView(jTextAreaJson);
 
@@ -949,5 +952,15 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     
     private void mostrarNombreProyecto(String nombre){
         this.setTitle(nombre);
+    }
+
+    private void cargarNumeroLineaDef() {
+        NumeroLinea numeroLinea = new NumeroLinea(this.jTextAreaDef);
+        this.jScrollPane1.setRowHeaderView(numeroLinea);
+    }
+
+    private void cargarNumeroLineaJson() {
+        NumeroLinea numeroLinea = new NumeroLinea(this.jTextAreaJson);
+        this.jScrollPane4.setRowHeaderView(numeroLinea);
     }
 }

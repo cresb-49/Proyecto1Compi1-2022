@@ -369,6 +369,7 @@
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="rows" type="int" value="5"/>
+                            <Property name="tabSize" type="int" value="2"/>
                           </Properties>
                         </Component>
                       </SubComponents>
@@ -508,7 +509,7 @@
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="rows" type="int" value="5"/>
-                            <Property name="tabSize" type="int" value="5"/>
+                            <Property name="tabSize" type="int" value="2"/>
                             <Property name="text" type="java.lang.String" value="{&#xa;    Score: &quot;0&quot;,&#xa;    Clases: [],&#xa;    Variables: [],&#xa;    Metodos: [],&#xa;    Comentarios: []&#xa;}"/>
                           </Properties>
                         </Component>
