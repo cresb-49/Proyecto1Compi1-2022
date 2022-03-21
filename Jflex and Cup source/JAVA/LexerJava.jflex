@@ -553,7 +553,7 @@ Decimal = {Entero}[.]{Entero}
                                         this.getComentarios().add(new Comentario(coment_simple.toString()));
                                     }   
     [^\n\"]+                        { coment_simple.append(yytext());}
-    \"                              { coment_simple.append("”"); }    
+    \"                              { coment_simple.append("\\\""); }    
 }
 
 <COMENT_MULTI>  {
@@ -562,8 +562,9 @@ Decimal = {Entero}[.]{Entero}
                                         //System.out.println("Comentario: "+coment_multi.toString());
                                         this.getComentarios().add(new Comentario(coment_multi.toString()));   
                                     }
-    [^*\"]+                         { coment_multi.append(yytext());}
-    \"                              { coment_multi.append("”"); }    
+    [^\n*\"]+                       { coment_multi.append(yytext());}
+    [\n]                            { coment_multi.append("\\n"); }
+    \"                              { coment_multi.append("\\\""); }    
     [*]                             { coment_multi.append(yytext()); }    
 }
 

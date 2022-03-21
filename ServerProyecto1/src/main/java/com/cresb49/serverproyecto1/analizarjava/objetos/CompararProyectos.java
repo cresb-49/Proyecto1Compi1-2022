@@ -45,7 +45,6 @@ public class CompararProyectos {
 
     public String resultadosJson() {
         String resultado = "";
-        String score;
         ArrayList<Clase> clases = new ArrayList<>();
         ArrayList<FilaTablaSymbolos> variables = new ArrayList<>();
         ArrayList<Variable> varFinal = new ArrayList<>();
@@ -62,8 +61,7 @@ public class CompararProyectos {
                         + resultadoCarpeta2.getTablaSimbolos().numeroVariables()))
                 + (metodos.size() / (resultadoCarpeta1.getMetodos().size() + resultadoCarpeta2.getMetodos().size()))
                 + (clases.size() / (resultadoCarpeta1.getClases().size() + resultadoCarpeta2.getClases().size())));
-        score = String.valueOf(scoreValue);
-        ReporteJson reporteJson = new ReporteJson(score, clases, varFinal, metodos, comentarios);
+        ReporteJson reporteJson = new ReporteJson(String.valueOf(scoreValue), clases, varFinal, metodos, comentarios);
         resultado = this.toJsonText(reporteJson);
         return resultado;
     }
