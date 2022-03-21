@@ -36,19 +36,24 @@ public class ParserJson extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\047\000\002\002\005\000\002\002\004\000\002\004" +
-    "\006\000\002\004\010\000\002\004\010\000\002\004\010" +
-    "\000\002\004\010\000\002\003\007\000\002\003\011\000" +
-    "\002\003\011\000\002\003\011\000\002\003\011\000\002" +
-    "\003\002\000\002\005\010\000\002\006\011\000\002\006" +
-    "\002\000\002\007\006\000\002\010\007\000\002\010\002" +
-    "\000\002\011\006\000\002\012\007\000\002\012\002\000" +
-    "\002\015\006\000\002\015\006\000\002\015\006\000\002" +
-    "\016\007\000\002\016\007\000\002\016\007\000\002\016" +
-    "\002\000\002\017\006\000\002\017\006\000\002\017\006" +
-    "\000\002\020\007\000\002\020\007\000\002\020\007\000" +
-    "\002\020\002\000\002\013\010\000\002\014\011\000\002" +
-    "\014\002" });
+    "\000\067\000\002\002\005\000\002\002\004\000\002\004" +
+    "\006\000\002\004\010\000\002\004\007\000\002\004\010" +
+    "\000\002\004\007\000\002\004\010\000\002\004\007\000" +
+    "\002\004\010\000\002\004\007\000\002\004\004\000\002" +
+    "\003\007\000\002\003\011\000\002\003\010\000\002\003" +
+    "\011\000\002\003\010\000\002\003\011\000\002\003\010" +
+    "\000\002\003\011\000\002\003\010\000\002\003\002\000" +
+    "\002\003\004\000\002\005\010\000\002\005\004\000\002" +
+    "\006\011\000\002\006\002\000\002\006\004\000\002\007" +
+    "\006\000\002\007\004\000\002\010\007\000\002\010\002" +
+    "\000\002\010\004\000\002\011\006\000\002\011\004\000" +
+    "\002\012\007\000\002\012\002\000\002\012\004\000\002" +
+    "\015\015\000\002\015\015\000\002\015\015\000\002\015" +
+    "\015\000\002\015\015\000\002\015\015\000\002\017\015" +
+    "\000\002\017\015\000\002\017\015\000\002\017\015\000" +
+    "\002\017\015\000\002\017\015\000\002\013\010\000\002" +
+    "\013\004\000\002\014\011\000\002\014\002\000\002\014" +
+    "\004" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -56,56 +61,106 @@ public class ParserJson extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\125\000\004\006\005\001\002\000\004\002\127\001" +
-    "\002\000\014\014\ufff5\015\ufff5\016\ufff5\022\ufff5\023\ufff5" +
-    "\001\002\000\004\007\126\001\002\000\014\014\013\015" +
-    "\012\016\010\022\014\023\011\001\002\000\004\011\077" +
-    "\001\002\000\004\011\063\001\002\000\004\011\047\001" +
-    "\002\000\004\011\044\001\002\000\004\011\015\001\002" +
-    "\000\004\004\016\001\002\000\004\006\uffec\001\002\000" +
-    "\004\005\042\001\002\000\004\006\021\001\002\000\010" +
-    "\017\uffde\020\uffde\024\uffde\001\002\000\010\017\027\020" +
-    "\030\024\026\001\002\000\004\007\024\001\002\000\006" +
-    "\005\uffee\010\025\001\002\000\004\006\uffed\001\002\000" +
-    "\004\011\037\001\002\000\004\011\034\001\002\000\004" +
-    "\011\031\001\002\000\004\012\032\001\002\000\006\007" +
-    "\uffe3\010\033\001\002\000\010\017\uffe0\020\uffe0\024\uffe0" +
-    "\001\002\000\004\012\035\001\002\000\006\007\uffe4\010" +
-    "\036\001\002\000\010\017\uffe1\020\uffe1\024\uffe1\001\002" +
-    "\000\004\013\040\001\002\000\006\007\uffe2\010\041\001" +
-    "\002\000\010\017\uffdf\020\uffdf\024\uffdf\001\002\000\006" +
-    "\007\ufffc\010\043\001\002\000\014\014\ufff7\015\ufff7\016" +
-    "\ufff7\022\ufff7\023\ufff7\001\002\000\004\012\045\001\002" +
-    "\000\006\007\uffff\010\046\001\002\000\014\014\ufffa\015" +
-    "\ufffa\016\ufffa\022\ufffa\023\ufffa\001\002\000\004\004\050" +
-    "\001\002\000\004\006\ufff2\001\002\000\004\005\061\001" +
-    "\002\000\004\006\053\001\002\000\004\017\054\001\002" +
-    "\000\004\011\055\001\002\000\004\012\056\001\002\000" +
-    "\004\007\057\001\002\000\006\005\ufff4\010\060\001\002" +
-    "\000\004\006\ufff3\001\002\000\006\007\ufffe\010\062\001" +
-    "\002\000\014\014\ufff9\015\ufff9\016\ufff9\022\ufff9\023\ufff9" +
-    "\001\002\000\004\004\064\001\002\000\004\006\uffdb\001" +
-    "\002\000\004\006\071\001\002\000\004\005\067\001\002" +
-    "\000\006\007\ufffb\010\070\001\002\000\014\014\ufff6\015" +
-    "\ufff6\016\ufff6\022\ufff6\023\ufff6\001\002\000\004\025\072" +
-    "\001\002\000\004\011\073\001\002\000\004\012\074\001" +
-    "\002\000\004\007\075\001\002\000\006\005\uffdd\010\076" +
-    "\001\002\000\004\006\uffdc\001\002\000\004\004\100\001" +
-    "\002\000\004\006\uffef\001\002\000\004\006\105\001\002" +
-    "\000\004\005\103\001\002\000\006\007\ufffd\010\104\001" +
-    "\002\000\014\014\ufff8\015\ufff8\016\ufff8\022\ufff8\023\ufff8" +
-    "\001\002\000\010\017\uffe5\020\uffe5\021\uffe5\001\002\000" +
-    "\010\017\112\020\114\021\113\001\002\000\004\007\110" +
-    "\001\002\000\006\005\ufff1\010\111\001\002\000\004\006" +
-    "\ufff0\001\002\000\004\011\123\001\002\000\004\011\120" +
-    "\001\002\000\004\011\115\001\002\000\004\012\116\001" +
-    "\002\000\006\007\uffe9\010\117\001\002\000\010\017\uffe6" +
-    "\020\uffe6\021\uffe6\001\002\000\004\012\121\001\002\000" +
-    "\006\007\uffea\010\122\001\002\000\010\017\uffe7\020\uffe7" +
-    "\021\uffe7\001\002\000\004\012\124\001\002\000\006\007" +
-    "\uffeb\010\125\001\002\000\010\017\uffe8\020\uffe8\021\uffe8" +
-    "\001\002\000\004\002\001\001\002\000\004\002\000\001" +
-    "\002" });
+    "\000\264\000\004\006\005\001\002\000\004\002\266\001" +
+    "\002\000\016\003\uffec\014\uffec\015\uffec\016\uffec\022\uffec" +
+    "\023\uffec\001\002\000\004\007\265\001\002\000\016\003" +
+    "\011\014\014\015\013\016\010\022\015\023\012\001\002" +
+    "\000\004\011\162\001\002\000\020\003\uffeb\007\ufff6\014" +
+    "\uffeb\015\uffeb\016\uffeb\022\uffeb\023\uffeb\001\002\000\004" +
+    "\011\143\001\002\000\004\011\124\001\002\000\004\011" +
+    "\121\001\002\000\004\011\016\001\002\000\004\004\017" +
+    "\001\002\000\010\003\uffdd\005\020\006\uffdd\001\002\000" +
+    "\006\007\ufff9\010\120\001\002\000\004\005\116\001\002" +
+    "\000\006\003\023\006\024\001\002\000\010\003\uffdc\005" +
+    "\uffdf\006\uffdc\001\002\000\010\017\027\020\030\024\025" +
+    "\001\002\000\004\011\075\001\002\000\004\007\073\001" +
+    "\002\000\004\011\052\001\002\000\004\011\031\001\002" +
+    "\000\004\012\032\001\002\000\004\010\033\001\002\000" +
+    "\006\017\035\024\034\001\002\000\004\011\044\001\002" +
+    "\000\004\011\036\001\002\000\004\012\037\001\002\000" +
+    "\004\010\040\001\002\000\004\024\041\001\002\000\004" +
+    "\011\042\001\002\000\004\013\043\001\002\000\004\007" +
+    "\uffd2\001\002\000\004\013\045\001\002\000\004\010\046" +
+    "\001\002\000\004\017\047\001\002\000\004\011\050\001" +
+    "\002\000\004\012\051\001\002\000\004\007\uffd3\001\002" +
+    "\000\004\012\053\001\002\000\004\010\054\001\002\000" +
+    "\006\020\056\024\055\001\002\000\004\011\065\001\002" +
+    "\000\004\011\057\001\002\000\004\012\060\001\002\000" +
+    "\004\010\061\001\002\000\004\024\062\001\002\000\004" +
+    "\011\063\001\002\000\004\013\064\001\002\000\004\007" +
+    "\uffd5\001\002\000\004\013\066\001\002\000\004\010\067" +
+    "\001\002\000\004\020\070\001\002\000\004\011\071\001" +
+    "\002\000\004\012\072\001\002\000\004\007\uffd4\001\002" +
+    "\000\006\005\uffe0\010\074\001\002\000\006\003\uffde\006" +
+    "\uffde\001\002\000\004\013\076\001\002\000\004\010\077" +
+    "\001\002\000\006\017\100\020\101\001\002\000\004\011" +
+    "\110\001\002\000\004\011\102\001\002\000\004\012\103" +
+    "\001\002\000\004\010\104\001\002\000\004\017\105\001" +
+    "\002\000\004\011\106\001\002\000\004\012\107\001\002" +
+    "\000\004\007\uffd1\001\002\000\004\012\111\001\002\000" +
+    "\004\010\112\001\002\000\004\020\113\001\002\000\004" +
+    "\011\114\001\002\000\004\012\115\001\002\000\004\007" +
+    "\uffd0\001\002\000\006\007\ufffa\010\117\001\002\000\016" +
+    "\003\ufff0\014\ufff0\015\ufff0\016\ufff0\022\ufff0\023\ufff0\001" +
+    "\002\000\016\003\uffef\014\uffef\015\uffef\016\uffef\022\uffef" +
+    "\023\uffef\001\002\000\004\012\122\001\002\000\006\007" +
+    "\uffff\010\123\001\002\000\016\003\ufff5\014\ufff5\015\ufff5" +
+    "\016\ufff5\022\ufff5\023\ufff5\001\002\000\004\004\125\001" +
+    "\002\000\010\003\uffe7\005\126\006\uffe7\001\002\000\006" +
+    "\007\ufffd\010\142\001\002\000\004\005\140\001\002\000" +
+    "\006\003\131\006\132\001\002\000\010\003\uffe6\005\uffe9" +
+    "\006\uffe6\001\002\000\004\017\133\001\002\000\004\011" +
+    "\134\001\002\000\004\012\135\001\002\000\004\007\136" +
+    "\001\002\000\006\005\uffea\010\137\001\002\000\006\003" +
+    "\uffe8\006\uffe8\001\002\000\006\007\ufffe\010\141\001\002" +
+    "\000\016\003\ufff4\014\ufff4\015\ufff4\016\ufff4\022\ufff4\023" +
+    "\ufff4\001\002\000\016\003\ufff3\014\ufff3\015\ufff3\016\ufff3" +
+    "\022\ufff3\023\ufff3\001\002\000\004\004\144\001\002\000" +
+    "\010\003\uffcc\005\145\006\uffcc\001\002\000\006\007\ufff7" +
+    "\010\161\001\002\000\006\003\152\006\153\001\002\000" +
+    "\004\005\150\001\002\000\006\007\ufff8\010\151\001\002" +
+    "\000\016\003\uffee\014\uffee\015\uffee\016\uffee\022\uffee\023" +
+    "\uffee\001\002\000\010\003\uffcb\005\uffce\006\uffcb\001\002" +
+    "\000\004\025\154\001\002\000\004\011\155\001\002\000" +
+    "\004\012\156\001\002\000\004\007\157\001\002\000\006" +
+    "\005\uffcf\010\160\001\002\000\006\003\uffcd\006\uffcd\001" +
+    "\002\000\016\003\uffed\014\uffed\015\uffed\016\uffed\022\uffed" +
+    "\023\uffed\001\002\000\004\004\163\001\002\000\010\003" +
+    "\uffe2\005\164\006\uffe2\001\002\000\006\007\ufffb\010\264" +
+    "\001\002\000\006\003\171\006\172\001\002\000\004\005" +
+    "\167\001\002\000\006\007\ufffc\010\170\001\002\000\016" +
+    "\003\ufff2\014\ufff2\015\ufff2\016\ufff2\022\ufff2\023\ufff2\001" +
+    "\002\000\010\003\uffe1\005\uffe4\006\uffe1\001\002\000\010" +
+    "\017\173\020\176\021\175\001\002\000\004\011\243\001" +
+    "\002\000\004\007\241\001\002\000\004\011\220\001\002" +
+    "\000\004\011\177\001\002\000\004\012\200\001\002\000" +
+    "\004\010\201\001\002\000\006\017\202\021\203\001\002" +
+    "\000\004\011\212\001\002\000\004\011\204\001\002\000" +
+    "\004\012\205\001\002\000\004\010\206\001\002\000\004" +
+    "\017\207\001\002\000\004\011\210\001\002\000\004\012" +
+    "\211\001\002\000\004\007\uffd7\001\002\000\004\012\213" +
+    "\001\002\000\004\010\214\001\002\000\004\021\215\001" +
+    "\002\000\004\011\216\001\002\000\004\012\217\001\002" +
+    "\000\004\007\uffd6\001\002\000\004\012\221\001\002\000" +
+    "\004\010\222\001\002\000\006\017\223\020\224\001\002" +
+    "\000\004\011\233\001\002\000\004\011\225\001\002\000" +
+    "\004\012\226\001\002\000\004\010\227\001\002\000\004" +
+    "\017\230\001\002\000\004\011\231\001\002\000\004\012" +
+    "\232\001\002\000\004\007\uffd8\001\002\000\004\012\234" +
+    "\001\002\000\004\010\235\001\002\000\004\020\236\001" +
+    "\002\000\004\011\237\001\002\000\004\012\240\001\002" +
+    "\000\004\007\uffd9\001\002\000\006\005\uffe5\010\242\001" +
+    "\002\000\006\003\uffe3\006\uffe3\001\002\000\004\012\244" +
+    "\001\002\000\004\010\245\001\002\000\006\020\247\021" +
+    "\246\001\002\000\004\011\256\001\002\000\004\011\250" +
+    "\001\002\000\004\012\251\001\002\000\004\010\252\001" +
+    "\002\000\004\021\253\001\002\000\004\011\254\001\002" +
+    "\000\004\012\255\001\002\000\004\007\uffdb\001\002\000" +
+    "\004\012\257\001\002\000\004\010\260\001\002\000\004" +
+    "\020\261\001\002\000\004\011\262\001\002\000\004\012" +
+    "\263\001\002\000\004\007\uffda\001\002\000\016\003\ufff1" +
+    "\014\ufff1\015\ufff1\016\ufff1\022\ufff1\023\ufff1\001\002\000" +
+    "\004\002\001\001\002\000\004\002\000\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -113,35 +168,64 @@ public class ParserJson extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\125\000\004\002\003\001\001\000\002\001\001\000" +
+    "\000\264\000\004\002\003\001\001\000\002\001\001\000" +
     "\006\003\006\004\005\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\006\011\016\012\017\001\001\000\002\001\001\000" +
-    "\002\001\001\000\006\017\022\020\021\001\001\000\002" +
+    "\000\002\001\001\000\006\011\020\012\021\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\004\017\025\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\006\005\050\006" +
-    "\051\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\006\013\065\014" +
-    "\064\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001\000\006\007\101\010" +
-    "\100\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\006\015\106\016\105\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
-    "\000\002\001\001\000\002\001\001" });
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\006\005\126\006\127\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\006\013\146\014\145\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\006\007\165\010\164\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\004\015\173\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
+    "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
+    "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
+    "\002\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -269,27 +353,50 @@ public class ParserJson extends java_cup.runtime.lr_parser {
         return status;
     }
 
-    private void verificar_reporte_json(ReporteJson verReporteJson){
+    private void verificar_reporte_json(ReporteJson verReporteJson,Token ref){
         if(verReporteJson.getScore() == null){
           String error = "Error en definicion, el resultado Json no tiene Score";
-          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Score", 1, 1, error));
+          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Score", ref.getLinea(),ref.getColumna(), error));
         }
         if(verReporteJson.getClases() == null){
           String error = "Error en definicion, el resultado Json no tiene lista de Clases";
-          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Score", 1, 1, error));
+          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Clases", ref.getLinea(),ref.getColumna(), error));
         }
         if(verReporteJson.getVariables() == null){
           String error = "Error en definicion, el resultado Json no tiene lista de Variables";
-          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Score", 1, 1, error));
+          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Variables", ref.getLinea(),ref.getColumna(), error));
         }
         if(verReporteJson.getMetodos() == null){
           String error = "Error en definicion, el resultado Json no tiene lista de Metodos";
-          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Score", 1, 1, error));
+          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Metodos", ref.getLinea(),ref.getColumna(), error));
         }
         if(verReporteJson.getComentarios() == null){
           String error = "Error en definicion, el resultado Json no tiene lista de Comentarios";
-          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Score", 1, 1, error));
+          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Comentarios", ref.getLinea(),ref.getColumna(), error));
         }
+    }
+
+    private Metodo verificar_metodo(Token valname, Token valtipo, Token valpara) {
+        if(valname.getLexema().isEmpty()||valname.getLexema().isBlank()){
+            semantic_error(valname,"El valor de la cadena de texto esta vacia");
+        }
+        if(valtipo.getLexema().isEmpty()||valtipo.getLexema().isBlank()){
+            semantic_error(valtipo,"El valor de la cadena de texto esta vacia");
+        }
+        return new Metodo(valname.getLexema(), valtipo.getLexema(), Integer.valueOf(valpara.getLexema()));
+    }
+
+    private Variable verificar_variable(Token valname, Token valtipo, Token valFun) {
+        if(valname.getLexema().isEmpty()||valname.getLexema().isBlank()){
+            semantic_error(valname,"El valor de la cadena de texto esta vacia");
+        }
+        if(valtipo.getLexema().isEmpty()||valtipo.getLexema().isBlank()){
+            semantic_error(valtipo,"El valor de la cadena de texto esta vacia");
+        }
+        if(valFun.getLexema().isEmpty()||valFun.getLexema().isBlank()){
+            semantic_error(valFun,"El valor de la cadena de texto esta vacia");
+        }
+        return new Variable(valname.getLexema(), valtipo.getLexema(), valFun.getLexema());
     }
 
     protected int error_sync_size() {
@@ -325,15 +432,18 @@ class CUP$ParserJson$actions {
           case 0: // ini ::= LLA_A reportep LLA_C 
             {
               Object RESULT =null;
+		int refleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
+		int refright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
+		Token ref = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
 		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
 		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
 		
-                                    if(r!=null){
-                                        reporteJson=r;
-                                        verificar_reporte_json(reporteJson);
-                                    }
-                                
+                                        if(r!=null){
+                                            reporteJson=r;
+                                            verificar_reporte_json(reporteJson,ref);
+                                        }
+                                    
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("ini",0, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
@@ -361,14 +471,14 @@ class CUP$ParserJson$actions {
 		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
 		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
 		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
+		Token p = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
 		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
 		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
+		Token str = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
 		
                                                             RESULT=r;
                                                             if(RESULT!=null){
-                                                                Token tokenTmp = (Token)str;
+                                                                Token tokenTmp = str;
                                                                 boolean bandera = true;
                                                                 if(tokenTmp.getLexema().isEmpty()||tokenTmp.getLexema().isBlank()){
                                                                     semantic_error(tokenTmp,"El valor de la cadena de texto esta vacia");
@@ -383,7 +493,7 @@ class CUP$ParserJson$actions {
                                                                     semantic_error(tokenTmp,"El valor de la cadena no representa un valor numerico");
                                                                 }
                                                                 if(RESULT.getScore()!=null){
-                                                                    semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                    semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
                                                                     bandera=false;
                                                                 }
                                                                 if(bandera){
@@ -404,7 +514,7 @@ class CUP$ParserJson$actions {
 		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
 		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
 		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		Token p = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
 		int ccleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
 		int ccright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
 		ArrayList<Clase> cc = (ArrayList<Clase>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
@@ -412,7 +522,7 @@ class CUP$ParserJson$actions {
                                                                         RESULT=r;
                                                                         if(RESULT!=null){
                                                                             if(RESULT.getClases()!=null){
-                                                                                semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                                semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
                                                                             }else{
                                                                                 RESULT.setClases(cc);
                                                                             }
@@ -423,7 +533,31 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 4: // reportep ::= reporte VAR DOSPUNTOS CO_A contVar CO_C 
+          case 4: // reportep ::= reporte CLASS DOSPUNTOS CO_A CO_C 
+            {
+              ReporteJson RESULT =null;
+		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
+		Token p = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
+		
+                                                                        RESULT=r;
+                                                                        if(RESULT!=null){
+                                                                            if(RESULT.getClases()!=null){
+                                                                                semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            }else{
+                                                                                RESULT.setClases(new ArrayList<>());
+                                                                            }
+                                                                        }
+                                                                    
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("reportep",2, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+            }
+          return CUP$ParserJson$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 5: // reportep ::= reporte VAR DOSPUNTOS CO_A contVar CO_C 
             {
               ReporteJson RESULT =null;
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
@@ -431,7 +565,7 @@ class CUP$ParserJson$actions {
 		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
 		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
 		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		Token p = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
 		int cvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
 		int cvright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
 		ArrayList<Variable> cv = (ArrayList<Variable>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
@@ -439,7 +573,7 @@ class CUP$ParserJson$actions {
                                                                     RESULT=r;
                                                                     if(RESULT!=null){
                                                                         if(RESULT.getVariables()!=null){
-                                                                            semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
                                                                         }else{
                                                                             RESULT.setVariables(cv);
                                                                         }
@@ -450,7 +584,31 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 5: // reportep ::= reporte METD DOSPUNTOS CO_A contMet CO_C 
+          case 6: // reportep ::= reporte VAR DOSPUNTOS CO_A CO_C 
+            {
+              ReporteJson RESULT =null;
+		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
+		Token p = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
+		
+                                                                    RESULT=r;
+                                                                    if(RESULT!=null){
+                                                                        if(RESULT.getVariables()!=null){
+                                                                            semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
+                                                                        }else{
+                                                                            RESULT.setVariables(new ArrayList<>());
+                                                                        }
+                                                                    }
+                                                                
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("reportep",2, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+            }
+          return CUP$ParserJson$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 7: // reportep ::= reporte METD DOSPUNTOS CO_A contMet CO_C 
             {
               ReporteJson RESULT =null;
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
@@ -458,7 +616,7 @@ class CUP$ParserJson$actions {
 		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
 		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
 		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		Token p = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
 		int cmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
 		int cmright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
 		ArrayList<Metodo> cm = (ArrayList<Metodo>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
@@ -466,7 +624,7 @@ class CUP$ParserJson$actions {
                                                                     RESULT=r;
                                                                     if(RESULT!=null){
                                                                         if(RESULT.getMetodos()!=null){
-                                                                            semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
                                                                         }else{
                                                                             RESULT.setMetodos(cm);
                                                                         }
@@ -477,7 +635,31 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 6: // reportep ::= reporte COMENT DOSPUNTOS CO_A contCom CO_C 
+          case 8: // reportep ::= reporte METD DOSPUNTOS CO_A CO_C 
+            {
+              ReporteJson RESULT =null;
+		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
+		Token p = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
+		
+                                                                    RESULT=r;
+                                                                    if(RESULT!=null){
+                                                                        if(RESULT.getMetodos()!=null){
+                                                                            semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
+                                                                        }else{
+                                                                            RESULT.setMetodos(new ArrayList<>());
+                                                                        }
+                                                                    }
+                                                                
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("reportep",2, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+            }
+          return CUP$ParserJson$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 9: // reportep ::= reporte COMENT DOSPUNTOS CO_A contCom CO_C 
             {
               ReporteJson RESULT =null;
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
@@ -485,7 +667,7 @@ class CUP$ParserJson$actions {
 		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
 		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
 		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		Token p = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
 		int cmeleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
 		int cmeright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
 		ArrayList<Comentario> cme = (ArrayList<Comentario>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
@@ -493,7 +675,7 @@ class CUP$ParserJson$actions {
                                                                         RESULT = r;
                                                                         if(RESULT!=null){
                                                                             if(RESULT.getComentarios()!=null){
-                                                                                semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                                semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
                                                                             }else{
                                                                                 RESULT.setComentarios(cme);
                                                                             }
@@ -504,7 +686,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 7: // reporte ::= reporte SCORE DOSPUNTOS STRING COMA 
+          case 10: // reportep ::= reporte COMENT DOSPUNTOS CO_A CO_C 
             {
               ReporteJson RESULT =null;
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
@@ -512,14 +694,50 @@ class CUP$ParserJson$actions {
 		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
 		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
 		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
+		Token p = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
+		
+                                                                        RESULT = r;
+                                                                        if(RESULT!=null){
+                                                                            if(RESULT.getComentarios()!=null){
+                                                                                semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            }else{
+                                                                                RESULT.setComentarios(new ArrayList<>());
+                                                                            }
+                                                                        }
+                                                                    
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("reportep",2, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+            }
+          return CUP$ParserJson$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 11: // reportep ::= reporte error 
+            {
+              ReporteJson RESULT =null;
+		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
+		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
+		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
+		RESULT = r;
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("reportep",2, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+            }
+          return CUP$ParserJson$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 12: // reporte ::= reporte SCORE DOSPUNTOS STRING COMA 
+            {
+              ReporteJson RESULT =null;
+		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
+		Token p = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
 		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
 		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
+		Token str = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
 		
                                                             RESULT=r;
                                                             if(RESULT!=null){
-                                                                Token tokenTmp = (Token)str;
+                                                                Token tokenTmp = str;
                                                                 boolean bandera = true;
                                                                 if(tokenTmp.getLexema().isEmpty()||tokenTmp.getLexema().isBlank()){
                                                                     semantic_error(tokenTmp,"El valor de la cadena de texto esta vacia");
@@ -534,7 +752,7 @@ class CUP$ParserJson$actions {
                                                                     semantic_error(tokenTmp,"El valor de la cadena no representa un valor numerico");
                                                                 }
                                                                 if(RESULT.getScore()!=null){
-                                                                    semantic_error((Token)p,"La propiedad ya a sido generada con anterioridad");
+                                                                    semantic_error(p,"La propiedad ya a sido generada con anterioridad");
                                                                     bandera=false;
                                                                 }
                                                                 if(bandera){
@@ -547,7 +765,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 8: // reporte ::= reporte CLASS DOSPUNTOS CO_A contClass CO_C COMA 
+          case 13: // reporte ::= reporte CLASS DOSPUNTOS CO_A contClass CO_C COMA 
             {
               ReporteJson RESULT =null;
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).left;
@@ -555,7 +773,7 @@ class CUP$ParserJson$actions {
 		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).value;
 		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
 		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
+		Token p = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
 		int ccleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
 		int ccright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
 		ArrayList<Clase> cc = (ArrayList<Clase>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
@@ -563,7 +781,7 @@ class CUP$ParserJson$actions {
                                                                         RESULT=r;
                                                                         if(RESULT!=null){
                                                                             if(RESULT.getClases()!=null){
-                                                                                semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                                semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
                                                                             }else{
                                                                                 RESULT.setClases(cc);
                                                                             }
@@ -574,7 +792,31 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 9: // reporte ::= reporte VAR DOSPUNTOS CO_A contVar CO_C COMA 
+          case 14: // reporte ::= reporte CLASS DOSPUNTOS CO_A CO_C COMA 
+            {
+              ReporteJson RESULT =null;
+		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
+		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).right;
+		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Token p = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		
+                                                                        RESULT=r;
+                                                                        if(RESULT!=null){
+                                                                            if(RESULT.getClases()!=null){
+                                                                                semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            }else{
+                                                                                RESULT.setClases(new ArrayList<>());
+                                                                            }
+                                                                        }
+                                                                    
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("reporte",1, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+            }
+          return CUP$ParserJson$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 15: // reporte ::= reporte VAR DOSPUNTOS CO_A contVar CO_C COMA 
             {
               ReporteJson RESULT =null;
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).left;
@@ -582,16 +824,15 @@ class CUP$ParserJson$actions {
 		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).value;
 		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
 		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
+		Token p = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
 		int cvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
 		int cvright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
 		ArrayList<Variable> cv = (ArrayList<Variable>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
 		
                                                                     RESULT=r;
                                                                     if(RESULT!=null){
-                                                                        System.out.println("Debuj");
                                                                         if(RESULT.getVariables()!=null){
-                                                                            semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
                                                                         }else{
                                                                             RESULT.setVariables(cv);
                                                                         }
@@ -602,7 +843,31 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 10: // reporte ::= reporte METD DOSPUNTOS CO_A contMet CO_C COMA 
+          case 16: // reporte ::= reporte VAR DOSPUNTOS CO_A CO_C COMA 
+            {
+              ReporteJson RESULT =null;
+		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
+		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).right;
+		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Token p = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		
+                                                                    RESULT=r;
+                                                                    if(RESULT!=null){
+                                                                        if(RESULT.getVariables()!=null){
+                                                                            semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
+                                                                        }else{
+                                                                            RESULT.setVariables(new ArrayList<>());
+                                                                        }
+                                                                    }
+                                                                
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("reporte",1, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+            }
+          return CUP$ParserJson$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 17: // reporte ::= reporte METD DOSPUNTOS CO_A contMet CO_C COMA 
             {
               ReporteJson RESULT =null;
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).left;
@@ -610,7 +875,7 @@ class CUP$ParserJson$actions {
 		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).value;
 		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
 		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
+		Token p = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
 		int cmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
 		int cmright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
 		ArrayList<Metodo> cm = (ArrayList<Metodo>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
@@ -618,7 +883,7 @@ class CUP$ParserJson$actions {
                                                                     RESULT=r;
                                                                     if(RESULT!=null){
                                                                         if(RESULT.getMetodos()!=null){
-                                                                            semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
                                                                         }else{
                                                                             RESULT.setMetodos(cm);
                                                                         }
@@ -629,7 +894,31 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 11: // reporte ::= reporte COMENT DOSPUNTOS CO_A contCom CO_C COMA 
+          case 18: // reporte ::= reporte METD DOSPUNTOS CO_A CO_C COMA 
+            {
+              ReporteJson RESULT =null;
+		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
+		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).right;
+		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Token p = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		
+                                                                    RESULT=r;
+                                                                    if(RESULT!=null){
+                                                                        if(RESULT.getMetodos()!=null){
+                                                                            semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
+                                                                        }else{
+                                                                            RESULT.setMetodos(new ArrayList<>());
+                                                                        }
+                                                                    }
+                                                                
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("reporte",1, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+            }
+          return CUP$ParserJson$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 19: // reporte ::= reporte COMENT DOSPUNTOS CO_A contCom CO_C COMA 
             {
               ReporteJson RESULT =null;
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).left;
@@ -637,7 +926,7 @@ class CUP$ParserJson$actions {
 		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).value;
 		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
 		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
+		Token p = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
 		int cmeleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
 		int cmeright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
 		ArrayList<Comentario> cme = (ArrayList<Comentario>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
@@ -645,7 +934,7 @@ class CUP$ParserJson$actions {
                                                                         RESULT = r;
                                                                         if(RESULT!=null){
                                                                             if(RESULT.getComentarios()!=null){
-                                                                                semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                                semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
                                                                             }else{
                                                                                 RESULT.setComentarios(cme);
                                                                             }
@@ -656,7 +945,31 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 12: // reporte ::= 
+          case 20: // reporte ::= reporte COMENT DOSPUNTOS CO_A CO_C COMA 
+            {
+              ReporteJson RESULT =null;
+		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
+		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).right;
+		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
+		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Token p = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		
+                                                                        RESULT = r;
+                                                                        if(RESULT!=null){
+                                                                            if(RESULT.getComentarios()!=null){
+                                                                                semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            }else{
+                                                                                RESULT.setComentarios(new ArrayList<>());
+                                                                            }
+                                                                        }
+                                                                    
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("reporte",1, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+            }
+          return CUP$ParserJson$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 21: // reporte ::= 
             {
               ReporteJson RESULT =null;
 		
@@ -667,7 +980,19 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 13: // contClass ::= contClassp LLA_A NAME DOSPUNTOS STRING LLA_C 
+          case 22: // reporte ::= reporte error 
+            {
+              ReporteJson RESULT =null;
+		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
+		int rright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
+		ReporteJson r = (ReporteJson)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
+		RESULT = r;
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("reporte",1, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+            }
+          return CUP$ParserJson$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 23: // contClass ::= contClassp LLA_A NAME DOSPUNTOS STRING LLA_C 
             {
               ArrayList<Clase> RESULT =null;
 		int ccleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
@@ -675,11 +1000,11 @@ class CUP$ParserJson$actions {
 		ArrayList<Clase> cc = (ArrayList<Clase>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
 		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
 		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
+		Token str = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
 		
                                                                                 RESULT = cc;
                                                                                 if(RESULT!=null){
-                                                                                    Token token = (Token)str;
+                                                                                    Token token = str;
                                                                                     if(token.getLexema().isEmpty()||token.getLexema().isBlank()){
                                                                                         semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                                     }else{
@@ -693,7 +1018,19 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 14: // contClassp ::= contClassp LLA_A NAME DOSPUNTOS STRING LLA_C COMA 
+          case 24: // contClass ::= contClassp error 
+            {
+              ArrayList<Clase> RESULT =null;
+		int ccleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
+		int ccright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
+		ArrayList<Clase> cc = (ArrayList<Clase>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
+		RESULT = cc;
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("contClass",3, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+            }
+          return CUP$ParserJson$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 25: // contClassp ::= contClassp LLA_A NAME DOSPUNTOS STRING LLA_C COMA 
             {
               ArrayList<Clase> RESULT =null;
 		int ccleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).left;
@@ -701,11 +1038,11 @@ class CUP$ParserJson$actions {
 		ArrayList<Clase> cc = (ArrayList<Clase>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).value;
 		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
 		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
+		Token str = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
 		
                                                                                 RESULT = cc;
                                                                                 if(RESULT!=null){
-                                                                                    Token token = (Token)str;
+                                                                                    Token token = str;
                                                                                     if(token.getLexema().isEmpty()||token.getLexema().isBlank()){
                                                                                         semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                                     }else{
@@ -719,18 +1056,28 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 15: // contClassp ::= 
+          case 26: // contClassp ::= 
             {
               ArrayList<Clase> RESULT =null;
-		
-                    RESULT = new ArrayList<>();
-                
+		RESULT = new ArrayList<>();
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("contClassp",4, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 16: // contVar ::= contVarp LLA_A expVar LLA_C 
+          case 27: // contClassp ::= contClassp error 
+            {
+              ArrayList<Clase> RESULT =null;
+		int ccleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
+		int ccright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
+		ArrayList<Clase> cc = (ArrayList<Clase>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
+		RESULT = cc;
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("contClassp",4, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+            }
+          return CUP$ParserJson$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 28: // contVar ::= contVarp LLA_A expVar LLA_C 
             {
               ArrayList<Variable> RESULT =null;
 		int cvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
@@ -750,7 +1097,19 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 17: // contVarp ::= contVarp LLA_A expVar LLA_C COMA 
+          case 29: // contVar ::= contVarp error 
+            {
+              ArrayList<Variable> RESULT =null;
+		int cvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
+		int cvright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
+		ArrayList<Variable> cv = (ArrayList<Variable>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
+		RESULT = cv;
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("contVar",5, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+            }
+          return CUP$ParserJson$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 30: // contVarp ::= contVarp LLA_A expVar LLA_C COMA 
             {
               ArrayList<Variable> RESULT =null;
 		int cvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
@@ -770,18 +1129,28 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 18: // contVarp ::= 
+          case 31: // contVarp ::= 
             {
               ArrayList<Variable> RESULT =null;
-		
-                    RESULT = new ArrayList<>();
-                
+		RESULT = new ArrayList<>();
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("contVarp",6, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 19: // contMet ::= contMetp LLA_A expMet LLA_C 
+          case 32: // contVarp ::= contVarp error 
+            {
+              ArrayList<Variable> RESULT =null;
+		int cvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
+		int cvright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
+		ArrayList<Variable> cv = (ArrayList<Variable>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
+		RESULT = cv;
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("contVarp",6, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+            }
+          return CUP$ParserJson$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 33: // contMet ::= contMetp LLA_A expMet LLA_C 
             {
               ArrayList<Metodo> RESULT =null;
 		int cmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
@@ -801,7 +1170,19 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 20: // contMetp ::= contMetp LLA_A expMet LLA_C COMA 
+          case 34: // contMet ::= contMetp error 
+            {
+              ArrayList<Metodo> RESULT =null;
+		int cmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
+		int cmright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
+		ArrayList<Metodo> cm = (ArrayList<Metodo>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
+		RESULT=cm;
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("contMet",7, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+            }
+          return CUP$ParserJson$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 35: // contMetp ::= contMetp LLA_A expMet LLA_C COMA 
             {
               ArrayList<Metodo> RESULT =null;
 		int cmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
@@ -821,7 +1202,7 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 21: // contMetp ::= 
+          case 36: // contMetp ::= 
             {
               ArrayList<Metodo> RESULT =null;
 		
@@ -832,447 +1213,235 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 22: // expVar ::= expVarp NAME DOSPUNTOS STRING 
+          case 37: // contMetp ::= contMetp error 
+            {
+              ArrayList<Metodo> RESULT =null;
+		int cmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
+		int cmright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
+		ArrayList<Metodo> cm = (ArrayList<Metodo>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
+		RESULT=cm;
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("contMetp",8, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+            }
+          return CUP$ParserJson$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 38: // expVar ::= NAME DOSPUNTOS STRING COMA TYPE DOSPUNTOS STRING COMA FUN DOSPUNTOS STRING 
             {
               Variable RESULT =null;
-		int expvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
-		int expvright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
-		Variable expv = (Variable)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
-		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
-		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
-		
-                                                                RESULT = expv;
-                                                                if(RESULT != null){
-                                                                    Token token = (Token) str;
-                                                                    Token parametro = (Token)p;
-                                                                    boolean ban = true;
-                                                                    if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(RESULT.getNombre()!=null){
-                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(ban){
-                                                                        RESULT.setNombre(token.getLexema());
-                                                                    }
-                                                                }
-                                                            
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expVar",11, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+		int valnameleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).left;
+		int valnameright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).right;
+		Token valname = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).value;
+		int valtipoleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int valtiporight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Token valtipo = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		int valFunleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
+		int valFunright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
+		Token valFun = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
+		RESULT=verificar_variable(valname,valtipo,valFun);
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expVar",11, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 23: // expVar ::= expVarp FUN DOSPUNTOS STRING 
+          case 39: // expVar ::= NAME DOSPUNTOS STRING COMA FUN DOSPUNTOS STRING COMA TYPE DOSPUNTOS STRING 
             {
               Variable RESULT =null;
-		int expvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
-		int expvright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
-		Variable expv = (Variable)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
-		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
-		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
-		
-                                                                RESULT = expv;
-                                                                if(RESULT != null){
-                                                                    Token token = (Token) str;
-                                                                    Token parametro = (Token)p;
-                                                                    boolean ban = true;
-                                                                    if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(RESULT.getFuncion()!=null){
-                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(ban){
-                                                                        RESULT.setFuncion(token.getLexema());
-                                                                    }
-                                                                }
-                                                            
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expVar",11, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+		int valnameleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).left;
+		int valnameright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).right;
+		Token valname = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).value;
+		int valFunleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int valFunright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Token valFun = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		int valtipoleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
+		int valtiporight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
+		Token valtipo = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
+		RESULT=verificar_variable(valname,valtipo,valFun);
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expVar",11, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 24: // expVar ::= expVarp TYPE DOSPUNTOS STRING 
+          case 40: // expVar ::= FUN DOSPUNTOS STRING COMA NAME DOSPUNTOS STRING COMA TYPE DOSPUNTOS STRING 
             {
               Variable RESULT =null;
-		int expvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
-		int expvright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
-		Variable expv = (Variable)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
-		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
-		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
-		
-                                                                RESULT = expv;
-                                                                if(RESULT != null){
-                                                                    Token token = (Token) str;
-                                                                    Token parametro = (Token)p;
-                                                                    boolean ban = true;
-                                                                    if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(RESULT.getTipo()!=null){
-                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(ban){
-                                                                        RESULT.setTipo(token.getLexema());
-                                                                    }
-                                                                }
-                                                            
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expVar",11, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+		int valFunleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).left;
+		int valFunright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).right;
+		Token valFun = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).value;
+		int valnameleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int valnameright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Token valname = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		int valtipoleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
+		int valtiporight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
+		Token valtipo = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
+		RESULT=verificar_variable(valname,valtipo,valFun);
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expVar",11, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 25: // expVarp ::= expVarp NAME DOSPUNTOS STRING COMA 
+          case 41: // expVar ::= FUN DOSPUNTOS STRING COMA TYPE DOSPUNTOS STRING COMA NAME DOSPUNTOS STRING 
             {
               Variable RESULT =null;
-		int expvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
-		int expvright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
-		Variable expv = (Variable)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
-		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
-		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
-		
-                                                                RESULT = expv;
-                                                                if(RESULT != null){
-                                                                    Token token = (Token) str;
-                                                                    Token parametro = (Token)p;
-                                                                    boolean ban = true;
-                                                                    if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(RESULT.getNombre()!=null){
-                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(ban){
-                                                                        RESULT.setNombre(token.getLexema());
-                                                                    }
-                                                                }
-                                                            
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expVarp",12, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+		int valFunleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).left;
+		int valFunright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).right;
+		Token valFun = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).value;
+		int valtipoleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int valtiporight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Token valtipo = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		int valnameleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
+		int valnameright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
+		Token valname = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
+		RESULT=verificar_variable(valname,valtipo,valFun);
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expVar",11, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 26: // expVarp ::= expVarp FUN DOSPUNTOS STRING COMA 
+          case 42: // expVar ::= TYPE DOSPUNTOS STRING COMA FUN DOSPUNTOS STRING COMA NAME DOSPUNTOS STRING 
             {
               Variable RESULT =null;
-		int expvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
-		int expvright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
-		Variable expv = (Variable)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
-		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
-		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
-		
-                                                                RESULT = expv;
-                                                                if(RESULT != null){
-                                                                    Token token = (Token) str;
-                                                                    Token parametro = (Token)p;
-                                                                    boolean ban = true;
-                                                                    if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(RESULT.getFuncion()!=null){
-                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(ban){
-                                                                        RESULT.setFuncion(token.getLexema());
-                                                                    }
-                                                                }
-                                                            
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expVarp",12, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+		int valtipoleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).left;
+		int valtiporight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).right;
+		Token valtipo = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).value;
+		int valFunleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int valFunright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Token valFun = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		int valnameleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
+		int valnameright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
+		Token valname = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
+		RESULT=verificar_variable(valname,valtipo,valFun);
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expVar",11, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 27: // expVarp ::= expVarp TYPE DOSPUNTOS STRING COMA 
+          case 43: // expVar ::= TYPE DOSPUNTOS STRING COMA NAME DOSPUNTOS STRING COMA FUN DOSPUNTOS STRING 
             {
               Variable RESULT =null;
-		int expvleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
-		int expvright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
-		Variable expv = (Variable)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
-		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
-		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
-		
-                                                                RESULT = expv;
-                                                                if(RESULT != null){
-                                                                    Token token = (Token) str;
-                                                                    Token parametro = (Token)p;
-                                                                    boolean ban = true;
-                                                                    if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(RESULT.getTipo()!=null){
-                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(ban){
-                                                                        RESULT.setTipo(token.getLexema());
-                                                                    }
-                                                                }
-                                                            
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expVarp",12, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+		int valtipoleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).left;
+		int valtiporight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).right;
+		Token valtipo = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).value;
+		int valnameleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int valnameright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Token valname = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		int valFunleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
+		int valFunright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
+		Token valFun = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
+		RESULT=verificar_variable(valname,valtipo,valFun);
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expVar",11, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 28: // expVarp ::= 
-            {
-              Variable RESULT =null;
-		
-                RESULT = new Variable();
-            
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expVarp",12, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
-            }
-          return CUP$ParserJson$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 29: // expMet ::= expMetp NAME DOSPUNTOS STRING 
+          case 44: // expMet ::= NAME DOSPUNTOS STRING COMA TYPE DOSPUNTOS STRING COMA PARA DOSPUNTOS ENTERO 
             {
               Metodo RESULT =null;
-		int expmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
-		int expmright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
-		Metodo expm = (Metodo)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
-		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
-		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
-		
-                                                            RESULT = expm;
-                                                            if(RESULT!=null){
-                                                                Token token = (Token) str;
-                                                                Token parametro = (Token)p;
-                                                                boolean ban = true;
-                                                                if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                    semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                    ban=false;
-                                                                }
-                                                                if(RESULT.getNombre()!=null){
-                                                                    semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                    ban=false;
-                                                                }
-                                                                if(ban){
-                                                                    RESULT.setNombre(token.getLexema());
-                                                                }
-                                                            }
-                                                        
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMet",13, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+		int valnameleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).left;
+		int valnameright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).right;
+		Token valname = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).value;
+		int valtipoleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int valtiporight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Token valtipo = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		int valparaleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
+		int valpararight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
+		Token valpara = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
+		RESULT = verificar_metodo(valname,valtipo,valpara);
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMet",13, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 30: // expMet ::= expMetp TYPE DOSPUNTOS STRING 
+          case 45: // expMet ::= NAME DOSPUNTOS STRING COMA PARA DOSPUNTOS ENTERO COMA TYPE DOSPUNTOS STRING 
             {
               Metodo RESULT =null;
-		int expmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
-		int expmright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
-		Metodo expm = (Metodo)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
-		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
-		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
-		
-                                                            RESULT = expm;
-                                                            if(RESULT!=null){
-                                                                Token token = (Token) str;
-                                                                Token parametro = (Token)p;
-                                                                boolean ban = true;
-                                                                if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                    semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                    ban=false;
-                                                                }
-                                                                if(RESULT.getTipo()!=null){
-                                                                    semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                    ban=false;
-                                                                }
-                                                                if(ban){
-                                                                    RESULT.setTipo(token.getLexema());
-                                                                }
-                                                            }
-                                                        
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMet",13, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+		int valnameleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).left;
+		int valnameright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).right;
+		Token valname = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).value;
+		int valparaleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int valpararight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Token valpara = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		int valtipoleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
+		int valtiporight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
+		Token valtipo = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
+		RESULT = verificar_metodo(valname,valtipo,valpara);
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMet",13, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 31: // expMet ::= expMetp PARA DOSPUNTOS ENTERO 
+          case 46: // expMet ::= TYPE DOSPUNTOS STRING COMA PARA DOSPUNTOS ENTERO COMA NAME DOSPUNTOS STRING 
             {
               Metodo RESULT =null;
-		int expmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
-		int expmright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
-		Metodo expm = (Metodo)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
-		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
-		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
-		int entleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
-		int entright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
-		Object ent = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
-		
-                                                            RESULT = expm;
-                                                            if(RESULT!=null){
-                                                                Token token = (Token) ent;
-                                                                Token parametro = (Token)p;
-                                                                if(RESULT.getParametros()!=null){
-                                                                    semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                }else{
-                                                                    RESULT.setParametros(Integer.valueOf(token.getLexema()));
-                                                                }
-                                                            }
-                                                        
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMet",13, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+		int valtipoleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).left;
+		int valtiporight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).right;
+		Token valtipo = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).value;
+		int valparaleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int valpararight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Token valpara = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		int valnameleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
+		int valnameright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
+		Token valname = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
+		RESULT = verificar_metodo(valname,valtipo,valpara);
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMet",13, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 32: // expMetp ::= expMetp NAME DOSPUNTOS STRING COMA 
+          case 47: // expMet ::= TYPE DOSPUNTOS STRING COMA NAME DOSPUNTOS STRING COMA PARA DOSPUNTOS ENTERO 
             {
               Metodo RESULT =null;
-		int expmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
-		int expmright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
-		Metodo expm = (Metodo)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
-		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
-		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
-		
-                                                                RESULT = expm;
-                                                                if(RESULT!=null){
-                                                                    Token token = (Token) str;
-                                                                    Token parametro = (Token)p;
-                                                                    boolean ban = true;
-                                                                    if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(RESULT.getNombre()!=null){
-                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(ban){
-                                                                        RESULT.setNombre(token.getLexema());
-                                                                    }
-                                                                }
-                                                            
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMetp",14, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+		int valtipoleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).left;
+		int valtiporight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).right;
+		Token valtipo = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).value;
+		int valnameleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int valnameright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Token valname = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		int valparaleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
+		int valpararight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
+		Token valpara = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
+		RESULT = verificar_metodo(valname,valtipo,valpara);
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMet",13, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 33: // expMetp ::= expMetp TYPE DOSPUNTOS STRING COMA 
+          case 48: // expMet ::= PARA DOSPUNTOS ENTERO COMA TYPE DOSPUNTOS STRING COMA NAME DOSPUNTOS STRING 
             {
               Metodo RESULT =null;
-		int expmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
-		int expmright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
-		Metodo expm = (Metodo)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
-		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
-		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
-		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
-		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
-		
-                                                                RESULT = expm;
-                                                                if(RESULT!=null){
-                                                                    Token token = (Token) str;
-                                                                    Token parametro = (Token)p;
-                                                                    boolean ban = true;
-                                                                    if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(RESULT.getTipo()!=null){
-                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(ban){
-                                                                        RESULT.setTipo(token.getLexema());
-                                                                    }
-                                                                }
-                                                            
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMetp",14, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+		int valparaleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).left;
+		int valpararight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).right;
+		Token valpara = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).value;
+		int valtipoleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int valtiporight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Token valtipo = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		int valnameleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
+		int valnameright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
+		Token valname = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
+		RESULT = verificar_metodo(valname,valtipo,valpara);
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMet",13, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 34: // expMetp ::= expMetp PARA DOSPUNTOS ENTERO COMA 
+          case 49: // expMet ::= PARA DOSPUNTOS ENTERO COMA NAME DOSPUNTOS STRING COMA TYPE DOSPUNTOS STRING 
             {
               Metodo RESULT =null;
-		int expmleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
-		int expmright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
-		Metodo expm = (Metodo)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
-		int pleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).left;
-		int pright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).right;
-		Object p = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-3)).value;
-		int entleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
-		int entright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
-		Object ent = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
-		
-                                                                RESULT = expm;
-                                                                if(RESULT!=null){
-                                                                    Token token = (Token) ent;
-                                                                    Token parametro = (Token)p;
-                                                                    if(RESULT.getParametros()!=null){
-                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                    }else{
-                                                                        RESULT.setParametros(Integer.valueOf(token.getLexema()));
-                                                                    }
-                                                                }
-                                                            
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMetp",14, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+		int valparaleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).left;
+		int valpararight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).right;
+		Token valpara = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-8)).value;
+		int valnameleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).left;
+		int valnameright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).right;
+		Token valname = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-4)).value;
+		int valtipoleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).left;
+		int valtiporight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
+		Token valtipo = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
+		RESULT = verificar_metodo(valname,valtipo,valpara);
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMet",13, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 35: // expMetp ::= 
-            {
-              Metodo RESULT =null;
-		
-                RESULT = new Metodo();
-            
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMetp",14, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
-            }
-          return CUP$ParserJson$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 36: // contCom ::= contComp LLA_A TEXT DOSPUNTOS STRING LLA_C 
+          case 50: // contCom ::= contComp LLA_A TEXT DOSPUNTOS STRING LLA_C 
             {
               ArrayList<Comentario> RESULT =null;
 		int cmeleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).left;
@@ -1280,11 +1449,11 @@ class CUP$ParserJson$actions {
 		ArrayList<Comentario> cme = (ArrayList<Comentario>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)).value;
 		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
 		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
+		Token str = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
 		
                                                                             RESULT = cme;
                                                                             if(RESULT!=null){
-                                                                                Token token = (Token)str;
+                                                                                Token token = str;
                                                                                 if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
                                                                                     semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                                 }else{
@@ -1298,7 +1467,19 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 37: // contComp ::= contComp LLA_A TEXT DOSPUNTOS STRING LLA_C COMA 
+          case 51: // contCom ::= contComp error 
+            {
+              ArrayList<Comentario> RESULT =null;
+		int cmeleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
+		int cmeright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
+		ArrayList<Comentario> cme = (ArrayList<Comentario>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
+		RESULT = cme;
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("contCom",9, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+            }
+          return CUP$ParserJson$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 52: // contComp ::= contComp LLA_A TEXT DOSPUNTOS STRING LLA_C COMA 
             {
               ArrayList<Comentario> RESULT =null;
 		int cmeleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).left;
@@ -1306,11 +1487,11 @@ class CUP$ParserJson$actions {
 		ArrayList<Comentario> cme = (ArrayList<Comentario>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)).value;
 		int strleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).left;
 		int strright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).right;
-		Object str = (Object)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
+		Token str = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-2)).value;
 		
                                                                             RESULT = cme;
                                                                             if(RESULT!=null){
-                                                                                Token token = (Token)str;
+                                                                                Token token = str;
                                                                                 if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
                                                                                     semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                                 }else{
@@ -1324,13 +1505,25 @@ class CUP$ParserJson$actions {
           return CUP$ParserJson$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 38: // contComp ::= 
+          case 53: // contComp ::= 
             {
               ArrayList<Comentario> RESULT =null;
 		
                     RESULT = new ArrayList<>();
                 
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("contComp",10, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+            }
+          return CUP$ParserJson$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 54: // contComp ::= contComp error 
+            {
+              ArrayList<Comentario> RESULT =null;
+		int cmeleft = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).left;
+		int cmeright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).right;
+		ArrayList<Comentario> cme = (ArrayList<Comentario>)((java_cup.runtime.Symbol) CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)).value;
+		RESULT = cme;
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("contComp",10, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 

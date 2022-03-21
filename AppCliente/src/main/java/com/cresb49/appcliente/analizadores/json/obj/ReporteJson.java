@@ -9,15 +9,16 @@ import java.util.Objects;
  *
  * @author Benjamin
  */
-public class ReporteJson implements Serializable{
+public class ReporteJson implements Serializable {
+
     private String score;
     private ArrayList<Clase> clases;
     private ArrayList<Variable> variables;
     private ArrayList<Metodo> metodos;
     private ArrayList<Comentario> comentarios;
-    
-    public ReporteJson(){
-        
+
+    public ReporteJson() {
+
     }
 
     public ReporteJson(String score, ArrayList<Clase> clases, ArrayList<Variable> variables, ArrayList<Metodo> metodos, ArrayList<Comentario> comentarios) {
@@ -67,30 +68,51 @@ public class ReporteJson implements Serializable{
     public void setComentarios(ArrayList<Comentario> comentarios) {
         this.comentarios = comentarios;
     }
-    
-    public void imprimirReporte(){
-        System.out.println("score: "+this.score);
-        System.out.println("------------Clases-----------");
-        clases.forEach(clase -> {
-            System.out.println(clase.toString());
-        });
-        System.out.println("------------Variables-----------");
-        variables.forEach(variable -> {
-            System.out.println(variable.toString());
-        });
-        System.out.println("------------Metodos-----------");
-        metodos.forEach(metodo -> {
-            System.out.println(metodo.toString());
-        });
-        System.out.println("------------Comentarios-----------");
-        comentarios.forEach(comentario -> {
-            System.out.println(comentario.toString());
-        });
+
+    public void imprimirReporte() {
+        System.out.println("score: " + this.score);
+        if (clases != null) {
+            System.out.println("------------Clases-----------");
+            clases.forEach(clase -> {
+                System.out.println(clase.toString());
+            });
+        }else{
+            System.out.println("------------Clases-----------");
+            System.out.println("Clases: null");
+        }
+        if (variables != null) {
+            System.out.println("------------Variables-----------");
+            variables.forEach(variable -> {
+                System.out.println(variable.toString());
+            });
+        }else{
+            System.out.println("------------Variables-----------");
+            System.out.println("Variables: null");
+        }
+        if (metodos != null) {
+            System.out.println("------------Metodos-----------");
+            metodos.forEach(metodo -> {
+                System.out.println(metodo.toString());
+            });
+        }else{
+            System.out.println("------------Metodos-----------");
+            System.out.println("Metodos: null");
+        }
+        if (comentarios != null) {
+            System.out.println("------------Comentarios-----------");
+            comentarios.forEach(comentario -> {
+                System.out.println(comentario.toString());
+            });
+        }else{
+            System.out.println("------------Comentarios-----------");
+            System.out.println("Comentarios: null");
+        }
+
     }
-    
+
     public ArrayList<ErrorAnalisis> validar(int linea, int columna) {
         ArrayList<ErrorAnalisis> errores = new ArrayList<>();
-        
+
         return errores;
     }
 

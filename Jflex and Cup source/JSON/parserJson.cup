@@ -95,27 +95,50 @@ parser code {:
         return status;
     }
 
-    private void verificar_reporte_json(ReporteJson verReporteJson){
+    private void verificar_reporte_json(ReporteJson verReporteJson,Token ref){
         if(verReporteJson.getScore() == null){
           String error = "Error en definicion, el resultado Json no tiene Score";
-          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Score", 1, 1, error));
+          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Score", ref.getLinea(),ref.getColumna(), error));
         }
         if(verReporteJson.getClases() == null){
           String error = "Error en definicion, el resultado Json no tiene lista de Clases";
-          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Score", 1, 1, error));
+          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Clases", ref.getLinea(),ref.getColumna(), error));
         }
         if(verReporteJson.getVariables() == null){
           String error = "Error en definicion, el resultado Json no tiene lista de Variables";
-          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Score", 1, 1, error));
+          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Variables", ref.getLinea(),ref.getColumna(), error));
         }
         if(verReporteJson.getMetodos() == null){
           String error = "Error en definicion, el resultado Json no tiene lista de Metodos";
-          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Score", 1, 1, error));
+          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Metodos", ref.getLinea(),ref.getColumna(), error));
         }
         if(verReporteJson.getComentarios() == null){
           String error = "Error en definicion, el resultado Json no tiene lista de Comentarios";
-          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Score", 1, 1, error));
+          this.lexerJson.getErrors().add(new ErrorAnalisis(ERROR_TYPE_SEM,"Comentarios", ref.getLinea(),ref.getColumna(), error));
         }
+    }
+
+    private Metodo verificar_metodo(Token valname, Token valtipo, Token valpara) {
+        if(valname.getLexema().isEmpty()||valname.getLexema().isBlank()){
+            semantic_error(valname,"El valor de la cadena de texto esta vacia");
+        }
+        if(valtipo.getLexema().isEmpty()||valtipo.getLexema().isBlank()){
+            semantic_error(valtipo,"El valor de la cadena de texto esta vacia");
+        }
+        return new Metodo(valname.getLexema(), valtipo.getLexema(), Integer.valueOf(valpara.getLexema()));
+    }
+
+    private Variable verificar_variable(Token valname, Token valtipo, Token valFun) {
+        if(valname.getLexema().isEmpty()||valname.getLexema().isBlank()){
+            semantic_error(valname,"El valor de la cadena de texto esta vacia");
+        }
+        if(valtipo.getLexema().isEmpty()||valtipo.getLexema().isBlank()){
+            semantic_error(valtipo,"El valor de la cadena de texto esta vacia");
+        }
+        if(valFun.getLexema().isEmpty()||valFun.getLexema().isBlank()){
+            semantic_error(valFun,"El valor de la cadena de texto esta vacia");
+        }
+        return new Variable(valname.getLexema(), valtipo.getLexema(), valFun.getLexema());
     }
 
     protected int error_sync_size() {
@@ -127,8 +150,8 @@ parser code {:
 scan with {: return this.lexerJson.next_token(); :};
 
 /* Terminals (tokens returned by the scanner). */
-terminal    CO_A,CO_C,LLA_A,LLA_C,COMA,DOSPUNTOS,STRING,ENTERO,
-            SCORE,CLASS,VAR,NAME,TYPE,FUN,METD,COMENT,PARA,TEXT;
+terminal Token  CO_A,CO_C,LLA_A,LLA_C,COMA,DOSPUNTOS,STRING,ENTERO,
+                SCORE,CLASS,VAR,NAME,TYPE,FUN,METD,COMENT,PARA,TEXT;
 
 
 /* Non terminals */
@@ -144,18 +167,18 @@ non terminal Metodo                 expMet,expMetp;
 
 /* The grammar rules */
 
-ini ::= LLA_A reportep:r LLA_C  {:
-                                    if(r!=null){
-                                        reporteJson=r;
-                                        verificar_reporte_json(reporteJson);
-                                    }
-                                :}
+ini ::= LLA_A:ref reportep:r LLA_C  {:
+                                        if(r!=null){
+                                            reporteJson=r;
+                                            verificar_reporte_json(reporteJson,ref);
+                                        }
+                                    :}
     ;
 /*Gramatica para reporte Json*/
 reportep    ::= reporte:r SCORE:p DOSPUNTOS STRING:str  {:
                                                             RESULT=r;
                                                             if(RESULT!=null){
-                                                                Token tokenTmp = (Token)str;
+                                                                Token tokenTmp = str;
                                                                 boolean bandera = true;
                                                                 if(tokenTmp.getLexema().isEmpty()||tokenTmp.getLexema().isBlank()){
                                                                     semantic_error(tokenTmp,"El valor de la cadena de texto esta vacia");
@@ -170,7 +193,7 @@ reportep    ::= reporte:r SCORE:p DOSPUNTOS STRING:str  {:
                                                                     semantic_error(tokenTmp,"El valor de la cadena no representa un valor numerico");
                                                                 }
                                                                 if(RESULT.getScore()!=null){
-                                                                    semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                    semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
                                                                     bandera=false;
                                                                 }
                                                                 if(bandera){
@@ -182,9 +205,19 @@ reportep    ::= reporte:r SCORE:p DOSPUNTOS STRING:str  {:
                                                                         RESULT=r;
                                                                         if(RESULT!=null){
                                                                             if(RESULT.getClases()!=null){
-                                                                                semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                                semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
                                                                             }else{
                                                                                 RESULT.setClases(cc);
+                                                                            }
+                                                                        }
+                                                                    :}
+            |   reporte:r CLASS:p DOSPUNTOS CO_A CO_C  {:
+                                                                        RESULT=r;
+                                                                        if(RESULT!=null){
+                                                                            if(RESULT.getClases()!=null){
+                                                                                semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            }else{
+                                                                                RESULT.setClases(new ArrayList<>());
                                                                             }
                                                                         }
                                                                     :}
@@ -192,9 +225,19 @@ reportep    ::= reporte:r SCORE:p DOSPUNTOS STRING:str  {:
                                                                     RESULT=r;
                                                                     if(RESULT!=null){
                                                                         if(RESULT.getVariables()!=null){
-                                                                            semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
                                                                         }else{
                                                                             RESULT.setVariables(cv);
+                                                                        }
+                                                                    }
+                                                                :}
+            |   reporte:r VAR:p DOSPUNTOS CO_A CO_C  {:
+                                                                    RESULT=r;
+                                                                    if(RESULT!=null){
+                                                                        if(RESULT.getVariables()!=null){
+                                                                            semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
+                                                                        }else{
+                                                                            RESULT.setVariables(new ArrayList<>());
                                                                         }
                                                                     }
                                                                 :}
@@ -202,9 +245,19 @@ reportep    ::= reporte:r SCORE:p DOSPUNTOS STRING:str  {:
                                                                     RESULT=r;
                                                                     if(RESULT!=null){
                                                                         if(RESULT.getMetodos()!=null){
-                                                                            semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
                                                                         }else{
                                                                             RESULT.setMetodos(cm);
+                                                                        }
+                                                                    }
+                                                                :}
+            |   reporte:r METD:p DOSPUNTOS CO_A CO_C            {:
+                                                                    RESULT=r;
+                                                                    if(RESULT!=null){
+                                                                        if(RESULT.getMetodos()!=null){
+                                                                            semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
+                                                                        }else{
+                                                                            RESULT.setMetodos(new ArrayList<>());
                                                                         }
                                                                     }
                                                                 :}
@@ -212,18 +265,29 @@ reportep    ::= reporte:r SCORE:p DOSPUNTOS STRING:str  {:
                                                                         RESULT = r;
                                                                         if(RESULT!=null){
                                                                             if(RESULT.getComentarios()!=null){
-                                                                                semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                                semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
                                                                             }else{
                                                                                 RESULT.setComentarios(cme);
                                                                             }
                                                                         }
                                                                     :}
+            |   reporte:r COMENT:p DOSPUNTOS CO_A CO_C  {:
+                                                                        RESULT = r;
+                                                                        if(RESULT!=null){
+                                                                            if(RESULT.getComentarios()!=null){
+                                                                                semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            }else{
+                                                                                RESULT.setComentarios(new ArrayList<>());
+                                                                            }
+                                                                        }
+                                                                    :}
+            |   reporte:r error                         {:RESULT = r;:}
             ;
 
 reporte ::= reporte:r SCORE:p DOSPUNTOS STRING:str COMA   {:
                                                             RESULT=r;
                                                             if(RESULT!=null){
-                                                                Token tokenTmp = (Token)str;
+                                                                Token tokenTmp = str;
                                                                 boolean bandera = true;
                                                                 if(tokenTmp.getLexema().isEmpty()||tokenTmp.getLexema().isBlank()){
                                                                     semantic_error(tokenTmp,"El valor de la cadena de texto esta vacia");
@@ -238,7 +302,7 @@ reporte ::= reporte:r SCORE:p DOSPUNTOS STRING:str COMA   {:
                                                                     semantic_error(tokenTmp,"El valor de la cadena no representa un valor numerico");
                                                                 }
                                                                 if(RESULT.getScore()!=null){
-                                                                    semantic_error((Token)p,"La propiedad ya a sido generada con anterioridad");
+                                                                    semantic_error(p,"La propiedad ya a sido generada con anterioridad");
                                                                     bandera=false;
                                                                 }
                                                                 if(bandera){
@@ -250,20 +314,39 @@ reporte ::= reporte:r SCORE:p DOSPUNTOS STRING:str COMA   {:
                                                                         RESULT=r;
                                                                         if(RESULT!=null){
                                                                             if(RESULT.getClases()!=null){
-                                                                                semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                                semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
                                                                             }else{
                                                                                 RESULT.setClases(cc);
+                                                                            }
+                                                                        }
+                                                                    :}
+        |   reporte:r CLASS:p DOSPUNTOS CO_A CO_C COMA   {:
+                                                                        RESULT=r;
+                                                                        if(RESULT!=null){
+                                                                            if(RESULT.getClases()!=null){
+                                                                                semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            }else{
+                                                                                RESULT.setClases(new ArrayList<>());
                                                                             }
                                                                         }
                                                                     :}
         |   reporte:r VAR:p DOSPUNTOS CO_A contVar:cv CO_C COMA   {:
                                                                     RESULT=r;
                                                                     if(RESULT!=null){
-                                                                        System.out.println("Debuj");
                                                                         if(RESULT.getVariables()!=null){
-                                                                            semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
                                                                         }else{
                                                                             RESULT.setVariables(cv);
+                                                                        }
+                                                                    }
+                                                                :}
+        |   reporte:r VAR:p DOSPUNTOS CO_A CO_C COMA            {:
+                                                                    RESULT=r;
+                                                                    if(RESULT!=null){
+                                                                        if(RESULT.getVariables()!=null){
+                                                                            semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
+                                                                        }else{
+                                                                            RESULT.setVariables(new ArrayList<>());
                                                                         }
                                                                     }
                                                                 :}
@@ -271,9 +354,19 @@ reporte ::= reporte:r SCORE:p DOSPUNTOS STRING:str COMA   {:
                                                                     RESULT=r;
                                                                     if(RESULT!=null){
                                                                         if(RESULT.getMetodos()!=null){
-                                                                            semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
                                                                         }else{
                                                                             RESULT.setMetodos(cm);
+                                                                        }
+                                                                    }
+                                                                :}
+        |   reporte:r METD:p DOSPUNTOS CO_A CO_C COMA  {:
+                                                                    RESULT=r;
+                                                                    if(RESULT!=null){
+                                                                        if(RESULT.getMetodos()!=null){
+                                                                            semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
+                                                                        }else{
+                                                                            RESULT.setMetodos(new ArrayList<>());
                                                                         }
                                                                     }
                                                                 :}
@@ -281,21 +374,32 @@ reporte ::= reporte:r SCORE:p DOSPUNTOS STRING:str COMA   {:
                                                                         RESULT = r;
                                                                         if(RESULT!=null){
                                                                             if(RESULT.getComentarios()!=null){
-                                                                                semantic_error((Token)p,"La propiedad ya habia sido definida con anterioridad");
+                                                                                semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
                                                                             }else{
                                                                                 RESULT.setComentarios(cme);
+                                                                            }
+                                                                        }
+                                                                    :}
+        |   reporte:r COMENT:p DOSPUNTOS CO_A CO_C COMA             {:
+                                                                        RESULT = r;
+                                                                        if(RESULT!=null){
+                                                                            if(RESULT.getComentarios()!=null){
+                                                                                semantic_error(p,"La propiedad ya habia sido definida con anterioridad");
+                                                                            }else{
+                                                                                RESULT.setComentarios(new ArrayList<>());
                                                                             }
                                                                         }
                                                                     :}
         |                                               {:
                                                             RESULT = new ReporteJson();
                                                         :}
+        |   reporte:r error                             {:RESULT = r;:}
         ;
 
 contClass   ::= contClassp:cc LLA_A NAME DOSPUNTOS STRING:str LLA_C         {:
                                                                                 RESULT = cc;
                                                                                 if(RESULT!=null){
-                                                                                    Token token = (Token)str;
+                                                                                    Token token = str;
                                                                                     if(token.getLexema().isEmpty()||token.getLexema().isBlank()){
                                                                                         semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                                     }else{
@@ -304,12 +408,13 @@ contClass   ::= contClassp:cc LLA_A NAME DOSPUNTOS STRING:str LLA_C         {:
                                                                                     }
                                                                                 }
                                                                             :}
+            |   contClassp:cc error     {:RESULT = cc;:}
             ;
 
 contClassp  ::= contClassp:cc LLA_A NAME DOSPUNTOS STRING:str LLA_C COMA    {:
                                                                                 RESULT = cc;
                                                                                 if(RESULT!=null){
-                                                                                    Token token = (Token)str;
+                                                                                    Token token = str;
                                                                                     if(token.getLexema().isEmpty()||token.getLexema().isBlank()){
                                                                                         semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                                     }else{
@@ -318,9 +423,8 @@ contClassp  ::= contClassp:cc LLA_A NAME DOSPUNTOS STRING:str LLA_C COMA    {:
                                                                                     }
                                                                                 }
                                                                             :}
-            |   {:
-                    RESULT = new ArrayList<>();
-                :}
+            |   {:RESULT = new ArrayList<>();:}
+            |   contClassp:cc error     {:RESULT = cc;:}
             ;
 
 contVar ::= contVarp:cv LLA_A expVar:expv LLA_C                 {:
@@ -329,17 +433,17 @@ contVar ::= contVarp:cv LLA_A expVar:expv LLA_C                 {:
                                                                         RESULT.add(expv);
                                                                     }
                                                                 :}
-            ;
+        |   contVarp:cv error   {:RESULT = cv;:}
+        ;
 
-contVarp    ::=     contVarp:cv LLA_A expVar:expv LLA_C COMA    {:
+contVarp    ::= contVarp:cv LLA_A expVar:expv LLA_C COMA    {:
                                                                     RESULT = cv;
                                                                     if(RESULT!=null){
                                                                         RESULT.add(expv);
                                                                     }
                                                                 :}
-            |   {:
-                    RESULT = new ArrayList<>();
-                :}
+            |   {:RESULT = new ArrayList<>();:}
+            |   contVarp:cv error {:RESULT = cv;:}
             ;
 
 contMet ::= contMetp:cm LLA_A expMet:expm LLA_C             {:
@@ -348,6 +452,7 @@ contMet ::= contMetp:cm LLA_A expMet:expm LLA_C             {:
                                                                     RESULT.add(expm);
                                                                 }
                                                             :}
+        |   contMetp:cm error   {:RESULT=cm;:}
         ;
 
 contMetp    ::= contMetp:cm LLA_A expMet:expm LLA_C COMA    {:
@@ -359,240 +464,29 @@ contMetp    ::= contMetp:cm LLA_A expMet:expm LLA_C COMA    {:
             |   {:
                     RESULT = new ArrayList<>();
                 :}
+            |   contMetp:cm error   {:RESULT=cm;:}
             ;
 
-expVar  ::= expVarp:expv NAME:p DOSPUNTOS STRING:str        {:
-                                                                RESULT = expv;
-                                                                if(RESULT != null){
-                                                                    Token token = (Token) str;
-                                                                    Token parametro = (Token)p;
-                                                                    boolean ban = true;
-                                                                    if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(RESULT.getNombre()!=null){
-                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(ban){
-                                                                        RESULT.setNombre(token.getLexema());
-                                                                    }
-                                                                }
-                                                            :}
-        |   expVarp:expv FUN:p DOSPUNTOS STRING:str         {:
-                                                                RESULT = expv;
-                                                                if(RESULT != null){
-                                                                    Token token = (Token) str;
-                                                                    Token parametro = (Token)p;
-                                                                    boolean ban = true;
-                                                                    if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(RESULT.getFuncion()!=null){
-                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(ban){
-                                                                        RESULT.setFuncion(token.getLexema());
-                                                                    }
-                                                                }
-                                                            :}
-        |   expVarp:expv TYPE:p DOSPUNTOS STRING:str        {:
-                                                                RESULT = expv;
-                                                                if(RESULT != null){
-                                                                    Token token = (Token) str;
-                                                                    Token parametro = (Token)p;
-                                                                    boolean ban = true;
-                                                                    if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(RESULT.getTipo()!=null){
-                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(ban){
-                                                                        RESULT.setTipo(token.getLexema());
-                                                                    }
-                                                                }
-                                                            :}
+expVar  ::= NAME DOSPUNTOS STRING:valname COMA TYPE DOSPUNTOS STRING:valtipo COMA FUN DOSPUNTOS STRING:valFun   {:RESULT=verificar_variable(valname,valtipo,valFun);:}
+        |   NAME DOSPUNTOS STRING:valname COMA FUN DOSPUNTOS STRING:valFun COMA TYPE DOSPUNTOS STRING:valtipo   {:RESULT=verificar_variable(valname,valtipo,valFun);:}
+        |   FUN DOSPUNTOS STRING:valFun COMA NAME DOSPUNTOS STRING:valname COMA TYPE DOSPUNTOS STRING:valtipo   {:RESULT=verificar_variable(valname,valtipo,valFun);:}
+        |   FUN DOSPUNTOS STRING:valFun COMA TYPE DOSPUNTOS STRING:valtipo COMA NAME DOSPUNTOS STRING:valname   {:RESULT=verificar_variable(valname,valtipo,valFun);:}
+        |   TYPE DOSPUNTOS STRING:valtipo COMA FUN DOSPUNTOS STRING:valFun COMA NAME DOSPUNTOS STRING:valname   {:RESULT=verificar_variable(valname,valtipo,valFun);:}
+        |   TYPE DOSPUNTOS STRING:valtipo COMA NAME DOSPUNTOS STRING:valname COMA FUN DOSPUNTOS STRING:valFun   {:RESULT=verificar_variable(valname,valtipo,valFun);:}
         ;
 
-expVarp ::= expVarp:expv NAME:p DOSPUNTOS STRING:str COMA   {:
-                                                                RESULT = expv;
-                                                                if(RESULT != null){
-                                                                    Token token = (Token) str;
-                                                                    Token parametro = (Token)p;
-                                                                    boolean ban = true;
-                                                                    if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(RESULT.getNombre()!=null){
-                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(ban){
-                                                                        RESULT.setNombre(token.getLexema());
-                                                                    }
-                                                                }
-                                                            :}
-        |   expVarp:expv FUN:p DOSPUNTOS STRING:str COMA    {:
-                                                                RESULT = expv;
-                                                                if(RESULT != null){
-                                                                    Token token = (Token) str;
-                                                                    Token parametro = (Token)p;
-                                                                    boolean ban = true;
-                                                                    if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(RESULT.getFuncion()!=null){
-                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(ban){
-                                                                        RESULT.setFuncion(token.getLexema());
-                                                                    }
-                                                                }
-                                                            :}
-        |   expVarp:expv TYPE:p DOSPUNTOS STRING:str COMA   {:
-                                                                RESULT = expv;
-                                                                if(RESULT != null){
-                                                                    Token token = (Token) str;
-                                                                    Token parametro = (Token)p;
-                                                                    boolean ban = true;
-                                                                    if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(RESULT.getTipo()!=null){
-                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(ban){
-                                                                        RESULT.setTipo(token.getLexema());
-                                                                    }
-                                                                }
-                                                            :}
-        |   {:
-                RESULT = new Variable();
-            :}
-        ;
-
-expMet  ::= expMetp:expm NAME:p DOSPUNTOS STRING:str    {:
-                                                            RESULT = expm;
-                                                            if(RESULT!=null){
-                                                                Token token = (Token) str;
-                                                                Token parametro = (Token)p;
-                                                                boolean ban = true;
-                                                                if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                    semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                    ban=false;
-                                                                }
-                                                                if(RESULT.getNombre()!=null){
-                                                                    semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                    ban=false;
-                                                                }
-                                                                if(ban){
-                                                                    RESULT.setNombre(token.getLexema());
-                                                                }
-                                                            }
-                                                        :}
-        |   expMetp:expm TYPE:p DOSPUNTOS STRING:str    {:
-                                                            RESULT = expm;
-                                                            if(RESULT!=null){
-                                                                Token token = (Token) str;
-                                                                Token parametro = (Token)p;
-                                                                boolean ban = true;
-                                                                if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                    semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                    ban=false;
-                                                                }
-                                                                if(RESULT.getTipo()!=null){
-                                                                    semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                    ban=false;
-                                                                }
-                                                                if(ban){
-                                                                    RESULT.setTipo(token.getLexema());
-                                                                }
-                                                            }
-                                                        :}
-        |   expMetp:expm PARA:p DOSPUNTOS ENTERO:ent    {:
-                                                            RESULT = expm;
-                                                            if(RESULT!=null){
-                                                                Token token = (Token) ent;
-                                                                Token parametro = (Token)p;
-                                                                if(RESULT.getParametros()!=null){
-                                                                    semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                }else{
-                                                                    RESULT.setParametros(Integer.valueOf(token.getLexema()));
-                                                                }
-                                                            }
-                                                        :}
-        ;
-
-expMetp ::= expMetp:expm NAME:p DOSPUNTOS STRING:str COMA   {:
-                                                                RESULT = expm;
-                                                                if(RESULT!=null){
-                                                                    Token token = (Token) str;
-                                                                    Token parametro = (Token)p;
-                                                                    boolean ban = true;
-                                                                    if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(RESULT.getNombre()!=null){
-                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(ban){
-                                                                        RESULT.setNombre(token.getLexema());
-                                                                    }
-                                                                }
-                                                            :}
-        |   expMetp:expm TYPE:p DOSPUNTOS STRING:str COMA   {:
-                                                                RESULT = expm;
-                                                                if(RESULT!=null){
-                                                                    Token token = (Token) str;
-                                                                    Token parametro = (Token)p;
-                                                                    boolean ban = true;
-                                                                    if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                        semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(RESULT.getTipo()!=null){
-                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                        ban=false;
-                                                                    }
-                                                                    if(ban){
-                                                                        RESULT.setTipo(token.getLexema());
-                                                                    }
-                                                                }
-                                                            :}
-        |   expMetp:expm PARA:p DOSPUNTOS ENTERO:ent COMA   {:
-                                                                RESULT = expm;
-                                                                if(RESULT!=null){
-                                                                    Token token = (Token) ent;
-                                                                    Token parametro = (Token)p;
-                                                                    if(RESULT.getParametros()!=null){
-                                                                        semantic_error(parametro,"La propiedad ya habia sido definida con anterioridad");
-                                                                    }else{
-                                                                        RESULT.setParametros(Integer.valueOf(token.getLexema()));
-                                                                    }
-                                                                }
-                                                            :}
-        |   {:
-                RESULT = new Metodo();
-            :}
+expMet  ::= NAME DOSPUNTOS STRING:valname COMA TYPE DOSPUNTOS STRING:valtipo COMA PARA DOSPUNTOS ENTERO:valpara  {:RESULT = verificar_metodo(valname,valtipo,valpara);:}
+        |   NAME DOSPUNTOS STRING:valname COMA PARA DOSPUNTOS ENTERO:valpara COMA TYPE DOSPUNTOS STRING:valtipo  {:RESULT = verificar_metodo(valname,valtipo,valpara);:}
+        |   TYPE DOSPUNTOS STRING:valtipo COMA PARA DOSPUNTOS ENTERO:valpara COMA NAME DOSPUNTOS STRING:valname  {:RESULT = verificar_metodo(valname,valtipo,valpara);:}
+        |   TYPE DOSPUNTOS STRING:valtipo COMA NAME DOSPUNTOS STRING:valname COMA PARA DOSPUNTOS ENTERO:valpara  {:RESULT = verificar_metodo(valname,valtipo,valpara);:}
+        |   PARA DOSPUNTOS ENTERO:valpara COMA TYPE DOSPUNTOS STRING:valtipo COMA NAME DOSPUNTOS STRING:valname  {:RESULT = verificar_metodo(valname,valtipo,valpara);:}
+        |   PARA DOSPUNTOS ENTERO:valpara COMA NAME DOSPUNTOS STRING:valname COMA TYPE DOSPUNTOS STRING:valtipo  {:RESULT = verificar_metodo(valname,valtipo,valpara);:}
         ;
 
 contCom ::= contComp:cme LLA_A TEXT DOSPUNTOS STRING:str LLA_C          {:
                                                                             RESULT = cme;
                                                                             if(RESULT!=null){
-                                                                                Token token = (Token)str;
+                                                                                Token token = str;
                                                                                 if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
                                                                                     semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                                 }else{
@@ -601,12 +495,12 @@ contCom ::= contComp:cme LLA_A TEXT DOSPUNTOS STRING:str LLA_C          {:
                                                                                 }
                                                                             }
                                                                         :}
+        |   contComp:cme error  {:RESULT = cme;:}
         ;
-    
 contComp    ::= contComp:cme LLA_A TEXT DOSPUNTOS STRING:str LLA_C COMA {:
                                                                             RESULT = cme;
                                                                             if(RESULT!=null){
-                                                                                Token token = (Token)str;
+                                                                                Token token = str;
                                                                                 if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
                                                                                     semantic_error(token,"El valor de la cadena de texto esta vacia");
                                                                                 }else{
@@ -618,5 +512,6 @@ contComp    ::= contComp:cme LLA_A TEXT DOSPUNTOS STRING:str LLA_C COMA {:
             |   {:
                     RESULT = new ArrayList<>();
                 :}
+            |   contComp:cme error  {:RESULT = cme;:}
             ;
 
