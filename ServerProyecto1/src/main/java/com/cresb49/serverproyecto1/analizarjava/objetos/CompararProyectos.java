@@ -60,12 +60,12 @@ public class CompararProyectos {
         int totalVariables = this.resultadoCarpeta1.numeroDeVariables() + this.resultadoCarpeta2.numeroDeVariables();
         int varsRepetidas = this.contarVariablesFinal(variables);
         System.out.println("varsRepetidas: " + varsRepetidas);
-        int totalMetodos = 1;
-        int metodosRepetidos = 1;
-        int totalClases = 1;
-        int clasesRepetidas = 1;
-        int totalComen = 1;
-        int comenrepetidos = 1;
+        int totalMetodos = 0;
+        int metodosRepetidos = 0;
+        int totalClases = 0;
+        int clasesRepetidas = 0;
+        int totalComen = 0;
+        int comenrepetidos = 0;
         String score = "";
         score = this.carlcularScore(totalVariables, varsRepetidas, totalMetodos, metodosRepetidos, totalClases,
                 clasesRepetidas, totalComen, comenrepetidos);
@@ -77,6 +77,15 @@ public class CompararProyectos {
     private String carlcularScore(int totalVariables, int varsRepetidas, int totalMetodos, int metodosRepetidos,
             int totalClases, int clasesRepetidas, int totalComen, int comenrepetidos) {
         System.out.println("Score:");
+        if(totalVariables==0){
+            totalVariables=1;
+        }if(totalMetodos==0){
+            totalMetodos=1;
+        }if(totalClases==0){
+            totalClases=1;
+        }if(totalComen==0){
+            totalComen=1;
+        }
         BigDecimal termV1 = BigDecimal.valueOf(varsRepetidas);
         BigDecimal termV2 = BigDecimal.valueOf(totalVariables);
         BigDecimal resultVars = termV1.divide(termV2, 4, RoundingMode.CEILING);
