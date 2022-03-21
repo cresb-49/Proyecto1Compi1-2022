@@ -69,10 +69,10 @@ public class CompararProyectos {
     private String toJsonText(ReporteJson reporteJson) {
         StringBuilder json = new StringBuilder();
         json.append("{" + "\n");
-        json.append("Score: \"" + reporteJson.getScore() + "\"\n");
+        json.append("Score: \"" + reporteJson.getScore() + "\",\n");
         json.append("Clases: [" + "\n");
         for (int i = 0; i < reporteJson.getClases().size(); i++) {
-            json.append("     {Nombre: \"" + reporteJson.getClases().get(i).getNombre() + "\"}");
+            json.append("\t{Nombre: \"" + reporteJson.getClases().get(i).getNombre() + "\"}");
             if (reporteJson.getClases().size() >= 2) {
                 if (i < (reporteJson.getClases().size() - 1)) {
                     json.append(",\n");
@@ -87,8 +87,8 @@ public class CompararProyectos {
         json.append("Variables: [" + "\n");
 
         for (int i = 0; i < reporteJson.getVariables().size(); i++) {
-            json.append("     {Nombre: \"" + reporteJson.getVariables().get(i).getNombre() + "\" Tipo: \""
-                    + reporteJson.getVariables().get(i).getTipo() + "\" Funcion: \""
+            json.append("\t{Nombre: \"" + reporteJson.getVariables().get(i).getNombre() + "\", Tipo: \""
+                    + reporteJson.getVariables().get(i).getTipo() + "\", Funcion: \""
                     + reporteJson.getVariables().get(i).getFuncion() + "\"}");
             if (reporteJson.getVariables().size() >= 2) {
                 if (i < (reporteJson.getVariables().size() - 1)) {
@@ -103,8 +103,8 @@ public class CompararProyectos {
         json.append("]," + "\n");
         json.append("Metodos: [" + "\n");
         for (int i = 0; i < reporteJson.getMetodos().size(); i++) {
-            json.append("     {Nombre: \"" + reporteJson.getMetodos().get(i).getNombre() + "\" Tipo: \""
-                    + reporteJson.getMetodos().get(i).getTipo() + "\" Parametros: \""
+            json.append("\t{Nombre: \"" + reporteJson.getMetodos().get(i).getNombre() + "\", Tipo: \""
+                    + reporteJson.getMetodos().get(i).getTipo() + "\", Parametros: \""
                     + reporteJson.getMetodos().get(i).getParametros() + "\"}");
             if (reporteJson.getMetodos().size() >= 2) {
                 if (i < (reporteJson.getMetodos().size() - 1)) {
@@ -119,7 +119,7 @@ public class CompararProyectos {
         json.append("]," + "\n");
         json.append("Comentarios: [" + "\n");
         for (int i = 0; i < reporteJson.getComentarios().size(); i++) {
-            json.append("     {Texto: \"" + reporteJson.getComentarios().get(i).getTexto() + "}");
+            json.append("\t{Texto: \"" + reporteJson.getComentarios().get(i).getTexto() + "}");
             if (reporteJson.getComentarios().size() >= 2) {
                 if (i < (reporteJson.getComentarios().size() - 1)) {
                     json.append(",\n");
@@ -136,34 +136,73 @@ public class CompararProyectos {
 
     private void obtenerMetodosRepetidos(ArrayList<Metodo> metodos) {
         for (Metodo metodo : resultadoCarpeta1.getMetodos()) {
-            for (Metodo metodo2 : resultadoCarpeta2.getMetodos()) {
-                if (metodo != null && metodo2 != null) {
-                    if (metodo.equals(metodo2)) {
+            if (metodo != null) {
+                if(this.buscarListaMetodos(resultadoCarpeta2.getMetodos(), metodo)){
+                    if(!this.buscarListaMetodos(metodos, metodo)){
                         metodos.add(metodo);
                     }
                 }
             }
+            /*for (Metodo metodo2 : resultadoCarpeta2.getMetodos()) {
+            }*/
         }
+    }
+
+    private boolean buscarListaMetodos(ArrayList<Metodo> metodos,Metodo metodo){
+        for (Metodo met : metodos) {
+            if(met.equals(metodo)){
+                return true;
+            }
+        }
+        return false;
     }
 
     private void obtenerComentariosRepetidos(ArrayList<Comentario> comentarios) {
         for (Comentario comentario : resultadoCarpeta1.getComentarios()) {
-            for (Comentario comentario2 : resultadoCarpeta2.getComentarios()) {
-                if (comentario != null && comentario2 != null) {
-                    comentarios.add(comentario);
+            if (comentario != null) {
+                if(this.buscarListaComentario(resultadoCarpeta2.getComentarios(), comentario)){
+                    if(!this.buscarListaComentario(comentarios, comentario)){
+                        comentarios.add(comentario);
+                    }
                 }
             }
+            /*
+            for (Comentario comentario2 : resultadoCarpeta2.getComentarios()) {
+            }*/
         }
     }
 
-    private void obtenerClasesRepetidos(ArrayList<Clase> clases) {
-        for (Clase clase : resultadoCarpeta1.getClases()) {
-            for (Clase clase2 : resultadoCarpeta2.getClases()) {
-                if (clase != null && clase2 != null) {
-                    clases.add(clase);
-                }
+    private boolean buscarListaComentario(ArrayList<Comentario> comentarios,Comentario comentario){
+        for (Comentario comt : comentarios) {
+            if(comt.equals(comentario)){
+                return true;
             }
         }
+        return false;
+    }
+
+
+    private void obtenerClasesRepetidos(ArrayList<Clase> clases) {
+        for (Clase clase : resultadoCarpeta1.getClases()) {
+            if (clase != null) {
+                if(this.buscarListaClases(resultadoCarpeta2.getClases(), clase)){
+                    if(!this.buscarListaClases(clases, clase)){
+                        clases.add(clase);
+                    }
+                }
+            }
+            /*for (Clase clase2 : resultadoCarpeta2.getClases()) {
+            }*/
+        }
+    }
+
+    private boolean buscarListaClases(ArrayList<Clase> calses,Clase clase){
+        for (Clase clas : calses) {
+            if(clas.equals(clase)){
+                return true;
+            }
+        }
+        return false;
     }
 
     private void obtenerVariablesRepetidas(ArrayList<Variable> variables) {
@@ -179,7 +218,7 @@ public class CompararProyectos {
             }
         }
     }
-
+    
     private String obtenerFuncionesVariables(ArrayList<String> funciones, ArrayList<String> funciones2) {
         return "";
     }
