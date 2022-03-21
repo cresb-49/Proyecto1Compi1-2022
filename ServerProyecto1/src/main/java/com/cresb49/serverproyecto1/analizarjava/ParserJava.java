@@ -1179,6 +1179,7 @@ public class ParserJava extends java_cup.runtime.lr_parser {
                 }else{
                     if(fila.getNombre().equals(var.getNombre()) && fila.getTipo().equals(var.getTipo())){
                         fila.mergueFuncions(var.getFunciones());
+                        fila.agregarRepeticion();
                     }else{
                         tablaSimbolos.getFilas().add(var);
                     }
@@ -1216,10 +1217,10 @@ public class ParserJava extends java_cup.runtime.lr_parser {
 
     private void archivarMetodo(String metodo_constructor,String tipo,ArrayList<FilaTablaSymbolos> parametros,int aux){
         if(parametros!=null){
-            System.out.println("Metodo: "+metodo_constructor+" ,Tipo: "+tipo+" ,Parametros: "+parametros.size());
+            //System.out.println("Metodo: "+metodo_constructor+" ,Tipo: "+tipo+" ,Parametros: "+parametros.size());
             this.getMetodos().add(new Metodo(metodo_constructor, tipo, parametros.size()));
         }else{
-            System.out.println("Metodo: "+metodo_constructor+" ,Tipo: "+tipo+" ,Parametros: "+aux);
+            //System.out.println("Metodo: "+metodo_constructor+" ,Tipo: "+tipo+" ,Parametros: "+aux);
             this.getMetodos().add(new Metodo(metodo_constructor, tipo,aux));
         }
     }
@@ -1262,7 +1263,7 @@ class CUP$ParserJava$actions {
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
 		
-                                        System.out.println("Ejecute class java");
+                                        //System.out.println("Ejecute class java");
                                     
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("initJava",0, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
@@ -1287,7 +1288,7 @@ class CUP$ParserJava$actions {
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
 		
-                                        System.out.println("Ejecute class java");
+                                        //System.out.println("Ejecute class java");
                                     
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("initJava",0, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
@@ -1298,8 +1299,8 @@ class CUP$ParserJava$actions {
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
 		
-                                            System.out.println("Ejecute import");
-                                        
+                                //System.out.println("Ejecute import");
+                            
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("initJavaP",1, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;

@@ -112,6 +112,7 @@ parser code {:
                 }else{
                     if(fila.getNombre().equals(var.getNombre()) && fila.getTipo().equals(var.getTipo())){
                         fila.mergueFuncions(var.getFunciones());
+                        fila.agregarRepeticion();
                     }else{
                         tablaSimbolos.getFilas().add(var);
                     }
@@ -149,10 +150,10 @@ parser code {:
 
     private void archivarMetodo(String metodo_constructor,String tipo,ArrayList<FilaTablaSymbolos> parametros,int aux){
         if(parametros!=null){
-            System.out.println("Metodo: "+metodo_constructor+" ,Tipo: "+tipo+" ,Parametros: "+parametros.size());
+            //System.out.println("Metodo: "+metodo_constructor+" ,Tipo: "+tipo+" ,Parametros: "+parametros.size());
             this.getMetodos().add(new Metodo(metodo_constructor, tipo, parametros.size()));
         }else{
-            System.out.println("Metodo: "+metodo_constructor+" ,Tipo: "+tipo+" ,Parametros: "+aux);
+            //System.out.println("Metodo: "+metodo_constructor+" ,Tipo: "+tipo+" ,Parametros: "+aux);
             this.getMetodos().add(new Metodo(metodo_constructor, tipo,aux));
         }
     }
@@ -191,15 +192,15 @@ non terminal Asignacion             exp,t,f,g,h,i,j,k,l,llamadaFuncionExp;
 /* Inicio de las reglas gramticales*/
 
 initJava    ::= initJavaP classJava  {:
-                                        System.out.println("Ejecute class java");
+                                        //System.out.println("Ejecute class java");
                                     :}
             |   classJava           {:
-                                        System.out.println("Ejecute class java");
+                                        //System.out.println("Ejecute class java");
                                     :}
             ;
-initJavaP   ::= importJavaP   {:
-                                            System.out.println("Ejecute import");
-                                        :}
+initJavaP   ::= importJavaP {:
+                                //System.out.println("Ejecute import");
+                            :}
             ;
 
 
