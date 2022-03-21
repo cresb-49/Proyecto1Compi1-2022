@@ -69,4 +69,13 @@ public class ResultadoAnalisis {
         this.tablaSimbolos = tablaSimbolos;
     }
     
+    public int numeroDeVariables(){
+        int result = 0;
+        for (FilaTablaSymbolos variable : this.tablaSimbolos.getFilas()) {
+            if(variable!=null){
+                result = result + variable.getRepeticiones();
+            }
+        }
+        return result;
+    }
 }

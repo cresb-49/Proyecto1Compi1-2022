@@ -10,6 +10,7 @@ public class FilaTablaSymbolos {
     private String nombre;
     private String tipo;
     private ArrayList<String> funciones;
+    private int repeticiones =1;
 
     public FilaTablaSymbolos() {
     }
@@ -90,9 +91,12 @@ public class FilaTablaSymbolos {
         }
     }
 
-    @Override
-    public String toString() {
-        return "FilaTabla{" + "nombre=" + nombre + ", tipo=" + tipo + ", funciones=" + funciones + '}';
+    public void agregarRepeticion(){
+        this.repeticiones++;
+    }
+
+    public void mezaclarRepeteciones(int repeticiones){
+        this.repeticiones = this.repeticiones + repeticiones;
     }
 
     @Override
@@ -146,5 +150,27 @@ public class FilaTablaSymbolos {
             return false;
         }
         return true;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() { 
+        return "FilaTablaSymbolos [nombre=" + nombre + ", tipo=" + tipo+", repeticiones=" + repeticiones + ", funciones=" + funciones + "]";
+    }
+
+    /**
+     * @return the repeticiones
+     */
+    public int getRepeticiones() {
+        return repeticiones;
+    }
+
+    /**
+     * @param repeticiones the repeticiones to set
+     */
+    public void setRepeticiones(int repeticiones) {
+        this.repeticiones = repeticiones;
     }
 }

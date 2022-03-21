@@ -49,31 +49,29 @@ public class AnalizarProyectos {
             analizarJava1.ejecutar(archivo.getText(), tablaSimbolos2, clases2, metodos2, comentarios2, proyecto.getNombreCarpeta2(), archivo.getName());
             //System.out.println(archivo.getText());
         }
-        
-        //CONTROL INTERNO DE LA RECUPERACION DE INFORMACION CARPETA 1
-        int numeroVariables1 = tablaSimbolos1.numeroVariables();
-        int numeroClases1 = clases1.size();
-        int numeroMetodos1 = metodos1.size();
-        int numeroComentarios1 = comentarios1.size();
-        System.out.println("RESULTADO CARPETA 1");
-        System.out.println("Numero Variables: "+numeroVariables1);
-        System.out.println("Numero Clases: "+numeroClases1);
-        System.out.println("Numero Metodos: "+numeroMetodos1);
-        System.out.println("Numero Comentarios: "+numeroComentarios1);
-        //CONTROL INTERNO DE LA RECUPERACION DE INFORMACION CARPETA 2
-        int numeroVariables2 = tablaSimbolos2.numeroVariables();
-        int numeroClases2 = clases2.size();
-        int numeroMetodos2 = metodos2.size();
-        int numeroComentarios2 = comentarios2.size();
-        System.out.println("RESULTADO CARPETA 2");
-        System.out.println("Numero Variables: "+numeroVariables2);
-        System.out.println("Numero Clases: "+numeroClases2);
-        System.out.println("Numero Metodos: "+numeroMetodos2);
-        System.out.println("Numero Comentarios: "+numeroComentarios2);
-        
-        //PROCESADO DE LOS DATOS OBTNEIDOS EN EL ANALISIS
+
         ResultadoAnalisis analisis1 = new ResultadoAnalisis(clases1, metodos1, comentarios1, tablaSimbolos1);
         ResultadoAnalisis analisis2 = new ResultadoAnalisis(clases2, metodos2, comentarios2, tablaSimbolos2);
+        
+        //CONTROL INTERNO DE LA RECUPERACION DE INFORMACION CARPETA 1
+        System.out.println("RESULTADO CARPETA 1");
+        System.out.println("Numero Variables: "+analisis1.numeroDeVariables());
+        /*for (FilaTablaSymbolos fila : tablaSimbolos1.getFilas()) {
+            System.out.println(fila.toString());
+        }*/
+        System.out.println("Numero Clases: "+clases1.size());
+        System.out.println("Numero Metodos: "+metodos1.size());
+        System.out.println("Numero Comentarios: "+comentarios1.size());
+        //CONTROL INTERNO DE LA RECUPERACION DE INFORMACION CARPETA 2
+        System.out.println("RESULTADO CARPETA 2");
+        System.out.println("Numero Variables: "+analisis2.numeroDeVariables());
+        /*for (FilaTablaSymbolos fila : tablaSimbolos2.getFilas()) {
+            System.out.println(fila.toString());
+        }*/
+        System.out.println("Numero Clases: "+clases2.size());
+        System.out.println("Numero Metodos: "+metodos2.size());
+        System.out.println("Numero Comentarios: "+comentarios2.size());       
+        //PROCESADO DE LOS DATOS OBTNEIDOS EN EL ANALISIS
         CompararProyectos comparar = new CompararProyectos(analisis1, analisis2);
         String res = comparar.resultadosJson();
         System.out.println(res);
