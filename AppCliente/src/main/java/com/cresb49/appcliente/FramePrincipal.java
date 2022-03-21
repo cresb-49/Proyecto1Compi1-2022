@@ -527,6 +527,11 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             AnalizarJson analizarJson = new AnalizarJson();
             analizarJson.ejecutar(this.jTextAreaJson.getText());
             reporteJson = analizarJson.getReporteJson();
+            this.mostrarErroresConsolaDefJson(analizarJson.getErrores());
+            if(!analizarJson.getErrores().isEmpty()){
+                consolaDef.addLog("Errores en el archivo Json!!! puede que no se renderice correctamente el reporte");
+            }
+            
             ////ANALISIS DEL ARCHIVO DEF
             AnalizarDef analizarDef = new AnalizarDef();
             String texto = jTextAreaDef.getText();
@@ -656,7 +661,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             int caret = jTextAreaJson.getCaretPosition();
             int linea = jTextAreaJson.getLineOfOffset(caret);
             int columna = caret - jTextAreaJson.getLineStartOffset(linea);
-            String ubicacion = "Linea: "+(linea+1)+"         Columna: "+(columna+1);
+            String ubicacion = "Linea: " + (linea + 1) + "         Columna: " + (columna + 1);
             LabelLineaColumnaJson.setText(ubicacion);
         } catch (BadLocationException ex) {
             System.out.println("No se puedo registar el movimiento");
@@ -669,7 +674,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             int caret = jTextAreaDef.getCaretPosition();
             int linea = jTextAreaDef.getLineOfOffset(caret);
             int columna = caret - jTextAreaDef.getLineStartOffset(linea);
-            String ubicacion = "Linea: "+(linea+1)+"         Columna: "+(columna+1);
+            String ubicacion = "Linea: " + (linea + 1) + "         Columna: " + (columna + 1);
             LabelLineaColumnaDef.setText(ubicacion);
         } catch (BadLocationException ex) {
             System.out.println("No se puedo registar el movimiento");
@@ -785,6 +790,19 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         }
     }
 
+    private void mostrarErroresConsolaDefJson(ArrayList<ErrorAnalisis> errores) {
+        if (!errores.isEmpty()) {
+            this.ConsolaDef.setText("");
+            String text;
+            for (ErrorAnalisis errore : errores) {
+                text = "Json -> Error " + errore.getTipo() + " \"" + errore.getLexema() + "\"" + ", Linea: " + errore.getLinea() + ", Columna: " + errore.getColumna() + " -> " + errore.getDescipcion();
+                consolaDef.addLog(text);
+            }
+        } else {
+            consolaDef.addLog("Archivo Json coorecto!!!!");
+        }
+    }
+
     private void mostrarErroresConsolaJson(ArrayList<ErrorAnalisis> errores) {
         if (!errores.isEmpty()) {
             this.ConsolaJson.setText("");
@@ -801,9 +819,9 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         System.out.println("Se recibio una respuesta del servidor");
-        if(arg instanceof String){
-            System.out.println((String)arg);
-            this.jTextAreaJson.setText((String)arg);
+        if (arg instanceof String) {
+            System.out.println((String) arg);
+            this.jTextAreaJson.setText((String) arg);
             //this.sobreEscribirJson();
         }
     }
@@ -1000,8 +1018,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         }
 
     }
-    
-    private void mostrarNombreProyecto(String nombre){
+
+    private void mostrarNombreProyecto(String nombre) {
         this.setTitle(nombre);
     }
 
