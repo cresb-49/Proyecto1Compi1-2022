@@ -1,5 +1,7 @@
 package com.cresb49.serverproyecto1.analizarjava.objetos;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 public class CompararProyectos {
@@ -54,23 +56,49 @@ public class CompararProyectos {
         this.obtenerComentariosRepetidos(comentarios);
         this.obtenerClasesRepetidos(clases);
         this.obtenerVariablesRepetidas(variables);
-        this.convertirVariablesRepetidas(variables,varFinal);
-        int totalVariables = this.resultadoCarpeta1.numeroDeVariables()+this.resultadoCarpeta2.numeroDeVariables();
+        this.convertirVariablesRepetidas(variables, varFinal);
+        int totalVariables = this.resultadoCarpeta1.numeroDeVariables() + this.resultadoCarpeta2.numeroDeVariables();
         int varsRepetidas = this.contarVariablesFinal(variables);
-        System.out.println("varsRepetidas: "+varsRepetidas);
-        float scoreValue = (varsRepetidas/totalVariables);
-        scoreValue = (float) (scoreValue * 0.25);
-        System.out.println("Score:");
-        System.out.println(((4)/6)*0.25);
-        ReporteJson reporteJson = new ReporteJson(String.format("%.4f",scoreValue), clases, varFinal, metodos, comentarios);
+        System.out.println("varsRepetidas: " + varsRepetidas);
+        int totalMetodos = 1;
+        int metodosRepetidos = 1;
+        int totalClases = 1;
+        int clasesRepetidas = 1;
+        int totalComen = 1;
+        int comenrepetidos = 1;
+        String score = "";
+        score = this.carlcularScore(totalVariables, varsRepetidas, totalMetodos, metodosRepetidos, totalClases,
+                clasesRepetidas, totalComen, comenrepetidos);
+        ReporteJson reporteJson = new ReporteJson(score, clases, varFinal, metodos, comentarios);
         resultado = this.toJsonText(reporteJson);
         return resultado;
+    }
+
+    private String carlcularScore(int totalVariables, int varsRepetidas, int totalMetodos, int metodosRepetidos,
+            int totalClases, int clasesRepetidas, int totalComen, int comenrepetidos) {
+        System.out.println("Score:");
+        BigDecimal termV1 = BigDecimal.valueOf(varsRepetidas);
+        BigDecimal termV2 = BigDecimal.valueOf(totalVariables);
+        BigDecimal resultVars = termV1.divide(termV2, 4, RoundingMode.CEILING);
+        BigDecimal termM1 = BigDecimal.valueOf(metodosRepetidos);
+        BigDecimal termM2 = BigDecimal.valueOf(totalMetodos);
+        BigDecimal resultMetodos = termM1.divide(termM2, 4, RoundingMode.CEILING);
+        BigDecimal termC1 = BigDecimal.valueOf(clasesRepetidas);
+        BigDecimal termC2 = BigDecimal.valueOf(totalClases);
+        BigDecimal resultClases = termC1.divide(termC2, 4, RoundingMode.CEILING);
+        BigDecimal termCo1 = BigDecimal.valueOf(comenrepetidos);
+        BigDecimal termCo2 = BigDecimal.valueOf(totalComen);
+        BigDecimal resultComen = termCo1.divide(termCo2, 4, RoundingMode.CEILING);
+        BigDecimal finalResult = resultVars.add(resultMetodos.add(resultClases).add(resultComen));
+        finalResult = finalResult.multiply(BigDecimal.valueOf(0.25));
+        System.out.println(finalResult);
+        return String.format("%.4f",finalResult.doubleValue());
     }
 
     private int contarVariablesFinal(ArrayList<FilaTablaSymbolos> variables) {
         int result = 0;
         for (FilaTablaSymbolos filaTablaSymbolos : variables) {
-            if(filaTablaSymbolos!=null){
+            if (filaTablaSymbolos != null) {
                 result = result + filaTablaSymbolos.getRepeticiones();
             }
         }
@@ -228,10 +256,11 @@ public class CompararProyectos {
                         variableRepetida.setFunciones(
                                 this.mezaclarFunciones(filatemp.getFunciones(), filaTabla.getFunciones()));
                         variables.add(variableRepetida);
-                        variableRepetida.setRepeticiones(filaTabla.getRepeticiones()+filatemp.getRepeticiones());
+                        variableRepetida.setRepeticiones(filaTabla.getRepeticiones() + filatemp.getRepeticiones());
 
                     } else {
-                        filatemp2.setFunciones(this.mezaclarFunciones(filaTabla.getFunciones(),this.mezaclarFunciones(filatemp.getFunciones(), filatemp2.getFunciones())));
+                        filatemp2.setFunciones(this.mezaclarFunciones(filaTabla.getFunciones(),
+                                this.mezaclarFunciones(filatemp.getFunciones(), filatemp2.getFunciones())));
                         filatemp2.mezaclarRepeteciones(filatemp.getRepeticiones());
                     }
                 }
@@ -251,22 +280,22 @@ public class CompararProyectos {
     private ArrayList<String> mezaclarFunciones(ArrayList<String> funciones, ArrayList<String> funciones2) {
         ArrayList<String> funcionesResulttmp = new ArrayList<>();
         ArrayList<String> funcionesResult = new ArrayList<>();
-        if(funciones!=null){
+        if (funciones != null) {
             funcionesResulttmp.addAll(funciones);
         }
-        if(funciones2!=null){
+        if (funciones2 != null) {
             funcionesResulttmp.addAll(funciones2);
         }
         boolean found = false;
-        for (String string : funcionesResulttmp){
+        for (String string : funcionesResulttmp) {
             found = false;
             for (String string2 : funcionesResult) {
-                if(string.equals(string2)){
-                    found=true;
+                if (string.equals(string2)) {
+                    found = true;
                     break;
                 }
             }
-            if(!found){
+            if (!found) {
                 funcionesResult.add(string);
             }
         }
