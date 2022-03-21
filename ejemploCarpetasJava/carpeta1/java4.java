@@ -19,8 +19,8 @@ public class java4 {
                 if (!extencion) {
                     String errores = ("El archivo: \"" + archivo+ "\" no es un archivo .java");
                     String print = "El archivo: \"" + archivo+ this.getName+ "\" no es un archivo .java";
-                    String print = "El archivo: \"" + archivo+ this.metodo("hola",12)+ "\" no es un archivo .java";
-                    String print = "El archivo: \"" + archivo+ metodo3("hola",12)+ "\" no es un archivo .java";
+                    //String print = "El archivo: \"" + archivo+ this.metodo("hola",12)+ "\" no es un archivo .java";
+                    //String print = "El archivo: \"" + archivo+ metodo3("hola",12)+ "\" no es un archivo .java";
                 }
             }
         } else {
