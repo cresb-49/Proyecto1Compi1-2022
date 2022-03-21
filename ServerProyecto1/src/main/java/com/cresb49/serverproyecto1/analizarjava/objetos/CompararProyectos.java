@@ -47,21 +47,23 @@ public class CompararProyectos {
         String resultado = "";
         String score;
         ArrayList<Clase> clases = new ArrayList<>();
-        ArrayList<Variable> variables = new ArrayList<>();
+        ArrayList<FilaTablaSymbolos> variables = new ArrayList<>();
+        ArrayList<Variable> varFinal = new ArrayList<>();
         ArrayList<Metodo> metodos = new ArrayList<>();
         ArrayList<Comentario> comentarios = new ArrayList<>();
         this.obtenerMetodosRepetidos(metodos);
         this.obtenerComentariosRepetidos(comentarios);
         this.obtenerClasesRepetidos(clases);
         this.obtenerVariablesRepetidas(variables);
-        double scoreValue = ((comentarios.size()
+        this.convertirVariablesRepetidas(variables,varFinal);
+        float scoreValue = ((comentarios.size()
                 / (resultadoCarpeta1.getComentarios().size() + resultadoCarpeta2.getComentarios().size()))
                 + (variables.size() / (resultadoCarpeta1.getTablaSimbolos().numeroVariables()
                         + resultadoCarpeta2.getTablaSimbolos().numeroVariables()))
                 + (metodos.size() / (resultadoCarpeta1.getMetodos().size() + resultadoCarpeta2.getMetodos().size()))
                 + (clases.size() / (resultadoCarpeta1.getClases().size() + resultadoCarpeta2.getClases().size())));
-        score = "" + scoreValue;
-        ReporteJson reporteJson = new ReporteJson(score, clases, variables, metodos, comentarios);
+        score = String.valueOf(scoreValue);
+        ReporteJson reporteJson = new ReporteJson(score, clases, varFinal, metodos, comentarios);
         resultado = this.toJsonText(reporteJson);
         return resultado;
     }
@@ -205,21 +207,76 @@ public class CompararProyectos {
         return false;
     }
 
-    private void obtenerVariablesRepetidas(ArrayList<Variable> variables) {
+    private void obtenerVariablesRepetidas(ArrayList<FilaTablaSymbolos> variables) {
+        FilaTablaSymbolos filatemp;
+        FilaTablaSymbolos filatemp2;
+        FilaTablaSymbolos variableRepetida;
         for (FilaTablaSymbolos filaTabla : resultadoCarpeta1.getTablaSimbolos().getFilas()) {
-            for (FilaTablaSymbolos filaTabla2 : resultadoCarpeta2.getTablaSimbolos().getFilas()) {
-                if (filaTabla != null && filaTabla2 != null) {
-                    if (filaTabla.igualdadTipoNombre(filaTabla2)) {
-                        String funciones = this.obtenerFuncionesVariables(filaTabla.getFunciones(),
-                                filaTabla2.getFunciones());
-                        variables.add(new Variable(filaTabla.getNombre(), filaTabla2.getTipo(), funciones));
+            if(filaTabla!=null){
+                filatemp = resultadoCarpeta2.getTablaSimbolos().buscarNombreTipo(filaTabla.getNombre(), filaTabla.getTipo());
+                if(filatemp!=null){
+                    filatemp2 =  this.recuperarVariable(filaTabla.getNombre(), filaTabla.getTipo(),variables);
+                    if(filatemp2==null){
+                        variableRepetida = new FilaTablaSymbolos(filaTabla.getNombre(), filaTabla.getTipo());
+                        variableRepetida.setFunciones(this.mezaclarFunciones(filatemp.getFunciones(),filaTabla.getFunciones()));
+                        variables.add(variableRepetida);
+                    }else{
+                        filatemp2.setFunciones(this.mezaclarFunciones(filaTabla.getFunciones(),this.mezaclarFunciones(filatemp.getFunciones(),filatemp2.getFunciones())));
                     }
                 }
             }
         }
     }
-    
-    private String obtenerFuncionesVariables(ArrayList<String> funciones, ArrayList<String> funciones2) {
-        return "";
+
+    private FilaTablaSymbolos recuperarVariable(String nombre, String tipo, ArrayList<FilaTablaSymbolos> variables) {
+        for (FilaTablaSymbolos filaTablaSymbolos : variables) {
+            if(filaTablaSymbolos.getNombre().equals(nombre)&&filaTablaSymbolos.getTipo().equals(tipo)){
+                return filaTablaSymbolos;
+            }
+        }
+        return null;
+    }
+
+    private ArrayList<String> mezaclarFunciones(ArrayList<String> funciones, ArrayList<String> funciones2) {
+        ArrayList<String> funcionesResult = new ArrayList<>();
+        boolean found = false;
+        for (String newfuncion : funciones) {
+            found = false;
+            for (String string : funciones2) {
+                if(newfuncion!=null && string!=null){
+                    if(newfuncion.equals(string)){
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            if(found == false){
+                funcionesResult.add(newfuncion);
+            }
+        }
+        return funcionesResult;
+    }
+
+    private void convertirVariablesRepetidas(ArrayList<FilaTablaSymbolos> variables, ArrayList<Variable> varFinal) {
+        for (FilaTablaSymbolos filaTablaSymbolos : variables) {
+            if(filaTablaSymbolos!=null){
+                varFinal.add(new Variable(filaTablaSymbolos.getNombre(), filaTablaSymbolos.getTipo(), this.obtenerFuncionesVariables(filaTablaSymbolos.getFunciones())));
+            }
+        }
+    }
+
+    private String obtenerFuncionesVariables(ArrayList<String> funciones) {
+        String text="";
+        if(funciones.isEmpty()){
+            return "No-funciones";
+        }
+        for (int i = 0; i < funciones.size(); i++) {
+            if(i==1){
+                text = text + funciones.get(i);
+            }else{
+                text = text + ", "+funciones.get(i);
+            }
+        }
+        return text;
     }
 }
