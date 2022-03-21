@@ -33,6 +33,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.BadLocationException;
 
 /**
  *
@@ -142,6 +143,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         jButton5 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaDef = new javax.swing.JTextArea();
+        LabelLineaColumnaDef = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -151,6 +153,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         jButton7 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextAreaJson = new javax.swing.JTextArea();
+        LabelLineaColumnaJson = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         VentanaHTML = new javax.swing.JEditorPane();
@@ -227,7 +230,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ImagenEstadoCarpeta1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ImagenEstadoCarpeta2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
+                    .addComponent(ImagenEstadoCarpeta2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NombreCarpeta1)
@@ -270,13 +273,13 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 817, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -290,7 +293,14 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         jTextAreaDef.setColumns(20);
         jTextAreaDef.setRows(5);
         jTextAreaDef.setTabSize(2);
+        jTextAreaDef.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                jTextAreaDefCaretUpdate(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTextAreaDef);
+
+        LabelLineaColumnaDef.setText("Linea: 1         Columna: 1");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -299,6 +309,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LabelLineaColumnaDef, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
                     .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -313,13 +324,15 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(LabelLineaColumnaDef)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
                     .addComponent(ButtonEjecutar)
+                    .addComponent(jButton5)
                     .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -375,7 +388,14 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         jTextAreaJson.setRows(5);
         jTextAreaJson.setTabSize(2);
         jTextAreaJson.setText("{\n    Score: \"0\",\n    Clases: [],\n    Variables: [],\n    Metodos: [],\n    Comentarios: []\n}");
+        jTextAreaJson.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                jTextAreaJsonCaretUpdate(evt);
+            }
+        });
         jScrollPane4.setViewportView(jTextAreaJson);
+
+        LabelLineaColumnaJson.setText("Linea: 1         Columna: 1");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -384,6 +404,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LabelLineaColumnaJson, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane4)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -398,7 +419,9 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
+                .addComponent(LabelLineaColumnaJson)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6)
@@ -428,7 +451,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -627,6 +650,32 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         ConsolaJson.setText("");
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void jTextAreaJsonCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextAreaJsonCaretUpdate
+        // TODO add your handling code here:
+        try {
+            int caret = jTextAreaJson.getCaretPosition();
+            int linea = jTextAreaJson.getLineOfOffset(caret);
+            int columna = caret - jTextAreaJson.getLineStartOffset(linea);
+            String ubicacion = "Linea: "+(linea+1)+"         Columna: "+(columna+1);
+            LabelLineaColumnaJson.setText(ubicacion);
+        } catch (BadLocationException ex) {
+            System.out.println("No se puedo registar el movimiento");
+        }
+    }//GEN-LAST:event_jTextAreaJsonCaretUpdate
+
+    private void jTextAreaDefCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextAreaDefCaretUpdate
+        // TODO add your handling code here:
+        try {
+            int caret = jTextAreaDef.getCaretPosition();
+            int linea = jTextAreaDef.getLineOfOffset(caret);
+            int columna = caret - jTextAreaDef.getLineStartOffset(linea);
+            String ubicacion = "Linea: "+(linea+1)+"         Columna: "+(columna+1);
+            LabelLineaColumnaDef.setText(ubicacion);
+        } catch (BadLocationException ex) {
+            System.out.println("No se puedo registar el movimiento");
+        }
+    }//GEN-LAST:event_jTextAreaDefCaretUpdate
+
     private ReporteJson reportePrueba() {
         String score = "0.75";
         ArrayList<Clase> clases = new ArrayList<>();
@@ -689,6 +738,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     private javax.swing.JMenuItem GuardarProyecto;
     private javax.swing.JLabel ImagenEstadoCarpeta1;
     private javax.swing.JLabel ImagenEstadoCarpeta2;
+    private javax.swing.JLabel LabelLineaColumnaDef;
+    private javax.swing.JLabel LabelLineaColumnaJson;
     private javax.swing.JLabel NombreCarpeta1;
     private javax.swing.JLabel NombreCarpeta2;
     private javax.swing.JEditorPane VentanaHTML;
