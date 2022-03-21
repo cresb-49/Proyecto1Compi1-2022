@@ -33,8 +33,7 @@ public class Servidor{
         ObjectInputStream in;
 
         serverSocket = new ServerSocket();
-        print
-        ("Servidor Iniciado");
+        print("Servidor Iniciado");
         while (true) {
             socket = serverSocket;
 

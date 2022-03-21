@@ -37,6 +37,7 @@ public class Servidor{
             socket = serverSocket;
             in = new ObjectInputStream();
             Object mensaje = "hola mensaje nuevo";
+            String mensaje = "hola mensaje nuevo";
         }
     }
 
