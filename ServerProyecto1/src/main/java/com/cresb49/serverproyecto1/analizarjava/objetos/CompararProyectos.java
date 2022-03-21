@@ -106,8 +106,8 @@ public class CompararProyectos {
         json.append("Metodos: [" + "\n");
         for (int i = 0; i < reporteJson.getMetodos().size(); i++) {
             json.append("\t{Nombre: \"" + reporteJson.getMetodos().get(i).getNombre() + "\", Tipo: \""
-                    + reporteJson.getMetodos().get(i).getTipo() + "\", Parametros: \""
-                    + reporteJson.getMetodos().get(i).getParametros() + "\"}");
+                    + reporteJson.getMetodos().get(i).getTipo() + "\", Parametros: "
+                    + reporteJson.getMetodos().get(i).getParametros() + "}");
             if (reporteJson.getMetodos().size() >= 2) {
                 if (i < (reporteJson.getMetodos().size() - 1)) {
                     json.append(",\n");
@@ -121,7 +121,7 @@ public class CompararProyectos {
         json.append("]," + "\n");
         json.append("Comentarios: [" + "\n");
         for (int i = 0; i < reporteJson.getComentarios().size(); i++) {
-            json.append("\t{Texto: \"" + reporteJson.getComentarios().get(i).getTexto() + "}");
+            json.append("\t{Texto: \"" + reporteJson.getComentarios().get(i).getTexto() + "\"}");
             if (reporteJson.getComentarios().size() >= 2) {
                 if (i < (reporteJson.getComentarios().size() - 1)) {
                     json.append(",\n");
@@ -133,6 +133,7 @@ public class CompararProyectos {
             }
         }
         json.append("]" + "\n");
+        json.append("}");
         return json.toString();
     }
 
