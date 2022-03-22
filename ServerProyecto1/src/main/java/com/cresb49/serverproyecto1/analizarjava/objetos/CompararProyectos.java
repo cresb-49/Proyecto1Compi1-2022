@@ -2,6 +2,7 @@ package com.cresb49.serverproyecto1.analizarjava.objetos;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.security.interfaces.RSAKey;
 import java.util.ArrayList;
 
 public class CompararProyectos {
@@ -60,19 +61,20 @@ public class CompararProyectos {
         int totalVariables = this.resultadoCarpeta1.numeroDeVariables() + this.resultadoCarpeta2.numeroDeVariables();
         int varsRepetidas = this.contarVariablesFinal(variables);
         System.out.println("varsRepetidas: " + varsRepetidas);
-        int totalMetodos = 0;
-        int metodosRepetidos = 0;
-        int totalClases = 0;
-        int clasesRepetidas = 0;
-        int totalComen = 0;
-        int comenrepetidos = 0;
-        String score = "";
-        score = this.carlcularScore(totalVariables, varsRepetidas, totalMetodos, metodosRepetidos, totalClases,
+        int totalMetodos = this.resultadoCarpeta1.numeroMetodos()+this.resultadoCarpeta2.numeroMetodos();
+        int metodosRepetidos = this.contarMetodosRepetidos(metodos);
+        int totalClases = this.resultadoCarpeta1.numeroClases()+this.resultadoCarpeta2.numeroClases();
+        int clasesRepetidas = this.contarClasesRepetidas(clases);
+        int totalComen = this.resultadoCarpeta1.numeroComentarios()+this.resultadoCarpeta2.numeroComentarios();
+        int comenrepetidos = this.contarComentariosRepetidos(comentarios);
+        String score = this.carlcularScore(totalVariables, varsRepetidas, totalMetodos, metodosRepetidos, totalClases,
                 clasesRepetidas, totalComen, comenrepetidos);
         ReporteJson reporteJson = new ReporteJson(score, clases, varFinal, metodos, comentarios);
         resultado = this.toJsonText(reporteJson);
         return resultado;
     }
+
+    
 
     private String carlcularScore(int totalVariables, int varsRepetidas, int totalMetodos, int metodosRepetidos,
             int totalClases, int clasesRepetidas, int totalComen, int comenrepetidos) {
@@ -357,4 +359,29 @@ public class CompararProyectos {
         }
         return text;
     }
+
+    private int contarComentariosRepetidos(ArrayList<Comentario> comentarios) {
+        int result =0;
+        for (Comentario comentario : comentarios) {
+            result = result + comentario.getRepeticiones();
+        }
+        return result;
+    }
+
+    private int contarClasesRepetidas(ArrayList<Clase> clases) {
+        int result = 0;
+        for (Clase clase : clases) {
+            result = result + clase.getRepeticiones();
+        }
+        return result;
+    }
+
+    private int contarMetodosRepetidos(ArrayList<Metodo> metodos) {
+        int result =0;
+        for (Metodo metodo : metodos) {
+            result = result + metodo.getRepeticiones();
+        }
+        return result;
+    }
+
 }
