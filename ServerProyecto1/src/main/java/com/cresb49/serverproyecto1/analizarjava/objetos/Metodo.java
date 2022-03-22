@@ -67,10 +67,7 @@ public class Metodo implements Serializable{
         this.repeticiones = repeticiones;
     }
 
-    @Override
-    public String toString() {
-        return "Metodo{" + "nombre=" + nombre + ", tipo=" + tipo + ", parametros=" + parametros + '}';
-    }
+    
 
     @Override
     public int hashCode() {
@@ -103,5 +100,15 @@ public class Metodo implements Serializable{
             return false;
         }
         return true;
+    }
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    
+    @Override
+    public String toString() {
+        return "Metodo [nombre=" + nombre + ", parametros=" + parametros + ", repeticiones=" + repeticiones + ", tipo="
+                + tipo + "]";
     }
 }

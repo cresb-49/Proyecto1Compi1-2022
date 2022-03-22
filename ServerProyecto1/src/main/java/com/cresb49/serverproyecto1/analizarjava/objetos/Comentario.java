@@ -42,9 +42,13 @@ public class Comentario {
         this.repeticiones = repeticiones;
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#toString()
+     */
+    
     @Override
     public String toString() {
-        return "Comentarios{" + "texto=" + texto + '}';
+        return "Comentario [repeticiones=" + repeticiones + ", texto=" + texto + "]";
     }
 
     @Override
