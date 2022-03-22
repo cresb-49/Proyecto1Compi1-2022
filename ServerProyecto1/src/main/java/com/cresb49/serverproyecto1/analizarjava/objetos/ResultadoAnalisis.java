@@ -108,4 +108,22 @@ public class ResultadoAnalisis {
         }
         return result;
     }
+    public void imprimirClases(){
+        System.out.println("-------------------------CLASES--------------------------");
+        for (Clase clase : clases) {
+            System.out.println(clase.toString());
+        }
+    }
+    public void imprimirMetodos(){
+        System.out.println("-------------------------METODOS--------------------------");
+        for (Metodo clase : metodos) {
+            System.out.println(clase.toString());
+        }
+    }
+    public void imprimirCometarios(){
+        System.out.println("-------------------------COMENTARIOS--------------------------");
+        for (Comentario clase : comentarios) {
+            System.out.println(clase.toString());
+        }
+    }
 }
