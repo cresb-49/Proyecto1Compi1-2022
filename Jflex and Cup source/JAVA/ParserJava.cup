@@ -126,6 +126,11 @@ parser code {:
         this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
     }
 
+    private void verificarForInit(Token ref, Asignacion asig) {
+        String error = "La asignacion \""+ref.getLexema()+" "+asig.getTipo()+"\" no es valida debe de contener un entero";
+        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
+    }
+
     private void agregarVariablesTabla(String metodo_clase, ArrayList<FilaTablaSymbolos> vars) {
         if(metodo_clase!=null && vars != null){
             FilaTablaSymbolos fila;
@@ -479,15 +484,15 @@ parametrosLlamadaP  ::= exp COMA parametrosLlamadaP
                     |   exp
                     ;
 
-cliclofor   ::= FOR PA_A INT:t ID:var EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A LLA_C  {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));:}
-            |   FOR PA_A INT:t ID:var EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A sentencias:vars LLA_C {:ArrayList<FilaTablaSymbolos> tmp = new ArrayList<>(); tmp.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));  RESULT = retornarDosFuentes(vars,tmp);:}
-            |   FOR PA_A ID EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A LLA_C
-            |   FOR PA_A ID EQUAL exp PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A sentencias:vars LLA_C {:RESULT = vars;:}
+cliclofor   ::= FOR PA_A INT:t ID:var EQUAL:ref exp:asig PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A LLA_C  {:verificarForInit(ref,asig); RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));:}
+            |   FOR PA_A INT:t ID:var EQUAL:ref exp:asig PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A sentencias:vars LLA_C {:verificarForInit(ref,asig); ArrayList<FilaTablaSymbolos> tmp = new ArrayList<>(); tmp.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));  RESULT = retornarDosFuentes(vars,tmp);:}
+            |   FOR PA_A ID EQUAL:ref exp:asig PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A LLA_C   {:verificarForInit(ref,asig);:}
+            |   FOR PA_A ID EQUAL:ref exp:asig PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A sentencias:vars LLA_C {:verificarForInit(ref,asig); RESULT = vars;:}
             ;
 
 agregarfor  ::= SUMAR
             |   RESTAR
-            |   EQUAL exp
+            |   EQUAL:ref exp:asig   {::}
             ;
 
 ciclowhile  ::= WHILE PA_A exp PA_C LLA_A LLA_C
