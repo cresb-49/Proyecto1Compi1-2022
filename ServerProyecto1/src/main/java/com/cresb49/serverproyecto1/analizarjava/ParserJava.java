@@ -1189,6 +1189,11 @@ public class ParserJava extends java_cup.runtime.lr_parser {
         this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
     }
 
+    private void error_exprecionIzquierda(Token ref, Asignacion r, String expected) {
+        String error = "No se puede operar \""+ref.getLexema()+" "+r.getTipo()+"\" valores posibles a evaluar con \""+ref.getLexema()+"\" son -> "+expected;
+        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
+    }
+
     private void error_exprecion2(Token ref, Asignacion r1,Asignacion r2, String expected) {
         String error = "No se puede operar \""+r1.getTipo()+" "+ref.getLexema()+" "+r2.getTipo()+"\" valores posibles a evaluar con \""+ref.getLexema()+"\" son -> "+expected;
         this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
@@ -3733,7 +3738,7 @@ class CUP$ParserJava$actions {
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
 		int rright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
 		Asignacion r = (Asignacion)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
-		if(!OperacionCast.validUniariBool(r)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion(ref,r,OperacionCast.expectedUniariBool());}else{RESULT = new Asignacion(r.getTipo(),r.getClase());}
+		if(!OperacionCast.validUniariBool(r)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecionIzquierda(ref,r,OperacionCast.expectedUniariBool());}else{RESULT = new Asignacion(r.getTipo(),r.getClase());}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("j",43, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -3748,7 +3753,7 @@ class CUP$ParserJava$actions {
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
 		int rright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
 		Asignacion r = (Asignacion)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
-		if(!OperacionCast.validUniariNegPosi(r)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion(ref,r,OperacionCast.expectedUnariNegPosi());}else{RESULT = new Asignacion(r.getTipo(),r.getClase());}
+		if(!OperacionCast.validUniariNegPosi(r)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecionIzquierda(ref,r,OperacionCast.expectedUnariNegPosi());}else{RESULT = new Asignacion(r.getTipo(),r.getClase());}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("j",43, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -3763,7 +3768,7 @@ class CUP$ParserJava$actions {
 		int rleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
 		int rright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
 		Asignacion r = (Asignacion)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
-		if(!OperacionCast.validUniariNegPosi(r)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion(ref,r,OperacionCast.expectedUnariNegPosi());}else{RESULT = new Asignacion(r.getTipo(),r.getClase());}
+		if(!OperacionCast.validUniariNegPosi(r)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecionIzquierda(ref,r,OperacionCast.expectedUnariNegPosi());}else{RESULT = new Asignacion(r.getTipo(),r.getClase());}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("j",43, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;

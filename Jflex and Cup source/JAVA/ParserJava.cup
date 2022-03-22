@@ -106,6 +106,11 @@ parser code {:
         this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
     }
 
+    private void error_exprecionIzquierda(Token ref, Asignacion r, String expected) {
+        String error = "No se puede operar \""+ref.getLexema()+" "+r.getTipo()+"\" valores posibles a evaluar con \""+ref.getLexema()+"\" son -> "+expected;
+        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
+    }
+
     private void error_exprecion2(Token ref, Asignacion r1,Asignacion r2, String expected) {
         String error = "No se puede operar \""+r1.getTipo()+" "+ref.getLexema()+" "+r2.getTipo()+"\" valores posibles a evaluar con \""+ref.getLexema()+"\" son -> "+expected;
         this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
@@ -558,9 +563,9 @@ i   ::= i:r1 MUL:ref j:r2   {:if(OperacionCast.newTypeResMulDiv(r1,r2).equals(Ta
     |   j:r {:RESULT=r;:}
     ;
 
-j   ::= NOT:ref k:r     {:if(!OperacionCast.validUniariBool(r)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion(ref,r,OperacionCast.expectedUniariBool());}else{RESULT = new Asignacion(r.getTipo(),r.getClase());}:}
-    |   MENOS:ref k:r   {:if(!OperacionCast.validUniariNegPosi(r)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion(ref,r,OperacionCast.expectedUnariNegPosi());}else{RESULT = new Asignacion(r.getTipo(),r.getClase());}:}
-    |   MAS:ref k:r     {:if(!OperacionCast.validUniariNegPosi(r)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion(ref,r,OperacionCast.expectedUnariNegPosi());}else{RESULT = new Asignacion(r.getTipo(),r.getClase());}:}
+j   ::= NOT:ref k:r     {:if(!OperacionCast.validUniariBool(r)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecionIzquierda(ref,r,OperacionCast.expectedUniariBool());}else{RESULT = new Asignacion(r.getTipo(),r.getClase());}:}
+    |   MENOS:ref k:r   {:if(!OperacionCast.validUniariNegPosi(r)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecionIzquierda(ref,r,OperacionCast.expectedUnariNegPosi());}else{RESULT = new Asignacion(r.getTipo(),r.getClase());}:}
+    |   MAS:ref k:r     {:if(!OperacionCast.validUniariNegPosi(r)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecionIzquierda(ref,r,OperacionCast.expectedUnariNegPosi());}else{RESULT = new Asignacion(r.getTipo(),r.getClase());}:}
     |   k:r {:RESULT=r;:}
     ;
 

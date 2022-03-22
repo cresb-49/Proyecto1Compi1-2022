@@ -68,7 +68,7 @@ public class OperacionCast {
             return TablaSimbolos.STRING;
         }else
         if(left.getTipo().equals(TablaSimbolos.INT)&&rigth.getTipo().equals(TablaSimbolos.CHAR)){
-            return TablaSimbolos.STRING;
+            return TablaSimbolos.ERROR;
         }else
         if(left.getTipo().equals(TablaSimbolos.INT)&&rigth.getTipo().equals(TablaSimbolos.BOOLEAN)){
             return TablaSimbolos.ERROR;
@@ -92,7 +92,7 @@ public class OperacionCast {
             return TablaSimbolos.DOUBLE;
         }else
         if(left.getTipo().equals(TablaSimbolos.DOUBLE)&&rigth.getTipo().equals(TablaSimbolos.CHAR)){
-            return TablaSimbolos.STRING;
+            return TablaSimbolos.ERROR;
         }else
         if(left.getTipo().equals(TablaSimbolos.DOUBLE)&&rigth.getTipo().equals(TablaSimbolos.STRING)){
             return TablaSimbolos.STRING;
@@ -110,10 +110,10 @@ public class OperacionCast {
             return TablaSimbolos.ERROR;
         }else
         if(left.getTipo().equals(TablaSimbolos.CHAR)&&rigth.getTipo().equals(TablaSimbolos.INT)){
-            return TablaSimbolos.STRING;
+            return TablaSimbolos.ERROR;
         }else
         if(left.getTipo().equals(TablaSimbolos.CHAR)&&rigth.getTipo().equals(TablaSimbolos.DOUBLE)){
-            return TablaSimbolos.STRING;
+            return TablaSimbolos.ERROR;
         }else
         if(left.getTipo().equals(TablaSimbolos.CHAR)&&rigth.getTipo().equals(TablaSimbolos.CHAR)){
             return TablaSimbolos.STRING;
@@ -237,7 +237,19 @@ public class OperacionCast {
     }
     
     public static String expectedSum(){
-        return "["+TablaSimbolos.INT+","+TablaSimbolos.DOUBLE+","+TablaSimbolos.BOOLEAN+","+TablaSimbolos.CHAR+","+TablaSimbolos.STRING+"]";
+        return "["  +TablaSimbolos.INT+"+"+TablaSimbolos.DOUBLE+","
+                    +TablaSimbolos.INT+"+"+TablaSimbolos.INT+","
+                    +TablaSimbolos.INT+"+"+TablaSimbolos.STRING+","
+                    +TablaSimbolos.DOUBLE+"+"+TablaSimbolos.INT+","
+                    +TablaSimbolos.DOUBLE+"+"+TablaSimbolos.STRING+","
+                    +TablaSimbolos.DOUBLE+"+"+TablaSimbolos.DOUBLE+","
+                    +TablaSimbolos.STRING+"+"+TablaSimbolos.INT+","
+                    +TablaSimbolos.STRING+"+"+TablaSimbolos.DOUBLE+","
+                    +TablaSimbolos.STRING+"+"+TablaSimbolos.CHAR+","
+                    +TablaSimbolos.STRING+"+"+TablaSimbolos.STRING+","
+                    +TablaSimbolos.STRING+"+"+TablaSimbolos.BOOLEAN+","
+                    +TablaSimbolos.BOOLEAN+"+"+TablaSimbolos.STRING+","
+                    +TablaSimbolos.CHAR+"+"+TablaSimbolos.STRING+"]";
     }
     
     public static String newTypeResMulDiv(Asignacion left,Asignacion rigth){
