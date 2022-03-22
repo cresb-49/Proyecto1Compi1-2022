@@ -101,6 +101,14 @@ parser code {:
         this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,token.getLexema(), token.getLinea(), token.getColumna(), contexto),carpetaFuente,archivoAnalizado));
     }
 
+    private void error_exprecion(Token ref, Asignacion r, String expected) {
+        
+    }
+
+    private void error_exprecion2(Token ref, Asignacion r1,Asignacion r2, String expected) {
+        
+    }
+
     private void agregarVariablesTabla(String metodo_clase, ArrayList<FilaTablaSymbolos> vars) {
         if(metodo_clase!=null && vars != null){
             FilaTablaSymbolos fila;
@@ -223,8 +231,8 @@ non terminal ArrayList<FilaTablaSymbolos>   initJava,initJavaP,importJava,import
 non terminal ArrayList<FilaTablaSymbolos>   listaVariables,listaVariables2,declararVariables,contClass,parametros,parametrosP,declararVariables2,listaVariables3,
                                             listaVariables4;
 non terminal Token                          visibilidad;
-non terminal Asignacion             tipo,asig;
-non terminal Asignacion             exp,t,f,g,h,i,j,k,l,llamadaFuncionExp;
+non terminal Asignacion                     tipo,asig;
+non terminal Asignacion                     exp,t,f,g,h,i,j,k,l,llamadaFuncionExp;
 
 /* Inicio de las reglas gramticales*/
 
@@ -501,66 +509,68 @@ contenidoSwitch2    ::= contenidoSwitch2:vars1 CASE exp DOSPUNTOS sentencias:var
                     |   error CASE
                     ;
 
-asig    ::= exp
+asig    ::= exp:r   {:RESULT=r;:}
         |   NEW OBJ PA_A PA_C
         |   NEW ID PA_A PA_C
         ;
 
 exp ::= exp OR t
-    |   t
+    |   t:r {:RESULT=r;:}
+    |   exp:r error {:RESULT=r;:}
+    |   error
     ;
 
 t   ::= t AND f
-    |   f
+    |   f:r {:RESULT=r;:}
     ;
 
 f   ::= f IGUAL g
     |   f DIFERENTE g
-    |   g
+    |   g:r {:RESULT=r;:}
     ;
 
 g   ::= g MENOR_QUE h
     |   g MAYOR_QUE h
     |   g MAYOR_IGUAL h
     |   g MENOR_IGUAL h
-    |   h
+    |   h:r {:RESULT=r;:}
     ;
 
 h   ::= h MAS i
     |   h MENOS i
-    |   i
+    |   i:r {:RESULT=r;:}
     ;
 
 i   ::= i MUL j
     |   i DIV j
-    |   j
+    |   j:r {:RESULT=r;:}
     ;
 
-j   ::= NOT k
-    |   MENOS k
-    |   MAS k
-    |   k
+j   ::= NOT:ref k:r     {:if(!OperacionCast.validUniariBool(r)){error_exprecion(ref,r,OperacionCast.expectedUniariBool());}:}
+    |   MENOS:ref k:r   {:if(!OperacionCast.validUniariNegPosi(r)){error_exprecion(ref,r,OperacionCast.expectedUnariNegPosi());}:}
+    |   MAS:ref k:r     {:if(!OperacionCast.validUniariNegPosi(r)){error_exprecion(ref,r,OperacionCast.expectedUnariNegPosi());}:}
+    |   k:r {:RESULT=r;:}
     ;
 
-k   ::= l SUMAR
-    |   l RESTAR
-    |   l
+k   ::= l:r SUMAR:ref   {:if(!OperacionCast.validSumarRestar(r)){error_exprecion(ref,r,OperacionCast.expectedSumaRestar());}:}
+    |   l:r RESTAR:ref  {:if(!OperacionCast.validSumarRestar(r)){error_exprecion(ref,r,OperacionCast.expectedSumaRestar());}:}
+    |   l:r {:RESULT=r;:}
     ;
 
-l   ::= ID
-    |   THIS PUNTO ID
-    |   llamadaFuncionExp
-    |   TRUE
-    |   FALSE
-    |   DECIMAL
-    |   ENTERO
-    |   STRING
-    |   CHAR_VAL
-    |   PA_A exp PA_C
+l   ::= ID                  {:RESULT = new Asignacion(TablaSimbolos.COMODIN, TablaSimbolos.COMODIN);:}
+    |   THIS PUNTO ID       {:RESULT = new Asignacion(TablaSimbolos.COMODIN, TablaSimbolos.COMODIN);:}
+    |   llamadaFuncionExp:r {:RESULT=r;:}
+    |   TRUE                {:RESULT = new Asignacion(TablaSimbolos.BOOLEAN, TablaSimbolos.BOOLEAN);:}
+    |   FALSE               {:RESULT = new Asignacion(TablaSimbolos.BOOLEAN, TablaSimbolos.BOOLEAN);:}
+    |   DECIMAL             {:RESULT = new Asignacion(TablaSimbolos.DOUBLE, TablaSimbolos.DOUBLE);:}
+    |   ENTERO              {:RESULT = new Asignacion(TablaSimbolos.INT, TablaSimbolos.INT);:}
+    |   STRING              {:RESULT = new Asignacion(TablaSimbolos.STRING, TablaSimbolos.STRING);:}
+    |   CHAR_VAL            {:RESULT = new Asignacion(TablaSimbolos.CHAR, TablaSimbolos.CHAR);:}
+    |   PA_A exp:r PA_C     {:RESULT=r;:}
     ;
 
-llamadaFuncionExp   ::= ID PA_A PA_C
-                    |   ID PA_A parametrosLlamada PA_C
-                    |   THIS PUNTO ID PA_A PA_C
-                    |   THIS PUNTO ID PA_A parametrosLlamada PA_C
+llamadaFuncionExp   ::= ID PA_A PA_C                                {:RESULT = new Asignacion(TablaSimbolos.COMODIN, TablaSimbolos.COMODIN);:}
+                    |   ID PA_A parametrosLlamada PA_C              {:RESULT = new Asignacion(TablaSimbolos.COMODIN, TablaSimbolos.COMODIN);:}
+                    |   THIS PUNTO ID PA_A PA_C                     {:RESULT = new Asignacion(TablaSimbolos.COMODIN, TablaSimbolos.COMODIN);:}
+                    |   THIS PUNTO ID PA_A parametrosLlamada PA_C   {:RESULT = new Asignacion(TablaSimbolos.COMODIN, TablaSimbolos.COMODIN);:}
                     ;
