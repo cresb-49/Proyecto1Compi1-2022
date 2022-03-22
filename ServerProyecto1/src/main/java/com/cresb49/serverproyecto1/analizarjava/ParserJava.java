@@ -1185,19 +1185,23 @@ public class ParserJava extends java_cup.runtime.lr_parser {
     }
 
     private void error_exprecion(Token ref, Asignacion r, String expected) {
-        
+        String error = "No se puede operar \""+r.getTipo()+" "+ref.getLexema()+"\" valores posibles a evaluar con \""+ref.getLexema()+"\" son -> "+expected;
+        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
     }
 
     private void error_exprecion2(Token ref, Asignacion r1,Asignacion r2, String expected) {
-        
-    }
+        String error = "No se puede operar \""+r1.getTipo()+" "+ref.getLexema()+" "+r2.getTipo()+"\" valores posibles a evaluar con \""+ref.getLexema()+"\" son -> "+expected;
+        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
+    }   
 
     private void error_comparacion(Token ref, Asignacion r1,Asignacion r2) {
-        
+        String error = "No se puede operar \""+r1.getTipo()+" "+ref.getLexema()+" "+r2.getTipo()+"\" debe evaluar datos del mismo tipo";
+        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
     }
 
     private void error_and_or(Token ref, Asignacion r1,Asignacion r2) {
-        
+        String error = "No se puede operar \""+r1.getTipo()+" "+ref.getLexema()+" "+r2.getTipo()+"\" debe evaluar datos del tipo booleano";
+        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
     }
 
     private void agregarVariablesTabla(String metodo_clase, ArrayList<FilaTablaSymbolos> vars) {
@@ -3552,7 +3556,7 @@ class CUP$ParserJava$actions {
 		int r2left = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
 		int r2right = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
 		Asignacion r2 = (Asignacion)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
-		if(OperacionCast.newMayorMenor(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedSum());}else{RESULT = new Asignacion(OperacionCast.newMayorMenor(r1,r2),OperacionCast.newMayorMenor(r1,r2));}
+		if(OperacionCast.newMayorMenor(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedResMulDiv());}else{RESULT = new Asignacion(OperacionCast.newMayorMenor(r1,r2),OperacionCast.newMayorMenor(r1,r2));}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("g",40, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -3570,7 +3574,7 @@ class CUP$ParserJava$actions {
 		int r2left = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
 		int r2right = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
 		Asignacion r2 = (Asignacion)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
-		if(OperacionCast.newMayorMenor(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedSum());}else{RESULT = new Asignacion(OperacionCast.newMayorMenor(r1,r2),OperacionCast.newMayorMenor(r1,r2));}
+		if(OperacionCast.newMayorMenor(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedResMulDiv());}else{RESULT = new Asignacion(OperacionCast.newMayorMenor(r1,r2),OperacionCast.newMayorMenor(r1,r2));}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("g",40, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -3588,7 +3592,7 @@ class CUP$ParserJava$actions {
 		int r2left = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
 		int r2right = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
 		Asignacion r2 = (Asignacion)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
-		if(OperacionCast.newMayorMenor(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedSum());}else{RESULT = new Asignacion(OperacionCast.newMayorMenor(r1,r2),OperacionCast.newMayorMenor(r1,r2));}
+		if(OperacionCast.newMayorMenor(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedResMulDiv());}else{RESULT = new Asignacion(OperacionCast.newMayorMenor(r1,r2),OperacionCast.newMayorMenor(r1,r2));}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("g",40, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -3606,7 +3610,7 @@ class CUP$ParserJava$actions {
 		int r2left = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).left;
 		int r2right = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()).right;
 		Asignacion r2 = (Asignacion)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
-		if(OperacionCast.newMayorMenor(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedSum());}else{RESULT = new Asignacion(OperacionCast.newMayorMenor(r1,r2),OperacionCast.newMayorMenor(r1,r2));}
+		if(OperacionCast.newMayorMenor(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedResMulDiv());}else{RESULT = new Asignacion(OperacionCast.newMayorMenor(r1,r2),OperacionCast.newMayorMenor(r1,r2));}
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("g",40, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;

@@ -237,7 +237,7 @@ public class OperacionCast {
     }
     
     public static String expectedSum(){
-        return "["+TablaSimbolos.INT+","+TablaSimbolos.DOUBLE+TablaSimbolos.BOOLEAN+","+TablaSimbolos.CHAR+","+TablaSimbolos.STRING+"]";
+        return "["+TablaSimbolos.INT+","+TablaSimbolos.DOUBLE+","+TablaSimbolos.BOOLEAN+","+TablaSimbolos.CHAR+","+TablaSimbolos.STRING+"]";
     }
     
     public static String newTypeResMulDiv(Asignacion left,Asignacion rigth){
@@ -258,6 +258,15 @@ public class OperacionCast {
         }else
         if(left.getTipo().equals(TablaSimbolos.DOUBLE)&&rigth.getTipo().equals(TablaSimbolos.COMODIN)){
             return TablaSimbolos.DOUBLE;
+        }else
+        if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.INT)){
+            return TablaSimbolos.BOOLEAN;
+        }else
+        if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.DOUBLE)){
+            return TablaSimbolos.BOOLEAN;
+        }else
+        if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.COMODIN)){
+            return TablaSimbolos.BOOLEAN;
         }else{
             return TablaSimbolos.ERROR;
         }
@@ -285,6 +294,15 @@ public class OperacionCast {
         }else
         if(left.getTipo().equals(TablaSimbolos.DOUBLE)&&rigth.getTipo().equals(TablaSimbolos.COMODIN)){
             return TablaSimbolos.BOOLEAN;
+        }else
+        if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.DOUBLE)){
+            return TablaSimbolos.BOOLEAN;
+        }else
+        if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.INT)){
+            return TablaSimbolos.BOOLEAN;
+        }else
+        if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.COMODIN)){
+            return TablaSimbolos.BOOLEAN;
         }else{
             return TablaSimbolos.ERROR;
         }
@@ -303,10 +321,16 @@ public class OperacionCast {
         if(left.getTipo().equals(TablaSimbolos.DOUBLE)&&rigth.getTipo().equals(TablaSimbolos.COMODIN)){
             return TablaSimbolos.BOOLEAN;
         }else
+        if(left.getTipo().equals(TablaSimbolos.STRING)&&rigth.getTipo().equals(TablaSimbolos.COMODIN)){
+            return TablaSimbolos.BOOLEAN;
+        }else
         if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.INT)){
             return TablaSimbolos.BOOLEAN;
         }else
         if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.DOUBLE)){
+            return TablaSimbolos.BOOLEAN;
+        }else
+        if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.STRING)){
             return TablaSimbolos.BOOLEAN;
         }else
         if(left.getTipo().equals(rigth.getTipo())){
@@ -324,6 +348,9 @@ public class OperacionCast {
             return TablaSimbolos.BOOLEAN;
         }else
         if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.BOOLEAN)){
+            return TablaSimbolos.BOOLEAN;
+        }else
+        if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.COMODIN)){
             return TablaSimbolos.BOOLEAN;
         }else{
             return TablaSimbolos.ERROR;

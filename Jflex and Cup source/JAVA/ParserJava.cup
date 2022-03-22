@@ -102,19 +102,23 @@ parser code {:
     }
 
     private void error_exprecion(Token ref, Asignacion r, String expected) {
-        
+        String error = "No se puede operar \""+r.getTipo()+" "+ref.getLexema()+"\" valores posibles a evaluar con \""+ref.getLexema()+"\" son -> "+expected;
+        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
     }
 
     private void error_exprecion2(Token ref, Asignacion r1,Asignacion r2, String expected) {
-        
-    }
+        String error = "No se puede operar \""+r1.getTipo()+" "+ref.getLexema()+" "+r2.getTipo()+"\" valores posibles a evaluar con \""+ref.getLexema()+"\" son -> "+expected;
+        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
+    }   
 
     private void error_comparacion(Token ref, Asignacion r1,Asignacion r2) {
-        
+        String error = "No se puede operar \""+r1.getTipo()+" "+ref.getLexema()+" "+r2.getTipo()+"\" debe evaluar datos del mismo tipo";
+        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
     }
 
     private void error_and_or(Token ref, Asignacion r1,Asignacion r2) {
-        
+        String error = "No se puede operar \""+r1.getTipo()+" "+ref.getLexema()+" "+r2.getTipo()+"\" debe evaluar datos del tipo booleano";
+        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
     }
 
     private void agregarVariablesTabla(String metodo_clase, ArrayList<FilaTablaSymbolos> vars) {
@@ -537,10 +541,10 @@ f   ::= f:r1 IGUAL:ref g:r2         {:if(OperacionCast.newComparacion(r1,r2).equ
     |   g:r {:RESULT=r;:}
     ;
 
-g   ::= g:r1 MENOR_QUE:ref h:r2     {:if(OperacionCast.newMayorMenor(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedSum());}else{RESULT = new Asignacion(OperacionCast.newMayorMenor(r1,r2),OperacionCast.newMayorMenor(r1,r2));}:}
-    |   g:r1 MAYOR_QUE:ref h:r2     {:if(OperacionCast.newMayorMenor(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedSum());}else{RESULT = new Asignacion(OperacionCast.newMayorMenor(r1,r2),OperacionCast.newMayorMenor(r1,r2));}:}
-    |   g:r1 MAYOR_IGUAL:ref h:r2   {:if(OperacionCast.newMayorMenor(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedSum());}else{RESULT = new Asignacion(OperacionCast.newMayorMenor(r1,r2),OperacionCast.newMayorMenor(r1,r2));}:}
-    |   g:r1 MENOR_IGUAL:ref h:r2   {:if(OperacionCast.newMayorMenor(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedSum());}else{RESULT = new Asignacion(OperacionCast.newMayorMenor(r1,r2),OperacionCast.newMayorMenor(r1,r2));}:}
+g   ::= g:r1 MENOR_QUE:ref h:r2     {:if(OperacionCast.newMayorMenor(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedResMulDiv());}else{RESULT = new Asignacion(OperacionCast.newMayorMenor(r1,r2),OperacionCast.newMayorMenor(r1,r2));}:}
+    |   g:r1 MAYOR_QUE:ref h:r2     {:if(OperacionCast.newMayorMenor(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedResMulDiv());}else{RESULT = new Asignacion(OperacionCast.newMayorMenor(r1,r2),OperacionCast.newMayorMenor(r1,r2));}:}
+    |   g:r1 MAYOR_IGUAL:ref h:r2   {:if(OperacionCast.newMayorMenor(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedResMulDiv());}else{RESULT = new Asignacion(OperacionCast.newMayorMenor(r1,r2),OperacionCast.newMayorMenor(r1,r2));}:}
+    |   g:r1 MENOR_IGUAL:ref h:r2   {:if(OperacionCast.newMayorMenor(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedResMulDiv());}else{RESULT = new Asignacion(OperacionCast.newMayorMenor(r1,r2),OperacionCast.newMayorMenor(r1,r2));}:}
     |   h:r {:RESULT=r;:}
     ;
 
