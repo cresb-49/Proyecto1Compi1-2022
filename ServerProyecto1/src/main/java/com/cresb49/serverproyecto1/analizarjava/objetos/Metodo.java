@@ -14,7 +14,7 @@ public class Metodo implements Serializable{
     private String nombre;
     private String tipo;
     private Integer parametros;
-    private int repeticiones;
+    private int repeticiones = 1;
 
     public Metodo() {
     }

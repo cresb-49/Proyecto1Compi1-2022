@@ -7,7 +7,7 @@ import java.util.Objects;
  */
 public class Comentario {
     private String texto;
-    private int repeticiones;
+    private int repeticiones = 1;
 
     public Comentario() {
     }
