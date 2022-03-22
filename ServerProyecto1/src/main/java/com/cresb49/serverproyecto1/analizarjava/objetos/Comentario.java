@@ -7,6 +7,7 @@ import java.util.Objects;
  */
 public class Comentario {
     private String texto;
+    private int repeticiones;
 
     public Comentario() {
     }
@@ -21,6 +22,24 @@ public class Comentario {
 
     public void setTexto(String texto) {
         this.texto = texto;
+    }
+    
+    public void agregarRepeticion(){
+        this.repeticiones++;
+    }
+
+    /**
+     * @return the repeticiones
+     */
+    public int getRepeticiones() {
+        return repeticiones;
+    }
+
+    /**
+     * @param repeticiones the repeticiones to set
+     */
+    public void setRepeticiones(int repeticiones) {
+        this.repeticiones = repeticiones;
     }
 
     @Override

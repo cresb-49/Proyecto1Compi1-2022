@@ -70,6 +70,28 @@ import java_cup.runtime.*;
     public void setComentarios(ArrayList<Comentario> comentarios) {
         this.comentarios = comentarios;
     }
+
+    private void agregarComentario(String comentario){
+        Comentario tmp = buscarComentario(comentario);
+        if(tmp!=null){
+            tmp.agregarRepeticion();
+        }else{
+            this.comentarios.add(new Comentario(comentario));
+        }
+    }
+
+    private Comentario buscarComentario(String comentario){
+        Comentario tmp = null;
+        for (Comentario coment : this.comentarios) {
+            if(coment!=null){
+                if(coment.getTexto().equals(comentario)){
+                    return coment;
+                }
+            }  
+        }
+      return tmp;
+    }
+
 %}
 %eofval{
     this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,this.anterior);
@@ -550,7 +572,7 @@ Decimal = {Entero}[.]{Entero}
     [\n]                            { 
                                         yybegin(YYINITIAL);
                                         //System.out.println("Comentario: "+coment_simple.toString());
-                                        this.getComentarios().add(new Comentario(coment_simple.toString()));
+                                        agregarComentario(coment_simple.toString());
                                     }   
     [^\n\"]+                        { coment_simple.append(yytext());}
     \"                              { coment_simple.append("\\\""); }    
@@ -560,7 +582,7 @@ Decimal = {Entero}[.]{Entero}
     "*/"                            { 
                                         yybegin(YYINITIAL);
                                         //System.out.println("Comentario: "+coment_multi.toString());
-                                        this.getComentarios().add(new Comentario(coment_multi.toString()));   
+                                        agregarComentario(coment_simple.toString());
                                     }
     [^\n*\"]+                       { coment_multi.append(yytext());}
     [\n]                            { coment_multi.append("\\n"); }

@@ -14,6 +14,7 @@ public class Metodo implements Serializable{
     private String nombre;
     private String tipo;
     private Integer parametros;
+    private int repeticiones;
 
     public Metodo() {
     }
@@ -46,6 +47,24 @@ public class Metodo implements Serializable{
 
     public void setParametros(Integer parametros) {
         this.parametros = parametros;
+    }
+
+    public void agregarRepeticion(){
+        this.repeticiones++;
+    }
+
+    /**
+     * @return the repeticiones
+     */
+    public int getRepeticiones() {
+        return repeticiones;
+    }
+
+    /**
+     * @param repeticiones the repeticiones to set
+     */
+    public void setRepeticiones(int repeticiones) {
+        this.repeticiones = repeticiones;
     }
 
     @Override

@@ -6,6 +6,7 @@ import java.util.Objects;
 public class Clase implements Serializable{
     
     private String nombre;
+    private int repeticiones =1;
     
     public Clase() {
         
@@ -21,6 +22,24 @@ public class Clase implements Serializable{
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public void agregarRepeticion(){
+        this.repeticiones++;
+    }
+
+    /**
+     * @return the repeticiones
+     */
+    public int getRepeticiones() {
+        return repeticiones;
+    }
+
+    /**
+     * @param repeticiones the repeticiones to set
+     */
+    public void setRepeticiones(int repeticiones) {
+        this.repeticiones = repeticiones;
     }
 
     @Override

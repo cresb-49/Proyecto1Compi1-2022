@@ -1216,17 +1216,54 @@ public class ParserJava extends java_cup.runtime.lr_parser {
     }
 
     private void archivarMetodo(String metodo_constructor,String tipo,ArrayList<FilaTablaSymbolos> parametros,int aux){
+        Metodo metodoTemp = null;
         if(parametros!=null){
             //System.out.println("Metodo: "+metodo_constructor+" ,Tipo: "+tipo+" ,Parametros: "+parametros.size());
-            this.getMetodos().add(new Metodo(metodo_constructor, tipo, parametros.size()));
+            //this.getMetodos().add(new Metodo(metodo_constructor, tipo, parametros.size()));
+            metodoTemp = new Metodo(metodo_constructor, tipo, parametros.size());
         }else{
             //System.out.println("Metodo: "+metodo_constructor+" ,Tipo: "+tipo+" ,Parametros: "+aux);
-            this.getMetodos().add(new Metodo(metodo_constructor, tipo,aux));
+            //this.getMetodos().add(new Metodo(metodo_constructor, tipo,aux));
+            metodoTemp = new Metodo(metodo_constructor, tipo,aux);
         }
+        Metodo tmpmetodo = buscarMetodo(metodoTemp);
+        if(tmpmetodo==null){
+            this.getMetodos().add(metodoTemp);
+        }else{
+            tmpmetodo.agregarRepeticion();
+        }
+
     }
 
-    private void agregarClase(String lexema) {
-        this.getClases().add(new Clase(lexema));
+    private Metodo buscarMetodo(Metodo metodo){
+        for (Metodo met : this.metodos) {
+            if(met!=null){
+                if(met.equals(metodo)){
+                    return met;
+                }
+            }
+        }
+        return null;
+    }
+
+    private void agregarClase(String nombre) {
+        Clase clasetmp = buscarClase(nombre);
+        if(clasetmp==null){
+            this.getClases().add(new Clase(nombre));
+        }else{
+            clasetmp.agregarRepeticion();
+        }   
+    }
+
+    private Clase buscarClase(String nombre){
+        for (Clase clas : this.clases) {
+            if(clas!=null){
+              if(clas.getNombre().equals(nombre)){
+                return clas;
+              }
+            }
+        }
+        return null;
     }
 
     protected int error_sync_size() {

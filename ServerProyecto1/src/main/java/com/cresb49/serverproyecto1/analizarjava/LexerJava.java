@@ -772,6 +772,28 @@ public class LexerJava implements java_cup.runtime.Scanner {
         this.comentarios = comentarios;
     }
 
+    private void agregarComentario(String comentario){
+        Comentario tmp = buscarComentario(comentario);
+        if(tmp!=null){
+            tmp.agregarRepeticion();
+        }else{
+            this.comentarios.add(new Comentario(comentario));
+        }
+    }
+
+    private Comentario buscarComentario(String comentario){
+        Comentario tmp = null;
+        for (Comentario coment : this.comentarios) {
+            if(coment!=null){
+                if(coment.getTexto().equals(comentario)){
+                    return coment;
+                }
+            }  
+        }
+      return tmp;
+    }
+
+
 
   /**
    * Creates a new scanner
@@ -1392,7 +1414,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
           case 29:
             { yybegin(YYINITIAL);
                                         //System.out.println("Comentario: "+coment_simple.toString());
-                                        this.getComentarios().add(new Comentario(coment_simple.toString()));
+                                        agregarComentario(coment_simple.toString());
             }
             // fall through
           case 113: break;
@@ -1540,7 +1562,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
           case 51:
             { yybegin(YYINITIAL);
                                         //System.out.println("Comentario: "+coment_multi.toString());
-                                        this.getComentarios().add(new Comentario(coment_multi.toString()));
+                                        agregarComentario(coment_simple.toString());
             }
             // fall through
           case 135: break;
