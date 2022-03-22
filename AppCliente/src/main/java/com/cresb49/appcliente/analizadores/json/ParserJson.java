@@ -49,9 +49,9 @@ public class ParserJson extends java_cup.runtime.lr_parser {
     "\000\002\010\004\000\002\011\006\000\002\011\004\000" +
     "\002\012\007\000\002\012\002\000\002\012\004\000\002" +
     "\015\015\000\002\015\015\000\002\015\015\000\002\015" +
-    "\015\000\002\015\015\000\002\015\015\000\002\017\015" +
-    "\000\002\017\015\000\002\017\015\000\002\017\015\000" +
-    "\002\017\015\000\002\017\015\000\002\013\010\000\002" +
+    "\015\000\002\015\015\000\002\015\015\000\002\016\015" +
+    "\000\002\016\015\000\002\016\015\000\002\016\015\000" +
+    "\002\016\015\000\002\016\015\000\002\013\010\000\002" +
     "\013\004\000\002\014\011\000\002\014\002\000\002\014" +
     "\004" });
 
@@ -174,7 +174,7 @@ public class ParserJson extends java_cup.runtime.lr_parser {
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
     "\000\002\001\001\000\006\011\020\012\021\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\004\017\025\001\001\000\002\001\001\000" +
+    "\001\001\000\004\016\025\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
     "\001\000\002\001\001\000\002\001\001\000\002\001\001" +
@@ -1346,7 +1346,7 @@ class CUP$ParserJson$actions {
 		int valpararight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
 		Token valpara = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
 		RESULT = verificar_metodo(valname,valtipo,valpara);
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMet",13, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMet",12, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
@@ -1364,7 +1364,7 @@ class CUP$ParserJson$actions {
 		int valtiporight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
 		Token valtipo = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
 		RESULT = verificar_metodo(valname,valtipo,valpara);
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMet",13, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMet",12, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
@@ -1382,7 +1382,7 @@ class CUP$ParserJson$actions {
 		int valnameright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
 		Token valname = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
 		RESULT = verificar_metodo(valname,valtipo,valpara);
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMet",13, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMet",12, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
@@ -1400,7 +1400,7 @@ class CUP$ParserJson$actions {
 		int valpararight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
 		Token valpara = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
 		RESULT = verificar_metodo(valname,valtipo,valpara);
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMet",13, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMet",12, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
@@ -1418,7 +1418,7 @@ class CUP$ParserJson$actions {
 		int valnameright = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
 		Token valname = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
 		RESULT = verificar_metodo(valname,valtipo,valpara);
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMet",13, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMet",12, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
@@ -1436,7 +1436,7 @@ class CUP$ParserJson$actions {
 		int valtiporight = ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()).right;
 		Token valtipo = (Token)((java_cup.runtime.Symbol) CUP$ParserJson$stack.peek()).value;
 		RESULT = verificar_metodo(valname,valtipo,valpara);
-              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMet",13, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
+              CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("expMet",12, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-10)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
             }
           return CUP$ParserJson$result;
 
@@ -1454,12 +1454,8 @@ class CUP$ParserJson$actions {
                                                                             RESULT = cme;
                                                                             if(RESULT!=null){
                                                                                 Token token = str;
-                                                                                if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                                    semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                                }else{
-                                                                                    Comentario comentario = new Comentario(token.getLexema());
-                                                                                    RESULT.add(comentario);
-                                                                                }
+                                                                                Comentario comentario = new Comentario(token.getLexema());
+                                                                                RESULT.add(comentario);
                                                                             }
                                                                         
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("contCom",9, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
@@ -1492,12 +1488,8 @@ class CUP$ParserJson$actions {
                                                                             RESULT = cme;
                                                                             if(RESULT!=null){
                                                                                 Token token = str;
-                                                                                if(token.getLexema().isEmpty() || token.getLexema().isBlank()){
-                                                                                    semantic_error(token,"El valor de la cadena de texto esta vacia");
-                                                                                }else{
-                                                                                    Comentario comentario = new Comentario(token.getLexema());
-                                                                                    RESULT.add(comentario);
-                                                                                }
+                                                                                Comentario comentario = new Comentario(token.getLexema());
+                                                                                RESULT.add(comentario);
                                                                             }
                                                                         
               CUP$ParserJson$result = parser.getSymbolFactory().newSymbol("contComp",10, ((java_cup.runtime.Symbol)CUP$ParserJson$stack.elementAt(CUP$ParserJson$top-6)), ((java_cup.runtime.Symbol)CUP$ParserJson$stack.peek()), RESULT);
