@@ -60,13 +60,15 @@ public class CompararProyectos {
         this.convertirVariablesRepetidas(variables, varFinal);
         int totalVariables = this.resultadoCarpeta1.numeroDeVariables() + this.resultadoCarpeta2.numeroDeVariables();
         int varsRepetidas = this.contarVariablesFinal(variables);
-        System.out.println("varsRepetidas: " + varsRepetidas);
         int totalMetodos = this.resultadoCarpeta1.numeroMetodos()+this.resultadoCarpeta2.numeroMetodos();
         int metodosRepetidos = this.contarMetodosRepetidos(metodos);
         int totalClases = this.resultadoCarpeta1.numeroClases()+this.resultadoCarpeta2.numeroClases();
         int clasesRepetidas = this.contarClasesRepetidas(clases);
         int totalComen = this.resultadoCarpeta1.numeroComentarios()+this.resultadoCarpeta2.numeroComentarios();
         int comenrepetidos = this.contarComentariosRepetidos(comentarios);
+        System.out.println("varsRepetidas: " + varsRepetidas);
+        System.out.println("metodosRepetidos: " + metodosRepetidos);
+        System.out.println("comenrepetidos: " + comenrepetidos);
         String score = this.carlcularScore(totalVariables, varsRepetidas, totalMetodos, metodosRepetidos, totalClases,
                 clasesRepetidas, totalComen, comenrepetidos);
         ReporteJson reporteJson = new ReporteJson(score, clases, varFinal, metodos, comentarios);
