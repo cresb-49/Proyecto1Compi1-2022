@@ -582,7 +582,7 @@ Decimal = {Entero}[.]{Entero}
     "*/"                            { 
                                         yybegin(YYINITIAL);
                                         //System.out.println("Comentario: "+coment_multi.toString());
-                                        agregarComentario(coment_simple.toString());
+                                        agregarComentario(coment_multi.toString());
                                     }
     [^\n*\"]+                       { coment_multi.append(yytext());}
     [\n]                            { coment_multi.append("\\n"); }

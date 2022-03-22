@@ -1562,7 +1562,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
           case 51:
             { yybegin(YYINITIAL);
                                         //System.out.println("Comentario: "+coment_multi.toString());
-                                        agregarComentario(coment_simple.toString());
+                                        agregarComentario(coment_multi.toString());
             }
             // fall through
           case 135: break;
