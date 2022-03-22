@@ -78,4 +78,34 @@ public class ResultadoAnalisis {
         }
         return result;
     }
+
+    public int numeroClases(){
+        int result =0;
+        for (Clase clase : clases) {
+            if(clase!=null){
+                result = result + clase.getRepeticiones();
+            }
+        }
+        return result;
+    }
+
+    public int numeroComentarios(){
+        int result =0;
+        for (Comentario comentario : comentarios) {
+            if(comentario!=null){
+                result = result + comentario.getRepeticiones();
+            }
+        }
+        return result;
+    }
+    
+    public int numeroMetodos(){
+        int result =0;
+        for (Metodo metodo : metodos) {
+            if(metodo!=null){
+                result = result + metodo.getRepeticiones();
+            }
+        }
+        return result;
+    }
 }

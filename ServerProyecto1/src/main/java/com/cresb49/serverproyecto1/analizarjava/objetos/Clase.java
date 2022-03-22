@@ -42,6 +42,14 @@ public class Clase implements Serializable{
         this.repeticiones = repeticiones;
     }
 
+    /**
+     * Este metodo recive el numero de repeticiones y la suma a la cantidad ya existente en el objeto
+     * @param repeticiones
+     */
+    public void mezclarRepeticiones(int repeticiones){
+        this.repeticiones = this.repeticiones + repeticiones;
+    }
+
 
     @Override
     public int hashCode() {

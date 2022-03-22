@@ -184,70 +184,93 @@ public class CompararProyectos {
     }
 
     private void obtenerMetodosRepetidos(ArrayList<Metodo> metodos) {
+        Metodo tmp1 = null;
+        Metodo tmp2 = null;
+        Metodo newtmp = null;
         for (Metodo metodo : resultadoCarpeta1.getMetodos()) {
             if (metodo != null) {
-                if (this.buscarListaMetodos(resultadoCarpeta2.getMetodos(), metodo)) {
-                    if (!this.buscarListaMetodos(metodos, metodo)) {
-                        metodos.add(metodo);
+                tmp1 = buscarListaMetodos(resultadoCarpeta2.getMetodos(), metodo);
+                if (tmp1!=null) {
+                    tmp2 = buscarListaMetodos(metodos, metodo);
+                    if (tmp2==null) {
+                        newtmp = new Metodo(metodo.getNombre(),metodo.getTipo(),metodo.getParametros());
+                        newtmp.setRepeticiones(metodo.getRepeticiones()+tmp1.getRepeticiones());
+                        metodos.add(newtmp);
+                    }else{
+                        tmp2.mezclarRepeticiones(metodo.getRepeticiones());
                     }
                 }
             }
-            /*
-             * for (Metodo metodo2 : resultadoCarpeta2.getMetodos()) {
-             * }
-             */
         }
     }
 
-    private boolean buscarListaMetodos(ArrayList<Metodo> metodos, Metodo metodo) {
+    private Metodo buscarListaMetodos(ArrayList<Metodo> metodos, Metodo metodo) {
         for (Metodo met : metodos) {
             if (met.equals(metodo)) {
-                return true;
+                return met;
             }
         }
-        return false;
+        return null;
     }
 
     private void obtenerComentariosRepetidos(ArrayList<Comentario> comentarios) {
+        Comentario tmp1 = null;
+        Comentario tmp2 = null;
+        Comentario newtmp = null;
         for (Comentario comentario : resultadoCarpeta1.getComentarios()) {
             if (comentario != null) {
-                if (this.buscarListaComentario(resultadoCarpeta2.getComentarios(), comentario)) {
-                    if (!this.buscarListaComentario(comentarios, comentario)) {
-                        comentarios.add(comentario);
+                tmp1 = buscarListaComentario(resultadoCarpeta2.getComentarios(), comentario);
+                if (tmp1!=null) {
+                    tmp2 =buscarListaComentario(comentarios, comentario);
+                    if (tmp2==null) {
+                        newtmp = new Comentario(comentario.getTexto());
+                        newtmp.setRepeticiones(comentario.getRepeticiones()+tmp1.getRepeticiones());
+                        comentarios.add(newtmp);
+                    }else{
+                        tmp2.mezclarRepeticiones(comentario.getRepeticiones());
                     }
                 }
             }
         }
     }
 
-    private boolean buscarListaComentario(ArrayList<Comentario> comentarios, Comentario comentario) {
+    private Comentario buscarListaComentario(ArrayList<Comentario> comentarios, Comentario comentario) {
         for (Comentario comt : comentarios) {
             if (comt.equals(comentario)) {
-                return true;
+                return comt;
             }
         }
-        return false;
+        return null;
     }
 
     private void obtenerClasesRepetidos(ArrayList<Clase> clases) {
+        Clase tmp1 = null;
+        Clase tmp2 = null;
+        Clase newtmp = null;
         for (Clase clase : resultadoCarpeta1.getClases()) {
             if (clase != null) {
-                if (this.buscarListaClases(resultadoCarpeta2.getClases(), clase)) {
-                    if (!this.buscarListaClases(clases, clase)) {
-                        clases.add(clase);
+                tmp1 = buscarListaClases(resultadoCarpeta2.getClases(), clase);
+                if (tmp1!=null) {
+                    tmp2 = buscarListaClases(clases, clase);
+                    if (tmp2==null) {
+                        newtmp = new Clase(clase.getNombre());
+                        newtmp.setRepeticiones(clase.getRepeticiones()+tmp1.getRepeticiones());
+                        clases.add(newtmp);
+                    }else{
+                        tmp2.mezclarRepeticiones(clase.getRepeticiones());
                     }
                 }
             }
         }
     }
 
-    private boolean buscarListaClases(ArrayList<Clase> calses, Clase clase) {
+    private Clase buscarListaClases(ArrayList<Clase> calses, Clase clase) {
         for (Clase clas : calses) {
             if (clas.equals(clase)) {
-                return true;
+                return clas;
             }
         }
-        return false;
+        return null;
     }
 
     private void obtenerVariablesRepetidas(ArrayList<FilaTablaSymbolos> variables) {
