@@ -109,6 +109,14 @@ parser code {:
         
     }
 
+    private void error_comparacion(Token ref, Asignacion r1,Asignacion r2) {
+        
+    }
+
+    private void error_and_or(Token ref, Asignacion r1,Asignacion r2) {
+        
+    }
+
     private void agregarVariablesTabla(String metodo_clase, ArrayList<FilaTablaSymbolos> vars) {
         if(metodo_clase!=null && vars != null){
             FilaTablaSymbolos fila;
@@ -509,51 +517,51 @@ contenidoSwitch2    ::= contenidoSwitch2:vars1 CASE exp DOSPUNTOS sentencias:var
                     |   error CASE
                     ;
 
-asig    ::= exp:r   {:RESULT=r;:}
-        |   NEW OBJ PA_A PA_C
-        |   NEW ID PA_A PA_C
+asig    ::= exp:r                   {:RESULT=r;:}
+        |   NEW OBJ PA_A PA_C       {:RESULT = new Asignacion(TablaSimbolos.OBJECT,TablaSimbolos.OBJECT);:}
+        |   NEW ID:tipo PA_A PA_C   {:RESULT = new Asignacion(TablaSimbolos.OBJECT,tipo.getLexema());:}
         ;
 
-exp ::= exp OR t
+exp ::= exp:r1 OR:ref t:r2          {:if(OperacionCast.newAndOr(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_and_or(ref,r1,r2);}else{RESULT = new Asignacion(OperacionCast.newAndOr(r1,r2),OperacionCast.newAndOr(r1,r2));}:}
     |   t:r {:RESULT=r;:}
     |   exp:r error {:RESULT=r;:}
     |   error
     ;
 
-t   ::= t AND f
+t   ::= t:r1 AND:ref f:r2           {:if(OperacionCast.newAndOr(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_and_or(ref,r1,r2);}else{RESULT = new Asignacion(OperacionCast.newAndOr(r1,r2),OperacionCast.newAndOr(r1,r2));}:}
     |   f:r {:RESULT=r;:}
     ;
 
-f   ::= f IGUAL g
-    |   f DIFERENTE g
+f   ::= f:r1 IGUAL:ref g:r2         {:if(OperacionCast.newComparacion(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_comparacion(ref,r1,r2);}else{RESULT = new Asignacion(OperacionCast.newComparacion(r1,r2),OperacionCast.newComparacion(r1,r2));}:}
+    |   f:r1 DIFERENTE:ref g:r2     {:if(OperacionCast.newComparacion(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_comparacion(ref,r1,r2);}else{RESULT = new Asignacion(OperacionCast.newComparacion(r1,r2),OperacionCast.newComparacion(r1,r2));}:}
     |   g:r {:RESULT=r;:}
     ;
 
-g   ::= g MENOR_QUE h
-    |   g MAYOR_QUE h
-    |   g MAYOR_IGUAL h
-    |   g MENOR_IGUAL h
+g   ::= g:r1 MENOR_QUE:ref h:r2     {:if(OperacionCast.newMayorMenor(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedSum());}else{RESULT = new Asignacion(OperacionCast.newMayorMenor(r1,r2),OperacionCast.newMayorMenor(r1,r2));}:}
+    |   g:r1 MAYOR_QUE:ref h:r2     {:if(OperacionCast.newMayorMenor(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedSum());}else{RESULT = new Asignacion(OperacionCast.newMayorMenor(r1,r2),OperacionCast.newMayorMenor(r1,r2));}:}
+    |   g:r1 MAYOR_IGUAL:ref h:r2   {:if(OperacionCast.newMayorMenor(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedSum());}else{RESULT = new Asignacion(OperacionCast.newMayorMenor(r1,r2),OperacionCast.newMayorMenor(r1,r2));}:}
+    |   g:r1 MENOR_IGUAL:ref h:r2   {:if(OperacionCast.newMayorMenor(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedSum());}else{RESULT = new Asignacion(OperacionCast.newMayorMenor(r1,r2),OperacionCast.newMayorMenor(r1,r2));}:}
     |   h:r {:RESULT=r;:}
     ;
 
-h   ::= h MAS i
-    |   h MENOS i
+h   ::= h:r1 MAS:ref i:r2   {:if(OperacionCast.newTypeSum(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedSum());}else{RESULT = new Asignacion(OperacionCast.newTypeSum(r1,r2),OperacionCast.newTypeSum(r1,r2));}:}
+    |   h:r1 MENOS:ref i:r2 {:if(OperacionCast.newTypeResMulDiv(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedResMulDiv());}else{RESULT = new Asignacion(OperacionCast.newTypeResMulDiv(r1,r2),OperacionCast.newTypeResMulDiv(r1,r2));}:}   
     |   i:r {:RESULT=r;:}
     ;
 
-i   ::= i MUL j
-    |   i DIV j
+i   ::= i:r1 MUL:ref j:r2   {:if(OperacionCast.newTypeResMulDiv(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedResMulDiv());}else{RESULT = new Asignacion(OperacionCast.newTypeResMulDiv(r1,r2),OperacionCast.newTypeResMulDiv(r1,r2));}:}
+    |   i:r1 DIV:ref j:r2   {:if(OperacionCast.newTypeResMulDiv(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion2(ref,r1,r2,OperacionCast.expectedResMulDiv());}else{RESULT = new Asignacion(OperacionCast.newTypeResMulDiv(r1,r2),OperacionCast.newTypeResMulDiv(r1,r2));}:}
     |   j:r {:RESULT=r;:}
     ;
 
-j   ::= NOT:ref k:r     {:if(!OperacionCast.validUniariBool(r)){error_exprecion(ref,r,OperacionCast.expectedUniariBool());}:}
-    |   MENOS:ref k:r   {:if(!OperacionCast.validUniariNegPosi(r)){error_exprecion(ref,r,OperacionCast.expectedUnariNegPosi());}:}
-    |   MAS:ref k:r     {:if(!OperacionCast.validUniariNegPosi(r)){error_exprecion(ref,r,OperacionCast.expectedUnariNegPosi());}:}
+j   ::= NOT:ref k:r     {:if(!OperacionCast.validUniariBool(r)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion(ref,r,OperacionCast.expectedUniariBool());}else{RESULT = new Asignacion(r.getTipo(),r.getClase());}:}
+    |   MENOS:ref k:r   {:if(!OperacionCast.validUniariNegPosi(r)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion(ref,r,OperacionCast.expectedUnariNegPosi());}else{RESULT = new Asignacion(r.getTipo(),r.getClase());}:}
+    |   MAS:ref k:r     {:if(!OperacionCast.validUniariNegPosi(r)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion(ref,r,OperacionCast.expectedUnariNegPosi());}else{RESULT = new Asignacion(r.getTipo(),r.getClase());}:}
     |   k:r {:RESULT=r;:}
     ;
 
-k   ::= l:r SUMAR:ref   {:if(!OperacionCast.validSumarRestar(r)){error_exprecion(ref,r,OperacionCast.expectedSumaRestar());}:}
-    |   l:r RESTAR:ref  {:if(!OperacionCast.validSumarRestar(r)){error_exprecion(ref,r,OperacionCast.expectedSumaRestar());}:}
+k   ::= l:r SUMAR:ref   {:if(!OperacionCast.validSumarRestar(r)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion(ref,r,OperacionCast.expectedSumaRestar());}else{RESULT = new Asignacion(r.getTipo(),r.getClase());}:}
+    |   l:r RESTAR:ref  {:if(!OperacionCast.validSumarRestar(r)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_exprecion(ref,r,OperacionCast.expectedSumaRestar());}else{RESULT = new Asignacion(r.getTipo(),r.getClase());}:}
     |   l:r {:RESULT=r;:}
     ;
 

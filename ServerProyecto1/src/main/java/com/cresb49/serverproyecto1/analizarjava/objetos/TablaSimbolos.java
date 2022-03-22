@@ -14,6 +14,8 @@ public class TablaSimbolos {
     public static final String STRING = "String";
     public static final String BOOLEAN = "boolean";
     public static final String OBJECT = "Object";
+    public static final String COMODIN = "comodin";
+    public static final String ERROR = "error";
     
     private ArrayList<FilaTablaSymbolos> filas;
 
