@@ -166,8 +166,12 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
         if(arg instanceof Proyecto){
             String res = analizarProyectos.realizarAnalisis((Proyecto)arg);
             if(res!=null){
-                System.out.println("Voy a responder al cliente");
-                this.responderCliente(res);
+                if(res.isBlank()||res.isEmpty()){
+                    System.out.println("Existen errores en el analisis!!");
+                }else{
+                    System.out.println("Analisis corecto se envia respuesta al cliente!!");
+                    this.responderCliente(res);
+                }
             }
         }
     }

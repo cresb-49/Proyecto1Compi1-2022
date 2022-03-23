@@ -55,26 +55,20 @@ public class Cliente implements Runnable {
     public void run() {
         Socket socket = null;
         ObjectOutput out;
-
         try {
             socket = new Socket(host, puerto);
-            consola.addLog("Servidor Iniciado");
-            System.out.println("Servidor Iniciado");
-            
+            consola.addLog("Iniciando cliente para enviar Respuesta");
+            System.out.println("Iniciando cliente para enviar Respuesta");
             out = new ObjectOutputStream(socket.getOutputStream());
-
             ///Envio de mansaje de respuesta al servidor
             this.enviar(out,mensaje);
-
             socket.close();
-            consola.addLog("Se desconecto del servidor");
+            consola.addLog("Respuesta enviada!!!");
             System.out.println("Se desconecto del servidor");
-
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     private void enviar(ObjectOutput out, Object data) throws IOException {
         out.writeObject(data);
     }
