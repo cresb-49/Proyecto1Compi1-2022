@@ -336,13 +336,49 @@ public class OperacionCast {
         if(left.getTipo().equals(TablaSimbolos.STRING)&&rigth.getTipo().equals(TablaSimbolos.COMODIN)){
             return TablaSimbolos.BOOLEAN;
         }else
-        if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.INT)){
+        if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.BOOLEAN)){
+            return TablaSimbolos.BOOLEAN;
+        }else
+        if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.CHAR)){
+            return TablaSimbolos.BOOLEAN;
+        }else
+        if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.COMODIN)){
             return TablaSimbolos.BOOLEAN;
         }else
         if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.DOUBLE)){
             return TablaSimbolos.BOOLEAN;
         }else
+        if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.ERROR)){
+            return TablaSimbolos.ERROR;
+        }else
+        if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.INT)){
+            return TablaSimbolos.BOOLEAN;
+        }else
+        if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.OBJECT)){
+            return TablaSimbolos.BOOLEAN;
+        }else
         if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.STRING)){
+            return TablaSimbolos.BOOLEAN;
+        }else
+        if(left.getTipo().equals(TablaSimbolos.BOOLEAN)&&rigth.getTipo().equals(TablaSimbolos.COMODIN)){
+            return TablaSimbolos.BOOLEAN;
+        }else
+        if(left.getTipo().equals(TablaSimbolos.CHAR)&&rigth.getTipo().equals(TablaSimbolos.COMODIN)){
+            return TablaSimbolos.BOOLEAN;
+        }else
+        if(left.getTipo().equals(TablaSimbolos.DOUBLE)&&rigth.getTipo().equals(TablaSimbolos.COMODIN)){
+            return TablaSimbolos.BOOLEAN;
+        }else
+        if(left.getTipo().equals(TablaSimbolos.ERROR)&&rigth.getTipo().equals(TablaSimbolos.COMODIN)){
+            return TablaSimbolos.ERROR;
+        }else
+        if(left.getTipo().equals(TablaSimbolos.INT)&&rigth.getTipo().equals(TablaSimbolos.COMODIN)){
+            return TablaSimbolos.BOOLEAN;
+        }else
+        if(left.getTipo().equals(TablaSimbolos.OBJECT)&&rigth.getTipo().equals(TablaSimbolos.COMODIN)){
+            return TablaSimbolos.BOOLEAN;
+        }else
+        if(left.getTipo().equals(TablaSimbolos.STRING)&&rigth.getTipo().equals(TablaSimbolos.COMODIN)){
             return TablaSimbolos.BOOLEAN;
         }else
         if(left.getTipo().equals(rigth.getTipo())){

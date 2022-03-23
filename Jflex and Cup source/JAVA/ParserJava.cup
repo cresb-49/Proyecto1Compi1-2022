@@ -102,33 +102,63 @@ parser code {:
     }
 
     private void error_exprecion(Token ref, Asignacion r, String expected) {
-        String error = "No se puede operar \""+r.getTipo()+" "+ref.getLexema()+"\" valores posibles a evaluar con \""+ref.getLexema()+"\" son -> "+expected;
-        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
+        if(r!=null){
+            String tipo = ((r.getTipo().equals(TablaSimbolos.COMODIN))?"Objeto/Funcion/Variable":r.getTipo());
+            String error = "No se puede operar \""+tipo+" "+ref.getLexema()+"\" valores posibles a evaluar con \""+ref.getLexema()+"\" son -> "+expected;
+            this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
+        }
     }
 
     private void error_exprecionIzquierda(Token ref, Asignacion r, String expected) {
-        String error = "No se puede operar \""+ref.getLexema()+" "+r.getTipo()+"\" valores posibles a evaluar con \""+ref.getLexema()+"\" son -> "+expected;
-        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
+        if(r!=null){
+            String tipo = ((r.getTipo().equals(TablaSimbolos.COMODIN))?"Objeto/Funcion/Variable":r.getTipo());
+            String error = "No se puede operar \""+ref.getLexema()+" "+tipo+"\" valores posibles a evaluar con \""+ref.getLexema()+"\" son -> "+expected;
+            this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
+        }
     }
 
     private void error_exprecion2(Token ref, Asignacion r1,Asignacion r2, String expected) {
-        String error = "No se puede operar \""+r1.getTipo()+" "+ref.getLexema()+" "+r2.getTipo()+"\" valores posibles a evaluar con \""+ref.getLexema()+"\" son -> "+expected;
-        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
+        if(r1!=null && r2!=null){
+            String tipo1 = ((r1.getTipo().equals(TablaSimbolos.COMODIN))?"Objeto/Funcion/Variable":r1.getTipo());
+            String tipo2 = ((r2.getTipo().equals(TablaSimbolos.COMODIN))?"Objeto/Funcion/Variable":r2.getTipo());
+            String error = "No se puede operar \""+tipo1+" "+ref.getLexema()+" "+tipo2+"\" valores posibles a evaluar con \""+ref.getLexema()+"\" son -> "+expected;
+            this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
+        }
     }   
 
     private void error_comparacion(Token ref, Asignacion r1,Asignacion r2) {
-        String error = "No se puede operar \""+r1.getTipo()+" "+ref.getLexema()+" "+r2.getTipo()+"\" debe evaluar datos del mismo tipo";
-        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
+        if(r1!=null && r2!=null){
+            String tipo1 = ((r1.getTipo().equals(TablaSimbolos.COMODIN))?"Objeto/Funcion/Variable":r1.getTipo());
+            String tipo2 = ((r2.getTipo().equals(TablaSimbolos.COMODIN))?"Objeto/Funcion/Variable":r2.getTipo());
+            String error = "No se puede operar \""+tipo1+" "+ref.getLexema()+" "+tipo2+"\" debe evaluar datos del mismo tipo";
+            this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
+        }
     }
 
     private void error_and_or(Token ref, Asignacion r1,Asignacion r2) {
-        String error = "No se puede operar \""+r1.getTipo()+" "+ref.getLexema()+" "+r2.getTipo()+"\" debe evaluar datos del tipo booleano";
-        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
+        if(r1!=null && r2!=null){
+            String tipo1 = ((r1.getTipo().equals(TablaSimbolos.COMODIN))?"Objeto/Funcion/Variable":r1.getTipo());
+            String tipo2 = ((r2.getTipo().equals(TablaSimbolos.COMODIN))?"Objeto/Funcion/Variable":r2.getTipo());
+            String error = "No se puede operar \""+tipo1+" "+ref.getLexema()+" "+tipo2+"\" debe evaluar datos del tipo booleano";
+            this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
+        }
     }
 
     private void verificarForInit(Token ref, Asignacion asig) {
-        String error = "La asignacion \""+ref.getLexema()+" "+asig.getTipo()+"\" no es valida debe de contener un entero";
-        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
+        if(asig!=null){
+            if(!(asig.getTipo().equals(TablaSimbolos.INT)||asig.getTipo().equals(TablaSimbolos.COMODIN))){
+                String error = "La asignacion \""+ref.getLexema()+" "+asig.getTipo()+"\" no es valida debe de ser una asignacion entera";
+                this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,"Valor Asignacion for", ref.getLinea(), ref.getColumna()+1, error),carpetaFuente,archivoAnalizado));
+            }
+        }
+    }
+    private void verificarExprecionBool(Token ref, Asignacion asig) {
+        if(asig!=null){
+            if(!(asig.getTipo().equals(TablaSimbolos.BOOLEAN)||asig.getTipo().equals(TablaSimbolos.COMODIN))){
+                String error = "El valor del condicional debe ser de tipo boolean valor actual -> "+asig.getTipo();
+                this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,"Valor Condicional", ref.getLinea(), ref.getColumna()+1, error),carpetaFuente,archivoAnalizado));
+            }
+        }
     }
 
     private void agregarVariablesTabla(String metodo_clase, ArrayList<FilaTablaSymbolos> vars) {
@@ -484,10 +514,10 @@ parametrosLlamadaP  ::= exp COMA parametrosLlamadaP
                     |   exp
                     ;
 
-cliclofor   ::= FOR PA_A INT:t ID:var EQUAL:ref exp:asig PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A LLA_C  {:verificarForInit(ref,asig); RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));:}
-            |   FOR PA_A INT:t ID:var EQUAL:ref exp:asig PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A sentencias:vars LLA_C {:verificarForInit(ref,asig); ArrayList<FilaTablaSymbolos> tmp = new ArrayList<>(); tmp.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));  RESULT = retornarDosFuentes(vars,tmp);:}
-            |   FOR PA_A ID EQUAL:ref exp:asig PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A LLA_C   {:verificarForInit(ref,asig);:}
-            |   FOR PA_A ID EQUAL:ref exp:asig PUNTOCOMA exp PUNTOCOMA ID agregarfor PA_C LLA_A sentencias:vars LLA_C {:verificarForInit(ref,asig); RESULT = vars;:}
+cliclofor   ::= FOR PA_A INT:t ID:var EQUAL:ref exp:asig PUNTOCOMA:ref2 exp:e PUNTOCOMA ID agregarfor PA_C LLA_A LLA_C  {:verificarForInit(ref,asig);verificarExprecionBool(ref2,e); RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));:}
+            |   FOR PA_A INT:t ID:var EQUAL:ref exp:asig PUNTOCOMA:ref2 exp:e PUNTOCOMA ID agregarfor PA_C LLA_A sentencias:vars LLA_C {:verificarForInit(ref,asig); verificarExprecionBool(ref2,e); ArrayList<FilaTablaSymbolos> tmp = new ArrayList<>(); tmp.add(new FilaTablaSymbolos(var.getLexema(),t.getLexema()));  RESULT = retornarDosFuentes(vars,tmp);:}
+            |   FOR PA_A ID EQUAL:ref exp:asig PUNTOCOMA:ref2 exp:e PUNTOCOMA ID agregarfor PA_C LLA_A LLA_C   {:verificarForInit(ref,asig);verificarExprecionBool(ref2,e);:}
+            |   FOR PA_A ID EQUAL:ref exp:asig PUNTOCOMA:ref2 exp:e PUNTOCOMA ID agregarfor PA_C LLA_A sentencias:vars LLA_C {:verificarForInit(ref,asig);verificarExprecionBool(ref2,e);RESULT = vars;:}
             ;
 
 agregarfor  ::= SUMAR
@@ -495,20 +525,20 @@ agregarfor  ::= SUMAR
             |   EQUAL:ref exp:asig   {::}
             ;
 
-ciclowhile  ::= WHILE PA_A exp PA_C LLA_A LLA_C
-            |   WHILE PA_A exp PA_C LLA_A sentencias:vars LLA_C {:RESULT = vars;:}
+ciclowhile  ::= WHILE PA_A:ref exp:e PA_C LLA_A LLA_C {:verificarExprecionBool(ref,e);:}
+            |   WHILE PA_A:ref exp:e PA_C LLA_A sentencias:vars LLA_C {:verificarExprecionBool(ref,e);RESULT = vars;:}
             ;
 
-cicloDoWhile    ::= DO LLA_A LLA_C WHILE PA_A exp PA_C PUNTOCOMA
-                |   DO LLA_A sentencias:vars LLA_C WHILE PA_A exp PA_C PUNTOCOMA {:RESULT = vars;:}
+cicloDoWhile    ::= DO LLA_A LLA_C WHILE PA_A:ref exp:e PA_C PUNTOCOMA  {:verificarExprecionBool(ref,e);:}
+                |   DO LLA_A sentencias:vars LLA_C WHILE PA_A:ref exp:e PA_C PUNTOCOMA {:verificarExprecionBool(ref,e);RESULT = vars;:}
                 ;
 
-condicionalif   ::= IF PA_A exp PA_C LLA_A sentencias:vars LLA_C {:RESULT = vars;:}
-                |   IF PA_A exp PA_C LLA_A LLA_C
-                |   IF PA_A exp PA_C LLA_A sentencias:vars LLA_C ELSE LLA_A LLA_C {:RESULT = vars;:}
-                |   IF PA_A exp PA_C LLA_A sentencias:vars LLA_C ELSE LLA_A sentencias:vars1 LLA_C {:RESULT = retornarDosFuentes(vars,vars1);:}
-                |   IF PA_A exp PA_C LLA_A LLA_C ELSE LLA_A LLA_C
-                |   IF PA_A exp PA_C LLA_A LLA_C ELSE LLA_A sentencias:vars LLA_C {:RESULT = vars;:}
+condicionalif   ::= IF PA_A:ref exp:e PA_C LLA_A sentencias:vars LLA_C {:verificarExprecionBool(ref,e);RESULT = vars;:}
+                |   IF PA_A:ref exp:e PA_C LLA_A LLA_C  {:verificarExprecionBool(ref,e);:}
+                |   IF PA_A:ref exp:e PA_C LLA_A sentencias:vars LLA_C ELSE LLA_A LLA_C {:verificarExprecionBool(ref,e);RESULT = vars;:}
+                |   IF PA_A:ref exp:e PA_C LLA_A sentencias:vars LLA_C ELSE LLA_A sentencias:vars1 LLA_C {:verificarExprecionBool(ref,e);RESULT = retornarDosFuentes(vars,vars1);:}
+                |   IF PA_A:ref exp:e PA_C LLA_A LLA_C ELSE LLA_A LLA_C {:verificarExprecionBool(ref,e);:}
+                |   IF PA_A:ref exp:e PA_C LLA_A LLA_C ELSE LLA_A sentencias:vars LLA_C {:verificarExprecionBool(ref,e);RESULT = vars;:}
                 ;
 
 condicionalSwitch   ::= SWITCH PA_A exp PA_C LLA_A contenidoSwitch:vars LLA_C {:RESULT = vars;:}
