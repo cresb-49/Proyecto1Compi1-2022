@@ -5,15 +5,12 @@
  */
 package com.cresb49.serverproyecto1;
 
-import com.cresb49.serverproyecto1.analizarjava.AnalizarJava;
 import com.cresb49.serverproyecto1.analizarjava.objetos.*;
 import com.cresb49.serverproyecto1.comunicacion.Cliente;
 import com.cresb49.serverproyecto1.comunicacion.Servidor;
 import com.cresb49.serverproyecto1.consolecontrol.ConsoleControl;
 import com.cresb49.appcliente.Objetos.*;
-import java.awt.ComponentOrientation;
 
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
