@@ -64,14 +64,12 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
     private void cargarImagenes() {
         try {
-            ClassLoader loader = FramePrincipal.class.getClassLoader();
-            java.net.URL imageURL1 = loader.getResource("com/resources/imgCarpeta.png");
-            java.net.URL imageURL2 = loader.getResource("com/resources/signoIncorrecto.png");
-            imagenCarpeta = ImageIO.read(imageURL1);
-            imagenNoCarga = ImageIO.read(imageURL2);
-            System.out.println("funciono");
-            //ImagenEstadoCarpeta1.setIcon(new ImageIcon(image.getScaledInstance(190, 190, Image.SCALE_DEFAULT)));
-        } catch (Exception ex) {
+            //java.net.URL imageURL1 = getClass().getResource("/resources/imgCarpeta.png");
+            //java.net.URL imageURL2 = getClass().getResource("/resources/signoIncorrecto.png");
+            imagenCarpeta = ImageIO.read(getClass().getResourceAsStream("/resources/imgCarpeta.png"));
+            imagenNoCarga = ImageIO.read(getClass().getResourceAsStream("/resources/signoIncorrecto.png"));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
             ex.printStackTrace();
         }
     }
