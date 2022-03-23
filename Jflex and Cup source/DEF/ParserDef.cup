@@ -494,6 +494,7 @@ non terminal                        varHTML2,varHTML4;
 
 def ::= def html
     |   ini
+    |   html
     ;
 
 ini ::= ini asig
