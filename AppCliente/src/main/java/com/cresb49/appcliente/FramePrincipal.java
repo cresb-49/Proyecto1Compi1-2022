@@ -19,6 +19,7 @@ import com.cresb49.appcliente.proyecto.exceptions.NotDirectoryCreate;
 import java.awt.HeadlessException;
 import java.awt.Image;
 import java.io.*;
+import java.security.AccessController;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -60,9 +61,11 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         try {
             //java.net.URL imageURL1 = getClass().getResource("/resources/imgCarpeta.png");
             //java.net.URL imageURL2 = getClass().getResource("/resources/signoIncorrecto.png");
-            imagenCarpeta = ImageIO.read(getClass().getResourceAsStream("/resources/imgCarpeta.png"));
-            imagenNoCarga = ImageIO.read(getClass().getResourceAsStream("/resources/signoIncorrecto.png"));
-        } catch (IOException ex) {
+            ImageIcon ico1 = new ImageIcon(getClass().getResource("/resource/imgCarpeta.png"));
+            ImageIcon ico2 = new ImageIcon(getClass().getResource("/resource/signoIncorrecto.png"));
+            imagenCarpeta = ico1.getImage();
+            imagenNoCarga = ico2.getImage();
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
             ex.printStackTrace();
         }
@@ -1017,10 +1020,10 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         this.setLocationRelativeTo(null);
         this.consolaJson = new ConsoleControl(ConsolaJson);
         this.consolaDef = new ConsoleControl(ConsolaDef);
-        this.cargarImagenes();
         this.inicializarServidor();
-        this.cargarEstadoCarpetas();
         this.mostrarNombreProyecto("Sin proyecto abierto");
         this.asignarEstadoTabProyecto(false);
+        this.cargarImagenes();
+        this.cargarEstadoCarpetas();
     }
 }
