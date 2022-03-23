@@ -13,6 +13,18 @@ public class java2 {
         }else{  
             units--;
         }
+        for(int i =met; i<45;i++){
+
+        }
+
+        String pruebas = "gola"+1+'f'+true+(met()+34)*r;
+
+        while(!false){
+
+        }
+        if(exp()){
+            
+        }
 
         while (billpay!=0) {
             itn var1 = 45;
