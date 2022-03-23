@@ -59,15 +59,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
      */
     public FramePrincipal() {
         initComponents();
-        this.cargarNumeroLineaDef();
-        this.cargarNumeroLineaJson();
-        this.setLocationRelativeTo(null);
-        this.consolaJson = new ConsoleControl(ConsolaJson);
-        this.consolaDef = new ConsoleControl(ConsolaDef);
-        this.cargarImagenes();
-        this.inicializarServidor();
-        this.cargarEstadoCarpetas();
-        this.mostrarNombreProyecto("Sin proyecto abierto");
+        initSubComponents();
     }
 
     private void cargarImagenes() {
@@ -528,10 +520,10 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             analizarJson.ejecutar(this.jTextAreaJson.getText());
             reporteJson = analizarJson.getReporteJson();
             this.mostrarErroresConsolaDefJson(analizarJson.getErrores());
-            if(!analizarJson.getErrores().isEmpty()){
+            if (!analizarJson.getErrores().isEmpty()) {
                 consolaDef.addLog("Errores en el archivo Json!!! puede que no se renderice correctamente el reporte");
             }
-            
+
             ////ANALISIS DEL ARCHIVO DEF
             AnalizarDef analizarDef = new AnalizarDef();
             String texto = jTextAreaDef.getText();
@@ -555,7 +547,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     private void EnviarCarpetasJavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnviarCarpetasJavaActionPerformed
         // TODO add your handling code here:
         if (this.proyectoCopy == null) {
-            JOptionPane.showMessageDialog(this, "No hay un proyecto cargado al programa", "Sin proyecto cargado", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No hay archivos cargados al programa", "Sin proyecto cargado", JOptionPane.INFORMATION_MESSAGE);
         } else {
             if (this.proyectoCopy.getPathCarpetaProyecto().isBlank() || this.proyectoCopy.getPathCarpetaProyecto().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Para continuar genere un proyecto", "Crear Proyecto", JOptionPane.INFORMATION_MESSAGE);
@@ -575,7 +567,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
                         Thread hilo = new Thread(cliente);
                         hilo.start();
                     } catch (IOException ex) {
-                        JOptionPane.showMessageDialog(this, "Error al enviar el codigo al servidor:\n" + ex.getMessage(), "Error al enviar!!!!", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "Error al enviar las carpetas al servidor:\n" + ex.getMessage(), "Error al enviar!!!!", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
@@ -680,24 +672,6 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             System.out.println("No se puedo registar el movimiento");
         }
     }//GEN-LAST:event_jTextAreaDefCaretUpdate
-
-    private ReporteJson reportePrueba() {
-        String score = "0.75";
-        ArrayList<Clase> clases = new ArrayList<>();
-        ArrayList<Variable> variables = new ArrayList<>();
-        ArrayList<Metodo> metodos = new ArrayList<>();
-        ArrayList<Comentario> comentarios = new ArrayList();
-        clases.add(new Clase("clase1"));
-        clases.add(new Clase("clase2"));
-        variables.add(new Variable("var1", "int", "funcion1, funcion2"));
-        variables.add(new Variable("var2", "int", "funcion2, Clase hola"));
-        metodos.add(new Metodo("metodo1", "void", 2));
-        metodos.add(new Metodo("metodo2", "String", 0));
-        comentarios.add(new Comentario("hola es un comentario"));
-        comentarios.add(new Comentario("otro coment"));
-        ReporteJson reporteJson = new ReporteJson(score, clases, variables, metodos, comentarios);
-        return reporteJson;
-    }
 
     /**
      * @param args the command line arguments
@@ -820,9 +794,16 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     public void update(Observable o, Object arg) {
         System.out.println("Se recibio una respuesta del servidor");
         if (arg instanceof String) {
-            System.out.println((String) arg);
-            this.jTextAreaJson.setText((String) arg);
-            //this.sobreEscribirJson();
+            if (!(((String) arg).isBlank() || ((String) arg).isEmpty())) {
+                System.out.println((String) arg);
+                this.jTextAreaJson.setText((String) arg);
+                try {
+                    this.sobreEscribirJson();
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(this, "No puede escribir el resultado Json:\n" + ex.getMessage(), "Error al guardar el archivo", JOptionPane.ERROR_MESSAGE);
+                }
+                this.asignarEstadoTabProyecto(true);
+            }
         }
     }
 
@@ -861,6 +842,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             System.out.println("path general: " + this.generalPath);
             this.cargarProyecto();
             this.mostrarNombreProyecto(archivoElegido.getName());
+            this.asignarEstadoTabProyecto(true);
             JOptionPane.showMessageDialog(this, "Carga exitosa!", "Carga exitosa!", JOptionPane.INFORMATION_MESSAGE);
         } catch (ClassNotFoundException e) {
             JOptionPane.showMessageDialog(this, "El archivo que desea cargar esta dañado" + e.getMessage(), "Error al cargar el archivo!", JOptionPane.ERROR_MESSAGE);
@@ -1031,5 +1013,22 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
     private void cargarNumeroLineaJson() {
         NumeroLinea numeroLinea = new NumeroLinea(this.jTextAreaJson);
         this.jScrollPane4.setRowHeaderView(numeroLinea);
+    }
+
+    private void asignarEstadoTabProyecto(boolean b) {
+        jTabbedPane1.setEnabledAt(1, b);
+    }
+
+    private void initSubComponents() {
+        this.cargarNumeroLineaDef();
+        this.cargarNumeroLineaJson();
+        this.setLocationRelativeTo(null);
+        this.consolaJson = new ConsoleControl(ConsolaJson);
+        this.consolaDef = new ConsoleControl(ConsolaDef);
+        this.cargarImagenes();
+        this.inicializarServidor();
+        this.cargarEstadoCarpetas();
+        this.mostrarNombreProyecto("Sin proyecto abierto");
+        this.asignarEstadoTabProyecto(false);
     }
 }
