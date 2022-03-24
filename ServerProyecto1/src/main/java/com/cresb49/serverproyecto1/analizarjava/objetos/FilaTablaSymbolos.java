@@ -58,6 +58,9 @@ public class FilaTablaSymbolos {
         if(this.funciones == null){
             this.funciones = new ArrayList<>();
         }
+        this.funciones.add(nombreFuncion);
+        
+        /*
         boolean found = false;
         for (String nombre : this.funciones) {
             if(nombre.equals(nombreFuncion)){
@@ -66,8 +69,8 @@ public class FilaTablaSymbolos {
             }
         }
         if(!found){
-            this.funciones.add(nombreFuncion);
-        }
+            
+        }*/
     }
 
     public void mergueFuncions(ArrayList<String> nuevasFunciones){

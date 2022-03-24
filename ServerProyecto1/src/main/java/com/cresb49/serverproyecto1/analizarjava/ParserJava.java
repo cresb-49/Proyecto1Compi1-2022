@@ -8,6 +8,7 @@ package com.cresb49.serverproyecto1.analizarjava;
 import com.cresb49.serverproyecto1.analizarjava.objetos.*;
 import com.cresb49.serverproyecto1.consolecontrol.ConsoleControl;
 import java.util.ArrayList;
+import java.util.Collections;
 import java_cup.runtime.*;
 import java_cup.runtime.XMLElement;
 
@@ -1110,6 +1111,7 @@ public class ParserJava extends java_cup.runtime.lr_parser {
     private ConsoleControl consola;
     private String carpetaFuente;
     private String archivoAnalizado;
+    private ArrayList<FilaTablaSymbolos> variablesDetectadas = new ArrayList<>();
     
     public ParserJava (LexerJava lexerJava,TablaSimbolos tablaSimbolos,ArrayList<Clase> clases,ArrayList<Metodo> metodos){ 
         super(lexerJava);
@@ -1266,6 +1268,28 @@ public class ParserJava extends java_cup.runtime.lr_parser {
                 }
             }
         }
+    }
+
+    private void asignarTipoVariableYCargarVariables(Asignacion t, ArrayList<FilaTablaSymbolos> vars) {
+        Collections.reverse(vars);
+        if(t!=null && vars!=null){
+            for (FilaTablaSymbolos var : vars) {
+                if(var!=null){
+                    var.setTipo(t.getTipo());
+                    variablesDetectadas.add(var);
+                }
+            }
+        }
+    }
+
+    private void agregarVariablesDetectadas(String metodoFuente) {
+        variablesDetectadas.forEach(variablesDetectada -> {
+            ArrayList<String> funciones = new ArrayList<>();
+            funciones.add(metodoFuente);
+            variablesDetectada.setFunciones(funciones);
+            tablaSimbolos.getFilas().add(variablesDetectada);
+        });
+        variablesDetectadas.clear();
     }
 
     private ArrayList<FilaTablaSymbolos> retornarDosFuentes(ArrayList<FilaTablaSymbolos> vars, ArrayList<FilaTablaSymbolos> vars1) {
@@ -1730,8 +1754,9 @@ class CUP$ParserJava$actions {
 		ArrayList<FilaTablaSymbolos> vars1 = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
 		
                                                                                             Metodo tmp = new Metodo(constructor.getLexema(),"Constructor");
-                                                                                            agregarMetodoEncontrado(tmp,vars1);
-                                                                                            agregarVariablesTabla("Constructor "+constructor.getLexema(),retornarDosFuentes(vars,vars1));
+                                                                                            agregarMetodoEncontrado(tmp,vars);
+                                                                                            //agregarVariablesTabla("Constructor "+constructor.getLexema(),retornarDosFuentes(vars,vars1));
+                                                                                            agregarVariablesDetectadas("Constructor "+constructor.getLexema());
                                                                                         
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("constructor",16, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
@@ -1749,8 +1774,8 @@ class CUP$ParserJava$actions {
 		ArrayList<FilaTablaSymbolos> vars1 = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
 		
                                                                                             Metodo tmp = new Metodo(constructor.getLexema(),"Constructor");
-                                                                                            agregarMetodoEncontrado(tmp,vars1);
-                                                                                            agregarVariablesTabla("Constructor "+constructor.getLexema(),vars1);
+                                                                                            //agregarVariablesTabla("Constructor "+constructor.getLexema(),vars1);
+                                                                                            agregarVariablesDetectadas("Constructor "+constructor.getLexema());
                                                                                         
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("constructor",16, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
@@ -1937,7 +1962,8 @@ class CUP$ParserJava$actions {
 		
                                                                                 if(metodo!=null){
                                                                                     agregarMetodoEncontrado(metodo,vars);
-                                                                                    agregarVariablesTabla("Metodo "+metodo.getNombre(),vars);
+                                                                                    //agregarVariablesTabla("Metodo "+metodo.getNombre(),vars);
+                                                                                    agregarVariablesDetectadas("Metodo "+metodo.getNombre());
                                                                                 }
                                                                             
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("metodo",11, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-4)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
@@ -1957,7 +1983,8 @@ class CUP$ParserJava$actions {
 		
                                                                                     if(metodo!=null){
                                                                                         agregarMetodoEncontrado(metodo,vars);
-                                                                                        agregarVariablesTabla("Metodo "+metodo.getNombre(),vars);
+                                                                                        //agregarVariablesTabla("Metodo "+metodo.getNombre(),vars);
+                                                                                        agregarVariablesDetectadas("Metodo "+metodo.getNombre());
                                                                                     }
                                                                                 
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("metodo",11, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
@@ -1980,7 +2007,8 @@ class CUP$ParserJava$actions {
 		
                                                                                             if(metodo!=null){
                                                                                                 agregarMetodoEncontrado(metodo,vars);
-                                                                                                agregarVariablesTabla("Metodo "+metodo.getNombre(),retornarDosFuentes(vars,vars1));
+                                                                                                //agregarVariablesTabla("Metodo "+metodo.getNombre(),retornarDosFuentes(vars,vars1));
+                                                                                                agregarVariablesDetectadas("Metodo "+metodo.getNombre());
                                                                                             }
                                                                                         
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("metodo",11, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-5)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
@@ -2003,7 +2031,8 @@ class CUP$ParserJava$actions {
 		
                                                                                                     if(metodo!=null){
                                                                                                         agregarMetodoEncontrado(metodo,vars);
-                                                                                                        agregarVariablesTabla("Metodo "+metodo.getNombre(),retornarDosFuentes(vars,vars1));
+                                                                                                        //agregarVariablesTabla("Metodo "+metodo.getNombre(),retornarDosFuentes(vars,vars1));
+                                                                                                        agregarVariablesDetectadas("Metodo "+metodo.getNombre());
                                                                                                     }
                                                                                                 
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("metodo",11, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-6)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
@@ -2332,7 +2361,7 @@ class CUP$ParserJava$actions {
 		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
 		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
 		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
-		asignarTipoVariable(t,vars);RESULT = vars;
+		asignarTipoVariableYCargarVariables(t,vars);RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("declararVariables2",31, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-3)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2347,7 +2376,7 @@ class CUP$ParserJava$actions {
 		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
 		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
 		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
-		asignarTipoVariable(t,vars);RESULT = vars;
+		asignarTipoVariableYCargarVariables(t,vars);RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("declararVariables2",31, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-2)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;
@@ -2941,7 +2970,10 @@ class CUP$ParserJava$actions {
           case 126: // sentencias ::= sentencias error 
             {
               ArrayList<FilaTablaSymbolos> RESULT =null;
-
+		int varsleft = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).left;
+		int varsright = ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).right;
+		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)).value;
+		RESULT = vars;
               CUP$ParserJava$result = parser.getSymbolFactory().newSymbol("sentencias",10, ((java_cup.runtime.Symbol)CUP$ParserJava$stack.elementAt(CUP$ParserJava$top-1)), ((java_cup.runtime.Symbol)CUP$ParserJava$stack.peek()), RESULT);
             }
           return CUP$ParserJava$result;

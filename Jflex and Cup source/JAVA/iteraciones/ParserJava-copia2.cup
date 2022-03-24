@@ -4,7 +4,6 @@ import com.cresb49.serverproyecto1.analizarjava.objetos.*;
 import com.cresb49.serverproyecto1.consolecontrol.ConsoleControl;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java_cup.runtime.*;
 
 class ParserJava;
@@ -23,7 +22,6 @@ parser code {:
     private ConsoleControl consola;
     private String carpetaFuente;
     private String archivoAnalizado;
-    private ArrayList<FilaTablaSymbolos> variablesDetectadas = new ArrayList<>();
     
     public ParserJava (LexerJava lexerJava,TablaSimbolos tablaSimbolos,ArrayList<Clase> clases,ArrayList<Metodo> metodos){ 
         super(lexerJava);
@@ -182,28 +180,6 @@ parser code {:
         }
     }
 
-    private void asignarTipoVariableYCargarVariables(Asignacion t, ArrayList<FilaTablaSymbolos> vars) {
-        Collections.reverse(vars);
-        if(t!=null && vars!=null){
-            for (FilaTablaSymbolos var : vars) {
-                if(var!=null){
-                    var.setTipo(t.getTipo());
-                    variablesDetectadas.add(var);
-                }
-            }
-        }
-    }
-
-    private void agregarVariablesDetectadas(String metodoFuente) {
-        variablesDetectadas.forEach(variablesDetectada -> {
-            ArrayList<String> funciones = new ArrayList<>();
-            funciones.add(metodoFuente);
-            variablesDetectada.setFunciones(funciones);
-            tablaSimbolos.getFilas().add(variablesDetectada);
-        });
-        variablesDetectadas.clear();
-    }
-
     private ArrayList<FilaTablaSymbolos> retornarDosFuentes(ArrayList<FilaTablaSymbolos> vars, ArrayList<FilaTablaSymbolos> vars1) {
         if(vars!=null){
             if(vars1!=null){
@@ -334,14 +310,13 @@ contClass   ::= contClass:vars declararVariables:vars1 {:RESULT = retornarDosFue
 
 constructor ::= visibilidad ID:constructor PA_A parametros:vars PA_C constructorP:vars1 {:
                                                                                             Metodo tmp = new Metodo(constructor.getLexema(),"Constructor");
-                                                                                            agregarMetodoEncontrado(tmp,vars);
-                                                                                            //agregarVariablesTabla("Constructor "+constructor.getLexema(),retornarDosFuentes(vars,vars1));
-                                                                                            agregarVariablesDetectadas("Constructor "+constructor.getLexema());
+                                                                                            agregarMetodoEncontrado(tmp,vars1);
+                                                                                            agregarVariablesTabla("Constructor "+constructor.getLexema(),retornarDosFuentes(vars,vars1));
                                                                                         :}
             |   visibilidad ID:constructor PA_A PA_C constructorP:vars1                 {:
                                                                                             Metodo tmp = new Metodo(constructor.getLexema(),"Constructor");
-                                                                                            //agregarVariablesTabla("Constructor "+constructor.getLexema(),vars1);
-                                                                                            agregarVariablesDetectadas("Constructor "+constructor.getLexema());
+                                                                                            agregarMetodoEncontrado(tmp,vars1);
+                                                                                            agregarVariablesTabla("Constructor "+constructor.getLexema(),vars1);
                                                                                         :}
             ;
 
@@ -369,29 +344,25 @@ parametrosP ::= tipo:t ID:var COMA parametrosP:vars {:RESULT = vars;if(RESULT!=n
 metodo      ::= visibilidad configMetodo:metodo PA_A PA_C metodoP:vars       {:
                                                                                 if(metodo!=null){
                                                                                     agregarMetodoEncontrado(metodo,vars);
-                                                                                    //agregarVariablesTabla("Metodo "+metodo.getNombre(),vars);
-                                                                                    agregarVariablesDetectadas("Metodo "+metodo.getNombre());
+                                                                                    agregarVariablesTabla("Metodo "+metodo.getNombre(),vars);
                                                                                 }
                                                                             :}
             |   visibilidad STATIC configMetodo:metodo PA_A PA_C metodoP:vars   {:
                                                                                     if(metodo!=null){
                                                                                         agregarMetodoEncontrado(metodo,vars);
-                                                                                        //agregarVariablesTabla("Metodo "+metodo.getNombre(),vars);
-                                                                                        agregarVariablesDetectadas("Metodo "+metodo.getNombre());
+                                                                                        agregarVariablesTabla("Metodo "+metodo.getNombre(),vars);
                                                                                     }
                                                                                 :}
             |   visibilidad configMetodo:metodo PA_A parametros:vars PA_C metodoP:vars1 {:
                                                                                             if(metodo!=null){
                                                                                                 agregarMetodoEncontrado(metodo,vars);
-                                                                                                //agregarVariablesTabla("Metodo "+metodo.getNombre(),retornarDosFuentes(vars,vars1));
-                                                                                                agregarVariablesDetectadas("Metodo "+metodo.getNombre());
+                                                                                                agregarVariablesTabla("Metodo "+metodo.getNombre(),retornarDosFuentes(vars,vars1));
                                                                                             }
                                                                                         :}
             |   visibilidad STATIC configMetodo:metodo PA_A parametros:vars PA_C metodoP:vars1  {:
                                                                                                     if(metodo!=null){
                                                                                                         agregarMetodoEncontrado(metodo,vars);
-                                                                                                        //agregarVariablesTabla("Metodo "+metodo.getNombre(),retornarDosFuentes(vars,vars1));
-                                                                                                        agregarVariablesDetectadas("Metodo "+metodo.getNombre());
+                                                                                                        agregarVariablesTabla("Metodo "+metodo.getNombre(),retornarDosFuentes(vars,vars1));
                                                                                                     }
                                                                                                 :}
             ;
@@ -433,8 +404,8 @@ listaVariables2 ::= ID:var EQUAL asig COMA listaVariables2:vars {:RESULT = vars;
                 ;
 
 
-declararVariables2  ::= FINAL tipo:t listaVariables3:vars PUNTOCOMA {:asignarTipoVariableYCargarVariables(t,vars);RESULT = vars;:}
-                    |   tipo:t listaVariables3:vars PUNTOCOMA {:asignarTipoVariableYCargarVariables(t,vars);RESULT = vars;:}
+declararVariables2  ::= FINAL tipo:t listaVariables3:vars PUNTOCOMA {:asignarTipoVariable(t,vars);RESULT = vars;:}
+                    |   tipo:t listaVariables3:vars PUNTOCOMA {:asignarTipoVariable(t,vars);RESULT = vars;:}
                     ;
 
 listaVariables3 ::= ID:var {:RESULT = new ArrayList<>(); RESULT.add(new FilaTablaSymbolos(var.getLexema()));:}

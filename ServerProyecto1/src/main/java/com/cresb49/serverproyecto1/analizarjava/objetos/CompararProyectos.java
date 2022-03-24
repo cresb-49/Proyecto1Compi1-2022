@@ -58,6 +58,18 @@ public class CompararProyectos {
         this.obtenerVariablesRepetidas(variables);
         this.convertirVariablesRepetidas(variables, varFinal);
         int totalVariables = this.resultadoCarpeta1.numeroDeVariables() + this.resultadoCarpeta2.numeroDeVariables();
+        ArrayList<FilaTablaSymbolos> repitencia1 = this.repitenciaAmbosProyectos(resultadoCarpeta1.getTablaSimbolos().getFilas(),resultadoCarpeta2.getTablaSimbolos().getFilas());
+        for (FilaTablaSymbolos filaTablaSymbolos : repitencia1) {
+            System.out.println(filaTablaSymbolos);
+        }
+        ArrayList<FilaTablaSymbolos> repitencia2 = this.repitenciaTablaFinal(variables);
+        for (FilaTablaSymbolos filaTablaSymbolos : repitencia2) {
+            System.out.println(repitencia2);
+        }
+        
+        
+        
+        
         int varsRepetidas = this.contarVariablesFinal(variables);
         int totalMetodos = this.resultadoCarpeta1.numeroMetodos()+this.resultadoCarpeta2.numeroMetodos();
         int metodosRepetidos = this.contarMetodosRepetidos(metodos);
@@ -280,7 +292,29 @@ public class CompararProyectos {
     private void obtenerVariablesRepetidas(ArrayList<FilaTablaSymbolos> variables) {
         FilaTablaSymbolos filatemp;
         FilaTablaSymbolos filatemp2;
-        FilaTablaSymbolos variableRepetida;
+        FilaTablaSymbolos variableRepetida=null;
+        boolean bandera = false;
+        for (FilaTablaSymbolos varProyecto1 : resultadoCarpeta1.getTablaSimbolos().getFilas()) {
+            bandera = false;
+            variableRepetida = new FilaTablaSymbolos(varProyecto1.getNombre(), varProyecto1.getTipo());
+            for (String funcione : varProyecto1.getFunciones()) {
+                variableRepetida.agregarFuncion(funcione);
+            }
+            for (FilaTablaSymbolos varProyecto2 : resultadoCarpeta2.getTablaSimbolos().getFilas()) {
+                if(varProyecto2.igualdadTipoNombre(varProyecto1)){
+                    bandera = true;
+                    for (String funcione : varProyecto2.getFunciones()) {
+                        variableRepetida.agregarFuncion(funcione);
+                    }
+                }
+            }
+            if(bandera){
+                if(variableRepetida!=null){
+                    variables.add(variableRepetida);
+                }
+            }
+        }
+        /*
         for (FilaTablaSymbolos filaTabla : resultadoCarpeta1.getTablaSimbolos().getFilas()) {
             if (filaTabla != null) {
                 filatemp = resultadoCarpeta2.getTablaSimbolos().buscarNombreTipo(filaTabla.getNombre(),
@@ -301,7 +335,7 @@ public class CompararProyectos {
                     }
                 }
             }
-        }
+        }*/
     }
 
     private FilaTablaSymbolos recuperarVariable(String nombre, String tipo, ArrayList<FilaTablaSymbolos> variables) {
@@ -387,6 +421,36 @@ public class CompararProyectos {
         return result;
         */
         return 0;
+    }
+
+    private ArrayList<FilaTablaSymbolos> repitenciaAmbosProyectos(ArrayList<FilaTablaSymbolos> filas, ArrayList<FilaTablaSymbolos> filas0) {
+        ArrayList<FilaTablaSymbolos> tmp = new ArrayList<>();
+        ArrayList<FilaTablaSymbolos> resultfinal = new ArrayList<>();
+        FilaTablaSymbolos filatmp = null;
+        tmp.addAll(filas);
+        tmp.addAll(filas0);
+        for (FilaTablaSymbolos tmp1 : tmp) {
+            filatmp = this.buscarVariable(tmp1.getNombre(),tmp1.getTipo(),resultfinal);
+            if(filatmp!=null){
+                filatmp.agregarRepeticion();
+            }else{
+                resultfinal.add(new FilaTablaSymbolos(tmp1.getNombre(), tmp1.getTipo()));
+            }
+        }
+        return resultfinal;
+    }
+
+    private ArrayList<FilaTablaSymbolos> repitenciaTablaFinal(ArrayList<FilaTablaSymbolos> variables) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private FilaTablaSymbolos buscarVariable(String nombre, String tipo, ArrayList<FilaTablaSymbolos> resultfinal) {
+        for (FilaTablaSymbolos filaTablaSymbolos : resultfinal) {
+            if(filaTablaSymbolos.getNombre().equals(nombre)&&filaTablaSymbolos.getTipo().equals(tipo)){
+                return filaTablaSymbolos;
+            }
+        }
+        return  null;
     }
 
 }
