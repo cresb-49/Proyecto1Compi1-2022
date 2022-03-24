@@ -6,7 +6,7 @@ import java.util.Objects;
  *
  * @author Benjamin
  */
-public class Parametros {
+public class Parametros implements Comparable{
     private String nombre;
     private String tipo;
 
@@ -64,4 +64,10 @@ public class Parametros {
     public String toString() {
         return "Parametros{" + "nombre=" + nombre + ", tipo=" + tipo + '}';
     } 
+
+    @Override
+    public int compareTo(Object o) {
+        final Parametros other = (Parametros) o;
+        return this.nombre.compareTo(other.getNombre());
+    }
 }

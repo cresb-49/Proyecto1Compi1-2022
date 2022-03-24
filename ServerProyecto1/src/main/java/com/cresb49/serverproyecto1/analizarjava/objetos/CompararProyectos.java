@@ -52,33 +52,43 @@ public class CompararProyectos {
         ArrayList<Variable> varFinal = new ArrayList<>();
         ArrayList<Metodo> metodos = new ArrayList<>();
         ArrayList<Comentario> comentarios = new ArrayList<>();
-        this.obtenerMetodosRepetidos(metodos);
         this.obtenerComentariosRepetidos(comentarios);
         this.obtenerClasesRepetidos(clases);
         this.obtenerVariablesRepetidas(variables);
         this.convertirVariablesRepetidas(variables, varFinal);
         int totalVariables = this.resultadoCarpeta1.numeroDeVariables() + this.resultadoCarpeta2.numeroDeVariables();
         ArrayList<FilaTablaSymbolos> repitencia1 = this.repitenciaAmbosProyectos(resultadoCarpeta1.getTablaSimbolos().getFilas(),resultadoCarpeta2.getTablaSimbolos().getFilas());
+        ArrayList<FilaTablaSymbolos> repitencia2 = this.repitenciaTablaFinal(variables);
+        /*
         for (FilaTablaSymbolos filaTablaSymbolos : repitencia1) {
             System.out.println(filaTablaSymbolos);
         }
-        ArrayList<FilaTablaSymbolos> repitencia2 = this.repitenciaTablaFinal(variables);
+        System.out.println("------------------------------------------------------------------");
+        
         for (FilaTablaSymbolos filaTablaSymbolos : repitencia2) {
-            System.out.println(repitencia2);
-        }
-        
-        
-        
-        
-        int varsRepetidas = this.contarVariablesFinal(variables);
+            System.out.println(filaTablaSymbolos);
+        }*/
+        int varsRepetidas = this.contarVariablesFinal(repitencia1,repitencia2);
         int totalMetodos = this.resultadoCarpeta1.numeroMetodos()+this.resultadoCarpeta2.numeroMetodos();
-        int metodosRepetidos = this.contarMetodosRepetidos(metodos);
+        this.obtenerMetodosRepetidos(metodos);
+        ArrayList<Metodo> repitenciaMetodo1 = this.repitenciaMetodosProyectos(resultadoCarpeta1.getMetodos(),resultadoCarpeta2.getMetodos());
+        for (Metodo metodo : repitenciaMetodo1) {System.out.println(metodo.toString());}
+        ArrayList<Metodo> repitenciaMetodo2 = this.repitenciaMetodosProyectos(metodos);
+        int metodosRepetidos = this.contarMetodosRepetidos(repitenciaMetodo1,repitenciaMetodo2);
+        
+        
+        
+        
+        
         int totalClases = this.resultadoCarpeta1.numeroClases()+this.resultadoCarpeta2.numeroClases();
         int clasesRepetidas = this.contarClasesRepetidas(clases);
         int totalComen = this.resultadoCarpeta1.numeroComentarios()+this.resultadoCarpeta2.numeroComentarios();
         int comenrepetidos = this.contarComentariosRepetidos(comentarios);
+        System.out.println("varsTotales: " + totalVariables);
         System.out.println("varsRepetidas: " + varsRepetidas);
+        System.out.println("metodosTotales: " + totalMetodos);
         System.out.println("metodosRepetidos: " + metodosRepetidos);
+        System.out.println("comenTotales: " + totalComen);
         System.out.println("comenrepetidos: " + comenrepetidos);
         String score = this.carlcularScore(totalVariables, varsRepetidas, totalMetodos, metodosRepetidos, totalClases,
                 clasesRepetidas, totalComen, comenrepetidos);
@@ -118,7 +128,7 @@ public class CompararProyectos {
         System.out.println(finalResult);
         return String.format("%.4f",finalResult.doubleValue());
     }
-
+    /*
     private int contarVariablesFinal(ArrayList<FilaTablaSymbolos> variables) {
         int result = 0;
         for (FilaTablaSymbolos filaTablaSymbolos : variables) {
@@ -128,7 +138,7 @@ public class CompararProyectos {
         }
         return result;
     }
-
+    */
     private String toJsonText(ReporteJson reporteJson) {
         StringBuilder json = new StringBuilder();
         json.append("{" + "\n");
@@ -168,7 +178,7 @@ public class CompararProyectos {
         for (int i = 0; i < reporteJson.getMetodos().size(); i++) {
             json.append("\t{Nombre: \"" + reporteJson.getMetodos().get(i).getNombre() + "\", Tipo: \""
                     + reporteJson.getMetodos().get(i).getTipo() + "\", Parametros: "
-                    + reporteJson.getMetodos().get(i).getParametros() + "}");
+                    + reporteJson.getMetodos().get(i).getParametros().size() + "}");
             if (reporteJson.getMetodos().size() >= 2) {
                 if (i < (reporteJson.getMetodos().size() - 1)) {
                     json.append(",\n");
@@ -199,6 +209,21 @@ public class CompararProyectos {
     }
 
     private void obtenerMetodosRepetidos(ArrayList<Metodo> metodos) {
+        
+        Metodo metodoRepetido = null;
+        Metodo metodoR = null;
+        boolean bandera = false;
+        for (Metodo metodo : resultadoCarpeta1.getMetodos()) {
+            bandera = false;
+            metodoRepetido = new Metodo(metodo.getNombre(), metodo.getTipo());
+            for (Metodo metodo1 : resultadoCarpeta2.getMetodos()) {
+                if(metodo.compararMetodos(metodo1)){
+                    metodoR = new Metodo(metodo.getNombre(), metodo.getTipo());
+                    metodoR.setParametros(metodo.getParametros());
+                    metodos.add(metodoR);
+                }
+            }
+        }        
         /*
         Metodo tmp1 = null;
         Metodo tmp2 = null;
@@ -222,7 +247,7 @@ public class CompararProyectos {
 
     private Metodo buscarListaMetodos(ArrayList<Metodo> metodos, Metodo metodo) {
         for (Metodo met : metodos) {
-            if (met.equals(metodo)) {
+            if (met.compararMetodos(metodo)) {
                 return met;
             }
         }
@@ -441,7 +466,15 @@ public class CompararProyectos {
     }
 
     private ArrayList<FilaTablaSymbolos> repitenciaTablaFinal(ArrayList<FilaTablaSymbolos> variables) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<FilaTablaSymbolos> resultfinal = new ArrayList<>();
+        FilaTablaSymbolos filatmp = null;
+        for (FilaTablaSymbolos tmp1 : variables) {
+            filatmp = this.buscarVariable(tmp1.getNombre(),tmp1.getTipo(),resultfinal);
+            if(filatmp==null){
+                resultfinal.add(new FilaTablaSymbolos(tmp1.getNombre(), tmp1.getTipo()));
+            }
+        }
+        return resultfinal;
     }
 
     private FilaTablaSymbolos buscarVariable(String nombre, String tipo, ArrayList<FilaTablaSymbolos> resultfinal) {
@@ -451,6 +484,59 @@ public class CompararProyectos {
             }
         }
         return  null;
+    }
+
+    private int contarVariablesFinal(ArrayList<FilaTablaSymbolos> repitencia1, ArrayList<FilaTablaSymbolos> repitencia2) {
+        int result = 0;
+        FilaTablaSymbolos tmp = null;
+        for (FilaTablaSymbolos filaTablaSymbolos : repitencia2) {
+            tmp = this.buscarVariable(filaTablaSymbolos.getNombre(), filaTablaSymbolos.getTipo(),repitencia1);
+            if(tmp!=null){
+                result = result + tmp.getRepeticiones();
+            }
+        }
+        return  result;
+    }
+
+    private ArrayList<Metodo> repitenciaMetodosProyectos(ArrayList<Metodo> metodos, ArrayList<Metodo> metodos0) {
+        ArrayList<Metodo> tmp = new ArrayList<>();
+        ArrayList<Metodo> resultFinal = new ArrayList<>();
+        Metodo metodoTmp = null;
+        tmp.addAll(metodos);
+        tmp.addAll(metodos0);
+        for (Metodo tmp1 : tmp) {
+            metodoTmp = this.buscarListaMetodos(resultFinal,tmp1);
+            if(metodoTmp!=null){
+                metodoTmp.agregarRepeticion();
+            }else{
+                resultFinal.add(new Metodo(tmp1.getNombre(), tmp1.getTipo(), tmp1.getParametros()));
+            }
+        }
+        return resultFinal;
+    }
+
+    private ArrayList<Metodo> repitenciaMetodosProyectos(ArrayList<Metodo> metodos) {
+        ArrayList<Metodo> resultfinal = new ArrayList<>();
+        Metodo metodoTmp = null;
+        for (Metodo tmp1 : metodos) {
+            metodoTmp = this.buscarListaMetodos(resultfinal,tmp1);
+            if(metodoTmp==null){
+                resultfinal.add(new Metodo(tmp1.getNombre(), tmp1.getTipo(), tmp1.getParametros()));
+            }
+        }
+        return resultfinal;
+    }
+
+    private int contarMetodosRepetidos(ArrayList<Metodo> repitenciaMetodo1, ArrayList<Metodo> repitenciaMetodo2) {
+        int result = 0;
+        Metodo metodoTmp = null;
+        for (Metodo filaTablaSymbolos : repitenciaMetodo2) {
+            metodoTmp = this.buscarListaMetodos(repitenciaMetodo1,filaTablaSymbolos);
+            if(metodoTmp!=null){
+                result = result + metodoTmp.getRepeticiones();
+            }
+        }
+        return  result;
     }
 
 }
