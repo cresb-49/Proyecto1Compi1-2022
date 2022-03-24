@@ -1282,6 +1282,17 @@ public class ParserJava extends java_cup.runtime.lr_parser {
         }
     }
 
+    private void cargarVariables(ArrayList<FilaTablaSymbolos> vars) {
+        Collections.reverse(vars);
+        if(vars!=null){
+            for (FilaTablaSymbolos var : vars) {
+                if(var!=null){
+                    variablesDetectadas.add(var);
+                }
+            }
+        }
+    }
+
     private void agregarVariablesDetectadas(String metodoFuente) {
         variablesDetectadas.forEach(variablesDetectada -> {
             ArrayList<String> funciones = new ArrayList<>();
@@ -1317,6 +1328,7 @@ public class ParserJava extends java_cup.runtime.lr_parser {
             vars.forEach(var -> {p.add(new Parametros(var.getNombre(), var.getTipo()));});
         }
         metodo.setParametros(p);
+        System.out.println(metodo.toString());
     }
 
     private void agregarClase(String nombre) {
@@ -1755,6 +1767,7 @@ class CUP$ParserJava$actions {
 		
                                                                                             Metodo tmp = new Metodo(constructor.getLexema(),"Constructor");
                                                                                             agregarMetodoEncontrado(tmp,vars);
+                                                                                            cargarVariables(vars);
                                                                                             //agregarVariablesTabla("Constructor "+constructor.getLexema(),retornarDosFuentes(vars,vars1));
                                                                                             agregarVariablesDetectadas("Constructor "+constructor.getLexema());
                                                                                         
@@ -1774,6 +1787,7 @@ class CUP$ParserJava$actions {
 		ArrayList<FilaTablaSymbolos> vars1 = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
 		
                                                                                             Metodo tmp = new Metodo(constructor.getLexema(),"Constructor");
+                                                                                            agregarMetodoEncontrado(tmp,new ArrayList<>());
                                                                                             //agregarVariablesTabla("Constructor "+constructor.getLexema(),vars1);
                                                                                             agregarVariablesDetectadas("Constructor "+constructor.getLexema());
                                                                                         
@@ -1961,7 +1975,7 @@ class CUP$ParserJava$actions {
 		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
 		
                                                                                 if(metodo!=null){
-                                                                                    agregarMetodoEncontrado(metodo,vars);
+                                                                                    agregarMetodoEncontrado(metodo,new ArrayList<>());
                                                                                     //agregarVariablesTabla("Metodo "+metodo.getNombre(),vars);
                                                                                     agregarVariablesDetectadas("Metodo "+metodo.getNombre());
                                                                                 }
@@ -1982,7 +1996,7 @@ class CUP$ParserJava$actions {
 		ArrayList<FilaTablaSymbolos> vars = (ArrayList<FilaTablaSymbolos>)((java_cup.runtime.Symbol) CUP$ParserJava$stack.peek()).value;
 		
                                                                                     if(metodo!=null){
-                                                                                        agregarMetodoEncontrado(metodo,vars);
+                                                                                        agregarMetodoEncontrado(metodo,new ArrayList<>());
                                                                                         //agregarVariablesTabla("Metodo "+metodo.getNombre(),vars);
                                                                                         agregarVariablesDetectadas("Metodo "+metodo.getNombre());
                                                                                     }
@@ -2007,6 +2021,7 @@ class CUP$ParserJava$actions {
 		
                                                                                             if(metodo!=null){
                                                                                                 agregarMetodoEncontrado(metodo,vars);
+                                                                                                cargarVariables(vars);
                                                                                                 //agregarVariablesTabla("Metodo "+metodo.getNombre(),retornarDosFuentes(vars,vars1));
                                                                                                 agregarVariablesDetectadas("Metodo "+metodo.getNombre());
                                                                                             }
@@ -2031,6 +2046,7 @@ class CUP$ParserJava$actions {
 		
                                                                                                     if(metodo!=null){
                                                                                                         agregarMetodoEncontrado(metodo,vars);
+                                                                                                        cargarVariables(vars);
                                                                                                         //agregarVariablesTabla("Metodo "+metodo.getNombre(),retornarDosFuentes(vars,vars1));
                                                                                                         agregarVariablesDetectadas("Metodo "+metodo.getNombre());
                                                                                                     }

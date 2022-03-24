@@ -194,6 +194,17 @@ parser code {:
         }
     }
 
+    private void cargarVariables(ArrayList<FilaTablaSymbolos> vars) {
+        Collections.reverse(vars);
+        if(vars!=null){
+            for (FilaTablaSymbolos var : vars) {
+                if(var!=null){
+                    variablesDetectadas.add(var);
+                }
+            }
+        }
+    }
+
     private void agregarVariablesDetectadas(String metodoFuente) {
         variablesDetectadas.forEach(variablesDetectada -> {
             ArrayList<String> funciones = new ArrayList<>();
@@ -229,6 +240,7 @@ parser code {:
             vars.forEach(var -> {p.add(new Parametros(var.getNombre(), var.getTipo()));});
         }
         metodo.setParametros(p);
+        System.out.println(metodo.toString());
     }
 
     private void agregarClase(String nombre) {
@@ -335,11 +347,13 @@ contClass   ::= contClass:vars declararVariables:vars1 {:RESULT = retornarDosFue
 constructor ::= visibilidad ID:constructor PA_A parametros:vars PA_C constructorP:vars1 {:
                                                                                             Metodo tmp = new Metodo(constructor.getLexema(),"Constructor");
                                                                                             agregarMetodoEncontrado(tmp,vars);
+                                                                                            cargarVariables(vars);
                                                                                             //agregarVariablesTabla("Constructor "+constructor.getLexema(),retornarDosFuentes(vars,vars1));
                                                                                             agregarVariablesDetectadas("Constructor "+constructor.getLexema());
                                                                                         :}
             |   visibilidad ID:constructor PA_A PA_C constructorP:vars1                 {:
                                                                                             Metodo tmp = new Metodo(constructor.getLexema(),"Constructor");
+                                                                                            agregarMetodoEncontrado(tmp,new ArrayList<>());
                                                                                             //agregarVariablesTabla("Constructor "+constructor.getLexema(),vars1);
                                                                                             agregarVariablesDetectadas("Constructor "+constructor.getLexema());
                                                                                         :}
@@ -368,14 +382,14 @@ parametrosP ::= tipo:t ID:var COMA parametrosP:vars {:RESULT = vars;if(RESULT!=n
 
 metodo      ::= visibilidad configMetodo:metodo PA_A PA_C metodoP:vars       {:
                                                                                 if(metodo!=null){
-                                                                                    agregarMetodoEncontrado(metodo,vars);
+                                                                                    agregarMetodoEncontrado(metodo,new ArrayList<>());
                                                                                     //agregarVariablesTabla("Metodo "+metodo.getNombre(),vars);
                                                                                     agregarVariablesDetectadas("Metodo "+metodo.getNombre());
                                                                                 }
                                                                             :}
             |   visibilidad STATIC configMetodo:metodo PA_A PA_C metodoP:vars   {:
                                                                                     if(metodo!=null){
-                                                                                        agregarMetodoEncontrado(metodo,vars);
+                                                                                        agregarMetodoEncontrado(metodo,new ArrayList<>());
                                                                                         //agregarVariablesTabla("Metodo "+metodo.getNombre(),vars);
                                                                                         agregarVariablesDetectadas("Metodo "+metodo.getNombre());
                                                                                     }
@@ -383,6 +397,7 @@ metodo      ::= visibilidad configMetodo:metodo PA_A PA_C metodoP:vars       {:
             |   visibilidad configMetodo:metodo PA_A parametros:vars PA_C metodoP:vars1 {:
                                                                                             if(metodo!=null){
                                                                                                 agregarMetodoEncontrado(metodo,vars);
+                                                                                                cargarVariables(vars);
                                                                                                 //agregarVariablesTabla("Metodo "+metodo.getNombre(),retornarDosFuentes(vars,vars1));
                                                                                                 agregarVariablesDetectadas("Metodo "+metodo.getNombre());
                                                                                             }
@@ -390,6 +405,7 @@ metodo      ::= visibilidad configMetodo:metodo PA_A PA_C metodoP:vars       {:
             |   visibilidad STATIC configMetodo:metodo PA_A parametros:vars PA_C metodoP:vars1  {:
                                                                                                     if(metodo!=null){
                                                                                                         agregarMetodoEncontrado(metodo,vars);
+                                                                                                        cargarVariables(vars);
                                                                                                         //agregarVariablesTabla("Metodo "+metodo.getNombre(),retornarDosFuentes(vars,vars1));
                                                                                                         agregarVariablesDetectadas("Metodo "+metodo.getNombre());
                                                                                                     }
