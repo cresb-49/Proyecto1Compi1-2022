@@ -1,25 +1,16 @@
 package com.cresb49.serverproyecto1.analizarjava.objetos;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Objects;
-
 
 /**
  *
  * @author Benjamin
  */
-public class Metodo implements Serializable{
-    
-    
+public class Parametros {
     private String nombre;
     private String tipo;
-    private ArrayList<Parametros> parametros;
 
-    public Metodo() {
-    }
-    
-    public Metodo(String nombre, String tipo) {
+    public Parametros(String nombre, String tipo) {
         this.nombre = nombre;
         this.tipo = tipo;
     }
@@ -40,20 +31,11 @@ public class Metodo implements Serializable{
         this.tipo = tipo;
     }
 
-    public ArrayList<Parametros> getParametros() {
-        return parametros;
-    }
-
-    public void setParametros(ArrayList<Parametros> parametros) {
-        this.parametros = parametros;
-    }
-
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.nombre);
-        hash = 97 * hash + Objects.hashCode(this.tipo);
-        hash = 97 * hash + Objects.hashCode(this.parametros);
+        hash = 79 * hash + Objects.hashCode(this.nombre);
+        hash = 79 * hash + Objects.hashCode(this.tipo);
         return hash;
     }
 
@@ -68,14 +50,11 @@ public class Metodo implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Metodo other = (Metodo) obj;
+        final Parametros other = (Parametros) obj;
         if (!Objects.equals(this.nombre, other.nombre)) {
             return false;
         }
         if (!Objects.equals(this.tipo, other.tipo)) {
-            return false;
-        }
-        if (!Objects.equals(this.parametros, other.parametros)) {
             return false;
         }
         return true;
@@ -83,7 +62,6 @@ public class Metodo implements Serializable{
 
     @Override
     public String toString() {
-        return "Metodo{" + "nombre=" + nombre + ", tipo=" + tipo + ", parametros=" + parametros + '}';
-    }
-    
+        return "Parametros{" + "nombre=" + nombre + ", tipo=" + tipo + '}';
+    } 
 }

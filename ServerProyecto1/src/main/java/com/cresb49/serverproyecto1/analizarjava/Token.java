@@ -5,17 +5,13 @@ public class Token {
     private Object value;
     private int linea;
     private int columna;
-    private Token sigToken;
-    private Token antToken;
 
 
-    public Token(String lexema, Object value, int linea, int columna, Token sigToken, Token antToken) {
+    public Token(String lexema, Object value, int linea, int columna) {
         this.lexema = lexema;
         this.value = value;
         this.linea = linea;
         this.columna = columna;
-        this.sigToken = sigToken;
-        this.antToken = antToken;
     }
 
     public Token() {
@@ -51,21 +47,5 @@ public class Token {
 
     public void setColumna(int columna) {
         this.columna = columna;
-    }
-
-    public Token getSigToken() {
-        return sigToken;
-    }
-
-    public void setSigToken(Token sigToken) {
-        this.sigToken = sigToken;
-    }
-
-    public Token getAntToken() {
-        return antToken;
-    }
-
-    public void setAntToken(Token antToken) {
-        this.antToken = antToken;
     }
 }

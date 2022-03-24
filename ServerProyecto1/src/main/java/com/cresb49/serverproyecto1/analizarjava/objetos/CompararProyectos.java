@@ -2,7 +2,6 @@ package com.cresb49.serverproyecto1.analizarjava.objetos;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.security.interfaces.RSAKey;
 import java.util.ArrayList;
 
 public class CompararProyectos {
@@ -188,6 +187,7 @@ public class CompararProyectos {
     }
 
     private void obtenerMetodosRepetidos(ArrayList<Metodo> metodos) {
+        /*
         Metodo tmp1 = null;
         Metodo tmp2 = null;
         Metodo newtmp = null;
@@ -205,7 +205,7 @@ public class CompararProyectos {
                     }
                 }
             }
-        }
+        }*/
     }
 
     private Metodo buscarListaMetodos(ArrayList<Metodo> metodos, Metodo metodo) {
@@ -379,11 +379,14 @@ public class CompararProyectos {
     }
 
     private int contarMetodosRepetidos(ArrayList<Metodo> metodos) {
+        /*
         int result =0;
         for (Metodo metodo : metodos) {
             result = result + metodo.getRepeticiones();
         }
         return result;
+        */
+        return 0;
     }
 
 }

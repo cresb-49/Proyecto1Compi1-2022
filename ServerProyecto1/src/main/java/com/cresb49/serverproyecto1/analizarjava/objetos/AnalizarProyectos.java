@@ -60,7 +60,7 @@ public class AnalizarProyectos {
         //CONTROL INTERNO DE LA RECUPERACION DE INFORMACION CARPETA 1
         System.out.println("RESULTADO CARPETA 1");
         System.out.println("Numero Variables: "+analisis1.numeroDeVariables());
-        //for (FilaTablaSymbolos fila : tablaSimbolos1.getFilas()) {System.out.println(fila.toString());}
+        for (FilaTablaSymbolos fila : tablaSimbolos1.getFilas()) {System.out.println(fila.toString());}
         System.out.println("Numero Clases: "+analisis1.numeroClases());
         //analisis1.imprimirClases();
         System.out.println("Numero Metodos: "+analisis1.numeroMetodos());

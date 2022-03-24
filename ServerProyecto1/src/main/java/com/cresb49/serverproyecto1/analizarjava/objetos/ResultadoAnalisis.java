@@ -70,43 +70,37 @@ public class ResultadoAnalisis {
     }
     
     public int numeroDeVariables(){
-        int result = 0;
-        for (FilaTablaSymbolos variable : this.tablaSimbolos.getFilas()) {
-            if(variable!=null){
-                result = result + variable.getRepeticiones();
-            }
+        if(tablaSimbolos==null){
+            return 0;
+        }else if(tablaSimbolos.getFilas()==null){
+            return 0;
+        }else{
+            return tablaSimbolos.getFilas().size();
         }
-        return result;
     }
 
     public int numeroClases(){
-        int result =0;
-        for (Clase clase : clases) {
-            if(clase!=null){
-                result = result + clase.getRepeticiones();
-            }
+        if(clases==null){
+            return 0;
+        }else{
+            return clases.size();
         }
-        return result;
     }
 
     public int numeroComentarios(){
-        int result =0;
-        for (Comentario comentario : comentarios) {
-            if(comentario!=null){
-                result = result + comentario.getRepeticiones();
-            }
+        if(comentarios==null){
+            return 0;
+        }else{
+            return comentarios.size();
         }
-        return result;
     }
     
     public int numeroMetodos(){
-        int result =0;
-        for (Metodo metodo : metodos) {
-            if(metodo!=null){
-                result = result + metodo.getRepeticiones();
-            }
+        if(metodos==null){
+            return 0;
+        }else{
+            return metodos.size();
         }
-        return result;
     }
     public void imprimirClases(){
         System.out.println("-------------------------CLASES--------------------------");
