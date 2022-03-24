@@ -64,7 +64,7 @@ public class AnalizarProyectos {
         System.out.println("Numero Clases: "+analisis1.numeroClases());
         //analisis1.imprimirClases();
         System.out.println("Numero Metodos: "+analisis1.numeroMetodos());
-        analisis1.imprimirMetodos();
+        //analisis1.imprimirMetodos();
         System.out.println("Numero Comentarios: "+analisis1.numeroComentarios());
         //analisis1.imprimirCometarios();
         //CONTROL INTERNO DE LA RECUPERACION DE INFORMACION CARPETA 2

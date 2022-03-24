@@ -59,31 +59,37 @@ public class CompararProyectos {
         int totalVariables = this.resultadoCarpeta1.numeroDeVariables() + this.resultadoCarpeta2.numeroDeVariables();
         ArrayList<FilaTablaSymbolos> repitencia1 = this.repitenciaAmbosProyectos(resultadoCarpeta1.getTablaSimbolos().getFilas(),resultadoCarpeta2.getTablaSimbolos().getFilas());
         ArrayList<FilaTablaSymbolos> repitencia2 = this.repitenciaTablaFinal(variables);
-        /*
-        for (FilaTablaSymbolos filaTablaSymbolos : repitencia1) {
-            System.out.println(filaTablaSymbolos);
-        }
-        System.out.println("------------------------------------------------------------------");
-        
-        for (FilaTablaSymbolos filaTablaSymbolos : repitencia2) {
-            System.out.println(filaTablaSymbolos);
-        }*/
+        //for (FilaTablaSymbolos filaTablaSymbolos : repitencia1) {System.out.println(filaTablaSymbolos);}
+        //System.out.println("------------------------------------------------------------------");
+        //for (FilaTablaSymbolos filaTablaSymbolos : repitencia2) {System.out.println(filaTablaSymbolos);}
         int varsRepetidas = this.contarVariablesFinal(repitencia1,repitencia2);
         int totalMetodos = this.resultadoCarpeta1.numeroMetodos()+this.resultadoCarpeta2.numeroMetodos();
         this.obtenerMetodosRepetidos(metodos);
         ArrayList<Metodo> repitenciaMetodo1 = this.repitenciaMetodosProyectos(resultadoCarpeta1.getMetodos(),resultadoCarpeta2.getMetodos());
-        for (Metodo metodo : repitenciaMetodo1) {System.out.println(metodo.toString());}
+        //for (Metodo metodo : repitenciaMetodo1) {System.out.println(metodo.toString());}
+        //System.out.println("------------------------------------------------------------------");
         ArrayList<Metodo> repitenciaMetodo2 = this.repitenciaMetodosProyectos(metodos);
+        //for (Metodo metodo : repitenciaMetodo2) {System.out.println(metodo.toString());}
         int metodosRepetidos = this.contarMetodosRepetidos(repitenciaMetodo1,repitenciaMetodo2);
-        
-        
-        
-        
-        
+        //System.out.println("------------------------------------------------------------------");
         int totalClases = this.resultadoCarpeta1.numeroClases()+this.resultadoCarpeta2.numeroClases();
-        int clasesRepetidas = this.contarClasesRepetidas(clases);
+        ArrayList<Clase> repitenciaClase1 = this.repitenciaClasesProyecto(resultadoCarpeta1.getClases(),resultadoCarpeta2.getClases());
+        ArrayList<Clase> repitenciaClase2 = this.repitenciaClasesProyecto(clases);
+        for (Clase clase : repitenciaClase1) {System.out.println(clase.toString());}
+        System.out.println("------------------------------------------------------------------");
+        for (Clase clase : repitenciaClase2) {System.out.println(clase.toString());}
+        int clasesRepetidas = this.contarClasesRepetidas(repitenciaClase1,repitenciaClase2);
+        //System.out.println("------------------------------------------------------------------");
         int totalComen = this.resultadoCarpeta1.numeroComentarios()+this.resultadoCarpeta2.numeroComentarios();
-        int comenrepetidos = this.contarComentariosRepetidos(comentarios);
+        ArrayList<Comentario> repitenciaComentarios1 = this.repitenciaComentariosProyectos(resultadoCarpeta1.getComentarios(),resultadoCarpeta2.getComentarios());
+        ArrayList<Comentario> repitenciaComentarios2 = this.repitenciaComentariosProyectos(comentarios);
+        for (Comentario clase : repitenciaComentarios1) {System.out.println(clase.toString());}
+        System.out.println("------------------------------------------------------------------");
+        for (Comentario clase : repitenciaComentarios2) {System.out.println(clase.toString());}
+        int comenrepetidos = this.contarComentariosRepetidos(repitenciaComentarios1,repitenciaComentarios2);
+        //System.out.println("------------------------------------------------------------------");
+        System.out.println("clasesTotales: " + totalClases);
+        System.out.println("clasesRepetidas: " + clasesRepetidas);
         System.out.println("varsTotales: " + totalVariables);
         System.out.println("varsRepetidas: " + varsRepetidas);
         System.out.println("metodosTotales: " + totalMetodos);
@@ -438,14 +444,11 @@ public class CompararProyectos {
     }
 
     private int contarMetodosRepetidos(ArrayList<Metodo> metodos) {
-        /*
         int result =0;
         for (Metodo metodo : metodos) {
             result = result + metodo.getRepeticiones();
         }
         return result;
-        */
-        return 0;
     }
 
     private ArrayList<FilaTablaSymbolos> repitenciaAmbosProyectos(ArrayList<FilaTablaSymbolos> filas, ArrayList<FilaTablaSymbolos> filas0) {
@@ -534,6 +537,88 @@ public class CompararProyectos {
             metodoTmp = this.buscarListaMetodos(repitenciaMetodo1,filaTablaSymbolos);
             if(metodoTmp!=null){
                 result = result + metodoTmp.getRepeticiones();
+            }
+        }
+        return  result;
+    }
+
+    private ArrayList<Clase> repitenciaClasesProyecto(ArrayList<Clase> clases, ArrayList<Clase> clases0) {
+        ArrayList<Clase> tmp = new ArrayList<>();
+        ArrayList<Clase> resultFinal = new ArrayList<>();
+        Clase claseTmp = null;
+        tmp.addAll(clases);
+        tmp.addAll(clases0);
+        for (Clase tmp1 : tmp) {
+            claseTmp = this.buscarListaClases(resultFinal, tmp1);
+            if(claseTmp!=null){
+                claseTmp.agregarRepeticion();
+            }else{
+                resultFinal.add(new Clase(tmp1.getNombre()));
+            }
+        }
+        return resultFinal;
+    }
+
+    private ArrayList<Clase> repitenciaClasesProyecto(ArrayList<Clase> clases) {
+        ArrayList<Clase> resultfinal = new ArrayList<>();
+        Clase claseTmp = null;
+        for (Clase tmp1 : clases) {
+            claseTmp = this.buscarListaClases(resultfinal,tmp1);
+            if(claseTmp==null){
+                resultfinal.add(new Clase(tmp1.getNombre()));
+            }
+        }
+        return resultfinal;
+    }
+
+    private int contarClasesRepetidas(ArrayList<Clase> repitenciaClase1, ArrayList<Clase> repitenciaClase2) {
+        int result = 0;
+        Clase claseTmp = null;
+        for (Clase filaTablaSymbolos : repitenciaClase2) {
+            claseTmp = this.buscarListaClases(repitenciaClase1,filaTablaSymbolos);
+            if(claseTmp!=null){
+                result = result + claseTmp.getRepeticiones();
+            }
+        }
+        return  result;
+    }
+
+    private ArrayList<Comentario> repitenciaComentariosProyectos(ArrayList<Comentario> comentarios, ArrayList<Comentario> comentarios0) {
+        ArrayList<Comentario> tmp = new ArrayList<>();
+        ArrayList<Comentario> resultFinal = new ArrayList<>();
+        Comentario comentarioTmp = null;
+        tmp.addAll(comentarios);
+        tmp.addAll(comentarios0);
+        for (Comentario tmp1 : tmp) {
+            comentarioTmp = this.buscarListaComentario(resultFinal, tmp1);
+            if(comentarioTmp!=null){
+                comentarioTmp.agregarRepeticion();
+            }else{
+                resultFinal.add(new Comentario(tmp1.getTexto()));
+            }
+        }
+        return resultFinal;
+    }
+
+    private ArrayList<Comentario> repitenciaComentariosProyectos(ArrayList<Comentario> comentarios) {
+        ArrayList<Comentario> resultfinal = new ArrayList<>();
+        Comentario comentarioTmp = null;
+        for (Comentario tmp1 : comentarios) {
+            comentarioTmp = this.buscarListaComentario(resultfinal,tmp1);
+            if(comentarioTmp==null){
+                resultfinal.add(new Comentario(tmp1.getTexto()));
+            }
+        }
+        return resultfinal;
+    }
+
+    private int contarComentariosRepetidos(ArrayList<Comentario> repitenciaComentarios1, ArrayList<Comentario> repitenciaComentarios2) {
+        int result = 0;
+        Comentario comentarioTmp = null;
+        for (Comentario filaTablaSymbolos : repitenciaComentarios2) {
+            comentarioTmp = this.buscarListaComentario(repitenciaComentarios1,filaTablaSymbolos);
+            if(comentarioTmp!=null){
+                result = result + comentarioTmp.getRepeticiones();
             }
         }
         return  result;
