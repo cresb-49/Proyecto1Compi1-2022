@@ -48,6 +48,7 @@ public class ParserJavaSym {
   public static final int MAYOR_QUE = 32;
   public static final int PA_C = 43;
   public static final int BREAK = 7;
+  public static final int VOID = 60;
   public static final int PA_A = 42;
   public static final int CO_C = 45;
   public static final int SWITCH = 21;
@@ -128,7 +129,8 @@ public class ParserJavaSym {
   "FALSE",
   "DEFAULT",
   "STATIC",
-  "NEW"
+  "NEW",
+  "VOID"
   };
 }
 

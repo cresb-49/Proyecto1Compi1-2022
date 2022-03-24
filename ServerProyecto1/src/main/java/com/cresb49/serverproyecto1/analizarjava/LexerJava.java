@@ -333,20 +333,20 @@ public class LexerJava implements java_cup.runtime.Scanner {
     "\5\0\1\1\2\2\1\3\1\4\1\5\1\1\1\6"+
     "\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16"+
     "\1\17\1\20\1\21\1\22\1\23\1\24\2\5\1\25"+
-    "\1\26\14\5\1\27\1\1\1\30\1\31\1\32\1\33"+
+    "\1\26\15\5\1\27\1\1\1\30\1\31\1\32\1\33"+
     "\1\34\1\35\1\36\1\37\1\40\1\41\1\37\1\1"+
     "\1\42\1\1\1\43\1\44\1\45\1\46\1\47\1\50"+
     "\1\0\1\51\1\52\1\53\10\5\1\54\4\5\1\55"+
-    "\13\5\1\56\1\57\1\60\1\61\1\62\1\63\1\64"+
+    "\14\5\1\56\1\57\1\60\1\61\1\62\1\63\1\64"+
     "\1\0\1\65\3\0\1\66\14\5\1\67\1\5\1\70"+
-    "\1\71\11\5\1\72\1\73\1\74\1\75\1\76\4\5"+
-    "\1\77\1\100\3\5\1\101\11\5\1\102\1\103\4\5"+
-    "\1\104\1\105\2\5\1\106\1\107\7\5\1\110\1\111"+
-    "\1\112\2\5\1\113\1\114\2\5\1\115\1\116\1\117"+
-    "\1\120\1\121\1\122\1\123\2\5\1\124";
+    "\1\71\12\5\1\72\1\73\1\74\1\75\1\76\4\5"+
+    "\1\77\1\100\3\5\1\101\11\5\1\102\1\103\1\104"+
+    "\4\5\1\105\1\106\2\5\1\107\1\110\7\5\1\111"+
+    "\1\112\1\113\2\5\1\114\1\115\2\5\1\116\1\117"+
+    "\1\120\1\121\1\122\1\123\1\124\2\5\1\125";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[194];
+    int [] result = new int[198];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -376,29 +376,29 @@ public class LexerJava implements java_cup.runtime.Scanner {
     "\0\u021c\0\u010e\0\u0252\0\u010e\0\u0288\0\u02be\0\u010e\0\u010e"+
     "\0\u02f4\0\u032a\0\u0360\0\u0396\0\u03cc\0\u010e\0\u010e\0\u0402"+
     "\0\u0438\0\u046e\0\u04a4\0\u04da\0\u0510\0\u0546\0\u057c\0\u05b2"+
-    "\0\u05e8\0\u061e\0\u0654\0\u010e\0\u068a\0\u010e\0\u06c0\0\u010e"+
-    "\0\u06f6\0\u072c\0\u010e\0\u010e\0\u0762\0\u010e\0\u010e\0\u0798"+
-    "\0\u07ce\0\u010e\0\u0804\0\u010e\0\u010e\0\u010e\0\u010e\0\u010e"+
-    "\0\u010e\0\u083a\0\u010e\0\u010e\0\u010e\0\u0870\0\u08a6\0\u08dc"+
+    "\0\u05e8\0\u061e\0\u0654\0\u068a\0\u010e\0\u06c0\0\u010e\0\u06f6"+
+    "\0\u010e\0\u072c\0\u0762\0\u010e\0\u010e\0\u0798\0\u010e\0\u010e"+
+    "\0\u07ce\0\u0804\0\u010e\0\u083a\0\u010e\0\u010e\0\u010e\0\u010e"+
+    "\0\u010e\0\u010e\0\u0870\0\u010e\0\u010e\0\u010e\0\u08a6\0\u08dc"+
     "\0\u0912\0\u0948\0\u097e\0\u09b4\0\u09ea\0\u0a20\0\u0a56\0\u0a8c"+
-    "\0\u0ac2\0\u0af8\0\u01b0\0\u0b2e\0\u0b64\0\u0b9a\0\u0bd0\0\u0c06"+
-    "\0\u0c3c\0\u0c72\0\u0ca8\0\u0cde\0\u0d14\0\u0d4a\0\u010e\0\u010e"+
-    "\0\u010e\0\u010e\0\u010e\0\u010e\0\u010e\0\u0d80\0\u0db6\0\u0dec"+
-    "\0\u0e22\0\u0e58\0\u083a\0\u0e8e\0\u0ec4\0\u0efa\0\u0f30\0\u0f66"+
-    "\0\u0f9c\0\u0fd2\0\u1008\0\u103e\0\u1074\0\u10aa\0\u10e0\0\u01b0"+
-    "\0\u1116\0\u01b0\0\u01b0\0\u114c\0\u1182\0\u11b8\0\u11ee\0\u1224"+
-    "\0\u125a\0\u1290\0\u12c6\0\u12fc\0\u010e\0\u010e\0\u010e\0\u010e"+
-    "\0\u010e\0\u1332\0\u1368\0\u139e\0\u13d4\0\u01b0\0\u01b0\0\u140a"+
-    "\0\u1440\0\u1476\0\u01b0\0\u14ac\0\u14e2\0\u1518\0\u154e\0\u1584"+
-    "\0\u15ba\0\u15f0\0\u1626\0\u165c\0\u01b0\0\u01b0\0\u1692\0\u16c8"+
-    "\0\u16fe\0\u1734\0\u01b0\0\u01b0\0\u176a\0\u17a0\0\u01b0\0\u01b0"+
-    "\0\u17d6\0\u180c\0\u1842\0\u1878\0\u18ae\0\u18e4\0\u191a\0\u01b0"+
-    "\0\u01b0\0\u01b0\0\u1950\0\u1986\0\u01b0\0\u01b0\0\u19bc\0\u19f2"+
-    "\0\u01b0\0\u01b0\0\u01b0\0\u01b0\0\u01b0\0\u01b0\0\u01b0\0\u1a28"+
-    "\0\u1a5e\0\u01b0";
+    "\0\u0ac2\0\u0af8\0\u0b2e\0\u01b0\0\u0b64\0\u0b9a\0\u0bd0\0\u0c06"+
+    "\0\u0c3c\0\u0c72\0\u0ca8\0\u0cde\0\u0d14\0\u0d4a\0\u0d80\0\u0db6"+
+    "\0\u010e\0\u010e\0\u010e\0\u010e\0\u010e\0\u010e\0\u010e\0\u0dec"+
+    "\0\u0e22\0\u0e58\0\u0e8e\0\u0ec4\0\u0870\0\u0efa\0\u0f30\0\u0f66"+
+    "\0\u0f9c\0\u0fd2\0\u1008\0\u103e\0\u1074\0\u10aa\0\u10e0\0\u1116"+
+    "\0\u114c\0\u01b0\0\u1182\0\u01b0\0\u01b0\0\u11b8\0\u11ee\0\u1224"+
+    "\0\u125a\0\u1290\0\u12c6\0\u12fc\0\u1332\0\u1368\0\u139e\0\u010e"+
+    "\0\u010e\0\u010e\0\u010e\0\u010e\0\u13d4\0\u140a\0\u1440\0\u1476"+
+    "\0\u01b0\0\u01b0\0\u14ac\0\u14e2\0\u1518\0\u01b0\0\u154e\0\u1584"+
+    "\0\u15ba\0\u15f0\0\u1626\0\u165c\0\u1692\0\u16c8\0\u16fe\0\u01b0"+
+    "\0\u01b0\0\u01b0\0\u1734\0\u176a\0\u17a0\0\u17d6\0\u01b0\0\u01b0"+
+    "\0\u180c\0\u1842\0\u01b0\0\u01b0\0\u1878\0\u18ae\0\u18e4\0\u191a"+
+    "\0\u1950\0\u1986\0\u19bc\0\u01b0\0\u01b0\0\u01b0\0\u19f2\0\u1a28"+
+    "\0\u01b0\0\u01b0\0\u1a5e\0\u1a94\0\u01b0\0\u01b0\0\u01b0\0\u01b0"+
+    "\0\u01b0\0\u01b0\0\u01b0\0\u1aca\0\u1b00\0\u01b0";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[194];
+    int [] result = new int[198];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -426,170 +426,175 @@ public class LexerJava implements java_cup.runtime.Scanner {
     "\1\25\1\26\1\27\1\30\1\31\1\32\1\33\1\34"+
     "\1\35\1\36\1\6\1\37\1\13\1\40\1\41\1\42"+
     "\1\43\1\44\2\13\1\45\4\13\1\46\1\13\1\47"+
-    "\1\50\1\51\1\52\2\13\1\53\1\54\1\55\1\56"+
-    "\2\57\1\6\1\57\1\6\1\57\1\60\24\57\1\61"+
-    "\32\57\2\62\1\63\3\62\1\64\57\62\2\65\1\66"+
-    "\3\65\1\67\5\65\1\70\51\65\2\71\1\6\1\71"+
-    "\1\6\1\71\1\6\2\71\1\72\21\71\1\73\32\71"+
-    "\70\0\1\7\111\0\1\74\37\0\1\13\6\0\1\13"+
-    "\12\0\1\13\5\0\2\13\3\0\26\13\13\0\1\75"+
-    "\72\0\1\76\67\0\1\77\62\0\1\100\4\0\1\101"+
-    "\64\0\1\102\1\0\1\26\71\0\1\103\65\0\1\104"+
-    "\65\0\1\105\37\0\1\13\6\0\1\13\12\0\1\13"+
-    "\5\0\2\13\3\0\1\13\1\106\24\13\3\0\1\13"+
-    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\22\13"+
-    "\1\107\3\13\3\0\1\13\6\0\1\13\12\0\1\13"+
-    "\5\0\2\13\3\0\16\13\1\110\1\13\1\111\5\13"+
-    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
-    "\3\0\1\112\6\13\1\113\3\13\1\114\12\13\3\0"+
+    "\1\50\1\51\1\52\1\13\1\53\1\54\1\55\1\56"+
+    "\1\57\2\60\1\6\1\60\1\6\1\60\1\61\24\60"+
+    "\1\62\32\60\2\63\1\64\3\63\1\65\57\63\2\66"+
+    "\1\67\3\66\1\70\5\66\1\71\51\66\2\72\1\6"+
+    "\1\72\1\6\1\72\1\6\2\72\1\73\21\72\1\74"+
+    "\32\72\70\0\1\7\111\0\1\75\37\0\1\13\6\0"+
+    "\1\13\12\0\1\13\5\0\2\13\3\0\26\13\13\0"+
+    "\1\76\72\0\1\77\67\0\1\100\62\0\1\101\4\0"+
+    "\1\102\64\0\1\103\1\0\1\26\71\0\1\104\65\0"+
+    "\1\105\65\0\1\106\37\0\1\13\6\0\1\13\12\0"+
+    "\1\13\5\0\2\13\3\0\1\13\1\107\24\13\3\0"+
     "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
-    "\4\13\1\115\11\13\1\116\7\13\3\0\1\13\6\0"+
-    "\1\13\12\0\1\13\5\0\2\13\3\0\13\13\1\117"+
-    "\12\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
-    "\2\13\3\0\1\120\7\13\1\121\5\13\1\122\7\13"+
-    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
-    "\3\0\5\13\1\123\6\13\1\124\1\125\10\13\3\0"+
-    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
-    "\4\13\1\126\21\13\3\0\1\13\6\0\1\13\12\0"+
-    "\1\13\5\0\2\13\3\0\20\13\1\127\2\13\1\130"+
-    "\2\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
-    "\2\13\3\0\4\13\1\131\21\13\3\0\1\13\6\0"+
-    "\1\13\12\0\1\13\5\0\2\13\3\0\22\13\1\132"+
-    "\2\13\1\133\3\0\1\13\6\0\1\13\12\0\1\13"+
-    "\5\0\2\13\3\0\7\13\1\134\10\13\1\135\5\13"+
-    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
-    "\3\0\7\13\1\136\16\13\67\0\1\137\1\0\2\57"+
-    "\1\0\1\57\1\0\1\57\1\0\24\57\1\0\32\57"+
-    "\6\0\1\140\43\0\1\141\2\0\1\142\1\0\1\143"+
-    "\6\0\2\62\1\0\3\62\1\0\57\62\2\65\1\0"+
-    "\3\65\1\0\5\65\1\0\51\65\21\0\1\144\55\0"+
-    "\1\145\62\0\1\146\2\0\1\147\40\0\1\150\2\0"+
-    "\1\151\1\0\1\152\30\0\1\153\43\0\1\13\6\0"+
-    "\1\13\12\0\1\13\5\0\2\13\3\0\11\13\1\154"+
-    "\14\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
-    "\2\13\3\0\20\13\1\155\5\13\3\0\1\13\6\0"+
-    "\1\13\12\0\1\13\5\0\2\13\3\0\16\13\1\156"+
-    "\7\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
-    "\2\13\3\0\4\13\1\157\21\13\3\0\1\13\6\0"+
-    "\1\13\12\0\1\13\5\0\2\13\3\0\21\13\1\160"+
-    "\4\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
-    "\2\13\3\0\1\161\25\13\3\0\1\13\6\0\1\13"+
-    "\12\0\1\13\5\0\2\13\3\0\1\162\25\13\3\0"+
-    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
-    "\5\13\1\163\20\13\3\0\1\13\6\0\1\13\12\0"+
-    "\1\13\5\0\2\13\3\0\23\13\1\164\2\13\3\0"+
-    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
-    "\21\13\1\165\4\13\3\0\1\13\6\0\1\13\12\0"+
-    "\1\13\5\0\2\13\3\0\13\13\1\166\12\13\3\0"+
-    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
-    "\15\13\1\167\10\13\3\0\1\13\6\0\1\13\12\0"+
-    "\1\13\5\0\2\13\3\0\20\13\1\170\5\13\3\0"+
-    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
-    "\17\13\1\171\6\13\3\0\1\13\6\0\1\13\12\0"+
-    "\1\13\5\0\2\13\3\0\22\13\1\172\3\13\3\0"+
-    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
-    "\25\13\1\173\3\0\1\13\6\0\1\13\12\0\1\13"+
-    "\5\0\2\13\3\0\10\13\1\174\5\13\1\175\7\13"+
-    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
-    "\3\0\1\13\1\176\24\13\3\0\1\13\6\0\1\13"+
-    "\12\0\1\13\5\0\2\13\3\0\22\13\1\177\3\13"+
-    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
-    "\3\0\1\200\25\13\3\0\1\13\6\0\1\13\12\0"+
-    "\1\13\5\0\2\13\3\0\10\13\1\201\15\13\3\0"+
-    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
-    "\10\13\1\202\15\13\3\0\1\13\6\0\1\13\12\0"+
-    "\1\13\5\0\2\13\3\0\23\13\1\203\2\13\3\0"+
-    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
-    "\10\13\1\204\15\13\14\0\1\205\65\0\1\206\65\0"+
-    "\1\207\65\0\1\210\65\0\1\211\54\0\1\13\6\0"+
-    "\1\13\12\0\1\13\5\0\2\13\3\0\4\13\1\212"+
-    "\21\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
-    "\2\13\3\0\10\13\1\213\15\13\3\0\1\13\6\0"+
-    "\1\13\12\0\1\13\5\0\2\13\3\0\13\13\1\214"+
-    "\12\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
-    "\2\13\3\0\1\215\25\13\3\0\1\13\6\0\1\13"+
-    "\12\0\1\13\5\0\2\13\3\0\4\13\1\216\21\13"+
-    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
-    "\3\0\20\13\1\217\5\13\3\0\1\13\6\0\1\13"+
-    "\12\0\1\13\5\0\2\13\3\0\21\13\1\220\4\13"+
-    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
-    "\3\0\1\221\25\13\3\0\1\13\6\0\1\13\12\0"+
-    "\1\13\5\0\2\13\3\0\1\13\1\222\24\13\3\0"+
-    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
-    "\4\13\1\223\21\13\3\0\1\13\6\0\1\13\12\0"+
-    "\1\13\5\0\2\13\3\0\21\13\1\224\4\13\3\0"+
-    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
-    "\1\225\25\13\3\0\1\13\6\0\1\13\12\0\1\13"+
-    "\5\0\2\13\3\0\16\13\1\226\7\13\3\0\1\13"+
-    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\24\13"+
-    "\1\227\1\13\3\0\1\13\6\0\1\13\12\0\1\13"+
-    "\5\0\2\13\3\0\22\13\1\230\3\13\3\0\1\13"+
-    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\13\13"+
-    "\1\231\12\13\3\0\1\13\6\0\1\13\12\0\1\13"+
-    "\5\0\2\13\3\0\23\13\1\232\2\13\3\0\1\13"+
-    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\22\13"+
-    "\1\233\3\13\3\0\1\13\6\0\1\13\12\0\1\13"+
-    "\5\0\2\13\3\0\22\13\1\234\3\13\3\0\1\13"+
-    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\21\13"+
-    "\1\235\4\13\3\0\1\13\6\0\1\13\12\0\1\13"+
-    "\5\0\2\13\3\0\4\13\1\236\21\13\3\0\1\13"+
-    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\13\13"+
-    "\1\237\12\13\3\0\1\13\6\0\1\13\12\0\1\13"+
-    "\5\0\2\13\3\0\2\13\1\240\23\13\3\0\1\13"+
-    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\15\13"+
-    "\1\241\10\13\3\0\1\13\6\0\1\13\12\0\1\13"+
-    "\5\0\2\13\3\0\4\13\1\242\21\13\3\0\1\13"+
-    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\12\13"+
-    "\1\243\13\13\3\0\1\13\6\0\1\13\12\0\1\13"+
-    "\5\0\2\13\3\0\21\13\1\244\4\13\3\0\1\13"+
-    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\23\13"+
-    "\1\245\2\13\3\0\1\13\6\0\1\13\12\0\1\13"+
-    "\5\0\2\13\3\0\13\13\1\246\12\13\3\0\1\13"+
-    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\4\13"+
-    "\1\247\21\13\3\0\1\13\6\0\1\13\12\0\1\13"+
-    "\5\0\2\13\3\0\13\13\1\250\12\13\3\0\1\13"+
-    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\20\13"+
-    "\1\251\5\13\3\0\1\13\6\0\1\13\12\0\1\13"+
-    "\5\0\2\13\3\0\1\252\25\13\3\0\1\13\6\0"+
-    "\1\13\12\0\1\13\5\0\2\13\3\0\4\13\1\253"+
-    "\21\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
-    "\2\13\3\0\10\13\1\254\15\13\3\0\1\13\6\0"+
-    "\1\13\12\0\1\13\5\0\2\13\3\0\20\13\1\255"+
+    "\22\13\1\110\3\13\3\0\1\13\6\0\1\13\12\0"+
+    "\1\13\5\0\2\13\3\0\16\13\1\111\1\13\1\112"+
     "\5\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
-    "\2\13\3\0\10\13\1\256\15\13\3\0\1\13\6\0"+
-    "\1\13\12\0\1\13\5\0\2\13\3\0\2\13\1\257"+
-    "\23\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
-    "\2\13\3\0\4\13\1\260\21\13\3\0\1\13\6\0"+
-    "\1\13\12\0\1\13\5\0\2\13\3\0\22\13\1\261"+
+    "\2\13\3\0\1\113\6\13\1\114\3\13\1\115\12\13"+
+    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
+    "\3\0\4\13\1\116\11\13\1\117\7\13\3\0\1\13"+
+    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\13\13"+
+    "\1\120\12\13\3\0\1\13\6\0\1\13\12\0\1\13"+
+    "\5\0\2\13\3\0\1\121\7\13\1\122\5\13\1\123"+
+    "\7\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
+    "\2\13\3\0\5\13\1\124\6\13\1\125\1\126\10\13"+
+    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
+    "\3\0\4\13\1\127\21\13\3\0\1\13\6\0\1\13"+
+    "\12\0\1\13\5\0\2\13\3\0\20\13\1\130\2\13"+
+    "\1\131\2\13\3\0\1\13\6\0\1\13\12\0\1\13"+
+    "\5\0\2\13\3\0\4\13\1\132\21\13\3\0\1\13"+
+    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\22\13"+
+    "\1\133\2\13\1\134\3\0\1\13\6\0\1\13\12\0"+
+    "\1\13\5\0\2\13\3\0\7\13\1\135\10\13\1\136"+
+    "\5\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
+    "\2\13\3\0\16\13\1\137\7\13\3\0\1\13\6\0"+
+    "\1\13\12\0\1\13\5\0\2\13\3\0\7\13\1\140"+
+    "\16\13\67\0\1\141\1\0\2\60\1\0\1\60\1\0"+
+    "\1\60\1\0\24\60\1\0\32\60\6\0\1\142\43\0"+
+    "\1\143\2\0\1\144\1\0\1\145\6\0\2\63\1\0"+
+    "\3\63\1\0\57\63\2\66\1\0\3\66\1\0\5\66"+
+    "\1\0\51\66\21\0\1\146\55\0\1\147\62\0\1\150"+
+    "\2\0\1\151\40\0\1\152\2\0\1\153\1\0\1\154"+
+    "\30\0\1\155\43\0\1\13\6\0\1\13\12\0\1\13"+
+    "\5\0\2\13\3\0\11\13\1\156\14\13\3\0\1\13"+
+    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\20\13"+
+    "\1\157\5\13\3\0\1\13\6\0\1\13\12\0\1\13"+
+    "\5\0\2\13\3\0\16\13\1\160\7\13\3\0\1\13"+
+    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\4\13"+
+    "\1\161\21\13\3\0\1\13\6\0\1\13\12\0\1\13"+
+    "\5\0\2\13\3\0\21\13\1\162\4\13\3\0\1\13"+
+    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\1\163"+
+    "\25\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
+    "\2\13\3\0\1\164\25\13\3\0\1\13\6\0\1\13"+
+    "\12\0\1\13\5\0\2\13\3\0\5\13\1\165\20\13"+
+    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
+    "\3\0\23\13\1\166\2\13\3\0\1\13\6\0\1\13"+
+    "\12\0\1\13\5\0\2\13\3\0\21\13\1\167\4\13"+
+    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
+    "\3\0\13\13\1\170\12\13\3\0\1\13\6\0\1\13"+
+    "\12\0\1\13\5\0\2\13\3\0\15\13\1\171\10\13"+
+    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
+    "\3\0\20\13\1\172\5\13\3\0\1\13\6\0\1\13"+
+    "\12\0\1\13\5\0\2\13\3\0\17\13\1\173\6\13"+
+    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
+    "\3\0\22\13\1\174\3\13\3\0\1\13\6\0\1\13"+
+    "\12\0\1\13\5\0\2\13\3\0\25\13\1\175\3\0"+
+    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
+    "\10\13\1\176\5\13\1\177\7\13\3\0\1\13\6\0"+
+    "\1\13\12\0\1\13\5\0\2\13\3\0\1\13\1\200"+
+    "\24\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
+    "\2\13\3\0\22\13\1\201\3\13\3\0\1\13\6\0"+
+    "\1\13\12\0\1\13\5\0\2\13\3\0\1\202\25\13"+
+    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
+    "\3\0\10\13\1\203\15\13\3\0\1\13\6\0\1\13"+
+    "\12\0\1\13\5\0\2\13\3\0\10\13\1\204\15\13"+
+    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
+    "\3\0\23\13\1\205\2\13\3\0\1\13\6\0\1\13"+
+    "\12\0\1\13\5\0\2\13\3\0\10\13\1\206\15\13"+
+    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
+    "\3\0\10\13\1\207\15\13\14\0\1\210\65\0\1\211"+
+    "\65\0\1\212\65\0\1\213\65\0\1\214\54\0\1\13"+
+    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\4\13"+
+    "\1\215\21\13\3\0\1\13\6\0\1\13\12\0\1\13"+
+    "\5\0\2\13\3\0\10\13\1\216\15\13\3\0\1\13"+
+    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\13\13"+
+    "\1\217\12\13\3\0\1\13\6\0\1\13\12\0\1\13"+
+    "\5\0\2\13\3\0\1\220\25\13\3\0\1\13\6\0"+
+    "\1\13\12\0\1\13\5\0\2\13\3\0\4\13\1\221"+
+    "\21\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
+    "\2\13\3\0\20\13\1\222\5\13\3\0\1\13\6\0"+
+    "\1\13\12\0\1\13\5\0\2\13\3\0\21\13\1\223"+
+    "\4\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
+    "\2\13\3\0\1\224\25\13\3\0\1\13\6\0\1\13"+
+    "\12\0\1\13\5\0\2\13\3\0\1\13\1\225\24\13"+
+    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
+    "\3\0\4\13\1\226\21\13\3\0\1\13\6\0\1\13"+
+    "\12\0\1\13\5\0\2\13\3\0\21\13\1\227\4\13"+
+    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
+    "\3\0\1\230\25\13\3\0\1\13\6\0\1\13\12\0"+
+    "\1\13\5\0\2\13\3\0\16\13\1\231\7\13\3\0"+
+    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
+    "\24\13\1\232\1\13\3\0\1\13\6\0\1\13\12\0"+
+    "\1\13\5\0\2\13\3\0\22\13\1\233\3\13\3\0"+
+    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
+    "\13\13\1\234\12\13\3\0\1\13\6\0\1\13\12\0"+
+    "\1\13\5\0\2\13\3\0\23\13\1\235\2\13\3\0"+
+    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
+    "\22\13\1\236\3\13\3\0\1\13\6\0\1\13\12\0"+
+    "\1\13\5\0\2\13\3\0\22\13\1\237\3\13\3\0"+
+    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
+    "\21\13\1\240\4\13\3\0\1\13\6\0\1\13\12\0"+
+    "\1\13\5\0\2\13\3\0\4\13\1\241\21\13\3\0"+
+    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
+    "\3\13\1\242\22\13\3\0\1\13\6\0\1\13\12\0"+
+    "\1\13\5\0\2\13\3\0\13\13\1\243\12\13\3\0"+
+    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
+    "\2\13\1\244\23\13\3\0\1\13\6\0\1\13\12\0"+
+    "\1\13\5\0\2\13\3\0\15\13\1\245\10\13\3\0"+
+    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
+    "\4\13\1\246\21\13\3\0\1\13\6\0\1\13\12\0"+
+    "\1\13\5\0\2\13\3\0\12\13\1\247\13\13\3\0"+
+    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
+    "\21\13\1\250\4\13\3\0\1\13\6\0\1\13\12\0"+
+    "\1\13\5\0\2\13\3\0\23\13\1\251\2\13\3\0"+
+    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
+    "\13\13\1\252\12\13\3\0\1\13\6\0\1\13\12\0"+
+    "\1\13\5\0\2\13\3\0\4\13\1\253\21\13\3\0"+
+    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
+    "\13\13\1\254\12\13\3\0\1\13\6\0\1\13\12\0"+
+    "\1\13\5\0\2\13\3\0\20\13\1\255\5\13\3\0"+
+    "\1\13\6\0\1\13\12\0\1\13\5\0\2\13\3\0"+
+    "\1\256\25\13\3\0\1\13\6\0\1\13\12\0\1\13"+
+    "\5\0\2\13\3\0\4\13\1\257\21\13\3\0\1\13"+
+    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\10\13"+
+    "\1\260\15\13\3\0\1\13\6\0\1\13\12\0\1\13"+
+    "\5\0\2\13\3\0\20\13\1\261\5\13\3\0\1\13"+
+    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\10\13"+
+    "\1\262\15\13\3\0\1\13\6\0\1\13\12\0\1\13"+
+    "\5\0\2\13\3\0\2\13\1\263\23\13\3\0\1\13"+
+    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\4\13"+
+    "\1\264\21\13\3\0\1\13\6\0\1\13\12\0\1\13"+
+    "\5\0\2\13\3\0\22\13\1\265\3\13\3\0\1\13"+
+    "\6\0\1\13\12\0\1\13\5\0\2\13\3\0\6\13"+
+    "\1\266\17\13\3\0\1\13\6\0\1\13\12\0\1\13"+
+    "\5\0\2\13\3\0\1\267\25\13\3\0\1\13\6\0"+
+    "\1\13\12\0\1\13\5\0\2\13\3\0\13\13\1\270"+
+    "\12\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
+    "\2\13\3\0\4\13\1\271\21\13\3\0\1\13\6\0"+
+    "\1\13\12\0\1\13\5\0\2\13\3\0\22\13\1\272"+
     "\3\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
-    "\2\13\3\0\6\13\1\262\17\13\3\0\1\13\6\0"+
-    "\1\13\12\0\1\13\5\0\2\13\3\0\1\263\25\13"+
-    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
-    "\3\0\13\13\1\264\12\13\3\0\1\13\6\0\1\13"+
-    "\12\0\1\13\5\0\2\13\3\0\4\13\1\265\21\13"+
-    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
-    "\3\0\22\13\1\266\3\13\3\0\1\13\6\0\1\13"+
-    "\12\0\1\13\5\0\2\13\3\0\22\13\1\267\3\13"+
-    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
-    "\3\0\2\13\1\270\23\13\3\0\1\13\6\0\1\13"+
-    "\12\0\1\13\5\0\2\13\3\0\2\13\1\271\23\13"+
-    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
-    "\3\0\15\13\1\272\10\13\3\0\1\13\6\0\1\13"+
-    "\12\0\1\13\5\0\2\13\3\0\2\13\1\273\23\13"+
-    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
-    "\3\0\7\13\1\274\16\13\3\0\1\13\6\0\1\13"+
-    "\12\0\1\13\5\0\2\13\3\0\15\13\1\275\10\13"+
-    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
-    "\3\0\22\13\1\276\3\13\3\0\1\13\6\0\1\13"+
-    "\12\0\1\13\5\0\2\13\3\0\4\13\1\277\21\13"+
-    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
-    "\3\0\22\13\1\300\3\13\3\0\1\13\6\0\1\13"+
-    "\12\0\1\13\5\0\2\13\3\0\4\13\1\301\21\13"+
-    "\3\0\1\13\6\0\1\13\12\0\1\13\5\0\2\13"+
-    "\3\0\3\13\1\302\22\13\3\0";
+    "\2\13\3\0\22\13\1\273\3\13\3\0\1\13\6\0"+
+    "\1\13\12\0\1\13\5\0\2\13\3\0\2\13\1\274"+
+    "\23\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
+    "\2\13\3\0\2\13\1\275\23\13\3\0\1\13\6\0"+
+    "\1\13\12\0\1\13\5\0\2\13\3\0\15\13\1\276"+
+    "\10\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
+    "\2\13\3\0\2\13\1\277\23\13\3\0\1\13\6\0"+
+    "\1\13\12\0\1\13\5\0\2\13\3\0\7\13\1\300"+
+    "\16\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
+    "\2\13\3\0\15\13\1\301\10\13\3\0\1\13\6\0"+
+    "\1\13\12\0\1\13\5\0\2\13\3\0\22\13\1\302"+
+    "\3\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
+    "\2\13\3\0\4\13\1\303\21\13\3\0\1\13\6\0"+
+    "\1\13\12\0\1\13\5\0\2\13\3\0\22\13\1\304"+
+    "\3\13\3\0\1\13\6\0\1\13\12\0\1\13\5\0"+
+    "\2\13\3\0\4\13\1\305\21\13\3\0\1\13\6\0"+
+    "\1\13\12\0\1\13\5\0\2\13\3\0\3\13\1\306"+
+    "\22\13\3\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[6804];
+    int [] result = new int[6966];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -633,13 +638,13 @@ public class LexerJava implements java_cup.runtime.Scanner {
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
     "\5\0\2\11\2\1\1\11\2\1\4\11\1\1\1\11"+
-    "\1\1\1\11\2\1\2\11\5\1\2\11\14\1\1\11"+
+    "\1\1\1\11\2\1\2\11\5\1\2\11\15\1\1\11"+
     "\1\1\1\11\1\1\1\11\2\1\2\11\1\1\2\11"+
-    "\2\1\1\11\1\1\6\11\1\0\3\11\31\1\7\11"+
-    "\1\0\1\1\3\0\32\1\5\11\71\1";
+    "\2\1\1\11\1\1\6\11\1\0\3\11\32\1\7\11"+
+    "\1\0\1\1\3\0\33\1\5\11\72\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[194];
+    int [] result = new int[198];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -717,7 +722,6 @@ public class LexerJava implements java_cup.runtime.Scanner {
 
   /* user code: */
     private static final String ERROR_TYPE = "Léxico";
-    private Token anterior;
     private Token actual; 
 
     private int stringColumnInit = 0; 
@@ -773,24 +777,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
     }
 
     private void agregarComentario(String comentario){
-        Comentario tmp = buscarComentario(comentario);
-        if(tmp!=null){
-            tmp.agregarRepeticion();
-        }else{
-            this.comentarios.add(new Comentario(comentario));
-        }
-    }
-
-    private Comentario buscarComentario(String comentario){
-        Comentario tmp = null;
-        for (Comentario coment : this.comentarios) {
-            if(coment!=null){
-                if(coment.getTexto().equals(comentario)){
-                    return coment;
-                }
-            }  
-        }
-      return tmp;
+        this.comentarios.add(new Comentario(comentario));
     }
 
 
@@ -1196,8 +1183,7 @@ public class LexerJava implements java_cup.runtime.Scanner {
       if (zzInput == YYEOF && zzStartRead == zzCurrentPos) {
         zzAtEOF = true;
             zzDoEOF();
-          {     this.actual = new Token(yytext(),null,yyline+1,yycolumn+1,null,this.anterior);
-    this.anterior = this.actual;
+          {     this.actual = new Token(yytext(),null,yyline+1,yycolumn+1);
     return new java_cup.runtime.Symbol(ParserJavaSym.EOF,yyline+1,yycolumn+1,this.actual);
  }
       }
@@ -1209,641 +1195,584 @@ public class LexerJava implements java_cup.runtime.Scanner {
                         //System.out.println("Simbolo Ilegal: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 85: break;
+          case 86: break;
           case 2:
             { /* ignore */
             }
             // fall through
-          case 86: break;
+          case 87: break;
           case 3:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.NOT,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("! : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 87: break;
+          case 88: break;
           case 4:
             { this.stringColumnInit = (yycolumn+1);
                         this.string.setLength(0); 
                         yybegin(STRING);
             }
             // fall through
-          case 88: break;
+          case 89: break;
           case 5:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         //System.out.println("Identificador: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
                         return new Symbol(ParserJavaSym.ID,yyline+1,yycolumn+1,this.actual);
             }
             // fall through
-          case 89: break;
+          case 90: break;
           case 6:
             { yybegin(CHAR);
             }
             // fall through
-          case 90: break;
+          case 91: break;
           case 7:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.PA_A,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("(: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 91: break;
+          case 92: break;
           case 8:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.PA_C,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("): "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 92: break;
+          case 93: break;
           case 9:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.MUL,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("*: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 93: break;
+          case 94: break;
           case 10:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.MAS,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("+: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 94: break;
+          case 95: break;
           case 11:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.COMA,yyline+1,yycolumn+1,this.actual);
                         //System.out.println(",: "+yytext()+" , Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 95: break;
+          case 96: break;
           case 12:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.MENOS,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("-: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 96: break;
+          case 97: break;
           case 13:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.PUNTO,yyline+1,yycolumn+1,this.actual);
                         //System.out.println(".: "+yytext()+" , Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 97: break;
+          case 98: break;
           case 14:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.DIV,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("/: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 98: break;
+          case 99: break;
           case 15:
-            { this.actual = new Token(yytext(),new Integer(yytext()),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),new Integer(yytext()),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.ENTERO,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("Numero: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 99: break;
+          case 100: break;
           case 16:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.DOSPUNTOS,yyline+1,yycolumn+1,this.actual);
                         //System.out.println(":-> "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 100: break;
+          case 101: break;
           case 17:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.PUNTOCOMA,yyline+1,yycolumn+1,this.actual);
                         //System.out.println(";-> "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 101: break;
+          case 102: break;
           case 18:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.MENOR_QUE,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("< : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 102: break;
+          case 103: break;
           case 19:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.EQUAL,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("== : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 103: break;
+          case 104: break;
           case 20:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.MAYOR_QUE,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("> : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 104: break;
+          case 105: break;
           case 21:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.CO_A,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("[: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 105: break;
+          case 106: break;
           case 22:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.CO_C,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("]: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 106: break;
+          case 107: break;
           case 23:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.LLA_A,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("{: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 107: break;
+          case 108: break;
           case 24:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.LLA_C,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("}: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 108: break;
+          case 109: break;
           case 25:
             { string.append( yytext());
             }
             // fall through
-          case 109: break;
+          case 110: break;
           case 26:
             { yybegin(YYINITIAL);
-                                        this.actual = new Token(string.toString(),string.toString(),yyline+1,yycolumn+1,null,this.anterior);
-                                        this.anterior = this.actual;
+                                        this.actual = new Token(string.toString(),string.toString(),yyline+1,yycolumn+1);
                                         //System.out.println(string.toString());
                                         return new Symbol(ParserJavaSym.STRING,yyline+1,yycolumn+1,this.actual);
             }
             // fall through
-          case 110: break;
+          case 111: break;
           case 27:
             { string.append('\\');
             }
             // fall through
-          case 111: break;
+          case 112: break;
           case 28:
             { coment_simple.append(yytext());
             }
             // fall through
-          case 112: break;
+          case 113: break;
           case 29:
             { yybegin(YYINITIAL);
                                         //System.out.println("Comentario: "+coment_simple.toString());
                                         agregarComentario(coment_simple.toString());
             }
             // fall through
-          case 113: break;
+          case 114: break;
           case 30:
             { coment_simple.append("\\\"");
             }
             // fall through
-          case 114: break;
+          case 115: break;
           case 31:
             { coment_multi.append(yytext());
             }
             // fall through
-          case 115: break;
+          case 116: break;
           case 32:
             { coment_multi.append("\\n");
             }
             // fall through
-          case 116: break;
+          case 117: break;
           case 33:
             { coment_multi.append("\\\"");
             }
             // fall through
-          case 117: break;
+          case 118: break;
           case 34:
             { yybegin(YYINITIAL);
-                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
-                                        this.anterior = this.actual;
+                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1);
                                         //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual);
             }
             // fall through
-          case 118: break;
+          case 119: break;
           case 35:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.DIFERENTE,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("!= : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 119: break;
+          case 120: break;
           case 36:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.AND,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("&& : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 120: break;
+          case 121: break;
           case 37:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.SUMAR,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("++ : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 121: break;
+          case 122: break;
           case 38:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.RESTAR,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("-- : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 122: break;
+          case 123: break;
           case 39:
             { yybegin(COMENT_MULTI);
                         this.coment_multi.setLength(0);
             }
             // fall through
-          case 123: break;
+          case 124: break;
           case 40:
             { yybegin(COMENTARIO);
                         this.coment_simple.setLength(0);
             }
             // fall through
-          case 124: break;
+          case 125: break;
           case 41:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.MENOR_IGUAL,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("<= : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 125: break;
+          case 126: break;
           case 42:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.IGUAL,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("== : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 126: break;
+          case 127: break;
           case 43:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.MAYOR_IGUAL,yyline+1,yycolumn+1,this.actual);
                         //System.out.println(">= : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 127: break;
+          case 128: break;
           case 44:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.DO,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("do: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 128: break;
+          case 129: break;
           case 45:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.IF,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("if: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 129: break;
+          case 130: break;
           case 46:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.OR,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("|| : "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 130: break;
+          case 131: break;
           case 47:
             { string.append('\"');
             }
             // fall through
-          case 131: break;
+          case 132: break;
           case 48:
             { string.append('\n');
             }
             // fall through
-          case 132: break;
+          case 133: break;
           case 49:
             { string.append('\r');
             }
             // fall through
-          case 133: break;
+          case 134: break;
           case 50:
             { string.append('\t');
             }
             // fall through
-          case 134: break;
+          case 135: break;
           case 51:
             { yybegin(YYINITIAL);
                                         //System.out.println("Comentario: "+coment_multi.toString());
                                         agregarComentario(coment_multi.toString());
             }
             // fall through
-          case 135: break;
+          case 136: break;
           case 52:
             { yybegin(YYINITIAL);
                                         char_val.append( yytext().charAt(0));
-                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
-                                        this.anterior = this.actual;
-                                        //System.out.println(char_val.toString());
-                                        return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual);
-            }
-            // fall through
-          case 136: break;
-          case 53:
-            { yybegin(YYINITIAL);
-                                        char_val.append('\\');
-                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
-                                        this.anterior = this.actual;
+                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1);
                                         //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual);
             }
             // fall through
           case 137: break;
-          case 54:
-            { this.actual = new Token(yytext(),new Double(yytext()),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
-                        return new Symbol(ParserJavaSym.DECIMAL,yyline+1,yycolumn+1,this.actual);
-                        ////System.out.println("Decimal: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
-            }
-            // fall through
-          case 138: break;
-          case 55:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
-                        return new Symbol(ParserJavaSym.FOR,yyline+1,yycolumn+1,this.actual);
-                        //System.out.println("for: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
-            }
-            // fall through
-          case 139: break;
-          case 56:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
-                        return new Symbol(ParserJavaSym.INT,yyline+1,yycolumn+1,this.actual);
-                        //System.out.println("int: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
-            }
-            // fall through
-          case 140: break;
-          case 57:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
-                        return new Symbol(ParserJavaSym.NEW,yyline+1,yycolumn+1,this.actual);
-                        //System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
-            }
-            // fall through
-          case 141: break;
-          case 58:
+          case 53:
             { yybegin(YYINITIAL);
-                                        char_val.append('\"');
-                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
-                                        this.anterior = this.actual;
+                                        char_val.append('\\');
+                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1);
                                         //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual);
             }
             // fall through
+          case 138: break;
+          case 54:
+            { this.actual = new Token(yytext(),new Double(yytext()),yyline+1,yycolumn+1);
+                        return new Symbol(ParserJavaSym.DECIMAL,yyline+1,yycolumn+1,this.actual);
+                        ////System.out.println("Decimal: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            }
+            // fall through
+          case 139: break;
+          case 55:
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
+                        return new Symbol(ParserJavaSym.FOR,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("for: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            }
+            // fall through
+          case 140: break;
+          case 56:
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
+                        return new Symbol(ParserJavaSym.INT,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("int: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            }
+            // fall through
+          case 141: break;
+          case 57:
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
+                        return new Symbol(ParserJavaSym.NEW,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            }
+            // fall through
           case 142: break;
-          case 59:
+          case 58:
             { yybegin(YYINITIAL);
-                                        char_val.append('\'');
-                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
-                                        this.anterior = this.actual;
+                                        char_val.append('\"');
+                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1);
                                         //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual);
             }
             // fall through
           case 143: break;
-          case 60:
+          case 59:
             { yybegin(YYINITIAL);
-                                        char_val.append('\n');
-                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
-                                        this.anterior = this.actual;
+                                        char_val.append('\'');
+                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1);
                                         //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual);
             }
             // fall through
           case 144: break;
-          case 61:
+          case 60:
             { yybegin(YYINITIAL);
-                                        char_val.append('\r');
-                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
-                                        this.anterior = this.actual;
+                                        char_val.append('\n');
+                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1);
                                         //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual);
             }
             // fall through
           case 145: break;
-          case 62:
+          case 61:
             { yybegin(YYINITIAL);
-                                        char_val.append('\t');
-                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1,null,this.anterior);
-                                        this.anterior = this.actual;
+                                        char_val.append('\r');
+                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1);
                                         //System.out.println(char_val.toString());
                                         return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual);
             }
             // fall through
           case 146: break;
+          case 62:
+            { yybegin(YYINITIAL);
+                                        char_val.append('\t');
+                                        this.actual = new Token(char_val.toString(),char_val.toString(),yyline+1,yycolumn+1);
+                                        //System.out.println(char_val.toString());
+                                        return new Symbol(ParserJavaSym.CHAR_VAL,yyline+1,yycolumn+1,this.actual);
+            }
+            // fall through
+          case 147: break;
           case 63:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.CASE,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("case: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 147: break;
+          case 148: break;
           case 64:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.CHAR,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("char: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 148: break;
+          case 149: break;
           case 65:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.ELSE,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("else: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 149: break;
+          case 150: break;
           case 66:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.THIS,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 150: break;
+          case 151: break;
           case 67:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.TRUE,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 151: break;
+          case 152: break;
           case 68:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
+                        return new Symbol(ParserJavaSym.VOID,yyline+1,yycolumn+1,this.actual);
+                        //System.out.println("Object: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
+            }
+            // fall through
+          case 153: break;
+          case 69:
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.BREAK,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("break: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 152: break;
-          case 69:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+          case 154: break;
+          case 70:
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.CLASS,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("case: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 153: break;
-          case 70:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+          case 155: break;
+          case 71:
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
+                        
                         return new Symbol(ParserJavaSym.FALSE,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 154: break;
-          case 71:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+          case 156: break;
+          case 72:
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.FINAL,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("final: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 155: break;
-          case 72:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+          case 157: break;
+          case 73:
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.WHILE,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("while: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 156: break;
-          case 73:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+          case 158: break;
+          case 74:
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.OBJ,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("Object: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 157: break;
-          case 74:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+          case 159: break;
+          case 75:
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.STR,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("String: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 158: break;
-          case 75:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+          case 160: break;
+          case 76:
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.DOUBLE,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("double: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 159: break;
-          case 76:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+          case 161: break;
+          case 77:
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.IMPORT,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 160: break;
-          case 77:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+          case 162: break;
+          case 78:
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.PUBLIC,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("public: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 161: break;
-          case 78:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+          case 163: break;
+          case 79:
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.RETURN,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("return: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 162: break;
-          case 79:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+          case 164: break;
+          case 80:
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.STATIC,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 163: break;
-          case 80:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+          case 165: break;
+          case 81:
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.SWITCH,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("switch: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 164: break;
-          case 81:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+          case 166: break;
+          case 82:
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.BOOL,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("boolean: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 165: break;
-          case 82:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+          case 167: break;
+          case 83:
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.DEFAULT,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("import: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 166: break;
-          case 83:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+          case 168: break;
+          case 84:
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.PRIVATE,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("private: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 167: break;
-          case 84:
-            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1,null,this.anterior);
-                        this.anterior = this.actual;
+          case 169: break;
+          case 85:
+            { this.actual = new Token(yytext(),yytext(),yyline+1,yycolumn+1);
                         return new Symbol(ParserJavaSym.PROTECTED,yyline+1,yycolumn+1,this.actual);
                         //System.out.println("protected: "+yytext()+", Linea: "+(yyline+1)+", Columna: "+(yycolumn+1));
             }
             // fall through
-          case 168: break;
+          case 170: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
