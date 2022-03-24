@@ -577,9 +577,8 @@ contenidoSwitch2    ::= contenidoSwitch2:vars1 CASE exp DOSPUNTOS sentencias:var
 
 asig    ::= exp:r                   {:RESULT=r;:}
         |   NEW OBJ PA_A PA_C       {:RESULT = new Asignacion(TablaSimbolos.OBJECT,TablaSimbolos.OBJECT);:}
-        |   NEW ID:tipo PA_A PA_C   {:RESULT = new Asignacion(TablaSimbolos.OBJECT,tipo.getLexema());:}
         ;
-
+/*|   NEW ID:tipo PA_A PA_C   {:RESULT = new Asignacion(TablaSimbolos.OBJECT,tipo.getLexema());:}*/
 exp ::= exp:r1 OR:ref t:r2          {:if(OperacionCast.newAndOr(r1,r2).equals(TablaSimbolos.ERROR)){RESULT = new Asignacion(TablaSimbolos.ERROR,TablaSimbolos.ERROR); error_and_or(ref,r1,r2);}else{RESULT = new Asignacion(OperacionCast.newAndOr(r1,r2),OperacionCast.newAndOr(r1,r2));}:}
     |   t:r {:RESULT=r;:}
     |   exp:r error {:RESULT=r;:}
