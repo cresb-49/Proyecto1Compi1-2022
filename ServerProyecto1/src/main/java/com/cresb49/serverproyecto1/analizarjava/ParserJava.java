@@ -1107,7 +1107,8 @@ public class ParserJava extends java_cup.runtime.lr_parser {
     private ConsoleControl consola;
     private String carpetaFuente;
     private String archivoAnalizado;
-    private ArrayList<FilaTablaSymbolos> variablesDetectadas = new ArrayList<>();
+    private ArrayList<FilaTablaSymbolos> variablesDetectadas;
+    private ArrayList<String> funcionesClase;
     
     public ParserJava (LexerJava lexerJava,TablaSimbolos tablaSimbolos,ArrayList<Clase> clases,ArrayList<Metodo> metodos){ 
         super(lexerJava);
@@ -1119,6 +1120,8 @@ public class ParserJava extends java_cup.runtime.lr_parser {
         this.archivoAnalizado=this.lexerJava.getArchivoAnalizado();
         this.consola=this.lexerJava.getConsoleControl();
         this.simbolosTerminalesJava = new SimbolosTerminalesJava();
+        this.variablesDetectadas = new ArrayList<>();
+        this.funcionesClase = new ArrayList<>();
     }
 
     public TablaSimbolos getTablaSimbolos(){
@@ -1317,20 +1320,27 @@ public class ParserJava extends java_cup.runtime.lr_parser {
     }
 
     private void agregarMetodoEncontrado(Metodo metodo, ArrayList<FilaTablaSymbolos> vars) {
-        this.getMetodos().add(metodo);
-        //Convertir las variables encontradas de FilaTablasSymbolos a Parametros
-        ArrayList<Parametros> p = new ArrayList<>();
-        if(vars!=null){
-            vars.forEach(var -> {p.add(new Parametros(var.getNombre(), var.getTipo()));});
+        if(metodo!=null){
+            this.getMetodos().add(metodo);
+            this.funcionesClase.add(metodo.getNombre());
+            //Convertir las variables encontradas de FilaTablasSymbolos a Parametros
+            ArrayList<Parametros> p = new ArrayList<>();
+            if(vars!=null){
+                vars.forEach(var -> {p.add(new Parametros(var.getNombre(), var.getTipo()));});
+            }
+            metodo.setParametros(p);
         }
-        metodo.setParametros(p);
-        System.out.println(metodo.toString());
+        //System.out.println(metodo.toString());
     }
 
     private void agregarClase(String nombre) {
         if(nombre!=null){
-            this.getClases().add(new Clase(nombre));
+            ArrayList<String> tmpM = new ArrayList<>();
+            this.funcionesClase.forEach(string -> {tmpM.add(string);});
+            Clase tmp = new Clase(nombre,tmpM);
+            this.getClases().add(tmp);
         }
+        this.funcionesClase.clear();
     }
 
     protected int error_sync_size() {
