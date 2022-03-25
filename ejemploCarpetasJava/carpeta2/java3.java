@@ -21,18 +21,18 @@ public class CrearArchivos {
         String pathDef =carpeta + ".def";
         String pathJson =carpeta +".json";
         
-        File carpetaFile = new File();
-        File archivoJson = new File();
-        File archivoDef = new File();
+        File carpetaFile = new Object();
+        File archivoJson = new Object();
+        File archivoDef = new Object();
         
         setPathCarpetaProyecto();
         setPathArchivDef();
         setPathArchivoJson();
         
         if (carpetaFile) {
-            FileWriter fw = new FileWriter();
-            BufferedWriter bw = new BufferedWriter();
-            ObjectOutputStream oos = new ObjectOutputStream();
+            FileWriter fw = new Object();
+            BufferedWriter bw = new Object();
+            ObjectOutputStream oos = new Object();
         } else {
             NotDirectoryCreate();
         }

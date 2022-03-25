@@ -11,7 +11,10 @@ public class CrearArchivos {
 
     public CrearArchivos() {
     }
-    
+    public boolean parse() {
+		Tabla tabla = new Object();
+		this.Saludar("hola "+" numero: "+ (55+55));
+	}
     public static void crear_guardar(File archivo,ProyectoCopy proyectoCopy){
         
         String generalPath;
@@ -21,18 +24,18 @@ public class CrearArchivos {
         String pathDef =carpeta + ".def";
         String pathJson =carpeta +".json";
         
-        File carpetaFile = new File();
-        File archivoJson = new File();
-        File archivoDef = new File();
+        File carpetaFile = new Object();
+        File archivoJson = new Object();
+        File archivoDef = new Object();
         
         this.setPathCarpetaProyecto();
         this.setPathArchivDef();
         this.setPathArchivoJson();
         
         if (carpetaFile) {
-            FileWriter fw = new FileWriter();
-            BufferedWriter bw = new BufferedWriter();
-            ObjectOutputStream oos = new ObjectOutputStream();
+            FileWriter fw = new Object();
+            BufferedWriter bw = new Object();
+            ObjectOutputStream oos = new Object();
         } else {
             NotDirectoryCreate();
         }

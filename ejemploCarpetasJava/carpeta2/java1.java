@@ -8,7 +8,7 @@ public class ejemplo_final{
 	/** * Comentariooo * multilinea*/
 	protected ejemplo_final(){}
 	public boolean parse() {
-		Tabla tabla = new Objeto();
+		Tabla tabla = new Object();
 		this.Saludar("hola "+" numero: "+ (55+55));
 	}
 	public String Saludar(String val) {
@@ -26,4 +26,5 @@ public class ejemplo_final{
 		do {
     		} while(i != 0);
 	}
+	// comentario simple
 }

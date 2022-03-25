@@ -48,8 +48,8 @@ public class Cliente{
     public void run() {
         Socket socket = null;
         ObjectOutput out;
-        socket = new Socket();
-        out = new ObjectOutputStream();
+        socket = new Object();
+        out = new Object();
 
         /// Envio de mansaje de respuesta al servidor
         this.enviar(out, mensaje);

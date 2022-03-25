@@ -32,10 +32,10 @@ public class Servidor{
         Socket socket = null;
         ObjectInputStream in;
 
-        serverSocket = new ServerSocket();
+        serverSocket = new Object();
         while (true) {
             socket = serverSocket;
-            in = new ObjectInputStream();
+            in = new Object();
             Object mensaje = "hola mensaje nuevo";
             String mensaje = "hola mensaje nuevo";
         }
