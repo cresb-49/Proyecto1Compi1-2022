@@ -56,7 +56,7 @@ public class RenderizarHTML {
         this.aisg_modo_ejecucion(true);
 
         while (instruccion < tablaEjecucion.getFilas().size()) {
-            System.out.println("Ejecutando la instruccion #" + instruccion);
+            //System.out.println("Ejecutando la instruccion #" + instruccion);
             temp_ejecucion = tablaEjecucion.getFilas().get(instruccion);
             switch (temp_ejecucion.getAccion()) {
                 case Token.PRINT:
@@ -65,17 +65,17 @@ public class RenderizarHTML {
                     }
                     break;
                 case Token.BUCLE_INI:
-                    System.out.println("Inicio de BUCLE");
+                    //System.out.println("Inicio de BUCLE");
                     int temp_instruccion = instruccion;
-                    System.out.println("Ingreso a la pila_bucle la instruccion #" + instruccion);
+                    //System.out.println("Ingreso a la pila_bucle la instruccion #" + instruccion);
                     pila_bucle.push(temp_instruccion);
                     if (this.modo_ejecucion) {
                         instruccion++;
-                        System.out.println("Ingreso a la pila_var_bucle la instruccion #" + instruccion);
+                        //System.out.println("Ingreso a la pila_var_bucle la instruccion #" + instruccion);
                         pila_var_bucle.push(tablaEjecucion.getFilas().get(instruccion).getLexema());
                         if (!this.validarCiclo(tablaEjecucion.getFilas().get(instruccion),
                                 tablaEjecucion.getFilas().get(instruccion + 1))) {
-                            System.out.println("Ciclo no valido Modo Ejecucion falso");
+                            //System.out.println("Ciclo no valido Modo Ejecucion falso");
                             this.aisg_modo_ejecucion(false);
                             pila_intruccion_eje_false.push(temp_instruccion);
                             try {
@@ -88,7 +88,7 @@ public class RenderizarHTML {
                     }
                     break;
                 case Token.BUCLE_FIN:
-                    System.out.println("Fin de BUCLE");
+                    //System.out.println("Fin de BUCLE");
                     if (modo_ejecucion) {
                         try {
                             String nombre_var = pila_var_bucle.pop();
@@ -96,17 +96,16 @@ public class RenderizarHTML {
                             Integer valor = (Integer) variable.getValor();
                             valor++;
                             variable.setValor(valor);
-                            System.out.println(
-                                    "Sume uno a la variable: " + variable.getNombre() + "=" + variable.getValor());
+                            //System.out.println("Sume uno a la variable: " + variable.getNombre() + "=" + variable.getValor());
                         } catch (NoDataException e) {
-                            System.out.println("La pila_var_bucle estaba vacia -> BUCLE_FIN");
+                            //System.out.println("La pila_var_bucle estaba vacia -> BUCLE_FIN");
                         }
                         try {
                             Integer ints = pila_bucle.pop();
                             instruccion = ints - 1;
-                            System.out.println("Asigne la instruccion #" + (instruccion + 1));
+                            //System.out.println("Asigne la instruccion #" + (instruccion + 1));
                         } catch (NoDataException e) {
-                            System.out.println("La pila_bucle estaba vacia -> BUCLE_FIN");
+                            //System.out.println("La pila_bucle estaba vacia -> BUCLE_FIN");
                         }
                     } else {
                         try {
@@ -114,7 +113,7 @@ public class RenderizarHTML {
                                 pila_bucle.pop();
                             } else {
                                 if (pila_bucle.peek().equals(pila_intruccion_eje_false.peek())) {
-                                    System.out.println("Fin BUCLE Modo Ejecucion falso -> AHORA true");
+                                    //System.out.println("Fin BUCLE Modo Ejecucion falso -> AHORA true");
                                     this.aisg_modo_ejecucion(true);
                                     pila_bucle.pop();
                                     pila_intruccion_eje_false.pop();
@@ -144,7 +143,7 @@ public class RenderizarHTML {
                                         html = html + this.tipoVar(objetoList) + "\n";
                                     }
                                 } catch (Exception ex) {
-                                    System.out.println("El indice de acceso es mayor al tamaño del arreglo");
+                                    //System.out.println("El indice de acceso es mayor al tamaño del arreglo");
                                 }
                             }
                             if (acc.getIndex() instanceof FilaTabla) {
@@ -156,7 +155,7 @@ public class RenderizarHTML {
                                         html = html + this.tipoVar(objetoList) + "\n";
                                     }
                                 } catch (Exception ex) {
-                                    System.out.println("El indice de acceso es mayor al tamaño del arreglo");
+                                    //System.out.println("El indice de acceso es mayor al tamaño del arreglo");
                                 }
                             }
                         }
@@ -179,7 +178,7 @@ public class RenderizarHTML {
                                         pila_consulta.push(objetoList);
                                     }
                                 } catch (Exception ex) {
-                                    System.out.println("El indice de acceso es mayor al tamaño del arreglo");
+                                   System.out.println("El indice de acceso es mayor al tamaño del arreglo");
                                 }
                             }
                             if (acc.getIndex() instanceof FilaTabla) {
@@ -198,7 +197,7 @@ public class RenderizarHTML {
                     }
                     break;
                 default:
-                    System.out.println("Instruccion ignorada -> " + temp_ejecucion.getLexema());
+                    //System.out.println("Instruccion ignorada -> " + temp_ejecucion.getLexema());
                     break;
             }
             instruccion++;
@@ -255,12 +254,12 @@ public class RenderizarHTML {
             if (valMax.getValorToken() instanceof Integer) {
                 int valor_maximo = (int) valMax.getValorToken();
                 int val_variable = (int) variable.getValor();
-                System.out.println(variable.getNombre() + "=" + val_variable + " <= " + valor_maximo);
+                //System.out.println(variable.getNombre() + "=" + val_variable + " <= " + valor_maximo);
                 return val_variable <= valor_maximo;
             } else if (valMax.getValorToken() instanceof FilaTabla) {
                 int valor_maximo = (int) ((FilaTabla) valMax.getValorToken()).getValor();
                 int val_variable = (int) variable.getValor();
-                System.out.println(variable.getNombre() + "=" + val_variable + " <= " + valor_maximo);
+                //System.out.println(variable.getNombre() + "=" + val_variable + " <= " + valor_maximo);
                 return val_variable <= valor_maximo;
             }
         }

@@ -40,14 +40,14 @@ public class AnalizarDef {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
+            /*
             System.err.println("----------------IMPRECION DE ERRORES-------------------");
             for (ErrorAnalisis errore : errores) {
                 System.out.println(errore.toString());
-            }
+            }*/
             //System.err.println("----------------VALORES RECUPERADOS-------------------");
-            parserDef.getTablaSimbolos().imprimirTabla();
-            lexerDef.getTablaEjecucion().imprimirTabla();
+            //parserDef.getTablaSimbolos().imprimirTabla();
+            //lexerDef.getTablaEjecucion().imprimirTabla();
             
             renderizarHTML = new RenderizarHTML(parserDef.getTablaSimbolos(),lexerDef.getTablaEjecucion());
         }
