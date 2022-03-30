@@ -446,11 +446,23 @@ parser code {:
             switch(tipo){
                 case TablaSimbolos.CHAR:
                     /*TIPO DE DATO CORRECTO*/
+                    if(!valCase.isConstante()){
+                        String error = "Error en valor de case, el dato debe ser valor constate de tipo -> [String,char,int]";
+                        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna()+1, error),carpetaFuente,archivoAnalizado));
+                    }
                     break;
                 case TablaSimbolos.STRING:
+                    if(!valCase.isConstante()){
+                        String error = "Error en valor de case, el dato debe ser valor constate de tipo -> [String,char,int]";
+                        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna()+1, error),carpetaFuente,archivoAnalizado));
+                    }
                     /*TIPO DE DATO CORRECTO*/
                     break;
                 case TablaSimbolos.INT:
+                    if(!valCase.isConstante()){
+                        String error = "Error en valor de case, el dato debe ser valor constate de tipo -> [String,char,int]";
+                        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna()+1, error),carpetaFuente,archivoAnalizado));
+                    }
                     /*TIPO DE DATO CORRECTO*/
                     break;
                 default:
