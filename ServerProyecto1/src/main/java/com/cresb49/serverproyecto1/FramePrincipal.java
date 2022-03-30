@@ -29,6 +29,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
         this.setLocationRelativeTo(null);
         this.consola = new ConsoleControl(ConsoleLog);
         this.inicializarServidor();
+        this.lineasConsola();
     }
 
     /**
@@ -179,5 +180,10 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
         cliente.setMensaje(json);
         Thread hilo = new Thread(cliente);
         hilo.start();
+    }
+
+    private void lineasConsola() {
+        NumeroLinea numeroLinea = new NumeroLinea(ConsoleLog);
+        this.jScrollPane3.setRowHeaderView(numeroLinea);
     }
 }
