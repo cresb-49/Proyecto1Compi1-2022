@@ -1206,7 +1206,7 @@ public class ParserJava extends java_cup.runtime.lr_parser {
         if(r1!=null && r2!=null){
             String tipo1 = ((r1.getTipo().equals(TablaSimbolos.COMODIN))?"Objeto/Funcion/Variable":r1.getTipo());
             String tipo2 = ((r2.getTipo().equals(TablaSimbolos.COMODIN))?"Objeto/Funcion/Variable":r2.getTipo());
-            String error = "No se puede operar \""+tipo1+" "+ref.getLexema()+" "+tipo2+"\" valores posibles a evaluar con \""+ref.getLexema()+"\" son -> "+expected;
+            String error = "No se puede operar \""+tipo1+" "+ref.getLexema()+" "+tipo2+"\"";
             this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna(), error),carpetaFuente,archivoAnalizado));
         }
     }   
