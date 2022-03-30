@@ -637,6 +637,27 @@ metodo      ::= visibilidad configMetodo:metodo PA_A PA_C metodoP:vars       {:
                                                                                         agregarVariablesDetectadas("Metodo "+metodo.getNombre());
                                                                                     }
                                                                                 :}
+            |   visibilidad STATIC FINAL configMetodo:metodo PA_A PA_C metodoP:vars {:
+                                                                                        if(metodo!=null){
+                                                                                            agregarMetodoEncontrado(metodo,new ArrayList<>());
+                                                                                            //agregarVariablesTabla("Metodo "+metodo.getNombre(),vars);
+                                                                                            agregarVariablesDetectadas("Metodo "+metodo.getNombre());
+                                                                                        }
+                                                                                    :}
+            |   visibilidad FINAL STATIC configMetodo:metodo PA_A PA_C metodoP:vars {:
+                                                                                        if(metodo!=null){
+                                                                                            agregarMetodoEncontrado(metodo,new ArrayList<>());
+                                                                                            //agregarVariablesTabla("Metodo "+metodo.getNombre(),vars);
+                                                                                            agregarVariablesDetectadas("Metodo "+metodo.getNombre());
+                                                                                        }
+                                                                                    :}
+            |   visibilidad FINAL configMetodo:metodo PA_A PA_C metodoP:vars   {:
+                                                                                    if(metodo!=null){
+                                                                                        agregarMetodoEncontrado(metodo,new ArrayList<>());
+                                                                                        //agregarVariablesTabla("Metodo "+metodo.getNombre(),vars);
+                                                                                        agregarVariablesDetectadas("Metodo "+metodo.getNombre());
+                                                                                    }
+                                                                                :}
             |   visibilidad configMetodo:metodo PA_A parametros:vars PA_C metodoP:vars1 {:
                                                                                             if(metodo!=null){
                                                                                                 agregarMetodoEncontrado(metodo,vars);
@@ -646,6 +667,30 @@ metodo      ::= visibilidad configMetodo:metodo PA_A PA_C metodoP:vars       {:
                                                                                             }
                                                                                         :}
             |   visibilidad STATIC configMetodo:metodo PA_A parametros:vars PA_C metodoP:vars1  {:
+                                                                                                    if(metodo!=null){
+                                                                                                        agregarMetodoEncontrado(metodo,vars);
+                                                                                                        cargarVariables(vars);
+                                                                                                        //agregarVariablesTabla("Metodo "+metodo.getNombre(),retornarDosFuentes(vars,vars1));
+                                                                                                        agregarVariablesDetectadas("Metodo "+metodo.getNombre());
+                                                                                                    }
+                                                                                                :}
+            |   visibilidad STATIC FINAL configMetodo:metodo PA_A parametros:vars PA_C metodoP:vars1    {:
+                                                                                                            if(metodo!=null){
+                                                                                                                agregarMetodoEncontrado(metodo,vars);
+                                                                                                                cargarVariables(vars);
+                                                                                                                //agregarVariablesTabla("Metodo "+metodo.getNombre(),retornarDosFuentes(vars,vars1));
+                                                                                                                agregarVariablesDetectadas("Metodo "+metodo.getNombre());
+                                                                                                            }
+                                                                                                        :}
+            |   visibilidad FINAL STATIC configMetodo:metodo PA_A parametros:vars PA_C metodoP:vars1    {:
+                                                                                                            if(metodo!=null){
+                                                                                                                agregarMetodoEncontrado(metodo,vars);
+                                                                                                                cargarVariables(vars);
+                                                                                                                //agregarVariablesTabla("Metodo "+metodo.getNombre(),retornarDosFuentes(vars,vars1));
+                                                                                                                agregarVariablesDetectadas("Metodo "+metodo.getNombre());
+                                                                                                            }
+                                                                                                        :}
+            |   visibilidad FINAL configMetodo:metodo PA_A parametros:vars PA_C metodoP:vars1   {:
                                                                                                     if(metodo!=null){
                                                                                                         agregarMetodoEncontrado(metodo,vars);
                                                                                                         cargarVariables(vars);
