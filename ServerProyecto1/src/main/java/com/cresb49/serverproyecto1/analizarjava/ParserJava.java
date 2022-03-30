@@ -1239,7 +1239,7 @@ public class ParserJava extends java_cup.runtime.lr_parser {
     }
     private void verificarExprecionBool(Token ref, Asignacion asig) {
         if(asig!=null){
-            if(!(asig.getTipo().equals(TablaSimbolos.BOOLEAN)||asig.getTipo().equals(TablaSimbolos.COMODIN))){
+            if(!(asig.getTipo().equals(TablaSimbolos.BOOLEAN)||asig.getTipo().equals(TablaSimbolos.COMODIN)||asig.getTipo().equals(TablaSimbolos.VARIABLE))){
                 String error = "El valor del condicional debe ser de tipo boolean valor actual -> "+asig.getTipo();
                 this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,"Valor Condicional", ref.getLinea(), ref.getColumna()+1, error),carpetaFuente,archivoAnalizado));
             }
@@ -1526,31 +1526,25 @@ public class ParserJava extends java_cup.runtime.lr_parser {
             switch(tipo){
                 case TablaSimbolos.CHAR:
                     /*TIPO DE DATO CORRECTO*/
+                    /*
                     if(!valCase.isConstante()){
-                        String error = "Error en valor de case, el dato debe ser valor constate de tipo -> [String,char,int]";
-                        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna()+1, error),carpetaFuente,archivoAnalizado));
+                        String error = "Error en valor de case, el dato debe ser de tipo -> [String,char,int]";
+                        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema()+" -> error :", ref.getLinea(), ref.getColumna()+1, error),carpetaFuente,archivoAnalizado));
                     }
+                    */
                     break;
                 case TablaSimbolos.STRING:
-                    if(!valCase.isConstante()){
-                        String error = "Error en valor de case, el dato debe ser valor constate de tipo -> [String,char,int]";
-                        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna()+1, error),carpetaFuente,archivoAnalizado));
-                    }
                     /*TIPO DE DATO CORRECTO*/
                     break;
                 case TablaSimbolos.INT:
-                    if(!valCase.isConstante()){
-                        String error = "Error en valor de case, el dato debe ser valor constate de tipo -> [String,char,int]";
-                        this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna()+1, error),carpetaFuente,archivoAnalizado));
-                    }
                     /*TIPO DE DATO CORRECTO*/
                 case TablaSimbolos.VARIABLE:
                     /*TIPO DE DATO CORRECTO*/
                     break;
                 default:
                     /*DECLARAR ERRORES*/
-                    String error = "Error en valor de case, el dato debe ser valor constate de tipo -> [String,char,int]";
-                    this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna()+1, error),carpetaFuente,archivoAnalizado));
+                    String error = "Error en valor de case, el dato debe ser de tipo -> [String,char,int]";
+                    this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema()+" -> error :", ref.getLinea(), ref.getColumna()+1, error),carpetaFuente,archivoAnalizado));
             }
         }
     }

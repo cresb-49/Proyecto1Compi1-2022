@@ -12,11 +12,10 @@ public class Asignacion {
         this.valor=valor;
     }
 
-    public Asignacion(String tipo,String clase,Object valor,boolean constante){
+    public Asignacion(String tipo,String clase,boolean constante){
         this.tipo=tipo;
         this.clase=clase;
-        this.valor=valor;
-        this.constante=constante;
+        this.constante = constante;
     }
 
     public Asignacion(String tipo,String clase){

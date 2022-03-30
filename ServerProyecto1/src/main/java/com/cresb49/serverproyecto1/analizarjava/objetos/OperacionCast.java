@@ -191,7 +191,7 @@ public class OperacionCast {
             return TablaSimbolos.COMODIN;
         }else
         if(left.getTipo().equals(TablaSimbolos.BOOLEAN)&&rigth.getTipo().equals(TablaSimbolos.VARIABLE)){
-            return TablaSimbolos.COMODIN;
+            return TablaSimbolos.ERROR;
         }else
         if(left.getTipo().equals(TablaSimbolos.BOOLEAN)&&rigth.getTipo().equals(TablaSimbolos.ERROR)){
             return TablaSimbolos.ERROR;
@@ -212,10 +212,10 @@ public class OperacionCast {
             return TablaSimbolos.ERROR;
         }else
         if(left.getTipo().equals(TablaSimbolos.OBJECT)&&rigth.getTipo().equals(TablaSimbolos.OBJECT)){
-            return TablaSimbolos.COMODIN;
+            return TablaSimbolos.ERROR;
         }else
         if(left.getTipo().equals(TablaSimbolos.OBJECT)&&rigth.getTipo().equals(TablaSimbolos.COMODIN)){
-            return TablaSimbolos.COMODIN;
+            return TablaSimbolos.ERROR;
         }else
         if(left.getTipo().equals(TablaSimbolos.OBJECT)&&rigth.getTipo().equals(TablaSimbolos.VARIABLE)){
             return TablaSimbolos.ERROR;
@@ -236,16 +236,16 @@ public class OperacionCast {
             return TablaSimbolos.STRING;
         }else
         if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.BOOLEAN)){
-            return TablaSimbolos.COMODIN;
+            return TablaSimbolos.ERROR;
         }else
         if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.OBJECT)){
-            return TablaSimbolos.COMODIN;
+            return TablaSimbolos.ERROR;
         }else
         if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.COMODIN)){
             return TablaSimbolos.COMODIN;
         }else
         if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.VARIABLE)){
-            return TablaSimbolos.COMODIN;
+            return TablaSimbolos.VARIABLE;
         }else
         if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.ERROR)){
             return TablaSimbolos.ERROR;
@@ -269,10 +269,10 @@ public class OperacionCast {
             return TablaSimbolos.ERROR;
         }else
         if(left.getTipo().equals(TablaSimbolos.VARIABLE)&&rigth.getTipo().equals(TablaSimbolos.COMODIN)){
-            return TablaSimbolos.COMODIN;
+            return TablaSimbolos.VARIABLE;
         }else
         if(left.getTipo().equals(TablaSimbolos.VARIABLE)&&rigth.getTipo().equals(TablaSimbolos.VARIABLE)){
-            return TablaSimbolos.COMODIN;
+            return TablaSimbolos.VARIABLE;
         }else
         if(left.getTipo().equals(TablaSimbolos.VARIABLE)&&rigth.getTipo().equals(TablaSimbolos.ERROR)){
             return TablaSimbolos.ERROR;
@@ -332,10 +332,10 @@ public class OperacionCast {
             return TablaSimbolos.DOUBLE;
         }else
         if(left.getTipo().equals(TablaSimbolos.VARIABLE)&&rigth.getTipo().equals(TablaSimbolos.COMODIN)){
-            return TablaSimbolos.COMODIN;
+            return TablaSimbolos.VARIABLE;
         }else
         if(left.getTipo().equals(TablaSimbolos.VARIABLE)&&rigth.getTipo().equals(TablaSimbolos.VARIABLE)){
-            return TablaSimbolos.COMODIN;
+            return TablaSimbolos.VARIABLE;
         }else
         if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.INT)){
             return TablaSimbolos.INT;
@@ -347,7 +347,7 @@ public class OperacionCast {
             return TablaSimbolos.COMODIN;
         }else
         if(left.getTipo().equals(TablaSimbolos.COMODIN)&&rigth.getTipo().equals(TablaSimbolos.VARIABLE)){
-            return TablaSimbolos.COMODIN;
+            return TablaSimbolos.VARIABLE;
         }else{
             return TablaSimbolos.ERROR;
         }
