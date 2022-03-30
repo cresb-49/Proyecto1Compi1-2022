@@ -1544,6 +1544,8 @@ public class ParserJava extends java_cup.runtime.lr_parser {
                         this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,ref.getLexema(), ref.getLinea(), ref.getColumna()+1, error),carpetaFuente,archivoAnalizado));
                     }
                     /*TIPO DE DATO CORRECTO*/
+                case TablaSimbolos.VARIABLE:
+                    /*TIPO DE DATO CORRECTO*/
                     break;
                 default:
                     /*DECLARAR ERRORES*/
