@@ -4,12 +4,21 @@ public class Asignacion {
     private String tipo;
     private String clase;
     private Object valor;
+    private boolean constante;
 
     public Asignacion(String tipo,String clase,Object valor){
         this.tipo=tipo;
         this.clase=clase;
         this.valor=valor;
     }
+
+    public Asignacion(String tipo,String clase,Object valor,boolean constante){
+        this.tipo=tipo;
+        this.clase=clase;
+        this.valor=valor;
+        this.constante=constante;
+    }
+
     public Asignacion(String tipo,String clase){
         this.tipo=tipo;
         this.clase=clase;
@@ -37,5 +46,13 @@ public class Asignacion {
 
     public void setValor(Object valor){
         this.valor = valor;
+    }
+    
+    public boolean isConstante() {
+        return constante;
+    }
+
+    public void setConstante(boolean constante) {
+        this.constante = constante;
     }
 }

@@ -16,6 +16,7 @@ public class TablaSimbolos {
     public static final String OBJECT = "Object";
     public static final String VOID = "void";
     public static final String COMODIN = "comodin";
+    public static final String VARIABLE = "variable";
     public static final String ERROR = "error";
     
     private ArrayList<FilaTablaSymbolos> filas;
