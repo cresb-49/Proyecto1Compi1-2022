@@ -563,8 +563,9 @@ tipo        ::= INT:t     {:RESULT = new Asignacion(TablaSimbolos.INT,t.getLexem
             |   CHAR:t    {:RESULT = new Asignacion(TablaSimbolos.CHAR,t.getLexema());:}
             |   DOUBLE:t  {:RESULT = new Asignacion(TablaSimbolos.DOUBLE,t.getLexema());:}
             |   OBJ:t     {:RESULT = new Asignacion(TablaSimbolos.OBJECT,t.getLexema());:}
-            |   ID:t     {:RESULT = new Asignacion(TablaSimbolos.OBJECT,t.getLexema());:}
+            |   ID:t     {:RESULT = new Asignacion(t.getLexema(),t.getLexema());:}
             ;
+/*|   ID:t     {:RESULT = new Asignacion(TablaSimbolos.OBJECT,t.getLexema());:}*/
 
 classJava   ::= visibilidad CLASS ID:clase LLA_A contClass:vars LLA_C   {:
                                                                             agregarClase(clase.getLexema());
@@ -865,6 +866,8 @@ contenidoSwitch2    ::= contenidoSwitch2:vars1 CASE:ref h:valCase DOSPUNTOS sent
 
 asig    ::= exp:r                   {:RESULT=r;:}
         |   NEW OBJ PA_A PA_C       {:RESULT = new Asignacion(TablaSimbolos.OBJECT,TablaSimbolos.OBJECT);:}
+        |   NEW ID:tipo PA_A PA_C   {:RESULT = new Asignacion(TablaSimbolos.OBJECT,tipo.getLexema());:}
+        |   NEW ID:tipo PA_A parametrosLlamada PA_C   {:RESULT = new Asignacion(TablaSimbolos.OBJECT,tipo.getLexema());:}
         ;
 /*|   NEW ID:tipo PA_A PA_C   {:RESULT = new Asignacion(TablaSimbolos.OBJECT,tipo.getLexema());:}*/
 exp ::= exp:r1 OR:ref t:r2          {:RESULT = validarAndOr(r1,r2,ref);:}
