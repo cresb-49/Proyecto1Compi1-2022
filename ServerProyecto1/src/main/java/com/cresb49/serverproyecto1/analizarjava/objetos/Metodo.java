@@ -111,6 +111,9 @@ public class Metodo implements Serializable{
             if(!(parametros.get(i).getNombre().equals(metodo.getParametros().get(i).getNombre()))){
                 return false;
             }
+            if(!(parametros.get(i).getTipo().equals(metodo.getParametros().get(i).getTipo()))){
+                return false;
+            }
         }
         return true;
     }
