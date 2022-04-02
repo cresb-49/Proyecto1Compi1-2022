@@ -13,7 +13,7 @@ public class java2 {
         }else{  
             units--;
         }
-        for(int i =met; i<45;i++){
+        for(int i =(met+34); i<45;i++){
 
         }
 
@@ -22,7 +22,7 @@ public class java2 {
         while(!false){
 
         }
-        if(exp()){
+        if(exp()>34){
             
         }
 
