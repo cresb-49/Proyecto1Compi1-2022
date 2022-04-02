@@ -30,7 +30,7 @@ public class java2 {
             itn var1 = 45;
         }
 
-        switch (key) {
+        switch (this.val(45,56)) {
             case value:
                 break;
             default:

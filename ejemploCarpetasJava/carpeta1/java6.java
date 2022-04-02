@@ -27,15 +27,15 @@ public class Servidor{
         this.puerto = puerto;
     }
 
-    public void run() {
+    public void run2() {
         ServerSocket serverSocket = null;
         Socket socket = null;
         ObjectInputStream in;
 
-        serverSocket = new Object();
+        serverSocket = new ServerSocket();
         while (true) {
             socket = serverSocket;
-            in = new Object();
+            in = new ObjectInputStream();
             Object mensaje = "hola mensaje nuevo";
             String mensaje = "hola mensaje nuevo";
         }
