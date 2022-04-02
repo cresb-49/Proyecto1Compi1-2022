@@ -159,6 +159,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
 
     @Override
     public void update(Observable o, Object arg) {
+        consola.addLog("------------------------------------------------------------------------------------------------------------------------------");
         consola.addLog("Proyecto recibido Archivos a procesar:");
         AnalizarProyectos analizarProyectos = new AnalizarProyectos(consola);
         if(arg instanceof Proyecto){
