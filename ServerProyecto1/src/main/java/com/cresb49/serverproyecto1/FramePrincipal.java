@@ -166,7 +166,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer{
             if(res!=null){
                 if(res.isBlank()||res.isEmpty()){
                     System.out.println("Existen errores en el analisis!!");
-                    consola.addLog("Errores durante el analisis no se enviar respuesta al cliente");
+                    consola.addLog("Errores durante el analisis no se envia respuesta al cliente");
                 }else{
                     System.out.println("Analisis corecto se envia respuesta al cliente!!");
                     this.responderCliente(res);

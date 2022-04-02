@@ -623,6 +623,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         // TODO add your handling code here:
         try {
             this.sobreEscribirDef();
+            JOptionPane.showMessageDialog(this, "Guardado Correcto!!!", "Guardado Correcto!!!", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "No se puede guardar el archivo .def:\n" + ex.getMessage(), "Error al guardar el archivo!", JOptionPane.ERROR_MESSAGE);
         }
@@ -632,6 +633,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         try {
             // TODO add your handling code here:
             this.sobreEscribirJson();
+            JOptionPane.showMessageDialog(this, "Guardado Correcto!!!", "Guardado Correcto!!!", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "No se puede guardar el archivo .json:\n" + ex.getMessage(), "Error al guardar el archivo!", JOptionPane.ERROR_MESSAGE);
         }
