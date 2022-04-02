@@ -1276,7 +1276,7 @@ public class ParserJava extends java_cup.runtime.lr_parser {
 
     private void verificarForInit(Token ref, Asignacion asig) {
         if(asig!=null){
-            if(!(asig.getTipo().equals(TablaSimbolos.INT)||asig.getTipo().equals(TablaSimbolos.COMODIN))){
+            if(!(asig.getTipo().equals(TablaSimbolos.INT)||asig.getTipo().equals(TablaSimbolos.COMODIN)||asig.getTipo().equals(TablaSimbolos.VARIABLE))){
                 String error = "La asignacion \""+ref.getLexema()+" "+asig.getTipo()+"\" no es valida debe de ser una asignacion entera";
                 this.lexerJava.getErrors().add(consola.addLog(new ErrorAnalisis(ERROR_TYPE_SEM,"Valor Asignacion for", ref.getLinea(), ref.getColumna()+1, error),carpetaFuente,archivoAnalizado));
             }
