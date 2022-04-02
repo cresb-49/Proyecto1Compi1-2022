@@ -61,8 +61,10 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
         try {
             //java.net.URL imageURL1 = getClass().getResource("/resources/imgCarpeta.png");
             //java.net.URL imageURL2 = getClass().getResource("/resources/signoIncorrecto.png");
-            ImageIcon ico1 = new ImageIcon(getClass().getResource("/resources/imgCarpeta.png"));
-            ImageIcon ico2 = new ImageIcon(getClass().getResource("/resources/signoIncorrecto.png"));
+            //ImageIcon ico1 = new ImageIcon(getClass().getResource("/resources/imgCarpeta.png"));
+            //ImageIcon ico2 = new ImageIcon(getClass().getResource("/resources/signoIncorrecto.png"));
+            ImageIcon ico1 = new ImageIcon(getClass().getResource("/imgCarpeta.png"));
+            ImageIcon ico2 = new ImageIcon(getClass().getResource("/signoIncorrecto.png"));
             imagenCarpeta = ico1.getImage();
             imagenNoCarga = ico2.getImage();
         } catch (Exception ex) {
