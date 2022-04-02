@@ -50,7 +50,6 @@ public class Cliente implements Runnable {
     public void run() {
         Socket socket = null;
         ObjectOutput out;
-
         try {
             socket = new Socket(host, puerto);
             System.out.println("Servidor Iniciado");

@@ -555,10 +555,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
                 System.out.println("carpeta2: " + carpeta2);
                 if (carpeta1 != null && carpeta2 != null) {
                     EmpaquetarInformacion empquetado = new EmpaquetarInformacion();
-                    System.out.println("debuj");
                     cliente = new Cliente(5000, "localhost");
                     try {
-                        System.out.println("debuj2");
                         Proyecto proyecto = empquetado.empaquetar(carpeta1, carpeta2);
                         cliente.setMensaje(proyecto);
                         Thread hilo = new Thread(cliente);
@@ -759,7 +757,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             }
 
         } else {
-            consolaDef.addLog("Archivo def coorecto!!!! puede visualizarlo en Pestaña Reportes");
+            consolaDef.addLog("Archivo def correcto!!!! puede visualizarlo en Pestaña Reportes");
         }
     }
 
@@ -772,7 +770,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
                 consolaDef.addLog(text);
             }
         } else {
-            consolaDef.addLog("Archivo Json coorecto!!!!");
+            consolaDef.addLog("Archivo Json correcto!!!!");
         }
     }
 
