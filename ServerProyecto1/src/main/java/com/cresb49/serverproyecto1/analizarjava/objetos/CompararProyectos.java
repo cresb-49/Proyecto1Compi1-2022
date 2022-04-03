@@ -75,17 +75,17 @@ public class CompararProyectos {
         int totalClases = this.resultadoCarpeta1.numeroClases()+this.resultadoCarpeta2.numeroClases();
         ArrayList<Clase> repitenciaClase1 = this.repitenciaClasesProyecto(resultadoCarpeta1.getClases(),resultadoCarpeta2.getClases());
         ArrayList<Clase> repitenciaClase2 = this.repitenciaClasesProyecto(clases);
-        for (Clase clase : repitenciaClase1) {System.out.println(clase.toString());}
-        System.out.println("------------------------------------------------------------------");
-        for (Clase clase : repitenciaClase2) {System.out.println(clase.toString());}
+        //for (Clase clase : repitenciaClase1) {System.out.println(clase.toString());}
+        //System.out.println("------------------------------------------------------------------");
+        //for (Clase clase : repitenciaClase2) {System.out.println(clase.toString());}
         int clasesRepetidas = this.contarClasesRepetidas(repitenciaClase1,repitenciaClase2);
         //System.out.println("------------------------------------------------------------------");
         int totalComen = this.resultadoCarpeta1.numeroComentarios()+this.resultadoCarpeta2.numeroComentarios();
         ArrayList<Comentario> repitenciaComentarios1 = this.repitenciaComentariosProyectos(resultadoCarpeta1.getComentarios(),resultadoCarpeta2.getComentarios());
         ArrayList<Comentario> repitenciaComentarios2 = this.repitenciaComentariosProyectos(comentarios);
-        for (Comentario clase : repitenciaComentarios1) {System.out.println(clase.toString());}
-        System.out.println("------------------------------------------------------------------");
-        for (Comentario clase : repitenciaComentarios2) {System.out.println(clase.toString());}
+        //for (Comentario clase : repitenciaComentarios1) {System.out.println(clase.toString());}
+        //System.out.println("------------------------------------------------------------------");
+        //for (Comentario clase : repitenciaComentarios2) {System.out.println(clase.toString());}
         int comenrepetidos = this.contarComentariosRepetidos(repitenciaComentarios1,repitenciaComentarios2);
         //System.out.println("------------------------------------------------------------------");
         System.out.println("clasesTotales: " + totalClases);

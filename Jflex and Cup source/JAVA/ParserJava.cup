@@ -567,15 +567,10 @@ tipo        ::= INT:t     {:RESULT = new Asignacion(TablaSimbolos.INT,t.getLexem
             ;
 /*|   ID:t     {:RESULT = new Asignacion(TablaSimbolos.OBJECT,t.getLexema());:}*/
 
-classJava   ::= visibilidad CLASS ID:clase LLA_A contClass:vars LLA_C   {:
-                                                                            agregarClase(clase.getLexema());
-                                                                            agregarVariablesTabla("Clase "+clase.getLexema(),vars);
-                                                                        :}
-            |   visibilidad CLASS ID:clase LLA_A LLA_C
-            |   visibilidad FINAL CLASS ID:clase LLA_A contClass:vars LLA_C {:
-                                                                                agregarVariablesTabla("Clase "+clase.getLexema(),vars);
-                                                                            :}
-            |   visibilidad FINAL CLASS ID:clase LLA_A LLA_C
+classJava   ::= visibilidad CLASS ID:clase LLA_A contClass:vars LLA_C   {:agregarClase(clase.getLexema());agregarVariablesTabla("Clase "+clase.getLexema(),vars);:}
+            |   visibilidad CLASS ID:clase LLA_A LLA_C  {:agregarClase(clase.getLexema());:}
+            |   visibilidad FINAL CLASS ID:clase LLA_A contClass:vars LLA_C {:agregarClase(clase.getLexema());agregarVariablesTabla("Clase "+clase.getLexema(),vars);:}
+            |   visibilidad FINAL CLASS ID:clase LLA_A LLA_C    {:agregarClase(clase.getLexema());:}
             ;
 
 contClass   ::= contClass:vars declararVariables:vars1 {:RESULT = retornarDosFuentes(vars,vars1);:}
