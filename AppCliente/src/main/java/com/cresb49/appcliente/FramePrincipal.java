@@ -566,6 +566,8 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(this, "Error al enviar las carpetas al servidor:\n" + ex.getMessage(), "Error al enviar!!!!", JOptionPane.ERROR_MESSAGE);
                     }
+                }else{
+                    JOptionPane.showMessageDialog(this,"Debe cargar las dos carpetas con archivos java", "Falta cargar algunos archivos!!!!!", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         }
