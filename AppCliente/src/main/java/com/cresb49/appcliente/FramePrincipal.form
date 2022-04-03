@@ -342,6 +342,7 @@
                           <SubComponents>
                             <Component class="javax.swing.JTextArea" name="ConsolaDef">
                               <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
                                 <Property name="columns" type="int" value="20"/>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Dialog" size="14" style="0"/>
@@ -493,6 +494,7 @@
                           <SubComponents>
                             <Component class="javax.swing.JTextArea" name="ConsolaJson">
                               <Properties>
+                                <Property name="editable" type="boolean" value="false"/>
                                 <Property name="columns" type="int" value="20"/>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Dialog" size="14" style="0"/>

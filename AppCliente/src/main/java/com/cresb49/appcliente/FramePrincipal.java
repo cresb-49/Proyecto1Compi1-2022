@@ -249,8 +249,9 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             }
         });
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONSOLA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "CONSOLA", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
 
+        ConsolaDef.setEditable(false);
         ConsolaDef.setColumns(20);
         ConsolaDef.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         ConsolaDef.setRows(5);
@@ -344,6 +345,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("CONSOLA"));
 
+        ConsolaJson.setEditable(false);
         ConsolaJson.setColumns(20);
         ConsolaJson.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         ConsolaJson.setRows(5);
