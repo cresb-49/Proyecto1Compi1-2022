@@ -2,6 +2,7 @@ package com.cresb49.appcliente.analizadores.def.obj;
 
 import com.cresb49.appcliente.ED.Pila;
 import com.cresb49.appcliente.ED.Exceptions.NoDataException;
+import com.cresb49.appcliente.Objetos.ConsoleControl;
 import com.cresb49.appcliente.analizadores.Token;
 import com.cresb49.appcliente.analizadores.json.obj.*;
 import java.util.ArrayList;
@@ -17,14 +18,17 @@ public class RenderizarHTML {
 
     private Pila<Object> pila_consulta;
 
+    private ConsoleControl consola;
+
     private boolean modo_ejecucion;
 
     public RenderizarHTML() {
     }
 
-    public RenderizarHTML(TablaSimbolos tablaSimbolos, TablaEjecucion tablaEjecucion) {
+    public RenderizarHTML(TablaSimbolos tablaSimbolos, TablaEjecucion tablaEjecucion, ConsoleControl consola) {
         this.tablaSimbolos = tablaSimbolos;
         this.tablaEjecucion = tablaEjecucion;
+        this.consola = consola;
     }
 
     public TablaSimbolos getTablaSimbolos() {
@@ -143,7 +147,7 @@ public class RenderizarHTML {
                                         html = html + this.tipoVar(objetoList) + "\n";
                                     }
                                 } catch (Exception ex) {
-                                    //System.out.println("El indice de acceso es mayor al tamaño del arreglo");
+                                    System.out.println("El indice de acceso es mayor al tamaño del arreglo");
                                 }
                             }
                             if (acc.getIndex() instanceof FilaTabla) {
@@ -155,7 +159,7 @@ public class RenderizarHTML {
                                         html = html + this.tipoVar(objetoList) + "\n";
                                     }
                                 } catch (Exception ex) {
-                                    //System.out.println("El indice de acceso es mayor al tamaño del arreglo");
+                                    System.out.println("El indice de acceso es mayor al tamaño del arreglo");
                                 }
                             }
                         }
@@ -163,7 +167,7 @@ public class RenderizarHTML {
                     break;
                 case Token.VAR_CONSULT:
                     if (this.modo_ejecucion) {
-                        html = html +this.obtenerValor(temp_ejecucion)+ "\n";
+                        html = html + this.obtenerValor(temp_ejecucion) + "\n";
                     }
                     break;
                 case Token.VIEW:
@@ -178,7 +182,7 @@ public class RenderizarHTML {
                                         pila_consulta.push(objetoList);
                                     }
                                 } catch (Exception ex) {
-                                   System.out.println("El indice de acceso es mayor al tamaño del arreglo");
+                                    System.out.println("El indice de acceso es mayor al tamaño del arreglo");
                                 }
                             }
                             if (acc.getIndex() instanceof FilaTabla) {
@@ -209,37 +213,37 @@ public class RenderizarHTML {
     private String obtenerValor(Token parametroConsulta) {
         try {
             Object var = pila_consulta.pop();
-            if(var instanceof Clase){
-                switch(parametroConsulta.getLexema()){
+            if (var instanceof Clase) {
+                switch (parametroConsulta.getLexema()) {
                     case "Nombre":
-                        return ""+((Clase)var).getNombre();
+                        return "" + ((Clase) var).getNombre();
                 }
-            }else if(var instanceof Variable){
-                switch(parametroConsulta.getLexema()){
+            } else if (var instanceof Variable) {
+                switch (parametroConsulta.getLexema()) {
                     case "Nombre":
-                        return ""+((Variable)var).getNombre();
+                        return "" + ((Variable) var).getNombre();
                     case "Tipo":
-                        return ""+((Variable)var).getTipo();
+                        return "" + ((Variable) var).getTipo();
                     case "Funcion":
-                        return ""+((Variable)var).getFuncion();
+                        return "" + ((Variable) var).getFuncion();
                 }
-            }else if(var instanceof Comentario){
-                switch(parametroConsulta.getLexema()){
+            } else if (var instanceof Comentario) {
+                switch (parametroConsulta.getLexema()) {
                     case "Texto":
-                        return ""+((Comentario)var).getTexto();
+                        return "" + ((Comentario) var).getTexto();
                 }
-            }else if(var instanceof Metodo){
-                switch(parametroConsulta.getLexema()){
+            } else if (var instanceof Metodo) {
+                switch (parametroConsulta.getLexema()) {
                     case "Nombre":
-                        return ""+((Metodo)var).getNombre();
+                        return "" + ((Metodo) var).getNombre();
                     case "Tipo":
-                        return ""+((Metodo)var).getTipo();
+                        return "" + ((Metodo) var).getTipo();
                     case "Parametros":
-                        return ""+((Metodo)var).getParametros();
+                        return "" + ((Metodo) var).getParametros();
                 }
-            }else{
+            } else {
                 return "";
-            }   
+            }
         } catch (NoDataException e) {
             e.printStackTrace();
         }

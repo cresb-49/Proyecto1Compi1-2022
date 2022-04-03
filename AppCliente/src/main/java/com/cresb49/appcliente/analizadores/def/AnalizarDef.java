@@ -1,5 +1,6 @@
 package com.cresb49.appcliente.analizadores.def;
 
+import com.cresb49.appcliente.Objetos.ConsoleControl;
 import com.cresb49.appcliente.analizadores.ErrorAnalisis;
 import com.cresb49.appcliente.analizadores.def.obj.FilaTabla;
 import com.cresb49.appcliente.analizadores.def.obj.RenderizarHTML;
@@ -21,7 +22,7 @@ public class AnalizarDef {
     public AnalizarDef() {
     }
 
-    public void ejecutar(String texto, ReporteJson reporteJson) throws NoReporteJson {
+    public void ejecutar(String texto, ReporteJson reporteJson,ConsoleControl consola) throws NoReporteJson {
         if (reporteJson == null) {
             throw new NoReporteJson("Debe de tener un resultado Json cargado en el proyecto");
         } else {
@@ -48,8 +49,7 @@ public class AnalizarDef {
             //System.err.println("----------------VALORES RECUPERADOS-------------------");
             //parserDef.getTablaSimbolos().imprimirTabla();
             //lexerDef.getTablaEjecucion().imprimirTabla();
-            
-            renderizarHTML = new RenderizarHTML(parserDef.getTablaSimbolos(),lexerDef.getTablaEjecucion());
+            renderizarHTML = new RenderizarHTML(parserDef.getTablaSimbolos(),lexerDef.getTablaEjecucion(),consola);
         }
     }
     

@@ -526,7 +526,7 @@ public class FramePrincipal extends javax.swing.JFrame implements Observer {
             ////ANALISIS DEL ARCHIVO DEF
             AnalizarDef analizarDef = new AnalizarDef();
             String texto = jTextAreaDef.getText();
-            analizarDef.ejecutar(texto, reporteJson);
+            analizarDef.ejecutar(texto, reporteJson,consolaDef);
             this.mostrarErroresConsolaDef(analizarDef.getErrores());
             if (analizarDef.getErrores().isEmpty()) {
                 VentanaHTML.setText(analizarDef.getHTML());

@@ -87,7 +87,7 @@ public class CompararProyectos {
         //System.out.println("------------------------------------------------------------------");
         //for (Comentario clase : repitenciaComentarios2) {System.out.println(clase.toString());}
         int comenrepetidos = this.contarComentariosRepetidos(repitenciaComentarios1,repitenciaComentarios2);
-        //System.out.println("------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------");
         System.out.println("clasesTotales: " + totalClases);
         System.out.println("clasesRepetidas: " + clasesRepetidas);
         System.out.println("varsTotales: " + totalVariables);
